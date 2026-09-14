@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>14 October 2026 - Aaradhya Day</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Courier+Prime&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* =========================================================
+           GLOBAL VARIABLES & RESET
+           ========================================================= */
+        :root {
+            --bg-dark: #070708;
+            --bg-magazine: #f2eee8;
+            --text-light: #eaddd7;
+            --text-dark: #2c2a29;
+            --accent-red: #ff2a2a;
+            --font-serif: 'Playfair Display', Georgia, serif;
+            --font-sans: 'Inter', Helvetica, sans-serif;
+            --font-typewriter: 'Courier Prime', monospace;
+            --trans-cinematic: 2s cubic-bezier(0.4, 0, 0.2, 1);
+            --paper-texture: url('data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noiseFilter)" opacity="0.05"/></svg>');
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: var(--bg-dark); color: var(--text-light); font-family: var(--font-sans); overflow-x: hidden; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+        h1, h2, h3, .serif { font-family: var(--font-serif); font-weight: normal; }
+        
+        #app-container { position: relative; width: 100vw; height: 100vh; overflow: hidden; }
+        .story-section { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; pointer-events: none; filter: blur(10px); transition: opacity var(--trans-cinematic), filter var(--trans-cinematic); overflow-y: auto; overflow-x: hidden; display: flex; flex-direction: column; }
+        .story-section.active { opacity: 1; pointer-events: all; filter: blur(0); }
+        
+        .btn-cinematic { margin: 40px auto; padding: 12px 30px; background: none; border: 1px solid currentColor; color: inherit; font-family: var(--font-serif); font-size: 1.1rem; cursor: pointer; transition: 0.4s ease; border-radius: 2px; letter-spacing: 1px; z-index: 20;}
+        .btn-cinematic:hover { background: currentColor; color: var(--bg-dark); }
+
+        /* =========================================================
+           1. UNHINGED OPENING
+           ========================================================= */
+        #s1-opening { background: #000; align-items: center; justify-content: center; overflow: hidden; }
+        .stage-opening { position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+        
+        #anim-piggy { position: absolute; width: 85px; height: 85px; transform: scale(0.1) translateY(100px); opacity: 0; transition: transform 2s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.5s; z-index: 2; }
+        .piggy-legs { animation: scurry 0.2s infinite; transform-origin: top; }
+        
+        #anim-mendhak { position: absolute; width: 160px; height: 160px; transform: scale(0) translateY(20px); opacity: 0; z-index: 3; transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .mendhak-jaw { transition: d 0.1s; }
+        .mendhak-eye { transition: transform 0.3s, stroke-width 0.3s; transform-origin: center; }
+        
+        @keyframes scurry { 0% { transform: rotate(-15deg); } 50% { transform: rotate(15deg); } 100% { transform: rotate(-15deg); } }
+        @keyframes panic-shake { 0% { transform: translateX(-1px); } 50% { transform: translateX(1px); } 100% { transform: translateX(-1px); } }
+        
+        #opening-flash { position: absolute; top:0; left:0; width:100%; height:100%; background:#fff; opacity:0; pointer-events:none; z-index: 10; }
+        
+        #lightbulb-scene { position: absolute; display: flex; flex-direction: column; align-items: center; opacity: 0; pointer-events: none; transition: 2s; z-index: 5; }
+        #tease-text { font-family: var(--font-typewriter); color: #888; font-size: 0.9rem; margin-bottom: 20px; text-align: center; }
+        #the-bulb { width: 50px; cursor: pointer; filter: brightness(0.2); transition: filter 0.1s; animation: swing 4s infinite ease-in-out; transform-origin: top center; }
+        #the-bulb.on { filter: drop-shadow(0 0 40px #fff7a0) brightness(1.5); animation: none; }
+        
+        #main-title { position: absolute; display: flex; flex-direction: column; align-items: center; opacity: 0; pointer-events: none; transition: 3s ease; z-index: 4; text-align: center;}
+        #main-title h1 { font-size: clamp(2rem, 6vw, 4rem); letter-spacing: 6px; }
+        
+        @keyframes swing { 0%, 100% { transform: rotate(-5deg); } 50% { transform: rotate(5deg); } }
+
+        /* =========================================================
+           2. THE AARADHYA EDITION
+           ========================================================= */
+        #s2-edition { background-color: var(--bg-magazine); color: var(--text-dark); padding: 8vh 5vw; background-image: var(--paper-texture); align-items: center; }
+        .magazine-header { text-align: center; border-bottom: 3px double var(--text-dark); margin-bottom: 50px; padding-bottom: 20px; width: 100%; max-width: 900px; }
+        .magazine-header h1 { font-size: clamp(2.5rem, 8vw, 5rem); text-transform: uppercase; font-weight: 600; letter-spacing: 2px; }
+        .magazine-date { font-family: var(--font-typewriter); font-size: 0.9rem; border-top: 1px solid var(--text-dark); border-bottom: 1px solid var(--text-dark); padding: 5px 0; margin-top: 10px;}
+        
+        .editorial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; max-width: 1000px; width: 100%; }
+        .article { background: #fff; padding: 15px; box-shadow: 2px 4px 15px rgba(0,0,0,0.04); position: relative; }
+        .article::before { content:''; position: absolute; top:0; left:0; right:0; bottom:0; background: var(--paper-texture); pointer-events: none; opacity: 0.5;}
+        .article-img { width: 100%; height: 250px; background: #eae5df; display: flex; align-items: center; justify-content: center; font-family: var(--font-typewriter); color: #999; margin-bottom: 20px; overflow: hidden; }
+        .article h3 { font-size: 1.8rem; margin-bottom: 10px; line-height: 1.2; }
+        .article p { font-size: 0.95rem; line-height: 1.6; color: #444; }
+        
+        .ncc-ending { margin-top: 80px; text-align: center; padding: 60px 20px; border: 1px solid var(--text-dark); cursor: pointer; transition: 0.5s; max-width: 600px; width: 100%; }
+        .ncc-ending:hover { background: var(--text-dark); color: var(--bg-magazine); }
+        .ncc-ending:hover .article-img { filter: invert(1); }
+
+        /* =========================================================
+           3. FIRST MEETING (MORNING SUN & MAGICAL HEART)
+           ========================================================= */
+        #s3-meeting { 
+            background: linear-gradient(to bottom, #a1c4fd 0%, #e0f6ff 45%, #c8e6c9 70%, #81c784 100%); 
+            align-items: center; justify-content: center; overflow: hidden; 
+        }
+        
+        /* Glowing Morning Sun */
+        .morning-sun {
+            position: absolute;
+            top: 5%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 180px;
+            height: 180px;
+            background: radial-gradient(circle, #fffde7 0%, #fff59d 40%, transparent 70%);
+            border-radius: 50%;
+            box-shadow: 0 0 60px #fff9c4, 0 0 120px #fff176;
+            z-index: 1;
+            animation: slow-pulse 5s infinite alternate;
+        }
+        @keyframes slow-pulse {
+            0% { transform: translateX(-50%) scale(1); opacity: 0.8;}
+            100% { transform: translateX(-50%) scale(1.1); opacity: 1;}
+        }
+
+        /* Morning Tree Canopy */
+        .tree-canopy { position: absolute; top: 0; left: 0; width: 100%; height: 45vh; z-index: 2; pointer-events: none; opacity: 0.95; filter: drop-shadow(0 15px 15px rgba(0,0,0,0.2)); }
+        .tree-canopy path:nth-child(1) { fill: #2e7d32; }
+        .tree-canopy path:nth-child(2) { fill: #388e3c; }
+        .tree-canopy path:nth-child(3) { fill: #4caf50; }
+        .tree-canopy path:nth-child(4) { fill: #388e3c; }
+        .tree-canopy path:nth-child(5) { fill: #43a047; }
+        
+        #petal-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 3; overflow: hidden;}
+        .petal { position: absolute; top: -20px; background: #ffb6c1; border-radius: 15px 0 15px 0; opacity: 0.8; animation: fall linear forwards; box-shadow: 0 0 8px rgba(255,182,193,0.8); }
+        @keyframes fall {
+            0% { transform: translateY(0) rotate(0deg) scale(0.8); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(110vh) rotate(360deg) scale(1.2); opacity: 0; }
+        }
+
+        .meeting-stage { position: relative; width: 100%; max-width: 900px; height: 50vh; overflow: hidden; border-bottom: 2px solid rgba(0,100,0,0.1); z-index: 5;}
+        
+        .char-svg { position: absolute; bottom: 0; width: 140px; height: 260px; transition: left 1s linear, transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); filter: drop-shadow(0 15px 10px rgba(0,0,0,0.2)); z-index: 5;}
+        
+        .char-svg.walking { animation: lively-bob 0.6s infinite alternate cubic-bezier(0.4, 0, 0.2, 1); }
+        @keyframes lively-bob { 0% { padding-bottom: 0px; } 100% { padding-bottom: 12px; } }
+
+        #char-a { left: -20%; } 
+        #char-p { left: 10%; }  
+        
+        /* The Magical Heart */
+        #meeting-heart {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            top: 45%;
+            transform: translate(-50%, -50%) scale(0);
+            opacity: 0;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.8s;
+            z-index: 6;
+            filter: drop-shadow(0 0 15px rgba(255, 42, 42, 0.8));
+        }
+        #meeting-heart.beat {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+            animation: heartbeat 1.2s infinite alternate ease-in-out;
+        }
+        @keyframes heartbeat {
+            0% { transform: translate(-50%, -50%) scale(1); }
+            100% { transform: translate(-50%, -50%) scale(1.15); }
+        }
+
+        #meeting-glow { position: absolute; top:45%; left:50%; transform: translate(-50%, -50%); width: 400px; height: 400px; background: radial-gradient(circle, rgba(255, 255, 255, 0.6) 0%, transparent 50%); opacity: 0; transition: opacity 2s; pointer-events: none; z-index: 4; }
+
+        /* =========================================================
+           4. STORY OF US
+           ========================================================= */
+        #s4-timeline { padding: 10vh 5vw; background: linear-gradient(to bottom, #050a08, #1a1a24); align-items: center; }
+        .timeline-container { position: relative; max-width: 600px; width: 100%; margin-top: 50px; padding-bottom: 50px;}
+        .timeline-line { position: absolute; left: 20px; top: 0; bottom: 0; width: 2px; background: rgba(255,255,255,0.1); }
+        .timeline-progress { position: absolute; left: -1px; top: 0; width: 4px; background: var(--text-light); height: 0; transition: height 0.5s ease-out; }
+        
+        .timeline-node { position: relative; padding-left: 60px; margin-bottom: 60px; opacity: 0; transform: translateY(30px); transition: 1s ease; }
+        .timeline-node.visible { opacity: 1; transform: translateY(0); }
+        .timeline-dot { position: absolute; left: 16px; top: 5px; width: 10px; height: 10px; border-radius: 50%; background: #555; transition: 0.5s; }
+        .timeline-node.visible .timeline-dot { background: var(--text-light); box-shadow: 0 0 10px #fff; }
+        
+        .timeline-date { font-family: var(--font-typewriter); font-size: 0.85rem; color: #999; margin-bottom: 8px; display: block; letter-spacing: 1px;}
+        .timeline-content { background: rgba(255,255,255,0.03); padding: 20px; border: 1px solid rgba(255,255,255,0.05); border-radius: 4px; }
+
+        /* =========================================================
+           5. LETTERS
+           ========================================================= */
+        #s5-letters { padding: 10vh 5vw; background: #1a1818; align-items: center; perspective: 1000px;}
+        .letters-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; max-width: 900px; width: 100%; margin-top: 60px; }
+        
+        .envelope-wrapper { position: relative; height: 200px; cursor: pointer; perspective: 1000px; }
+        .envelope { position: absolute; width: 100%; height: 100%; background: #dcd0c0; border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); transition: 0.6s ease; transform-style: preserve-3d; display: flex; align-items: center; justify-content: center; text-align: center; padding: 20px;}
+        .envelope-front { font-family: var(--font-typewriter); font-weight: bold; color: #444; position: relative; z-index: 2; }
+        .envelope-flap { position: absolute; top: 0; left: 0; width: 100%; height: 50%; background: #cfc1ae; clip-path: polygon(0 0, 100% 0, 50% 100%); transform-origin: top; transition: transform 0.6s ease; z-index: 3; }
+        
+        .letter-paper { position: absolute; top: 10px; left: 5%; width: 90%; height: 90%; background: #fdfbf7; color: #222; padding: 20px; font-family: var(--font-serif); font-size: 0.95rem; line-height: 1.6; transition: 0.8s ease; z-index: 1; opacity: 0; overflow-y: auto; border: 1px solid #eee; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        
+        .envelope-wrapper.open .envelope-flap { transform: rotateX(180deg); z-index: 1; }
+        .envelope-wrapper.open .letter-paper { transform: translateY(-120px) scale(1.05); opacity: 1; z-index: 4; height: 250px;}
+        .envelope-wrapper.open .envelope { transform: translateY(50px); background: #cbbba6; }
+
+        /* =========================================================
+           6. THE POEM
+           ========================================================= */
+        #s6-poem { background: #030303; align-items: center; justify-content: center; padding: 20px; text-align: center; }
+        .poem-pre { font-style: italic; color: #777; font-size: 1.1rem; opacity: 0; transition: opacity 2s; position: absolute; }
+        #poem-container { max-width: 600px; width: 100%; }
+        .poem-line { font-family: var(--font-serif); font-size: clamp(1.2rem, 4vw, 1.8rem); line-height: 2.2; color: #eaeaea; opacity: 0; transform: translateY(15px); transition: opacity 2s ease, transform 2s ease; margin-bottom: 20px; text-shadow: 0 2px 10px rgba(255,255,255,0.1); }
+        .poem-line.visible { opacity: 1; transform: translateY(0); }
+
+        /* =========================================================
+           7. THE ARCHIVES
+           ========================================================= */
+        #s7-archives { background: #2a2826; padding: 10vh 5vw; align-items: center; }
+        .archive-header { border: 4px solid var(--accent-red); padding: 30px; margin-bottom: 50px; text-align: center; max-width: 600px; position: relative; background: rgba(0,0,0,0.2); }
+        .stamp-top-secret { position: absolute; top: -20px; right: -20px; color: var(--accent-red); font-family: var(--font-typewriter); font-size: 1.8rem; font-weight: bold; border: 4px solid var(--accent-red); padding: 5px 15px; transform: rotate(15deg); background: #2a2826; }
+        
+        .folder-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 900px; width: 100%; }
+        .dossier { background: #d2b48c; padding: 25px; color: #111; position: relative; border-left: 15px solid #a88d67; cursor: pointer; border-radius: 2px 15px 2px 2px; box-shadow: 2px 5px 15px rgba(0,0,0,0.3); transition: transform 0.3s;}
+        .dossier:hover { transform: translateY(-5px); }
+        .dossier::after { content: ''; position: absolute; top:0; left:0; right:0; bottom:0; background: var(--paper-texture); pointer-events: none; opacity: 0.3;}
+        .dossier-tab { position: absolute; top: -25px; left: -15px; background: #a88d67; padding: 5px 15px; font-family: var(--font-typewriter); font-size: 0.8rem; font-weight: bold; border-radius: 5px 5px 0 0; }
+        
+        .dossier-content { max-height: 0; overflow: hidden; transition: max-height 0.5s ease; font-family: var(--font-typewriter); font-size: 0.9rem; line-height: 1.5; margin-top: 15px; border-top: 1px dashed #777; padding-top: 15px;}
+        .dossier.open .dossier-content { max-height: 500px; }
+        
+        .redacted { background: #111; color: #111; padding: 0 4px; transition: color 0.3s, background 0.3s; cursor: help; }
+        .redacted:hover { color: #fff; background: transparent; }
+
+        /* =========================================================
+           8. MUSEUM
+           ========================================================= */
+        #s8-museum { background: #151413; padding: 10vh 5vw; align-items: center; }
+        .gallery-wall { display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; max-width: 1100px; padding-bottom: 100px; }
+        .frame { background: #fff; padding: 12px 12px 40px 12px; box-shadow: 2px 10px 20px rgba(0,0,0,0.4); transition: 0.4s ease; cursor: pointer; position: relative; }
+        .frame::before { content:''; position:absolute; top:0;left:0;right:0;bottom:0; background: var(--paper-texture); opacity:0.3; pointer-events:none;}
+        
+        .frame:nth-child(3n+1) { transform: rotate(-3deg); }
+        .frame:nth-child(3n+2) { transform: rotate(2deg); }
+        .frame:nth-child(3n) { transform: rotate(-1deg); }
+        .frame:hover { transform: scale(1.05) rotate(0); z-index: 10; box-shadow: 5px 15px 30px rgba(0,0,0,0.6); }
+        
+        .frame-img { width: 240px; height: 180px; background: #ddd; display: flex; align-items: center; justify-content: center; font-family: var(--font-typewriter); color: #888; font-size: 0.8rem; overflow: hidden; background-size: cover; background-position: center;}
+        .frame-caption { font-family: 'Courier New', monospace; color: #333; text-align: center; margin-top: 15px; font-size: 0.9rem; font-weight: bold; letter-spacing: -0.5px;}
+        
+        #audio-overlay { position: fixed; top:0; left:0; width:100vw; height:100vh; background: rgba(0,0,0,0.9); display: flex; align-items: center; justify-content: center; flex-direction: column; opacity: 0; pointer-events: none; transition: opacity 2s; z-index: 100; }
+        #audio-overlay.active { opacity: 1; pointer-events: all; }
+        #final-photo-display { width: 300px; height: 300px; background: #fff; padding: 10px 10px 30px 10px; margin-bottom: 30px; transform: scale(0.9); transition: transform 2s ease; }
+        #audio-overlay.active #final-photo-display { transform: scale(1); }
+        .btn-play-audio { padding: 15px 40px; background: none; border: 1px solid #fff; color: #fff; font-family: var(--font-serif); font-size: 1.2rem; cursor: pointer; letter-spacing: 2px; transition: 0.4s; border-radius: 30px;}
+        .btn-play-audio:hover { background: #fff; color: #000; }
+
+        /* =========================================================
+           9. GOODBYE
+           ========================================================= */
+        #s9-goodbye { background: #000; align-items: center; justify-content: center; text-align: center; }
+        #goodbye-mendhak { width: 170px; opacity: 0; transform: translateY(20px); transition: opacity 3s ease, transform 3s ease; position: relative; margin-bottom: 40px;}
+        #goodbye-text { font-family: var(--font-serif); font-size: clamp(2rem, 5vw, 3rem); color: #ffdf73; opacity: 0; transition: opacity 3s ease 1s; }
+        .sunflower-arm { transform-origin: bottom center; animation: gentle-wave 4s infinite ease-in-out; }
+        #goodbye-glow { position: absolute; top:50%; left:50%; transform: translate(-50%, -50%); width: 300px; height: 300px; background: radial-gradient(circle, rgba(255,223,115,0.15) 0%, transparent 60%); opacity: 0; transition: 4s; pointer-events: none;}
+        
+        @keyframes gentle-wave { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(15deg); } }
+        .mascot-egg { position: fixed; pointer-events: none; z-index: 90; transition: all 3s linear; opacity: 0.8; filter: drop-shadow(0 5px 10px rgba(0,0,0,0.5));}
+        
+    </style>
+</head>
+<body>
+
+    <svg width="0" height="0" style="display:none;">
+        <defs>
+            <!-- Hand-drawn Piggy -->
+            <g id="svg-piggy">
+                <path d="M 22 25 Q 16 35 22 45 Q 26 50 20 55" fill="none" stroke="#333" stroke-width="2.5" stroke-linecap="round" id="p-sweat" />
+                <path d="M 30 35 Q 25 55 30 75 Q 50 90 70 75 Q 75 55 70 35 Q 50 20 30 35 Z" fill="#ffc8d2" />
+                <path d="M 30 35 Q 25 25 35 30 Z" fill="#ffc8d2" />
+                <path d="M 34 32 Q 36 24 30 20 Q 24 24 28 30 Z" fill="#d85068" transform="rotate(-20 30 30)"/>
+                <path d="M 70 35 Q 75 25 65 30 Z" fill="#ffc8d2" />
+                <path d="M 66 32 Q 64 24 70 20 Q 76 24 72 30 Z" fill="#d85068" transform="rotate(20 70 30)"/>
+                <ellipse cx="50" cy="65" rx="14" ry="9" fill="#f492a5" />
+                <path d="M 45 61 L 43 68 M 55 61 L 57 68" stroke="#333" stroke-width="2.5" stroke-linecap="round" />
+                <circle cx="38" cy="48" r="3" fill="#333" />
+                <circle cx="62" cy="48" r="3" fill="#333" />
+                <path d="M 38 72 Q 50 78 62 70" fill="none" stroke="#333" stroke-width="2.5" stroke-linecap="round" id="p-mouth" style="transition: d 0.2s;" />
+                <path d="M 40 85 L 40 95" fill="none" stroke="#ffc8d2" stroke-width="4" stroke-linecap="round" class="piggy-legs" style="animation-delay: 0s;"/>
+                <path d="M 60 85 L 60 95" fill="none" stroke="#ffc8d2" stroke-width="4" stroke-linecap="round" class="piggy-legs" style="animation-delay: 0.1s;"/>
+            </g>
+
+            <!-- Hand-drawn Mendhak -->
+            <g id="svg-mendhak">
+                <path d="M 25 45 Q 15 65 25 80 Q 50 95 75 80 Q 85 65 75 45 Q 95 30 80 20 Q 70 15 65 30 Q 50 25 35 30 Q 30 15 20 20 Q 5 30 25 45 Z" fill="#fff" stroke="#68b94f" stroke-width="3.5" stroke-linejoin="round" />
+                <ellipse cx="45" cy="55" rx="8" ry="16" fill="none" stroke="#68b94f" stroke-width="3" transform="rotate(-15 45 55)" />
+                <ellipse cx="68" cy="55" rx="8" ry="16" fill="none" stroke="#68b94f" stroke-width="3" transform="rotate(15 68 55)" />
+                <line x1="41" y1="56" x2="49" y2="56" stroke="#68b94f" stroke-width="3" stroke-linecap="round" class="mendhak-eye" id="m-pupil-l" />
+                <line x1="64" y1="56" x2="72" y2="56" stroke="#68b94f" stroke-width="3" stroke-linecap="round" class="mendhak-eye" id="m-pupil-r" />
+                <path d="M 48 76 L 73 72" fill="none" stroke="#68b94f" stroke-width="3" stroke-linecap="round" id="m-jaw" class="mendhak-jaw" />
+            </g>
+
+            <g id="svg-mendhak-flower">
+                <use href="#svg-mendhak" />
+                <g class="sunflower-arm">
+                    <path d="M 75 80 Q 110 50 120 20" fill="none" stroke="#5d8a3f" stroke-width="6" stroke-linecap="round"/>
+                    <circle cx="120" cy="20" r="15" fill="#ffdf73" />
+                    <circle cx="120" cy="20" r="8" fill="#5c4033" />
+                    <circle cx="105" cy="35" r="12" fill="#ffdf73" />
+                    <circle cx="105" cy="35" r="6" fill="#5c4033" />
+                </g>
+            </g>
+
+            <!-- AARADHYA SILHOUETTE -->
+            <g id="svg-aaradhya">
+                <path d="M 50 10 C 60 10 65 20 65 30 C 65 40 55 45 50 50 C 45 55 40 70 40 90 L 20 90 C 20 60 30 50 35 45 C 30 40 25 30 30 20 C 35 10 40 10 50 10 Z" fill="#1a1a1f" />
+                <path d="M 60 20 C 70 30 75 60 75 90 L 60 90 C 60 70 55 40 50 30 Z" fill="#111" />
+                <path d="M 30 25 Q 22 28 22 35 Q 22 38 25 40 Q 22 45 28 50 L 32 55" fill="none" stroke="#111" stroke-width="2"/>
+            </g>
+            
+            <!-- EXACT LINE-FOR-LINE DIGITIZED SKETCH OF THE BOY -->
+            <g id="svg-pulkit">
+                <!-- Base Silhouette to block the background -->
+                <path d="M40,10 C20,10 20,40 35,45 C35,45 35,50 33,53 C23,55 20,65 20,78 C25,82 28,75 28,75 C30,78 35,78 34,80 L32,110 C40,105 45,95 50,85 C55,95 60,105 68,110 L66,80 C65,78 70,78 72,75 C72,75 75,82 82,85 C82,82 80,65 67,53 C65,50 65,45 65,45 C80,40 80,10 60,10 Z" fill="#1a1a1f"/>
+                
+                <ellipse cx="50" cy="35" rx="15" ry="17" fill="#1a1a1f" stroke="#eaddd7" stroke-width="1.5"/>
+                
+                <path d="M35,25 Q30,15 40,10 Q50,5 60,10 Q70,15 65,25 Q75,30 65,40 Q60,45 50,45 Q40,45 35,40 Q25,30 35,25 Z" fill="none" stroke="#eaddd7" stroke-width="1.5" stroke-linejoin="round"/>
+                <path d="M40,15 Q45,10 50,15 T60,15 M35,20 Q40,25 45,20 T55,25 M38,30 Q45,25 50,30 T62,25 M42,35 Q48,40 55,35 M45,25 Q50,22 52,28 M38,22 Q42,18 48,22 M55,22 Q58,20 62,25" fill="none" stroke="#eaddd7" stroke-width="1.2"/>
+                
+                <circle cx="33" cy="35" r="2.5" fill="#1a1a1f" stroke="#eaddd7" stroke-width="1.5"/>
+                <circle cx="67" cy="35" r="2.5" fill="#1a1a1f" stroke="#eaddd7" stroke-width="1.5"/>
+                
+                <path d="M42,52 L50,64 L58,52" fill="none" stroke="#eaddd7" stroke-width="1.5" stroke-linejoin="round"/>
+                
+                <path d="M46,55 L46,59 M48,56 L48,61 M50,57 L50,63 M52,56 L52,61 M54,55 L54,59" fill="none" stroke="#eaddd7" stroke-width="1.2" stroke-linecap="round"/>
+                <path d="M48,64 L48,67 M52,64 L52,67 M50,65 L50,69" fill="none" stroke="#eaddd7" stroke-width="1.2" stroke-linecap="round"/>
+                
+                <path d="M35,53 Q33,65 34,78 M65,53 Q67,65 66,78" fill="none" stroke="#eaddd7" stroke-width="1.5"/>
+                
+                <path d="M34,78 Q42,75 50,80 Q58,75 66,78" fill="none" stroke="#eaddd7" stroke-width="1.5"/>
+                
+                <path d="M35,58 Q45,60 50,58 M65,58 Q55,60 50,58" fill="none" stroke="#eaddd7" stroke-width="1.2"/>
+                <path d="M34,65 Q45,67 55,65" fill="none" stroke="#eaddd7" stroke-width="1.2"/>
+                <path d="M34,72 Q45,74 62,72" fill="none" stroke="#eaddd7" stroke-width="1.2"/>
+                
+                <path d="M35,53 Q25,55 23,65 L20,78 Q22,82 25,82 L28,75" fill="none" stroke="#eaddd7" stroke-width="1.5" stroke-linejoin="round"/>
+                <path d="M65,53 Q75,55 77,65 L80,75 M77,77 L82,78 Q85,82 82,85 L78,80" fill="none" stroke="#eaddd7" stroke-width="1.5" stroke-linejoin="round"/>
+                
+                <path d="M25,58 L23,60 M27,62 L24,64 M28,66 L25,68 M29,70 L26,72 M31,60 L33,62 M30,64 L32,66" fill="none" stroke="#eaddd7" stroke-width="1.2" stroke-linecap="round"/>
+                <path d="M75,58 L77,60 M73,62 L76,64 M72,66 L75,68 M71,70 L74,72 M69,60 L67,62 M70,64 L68,66" fill="none" stroke="#eaddd7" stroke-width="1.2" stroke-linecap="round"/>
+                
+                <path d="M77.5,74.5 L80,72.5 M76.5,76.5 L79,74.5" fill="none" stroke="#eaddd7" stroke-width="1.5"/>
+                
+                <path d="M34,78 Q30,95 32,110 M66,78 Q70,95 68,110" fill="none" stroke="#eaddd7" stroke-width="1.5"/>
+                <path d="M32,110 Q40,105 45,95 L50,85 L55,95 Q60,105 68,110" fill="none" stroke="#eaddd7" stroke-width="1.5" stroke-linejoin="round"/>
+                
+                <path d="M47,85 Q45,90 48,95 M53,85 Q55,90 52,95 M47,80 Q50,85 53,80" fill="none" stroke="#eaddd7" stroke-width="1.5"/>
+                
+                <path d="M40,80 L38,90 M60,80 L62,90" fill="none" stroke="#eaddd7" stroke-width="1.2"/>
+            </g>
+
+            <g id="svg-bulb">
+                <path d="M 45 0 L 55 0 L 55 20 L 45 20 Z" fill="#555"/>
+                <path d="M 30 20 C 30 20 70 20 70 50 C 70 80 50 100 50 100 C 50 100 30 80 30 50 C 30 20 30 20 30 20 Z" fill="#fff" opacity="0.8"/>
+            </g>
+        </defs>
+    </svg>
+
+    <div id="app-container">
+
+        <!-- 1. OPENING -->
+        <section id="s1-opening" class="story-section active">
+            <div class="stage-opening" id="stage-opening">
+                <svg id="anim-piggy" viewBox="0 0 100 100"><use href="#svg-piggy"/></svg>
+                <svg id="anim-mendhak" viewBox="0 0 100 100"><use href="#svg-mendhak"/></svg>
+            </div>
+            
+            <div id="opening-flash"></div>
+            
+            <div id="lightbulb-scene">
+                <div id="tease-text">awlele mera bunty,<br>at least switch the lights on.</div>
+                <svg id="the-bulb" viewBox="0 0 100 100" onclick="turnOnLight()"><use href="#svg-bulb"/></svg>
+            </div>
+
+            <div id="main-title">
+                <h1 class="serif">14 OCTOBER 2026</h1>
+                <p style="font-family: var(--font-typewriter); letter-spacing: 3px; margin-top: 10px;">AARADHYA DAY</p>
+                <button class="btn-cinematic" style="margin-top: 60px;" onclick="goToSection('s2-edition')">Enter</button>
+            </div>
+        </section>
+
+        <!-- 2. MAGAZINE -->
+        <section id="s2-edition" class="story-section">
+            <div class="magazine-header">
+                <h1>The Aaradhya Edition</h1>
+                <div class="magazine-date">VOL 1. — UNAUTHORIZED BIOGRAPHY</div>
+            </div>
+            <div class="editorial-grid" id="magazine-grid"></div>
+            <div class="ncc-ending" onclick="triggerFirstMeeting()">
+                <h2 class="serif" style="font-size: 2rem; margin-bottom: 20px;">The Missing Star</h2>
+                <div class="article-img" style="border-radius: 50%; width: 200px; height: 200px; margin: 0 auto 20px auto; background: var(--text-dark); color: var(--bg-magazine);">[NCC PHOTO]</div>
+                <p style="font-family: var(--font-typewriter); font-size: 0.9rem;">click to meet your missing star</p>
+            </div>
+        </section>
+
+        <!-- 3. FIRST MEETING (MORNING SUN & MAGICAL HEART) -->
+        <section id="s3-meeting" class="story-section">
+            
+            <div class="morning-sun"></div>
+
+            <svg class="tree-canopy" viewBox="0 0 100 100" preserveAspectRatio="none">
+                <path d="M 0 0 L 100 0 L 100 15 Q 85 30 70 15 Q 50 35 30 15 Q 15 30 0 15 Z" fill="#2e7d32" />
+                <path d="M 10 15 Q 20 40 10 60 Q 0 40 10 15" fill="#388e3c"/>
+                <path d="M 30 10 Q 40 30 35 45 Q 25 30 30 10" fill="#4caf50"/>
+                <path d="M 70 15 Q 80 40 70 55 Q 60 40 70 15" fill="#388e3c"/>
+                <path d="M 90 10 Q 100 35 90 50 Q 80 35 90 10" fill="#43a047"/>
+            </svg>
+            
+            <div id="petal-container"></div>
+
+            <h2 class="serif" style="position: absolute; top: 12vh; color: rgba(255,255,255,0.7); font-size: 2.2rem; letter-spacing: 5px; z-index: 4; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));">16 JANUARY 2026</h2>
+            
+            <div class="meeting-stage" id="meeting-stage">
+                <!-- Characters -->
+                <svg id="char-a" class="char-svg" viewBox="0 0 100 100" style="transform: scaleX(-1);"><use href="#svg-aaradhya"/></svg>
+                <svg id="char-p" class="char-svg" viewBox="0 0 100 120" style="transform: scaleX(-1);"><use href="#svg-pulkit"/></svg>
+                
+                <!-- Magical Heart (hidden initially) -->
+                <svg id="meeting-heart" viewBox="0 0 100 100">
+                    <path d="M 50 80 Q 20 50 20 30 A 15 15 0 0 1 50 30 A 15 15 0 0 1 80 30 Q 80 50 50 80 Z" fill="var(--accent-red)"/>
+                </svg>
+                
+                <div id="meeting-glow"></div>
+            </div>
+            
+            <button id="btn-post-meeting" class="btn-cinematic" style="opacity: 0; pointer-events: none; transition: 1s;" onclick="goToSection('s4-timeline')">The Story Begins</button>
+        </section>
+
+        <!-- 4. TIMELINE -->
+        <section id="s4-timeline" class="story-section">
+            <h2 class="serif" style="font-size: 3rem; text-align: center;">The Story of Us</h2>
+            <div class="timeline-container">
+                <div class="timeline-line"></div>
+                <div class="timeline-progress" id="tl-progress"></div>
+                <div id="timeline-nodes-wrapper"></div>
+            </div>
+            <button class="btn-cinematic" onclick="goToSection('s5-letters')">Read Messages</button>
+        </section>
+
+        <!-- 5. LETTERS -->
+        <section id="s5-letters" class="story-section">
+            <h2 class="serif" style="font-size: 3rem; text-align: center;">Letters for You</h2>
+            <div class="letters-grid" id="letters-grid"></div>
+            <button class="btn-cinematic" style="margin-top: 80px;" onclick="triggerPoem()">One Last Thing...</button>
+        </section>
+
+        <!-- 6. POEM -->
+        <section id="s6-poem" class="story-section">
+            <div id="poem-intro-1" class="poem-pre" style="top: 40%;">ONE LAST THING.</div>
+            <div id="poem-intro-2" class="poem-pre" style="top: 50%; max-width: 400px;">I wanted to give you something that couldn't be put in a photograph.</div>
+            <div id="poem-container"></div>
+            <button id="btn-post-poem" class="btn-cinematic" style="opacity: 0; pointer-events: none;" onclick="goToSection('s7-archives')">Open Archives</button>
+        </section>
+
+        <!-- 7. ARCHIVES -->
+        <section id="s7-archives" class="story-section">
+            <div class="archive-header">
+                <h2 class="serif" style="font-size: 2.5rem;">THE AARADHYA ARCHIVES</h2>
+                <p style="font-family: var(--font-typewriter); margin-top: 10px; color: #aaa;">FILE NO. 14-10-26</p>
+                <div class="stamp-top-secret">CONFIDENTIAL<br>EYES ONLY</div>
+            </div>
+            <div class="folder-grid" id="archive-grid"></div>
+            <button class="btn-cinematic" style="margin-top: 80px;" onclick="goToSection('s8-museum')">Enter the Museum</button>
+        </section>
+
+        <!-- 8. MUSEUM -->
+        <section id="s8-museum" class="story-section">
+            <h2 class="serif" style="font-size: 3rem; margin-bottom: 60px; text-align: center; color: #fff;">Our Little Museum</h2>
+            <div class="gallery-wall" id="museum-gallery"></div>
+            <div id="museum-end-trigger" style="height: 50px; width: 100%;"></div>
+        </section>
+
+        <!-- 9. GOODBYE -->
+        <section id="s9-goodbye" class="story-section">
+            <div id="goodbye-glow"></div>
+            <svg id="goodbye-mendhak" viewBox="0 0 150 100"><use href="#svg-mendhak-flower"/></svg>
+            <div id="goodbye-text" class="serif">Byeeee, My Sunshine.</div>
+        </section>
+
+    </div> 
+
+    <!-- AUDIO UI -->
+    <div id="audio-overlay">
+        <div id="final-photo-display" class="frame">
+            <div class="frame-img" style="height: 220px; background: #eee; color: #333;">[FINAL MEMORY PHOTO]</div>
+            <div class="frame-caption">Us.</div>
+        </div>
+        <button id="btn-play-song" class="btn-play-audio">Play Our Song</button>
+    </div>
+
+    <!-- AUDIO ELEMENTS -->
+    <audio id="our-song" src="assets/audio/our-song.mp3" preload="auto"></audio>
+    <audio id="magic-sound" src="assets/audio/magic.mp3" preload="auto"></audio>
+
+    <script>
+        /* =========================================================
+           DATA CONFIGURATION 
+           ========================================================= */
+        const SITE_DATA = {
+            magazine: [
+                { title: "The Early Years", text: "[Replace with childhood anecdote]", img: "[CHILDHOOD PHOTO 1]" },
+                { title: "Breaking News", text: "[Replace with a funny memory]", img: "[FUNNY MEMORY PHOTO]" },
+                { title: "Before I Knew You", text: "[Replace with school/hobby story]", img: "[SCHOOL/HOBBY PHOTO]" }
+            ],
+            timeline: [
+                { date: "16 Jan 2026", title: "First Meeting", text: "The magic connected." },
+                { date: "14 Feb 2026", title: "When things changed", text: "[ADD SPECIFIC DETAIL]" },
+                { date: "April 2026", title: "The Unofficial Chapter", text: "[ADD INSIDE JOKE]" },
+                { date: "Summer 2026", title: "Becoming Us", text: "[ADD FAVORITE MEMORY]" },
+                { date: "Today", title: "Aaradhya Day", text: "Celebrating you." }
+            ],
+            letters: [
+                { label: "OPEN WHEN YOU'RE HAPPY", text: "I love seeing you smile. Keep this energy forever. [ADD FULL TEXT]" },
+                { label: "OPEN WHEN YOU MISS ME", text: "I'm right here. Call me immediately. [ADD FULL TEXT]" },
+                { label: "THINGS NEVER TO FORGET", text: "You are the most important part of my day. [ADD FULL TEXT]" },
+                { label: "BIRTHDAY LETTER", text: "Happy Birthday, Aaradhya. My universe is better with you in it. [ADD FULL TEXT]" }
+            ],
+            poem: [
+                "I never thought a quiet Tuesday",
+                "Could turn into a lifetime.",
+                "But then you looked at me,",
+                "And suddenly, I understood it all.",
+                "It wasn't magic, it was just you.",
+                "Happy Birthday, my missing star."
+            ],
+            archives: [
+                { tab: "MENDHAK-01", title: "The Habit", content: "[Evidence of her stealing hoodies]. Suspect claims <span class='redacted'>ignorance</span>." },
+                { tab: "PIGGY-01", title: "Food Crimes", content: "That one time she ate <span class='redacted'>[weird food]</span>. Unacceptable." },
+                { tab: "OBS-42", title: "Nose Scrunch", content: "Subject's nose scrunches when laughing at terrible jokes. Highly dangerous." }
+            ],
+            museum: [
+                { img: "[DATE PHOTO 1]", caption: "Our first trip." },
+                { img: "[COFFEE PHOTO]", caption: "That café we always go to." },
+                { img: "[SILLY SELFIE]", caption: "Absolute chaos." },
+                { img: "[ADD NAVRATRI / NEW MEMORIES HERE]", caption: "Recent adventures." },
+                { img: "[FINAL PHOTO PLACEHOLDER]", caption: "Us." } 
+            ]
+        };
+
+        const wait = (ms) => new Promise(res => setTimeout(res, ms));
+
+        function goToSection(id) {
+            document.querySelectorAll('.story-section').forEach(sec => sec.classList.remove('active'));
+            const target = document.getElementById(id);
+            if(target) target.classList.add('active');
+            
+            if (id === 's4-timeline') setupTimelineObserver();
+            if (id === 's8-museum') setupMuseumObserver();
+        }
+
+        window.onload = () => {
+            buildDynamicContent();
+            playOpeningSequence();
+        };
+
+        async function playOpeningSequence() {
+            const piggy = document.getElementById('anim-piggy');
+            const mendhak = document.getElementById('anim-mendhak');
+            const flash = document.getElementById('opening-flash');
+            const pMouth = document.getElementById('p-mouth');
+            const pSweat = document.getElementById('p-sweat');
+            const mJaw = document.getElementById('m-jaw');
+            const eyeL = document.getElementById('m-pupil-l');
+            
+            await wait(1000); 
+            piggy.style.opacity = '1';
+            piggy.style.transform = 'scale(1.5) translateY(0)';
+            
+            await wait(1800);
+            mendhak.style.opacity = '1';
+            mendhak.style.transform = 'scale(2.2) translateY(0)';
+            
+            pMouth.setAttribute('d', 'M 48 76 A 2 2 0 1 1 52 76 A 2 2 0 1 1 48 76'); 
+            pSweat.style.animation = 'panic-shake 0.1s infinite';
+            
+            await wait(400);
+            mJaw.setAttribute('d', 'M 30 75 Q 50 110 80 65');
+            mJaw.setAttribute('fill', '#68b94f'); 
+            
+            await wait(150);
+            piggy.style.display = 'none'; 
+            
+            mJaw.setAttribute('d', 'M 48 76 L 73 72'); 
+            mJaw.setAttribute('fill', 'none'); 
+            
+            await wait(400);
+            mJaw.setAttribute('d', 'M 48 72 L 73 68'); await wait(100); 
+            mJaw.setAttribute('d', 'M 48 76 L 73 72'); await wait(100); 
+            mJaw.setAttribute('d', 'M 40 75 Q 60 90 80 72'); 
+            
+            await wait(800);
+            eyeL.setAttribute('y1', '53'); 
+            eyeL.setAttribute('y2', '53'); 
+            eyeL.setAttribute('stroke-width', '5'); 
+            
+            await wait(200);
+            flash.style.opacity = '1';
+            
+            await wait(500);
+            document.getElementById('stage-opening').style.display = 'none';
+            flash.style.opacity = '0';
+            
+            await wait(1000);
+            document.getElementById('lightbulb-scene').style.opacity = '1';
+            document.getElementById('lightbulb-scene').style.pointerEvents = 'all';
+        }
+
+        async function turnOnLight() {
+            const bulb = document.getElementById('the-bulb');
+            bulb.classList.add('on'); await wait(100);
+            bulb.classList.remove('on'); await wait(150);
+            bulb.classList.add('on'); await wait(50);
+            bulb.classList.remove('on'); await wait(200);
+            bulb.classList.add('on'); 
+            
+            document.getElementById('tease-text').style.opacity = '0';
+            document.getElementById('s1-opening').style.background = 'radial-gradient(circle at center, #2a2a2a 0%, #000 70%)';
+            
+            await wait(1000);
+            document.getElementById('lightbulb-scene').style.opacity = '0';
+            document.getElementById('lightbulb-scene').style.pointerEvents = 'none';
+            
+            document.getElementById('main-title').style.opacity = '1';
+            document.getElementById('main-title').style.pointerEvents = 'all';
+            
+            initMascotSystem();
+        }
+
+        function buildDynamicContent() {
+            const magGrid = document.getElementById('magazine-grid');
+            SITE_DATA.magazine.forEach(item => {
+                magGrid.innerHTML += `<div class="article"><div class="article-img">${item.img}</div><h3 class="serif">${item.title}</h3><p>${item.text}</p></div>`;
+            });
+
+            const tlContainer = document.getElementById('timeline-nodes-wrapper');
+            SITE_DATA.timeline.forEach((item, index) => {
+                tlContainer.innerHTML += `<div class="timeline-node" id="tl-node-${index}"><div class="timeline-dot"></div><div class="timeline-content"><span class="timeline-date">${item.date}</span><h4 class="serif" style="font-size:1.2rem; margin-bottom:5px;">${item.title}</h4><p style="font-size:0.9rem; color:#ccc;">${item.text}</p></div></div>`;
+            });
+
+            const letGrid = document.getElementById('letters-grid');
+            SITE_DATA.letters.forEach(item => {
+                letGrid.innerHTML += `<div class="envelope-wrapper" onclick="this.classList.toggle('open')"><div class="envelope"><div class="envelope-front">${item.label}</div><div class="envelope-flap"></div><div class="letter-paper">${item.text}</div></div></div>`;
+            });
+
+            const arcGrid = document.getElementById('archive-grid');
+            SITE_DATA.archives.forEach(item => {
+                arcGrid.innerHTML += `<div class="dossier" onclick="this.classList.toggle('open')"><div class="dossier-tab">${item.tab}</div><h3 class="serif" style="font-weight:bold;">${item.title}</h3><div class="dossier-content">${item.content}</div></div>`;
+            });
+
+            const musGrid = document.getElementById('museum-gallery');
+            const galleryItems = SITE_DATA.museum.slice(0, -1);
+            const finalItem = SITE_DATA.museum[SITE_DATA.museum.length - 1];
+            
+            galleryItems.forEach(item => {
+                musGrid.innerHTML += `<div class="frame"><div class="frame-img">${item.img}</div><div class="frame-caption">${item.caption}</div></div>`;
+            });
+            
+            document.querySelector('#final-photo-display .frame-img').innerHTML = finalItem.img;
+            document.querySelector('#final-photo-display .frame-caption').innerHTML = finalItem.caption;
+        }
+
+        let petalInterval;
+        function startPetals() {
+            const container = document.getElementById('petal-container');
+            petalInterval = setInterval(() => {
+                if (!document.getElementById('s3-meeting').classList.contains('active')) return;
+                
+                const petal = document.createElement('div');
+                petal.className = 'petal';
+                petal.style.left = (Math.random() * 100) + 'vw';
+                petal.style.width = (Math.random() * 8 + 6) + 'px';
+                petal.style.height = (Math.random() * 8 + 6) + 'px';
+                petal.style.animationDuration = (Math.random() * 3 + 4) + 's';
+                
+                container.appendChild(petal);
+                setTimeout(() => { if(petal.parentNode) petal.remove(); }, 7000);
+            }, 400);
+        }
+
+        async function triggerFirstMeeting() {
+            goToSection('s3-meeting');
+            startPetals();
+            
+            const A = document.getElementById('char-a'); 
+            const P = document.getElementById('char-p'); 
+            const heart = document.getElementById('meeting-heart');
+            const magicSound = document.getElementById('magic-sound');
+            const glow = document.getElementById('meeting-glow');
+            const btn = document.getElementById('btn-post-meeting');
+            const stage = document.getElementById('meeting-stage');
+            
+            A.style.left = '-20%'; A.style.transform = 'scaleX(-1)';
+            P.style.left = '10%';  P.style.transform = 'scaleX(-1)';
+            heart.classList.remove('beat');
+            
+            await wait(2000);
+            
+            A.classList.add('walking');
+            P.classList.add('walking');
+            
+            A.style.left = '20%';
+            P.style.left = '50%';
+            await wait(1000);
+            
+            P.classList.remove('walking'); 
+            P.style.left = '52%'; 
+            P.style.transform = 'scaleX(1)'; 
+            await wait(800);
+            
+            P.classList.add('walking');
+            P.style.transform = 'scaleX(-1)'; 
+            P.style.left = '80%';
+            A.style.left = '40%';
+            await wait(800);
+            
+            P.classList.remove('walking');
+            P.style.transform = 'scaleX(1)';
+            await wait(600);
+            
+            P.classList.add('walking');
+            P.style.left = '55%'; 
+            await wait(500);
+            A.style.left = '45%'; 
+            
+            await wait(800);
+            A.classList.remove('walking');
+            P.classList.remove('walking');
+            
+            // Collision Impact
+            A.style.transform = 'scaleX(-1) rotate(5deg)';
+            P.style.transform = 'scaleX(1) rotate(-5deg)';
+            await wait(200);
+            A.style.transform = 'scaleX(-1) rotate(0deg)';
+            P.style.transform = 'scaleX(1) rotate(0deg)';
+            
+            // Calculate midpoint for the heart
+            const rectA = A.getBoundingClientRect();
+            const rectP = P.getBoundingClientRect();
+            const stageRect = stage.getBoundingClientRect();
+            
+            const ax = rectA.left - stageRect.left + (rectA.width/2);
+            const px = rectP.left - stageRect.left + (rectP.width/2);
+            const midX = (ax + px) / 2;
+            
+            // Magic Sound & Heart Appears
+            heart.style.left = midX + 'px';
+            heart.classList.add('beat');
+            magicSound.play().catch(e => console.log("Audio play prevented by browser"));
+            
+            await wait(1500);
+            glow.style.opacity = '1';
+            
+            await wait(1000);
+            btn.style.opacity = '1';
+            btn.style.pointerEvents = 'all';
+        }
+
+        function setupTimelineObserver() {
+            const nodes = document.querySelectorAll('.timeline-node');
+            const progress = document.getElementById('tl-progress');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if(entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        const visibleNodes = document.querySelectorAll('.timeline-node.visible');
+                        const last = visibleNodes[visibleNodes.length-1];
+                        if(last) progress.style.height = (last.offsetTop + 20) + 'px';
+                    }
+                });
+            }, { root: document.getElementById('s4-timeline'), threshold: 0.6 });
+            nodes.forEach(n => observer.observe(n));
+        }
+
+        async function triggerPoem() {
+            goToSection('s6-poem');
+            const i1 = document.getElementById('poem-intro-1');
+            const i2 = document.getElementById('poem-intro-2');
+            const container = document.getElementById('poem-container');
+            const btn = document.getElementById('btn-post-poem');
+            
+            container.innerHTML = '';
+            
+            await wait(2000); i1.style.opacity = '1';
+            await wait(3000); i1.style.opacity = '0';
+            await wait(1500); i2.style.opacity = '1';
+            await wait(4000); i2.style.opacity = '0';
+            await wait(1500);
+            
+            SITE_DATA.poem.forEach((text) => {
+                const p = document.createElement('p');
+                p.className = 'poem-line';
+                p.innerText = text;
+                container.appendChild(p);
+            });
+            
+            const lines = document.querySelectorAll('.poem-line');
+            for(let i=0; i<lines.length; i++) {
+                lines[i].classList.add('visible');
+                await wait(2500); 
+            }
+            
+            await wait(2000);
+            btn.style.opacity = '1';
+            btn.style.pointerEvents = 'all';
+        }
+
+        function setupMuseumObserver() {
+            const trigger = document.getElementById('museum-end-trigger');
+            const observer = new IntersectionObserver((entries) => {
+                if(entries[0].isIntersecting) { observer.disconnect(); prepareAudioEnding(); }
+            }, { root: document.getElementById('s8-museum'), threshold: 0.1 });
+            observer.observe(trigger);
+        }
+
+        async function prepareAudioEnding() {
+            const overlay = document.getElementById('audio-overlay');
+            const btn = document.getElementById('btn-play-song');
+            const audio = document.getElementById('our-song');
+            
+            await wait(1500); 
+            overlay.classList.add('active');
+            
+            btn.onclick = () => {
+                btn.style.display = 'none'; 
+                document.querySelector('#final-photo-display').style.transform = 'scale(1.1)'; 
+                
+                audio.play().catch(e => { setTimeout(triggerFinalGoodbye, 3000); });
+                audio.onended = () => { triggerFinalGoodbye(); };
+            };
+        }
+
+        async function triggerFinalGoodbye() {
+            document.getElementById('audio-overlay').classList.remove('active');
+            await wait(1500);
+            goToSection('s9-goodbye');
+            
+            const mendhak = document.getElementById('goodbye-mendhak');
+            const text = document.getElementById('goodbye-text');
+            const glow = document.getElementById('goodbye-glow');
+            
+            await wait(2000);
+            mendhak.style.opacity = '1';
+            mendhak.style.transform = 'translateY(0)';
+            
+            await wait(2000);
+            text.style.opacity = '1';
+            glow.style.opacity = '1';
+        }
+
+        function initMascotSystem() {
+            const container = document.body;
+            const svgs = ['#svg-piggy', '#svg-mendhak'];
+            
+            setInterval(() => {
+                const active = document.querySelector('.story-section.active');
+                if(!active || !['s2-edition', 's4-timeline', 's7-archives'].includes(active.id)) return;
+                if(Math.random() > 0.4) return; 
+                
+                const egg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+                egg.setAttribute("viewBox", "0 0 100 100");
+                egg.setAttribute("class", "mascot-egg");
+                egg.style.width = "70px";
+                egg.style.height = "70px";
+                
+                const useNode = document.createElementNS("http://www.w3.org/2000/svg", "use");
+                useNode.setAttribute("href", svgs[Math.floor(Math.random() * svgs.length)]);
+                egg.appendChild(useNode);
+                
+                const type = Math.random();
+                if(type < 0.5) {
+                    egg.style.bottom = "10px"; egg.style.left = "-100px";
+                    container.appendChild(egg);
+                    setTimeout(() => egg.style.transform = `translateX(${window.innerWidth + 200}px)`, 50);
+                } else {
+                    egg.style.top = (Math.random() * 60 + 20) + "%"; egg.style.right = "-50px"; egg.style.transform = "rotate(-20deg)";
+                    container.appendChild(egg);
+                    setTimeout(() => {
+                        egg.style.transform = "rotate(-20deg) translateX(-80px)";
+                        setTimeout(() => egg.style.transform = "rotate(-20deg) translateX(0)", 2000);
+                    }, 50);
+                }
+                setTimeout(() => { if(egg.parentNode) egg.remove(); }, 4000);
+                
+            }, 10000); 
+        }
+    </script>
+</body>
+</html>
