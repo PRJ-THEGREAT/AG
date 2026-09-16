@@ -837,7 +837,6 @@
             
             container.innerHTML = '';
             
-            // SPEEDED UP POEM PACING
             await wait(1000); i1.style.opacity = '1';
             await wait(1500); i1.style.opacity = '0';
             await wait(800);  i2.style.opacity = '1';
@@ -854,7 +853,7 @@
             const lines = document.querySelectorAll('.poem-line');
             for(let i=0; i<lines.length; i++) {
                 lines[i].classList.add('visible');
-                await wait(1200); // reduced from 2500
+                await wait(1200); 
             }
             
             await wait(1000);
@@ -973,31 +972,35 @@
             // Activate Mini-Game
             let taps = 0;
             const maxTaps = 12;
+            let currentRotation = 0; // Tracks his spin angle
             
-            piggy.style.transition = 'transform 0.05s';
-            mendhak.style.transition = 'transform 0.05s';
+            piggy.style.transition = 'transform 0.1s ease-out';
+            mendhak.style.transition = 'transform 0.1s ease-out';
             mendhak.style.cursor = 'pointer';
             
             mendhak.onclick = async () => {
                 if (taps >= maxTaps) return;
+                
+                // IMPORTANT: Stop the CSS animation on the first tap so JS transforms work properly!
+                if (taps === 0) {
+                    mendhak.style.animation = 'none'; 
+                }
+                
                 taps++;
                 tapHint.style.opacity = '0';
                 
-                // Hit Animation (Escalating Shake)
-                let intensity = taps * 3; // The shakiness increases with each hit
+                currentRotation += 90; // He rotates 90 degrees with every hit
                 
-                piggy.style.transform = 'translateX(50px) rotate(20deg)';
-                mendhak.style.transform = `translate(${intensity}px, -${intensity}px) rotate(${intensity}deg)`;
-                
-                setTimeout(() => { if (taps < maxTaps) mendhak.style.transform = `translate(-${intensity}px, ${intensity/2}px) rotate(-${intensity}deg)`; }, 40);
-                setTimeout(() => { if (taps < maxTaps) mendhak.style.transform = `translate(${intensity/2}px, -${intensity/4}px) rotate(${intensity/2}deg)`; }, 80);
+                // Hit Animation
+                piggy.style.transform = 'translateX(60px) rotate(20deg)';
+                mendhak.style.transform = `translateX(30px) rotate(${currentRotation}deg) scale(0.9)`;
                 
                 setTimeout(() => {
                     if (taps < maxTaps) {
                         piggy.style.transform = 'translateX(0) rotate(0deg)';
-                        mendhak.style.transform = 'translate(0, 0) rotate(0deg)';
+                        mendhak.style.transform = `translateX(0) rotate(${currentRotation}deg) scale(1)`;
                     }
-                }, 120);
+                }, 100);
                 
                 // Mendhak Defeated
                 if (taps >= maxTaps) {
@@ -1005,9 +1008,9 @@
                     mendhak.style.cursor = 'default';
                     
                     await wait(150);
-                    mendhak.style.animation = 'none'; // Stop floating 
-                    mendhak.style.transition = 'all 2s ease-in-out';
-                    mendhak.style.transform = 'translate(30vw, -50vh) rotate(180deg) scale(0)';
+                    mendhak.style.transition = 'all 2s cubic-bezier(0.5, 0, 1, 1)';
+                    // Fly to the moon while spinning wildly!
+                    mendhak.style.transform = `translate(30vw, -50vh) rotate(${currentRotation + 1440}deg) scale(0)`;
                     mendhak.style.opacity = '0';
                     
                     piggy.style.transition = 'transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
