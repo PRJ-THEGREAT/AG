@@ -130,8 +130,21 @@
         @keyframes heartbeat { 0% { transform: translate(-50%, -50%) scale(1); } 100% { transform: translate(-50%, -50%) scale(1.15); } }
         #meeting-glow { position: absolute; top:45%; left:50%; transform: translate(-50%, -50%); width: 400px; height: 400px; background: radial-gradient(circle, rgba(255, 255, 255, 0.6) 0%, transparent 50%); opacity: 0; transition: opacity 2s; pointer-events: none; z-index: 4; }
 
-        #btn-post-meeting { background-color: #000 !important; color: #fff !important; border: 2px solid #000 !important; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.4); border-radius: 4px; text-transform: uppercase; letter-spacing: 2px; }
-        #btn-post-meeting:hover { background-color: #222 !important; color: #fff !important; }
+        /* The Bold Black Transition Button */
+        #btn-post-meeting {
+            background-color: #000 !important;
+            color: #fff !important;
+            border: 2px solid #000 !important;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        #btn-post-meeting:hover {
+            background-color: #222 !important;
+            color: #fff !important;
+        }
 
         /* =========================================================
            4. STORY OF US
@@ -264,10 +277,7 @@
         @keyframes orbit { 0% { transform: translateX(0) translateY(0); } 50% { transform: translateX(-30px) translateY(15px); } 100% { transform: translateX(0) translateY(0); } }
         @keyframes orbit-rev { 0% { transform: translateX(0) translateY(0); } 50% { transform: translateX(20px) translateY(-20px); } 100% { transform: translateX(0) translateY(0); } }
 
-        #goodbye-mendhak { width: 180px; opacity: 0; transform: translateY(20px); transition: opacity 3s ease, transform 3s ease; position: relative; z-index: 5; margin-top: 10vh; animation: spacewalk 6s infinite ease-in-out;}
-        @keyframes spacewalk { 0%, 100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-15px) rotate(3deg); } }
-        
-        .climax-text { font-family: var(--font-serif); font-size: clamp(1.5rem, 5vw, 3rem); color: #ffdf73; opacity: 0; transition: opacity 2s ease; z-index: 5; position: absolute; font-weight: bold; text-shadow: 0 2px 15px rgba(255,223,115,0.5);}
+        .climax-text { font-family: var(--font-serif); font-size: clamp(1.5rem, 5vw, 3rem); color: #ffdf73; opacity: 0; transition: opacity 2s ease; z-index: 5; position: absolute; font-weight: bold; text-shadow: 0 2px 15px rgba(255,223,115,0.5); text-align: center; width: 100%; pointer-events: none;}
         
         #goodbye-glow { position: absolute; top:50%; left:50%; transform: translate(-50%, -50%); width: 300px; height: 300px; background: radial-gradient(circle, rgba(255,223,115,0.15) 0%, transparent 60%); opacity: 0; transition: 4s; pointer-events: none; z-index: 3;}
         
@@ -301,41 +311,27 @@
                 <path d="M 48 76 L 73 72" fill="none" stroke="#68b94f" stroke-width="3" stroke-linecap="round" id="m-jaw" class="mendhak-jaw" />
             </g>
             
-            <!-- NEW ULTIMATE BOUQUET -->
+            <!-- THE ULTIMATE BOUQUET -->
             <g id="svg-mendhak-flower">
                 <use href="#svg-mendhak" />
                 <g class="sunflower-arm">
                     <path d="M 75 80 Q 110 50 120 20" fill="none" stroke="#5d8a3f" stroke-width="6" stroke-linecap="round"/>
-                    
-                    <!-- Green Leaves backing -->
                     <path d="M 115 20 Q 100 10 95 25 Q 110 30 115 20" fill="#2ed573"/>
                     <path d="M 120 25 Q 130 40 140 30 Q 135 15 120 25" fill="#2ed573"/>
-                    
-                    <!-- 2 White Lilies (Trumpets) -->
                     <path d="M 115 20 L 95 5 L 105 0 L 115 20" fill="#fff" stroke="#ddd"/>
                     <path d="M 120 20 L 140 -5 L 145 5 L 120 20" fill="#fff" stroke="#ddd"/>
-                    
-                    <!-- 2 Pink Tulips (Cups) -->
                     <path d="M 110 20 Q 100 -5 105 -15 Q 110 -5 110 20" fill="#ff4757" stroke="#ff6b81"/>
                     <path d="M 120 20 Q 135 -5 130 -15 Q 125 -5 120 20" fill="#ff6b81" stroke="#ff4757"/>
-                    
-                    <!-- 1 Deep Red Rose Center -->
                     <circle cx="115" cy="5" r="10" fill="#e84118"/>
                     <path d="M 110 5 Q 115 0 120 5 Q 115 10 110 5 Z" fill="none" stroke="#c23616" stroke-width="2"/>
-                    
-                    <!-- 2 Yellow Sunflowers -->
                     <circle cx="100" cy="15" r="12" fill="#ffdf73" />
                     <circle cx="100" cy="15" r="6" fill="#5c4033" />
                     <circle cx="130" cy="15" r="10" fill="#ffdf73" />
                     <circle cx="130" cy="15" r="5" fill="#5c4033" />
-                    
-                    <!-- Daisies (White w/ yellow center) -->
                     <circle cx="95" cy="30" r="5" fill="#fff" />
                     <circle cx="95" cy="30" r="2" fill="#f1c40f" />
                     <circle cx="135" cy="25" r="5" fill="#fff" />
                     <circle cx="135" cy="25" r="2" fill="#f1c40f" />
-
-                    <!-- Jasmine (Tiny white clusters) -->
                     <circle cx="110" cy="-5" r="3" fill="#fff" />
                     <circle cx="115" cy="-8" r="3" fill="#fff" />
                     <circle cx="120" cy="-3" r="3" fill="#fff" />
@@ -409,11 +405,9 @@
             </svg>
             <div id="petal-container"></div>
             
-            <!-- BOLD DATE TEXT -->
             <h2 class="serif" style="position: absolute; top: 12vh; color: rgba(255,255,255,0.7); font-size: 2.2rem; font-weight: bold; letter-spacing: 5px; z-index: 4; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));">16 JANUARY 2026</h2>
             
             <div class="meeting-stage" id="meeting-stage">
-                
                 <img id="char-a" src="IMG_0083.png" class="char-svg" style="transform: scaleX(-1);">
                 <img id="char-p" src="IMG_0080.png" class="char-svg" style="transform: scaleX(-1);">
                 
@@ -494,7 +488,7 @@
             </div>
         </section>
 
-        <!-- 9. GOODBYE (SOLAR SYSTEM) -->
+        <!-- 9. GOODBYE (MINI GAME & SOLAR SYSTEM) -->
         <section id="s9-goodbye" class="story-section">
             <div id="solar-system">
                 <div class="stars"></div>
@@ -505,9 +499,27 @@
             
             <div id="goodbye-text-1" class="climax-text" style="top:30%;">I LOVE YOU TO THE MOON AND BACK</div>
             
-            <svg id="goodbye-mendhak" viewBox="0 0 150 100"><use href="#svg-mendhak-flower"/></svg>
+            <!-- MINI GAME STAGE -->
+            <div id="goodbye-stage" style="position:relative; display:flex; align-items:flex-end; justify-content:center; gap:40px; margin-top:10vh; z-index:5;">
+                <div style="position:relative;">
+                    <div id="goodbye-piggy-bubble" style="position:absolute; top:-40px; left:-20px; font-family:var(--font-typewriter); color:#fff; font-weight:bold; opacity:0; transition:0.3s; white-space:nowrap; background:rgba(0,0,0,0.8); padding:5px 10px; border-radius:10px; border:1px solid #ffc8d2;">I Lovee Youuu More</div>
+                    <svg id="goodbye-piggy" viewBox="0 0 100 100" style="width:120px; opacity:0; transform:translateX(-50vw); transition: opacity 1s, transform 1s, scale 0.3s;"><use href="#svg-piggy"/></svg>
+                </div>
+                
+                <div style="position:relative;">
+                    <div id="tap-hint" style="position:absolute; top:-80px; right:30px; font-family:var(--font-typewriter); color:#ffdf73; font-weight:bold; opacity:0; transition:0.3s; white-space:nowrap; animation: slow-pulse 1s infinite alternate;">(Tap Mendhak!)</div>
+                    <div id="goodbye-mendhak-bubble" style="position:absolute; top:-40px; right:-20px; font-family:var(--font-typewriter); color:#68b94f; font-weight:bold; opacity:0; transition:0.3s; white-space:nowrap; background:rgba(0,0,0,0.8); padding:5px 10px; border-radius:10px; border:1px solid #68b94f;">NO , I DO!</div>
+                    <svg id="goodbye-mendhak" viewBox="0 0 150 100" style="width:170px; opacity:0; transform:translateY(20px); transition: opacity 3s ease, transform 3s ease; position:relative; z-index:5;"><use href="#svg-mendhak-flower"/></svg>
+                </div>
+            </div>
             
-            <div id="goodbye-text-2" class="climax-text" style="bottom:20%;">Byeeee, My Sunshine.</div>
+            <div id="goodbye-text-3" class="climax-text" style="top:40%; color:#ffc8d2; font-size:clamp(1.5rem, 4vw, 2.5rem);">PIGGY LOVES MENDHAK MORE !</div>
+            
+            <div style="position:absolute; bottom:20%; display:flex; flex-direction:column; align-items:center; z-index:5;">
+                <div id="goodbye-text-2" class="climax-text" style="position:relative; top:0;">Byeeee, My Sunshine.</div>
+                <div id="goodbye-text-sub" style="font-family:var(--font-typewriter); color:#aaa; font-size:0.9rem; opacity:0; transition:opacity 2s ease; margin-top:10px;">(I still love you more ;)</div>
+            </div>
+            
             <div id="goodbye-glow"></div>
         </section>
 
@@ -630,7 +642,7 @@
             // EATEN
             await wait(150);
             piggy.style.display = 'none'; 
-            pText.style.display = 'none'; // text cuts off
+            pText.style.display = 'none';
             
             mJaw.setAttribute('d', 'M 48 76 L 73 72'); 
             mJaw.setAttribute('fill', 'none'); 
@@ -677,12 +689,10 @@
             document.getElementById('main-title').style.opacity = '1';
             document.getElementById('main-title').style.pointerEvents = 'all';
             
-            initMascotSystem();
         }
 
         function buildDynamicContent() {
             
-            // Build Newspaper
             const newsGrid = document.getElementById('newspaper-grid');
             SITE_DATA.newspaper.forEach(item => {
                 newsGrid.innerHTML += `
@@ -693,7 +703,6 @@
                     </div>`;
             });
 
-            // Timeline
             const tlContainer = document.getElementById('timeline-nodes-wrapper');
             SITE_DATA.timeline.forEach((item, index) => {
                 tlContainer.innerHTML += `<div class="timeline-node" id="tl-node-${index}"><div class="timeline-dot"></div><div class="timeline-content"><span class="timeline-date">${item.date}</span><h4 class="serif" style="font-size:1.2rem; margin-bottom:5px;">${item.title}</h4><p style="font-size:0.9rem; color:#ccc;">${item.text}</p></div></div>`;
@@ -709,7 +718,6 @@
                 arcGrid.innerHTML += `<div class="dossier" onclick="this.classList.toggle('open')"><div class="dossier-tab">${item.tab}</div><h3 class="serif" style="font-weight:bold;">${item.title}</h3><div class="dossier-content">${item.content}</div></div>`;
             });
 
-            // Museum Building
             const musGrid = document.getElementById('museum-gallery');
             SITE_DATA.museum.forEach((item, index) => {
                 musGrid.innerHTML += `
@@ -862,9 +870,6 @@
             btn.style.pointerEvents = 'all';
         }
 
-        /* =========================================================
-           MUSEUM LOGIC (POLAROIDS & DVD PLAYER)
-           ========================================================= */
         let viewedPolaroids = new Set();
         let dvdState = 'OFF'; 
 
@@ -919,16 +924,26 @@
             };
         }
 
+        /* =========================================================
+           MINI-GAME AND FINAL GOODBYE SEQUENCE
+           ========================================================= */
         async function triggerFinalGoodbye() {
             document.getElementById('dvd-player-wrapper').classList.remove('playing');
             await wait(1000);
             goToSection('s9-goodbye');
             
             const mendhak = document.getElementById('goodbye-mendhak');
+            const piggy = document.getElementById('goodbye-piggy');
             const text1 = document.getElementById('goodbye-text-1');
             const text2 = document.getElementById('goodbye-text-2');
+            const text3 = document.getElementById('goodbye-text-3');
+            const textSub = document.getElementById('goodbye-text-sub');
             const glow = document.getElementById('goodbye-glow');
             const bg = document.getElementById('solar-system');
+            
+            const pBubble = document.getElementById('goodbye-piggy-bubble');
+            const mBubble = document.getElementById('goodbye-mendhak-bubble');
+            const tapHint = document.getElementById('tap-hint');
             
             await wait(1000);
             bg.style.opacity = '1';
@@ -943,47 +958,77 @@
             await wait(3500);
             text1.style.opacity = '0';
             
+            // MINI-GAME CUTSCENE BEGINS
             await wait(1500);
-            text2.style.opacity = '1';
-            glow.style.opacity = '1';
+            piggy.style.opacity = '1';
+            piggy.style.transform = 'translateX(0)';
+            
+            await wait(1000);
+            pBubble.style.opacity = '1';
+            
+            await wait(2000);
+            mBubble.style.opacity = '1';
+            
+            await wait(2000);
+            pBubble.style.opacity = '0';
+            mBubble.style.opacity = '0';
+            
+            await wait(500);
+            tapHint.style.opacity = '1';
+            
+            // Activate Mini-Game
+            let taps = 0;
+            const maxTaps = 12;
+            
+            piggy.style.transition = 'transform 0.1s ease-out';
+            mendhak.style.transition = 'transform 0.1s ease-out';
+            mendhak.style.cursor = 'pointer';
+            
+            mendhak.onclick = async () => {
+                if (taps >= maxTaps) return;
+                taps++;
+                tapHint.style.opacity = '0'; // Hide hint on first tap
+                
+                // Hit Animation
+                piggy.style.transform = 'translateX(40px) rotate(15deg)';
+                mendhak.style.transform = 'translateX(20px) rotate(10deg)';
+                
+                setTimeout(() => {
+                    if (taps < maxTaps) {
+                        piggy.style.transform = 'translateX(0) rotate(0deg)';
+                        mendhak.style.transform = 'translateX(0) rotate(0deg)';
+                    }
+                }, 100);
+                
+                // Mendhak Defeated
+                if (taps >= maxTaps) {
+                    mendhak.onclick = null;
+                    mendhak.style.cursor = 'default';
+                    
+                    await wait(150);
+                    mendhak.style.transition = 'all 2s ease-in-out';
+                    mendhak.style.transform = 'translate(30vw, -50vh) rotate(180deg) scale(0)';
+                    mendhak.style.opacity = '0';
+                    
+                    piggy.style.transition = 'transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                    piggy.style.transform = 'scale(1.2)';
+                    
+                    await wait(1500);
+                    text3.style.opacity = '1';
+                    
+                    await wait(3500);
+                    text3.style.opacity = '0';
+                    piggy.style.transition = 'opacity 2s';
+                    piggy.style.opacity = '0';
+                    
+                    await wait(2000);
+                    text2.style.opacity = '1';
+                    textSub.style.opacity = '1';
+                    glow.style.opacity = '1';
+                }
+            }
         }
 
-        function initMascotSystem() {
-            const container = document.body;
-            const svgs = ['#svg-piggy', '#svg-mendhak'];
-            
-            setInterval(() => {
-                const active = document.querySelector('.story-section.active');
-                if(!active || !['s2-edition', 's4-timeline', 's7-archives'].includes(active.id)) return;
-                if(Math.random() > 0.4) return; 
-                
-                const egg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-                egg.setAttribute("viewBox", "0 0 100 100");
-                egg.setAttribute("class", "mascot-egg");
-                egg.style.width = "70px";
-                egg.style.height = "70px";
-                
-                const useNode = document.createElementNS("http://www.w3.org/2000/svg", "use");
-                useNode.setAttribute("href", svgs[Math.floor(Math.random() * svgs.length)]);
-                egg.appendChild(useNode);
-                
-                const type = Math.random();
-                if(type < 0.5) {
-                    egg.style.bottom = "10px"; egg.style.left = "-100px";
-                    container.appendChild(egg);
-                    setTimeout(() => egg.style.transform = `translateX(${window.innerWidth + 200}px)`, 50);
-                } else {
-                    egg.style.top = (Math.random() * 60 + 20) + "%"; egg.style.right = "-50px"; egg.style.transform = "rotate(-20deg)";
-                    container.appendChild(egg);
-                    setTimeout(() => {
-                        egg.style.transform = "rotate(-20deg) translateX(-80px)";
-                        setTimeout(() => egg.style.transform = "rotate(-20deg) translateX(0)", 2000);
-                    }, 50);
-                }
-                setTimeout(() => { if(egg.parentNode) egg.remove(); }, 4000);
-                
-            }, 10000); 
-        }
     </script>
 </body>
 </html>
