@@ -109,10 +109,10 @@
         
         .char-svg { position: absolute; bottom: 0; width: 140px; height: 260px; transition: left 1s linear, transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); filter: drop-shadow(0 15px 10px rgba(0,0,0,0.2)); z-index: 5;}
         
-        /* Specific CSS for the actual hand-drawn image to remove white background */
-        img#char-p { 
-            object-fit: contain; /* Contain ensures it doesn't zoom in or crop */
-            object-position: center bottom; /* Anchors him to the floor */
+        /* Specific CSS for the actual hand-drawn images to remove white background */
+        img#char-p, img#char-a { 
+            object-fit: contain; 
+            object-position: center bottom; 
             mix-blend-mode: multiply; 
             filter: grayscale(100%) contrast(1.5) brightness(1.1); 
         }
@@ -306,11 +306,6 @@
                     <circle cx="105" cy="35" r="6" fill="#5c4033" />
                 </g>
             </g>
-            <g id="svg-aaradhya">
-                <path d="M 50 10 C 60 10 65 20 65 30 C 65 40 55 45 50 50 C 45 55 40 70 40 90 L 20 90 C 20 60 30 50 35 45 C 30 40 25 30 30 20 C 35 10 40 10 50 10 Z" fill="#1a1a1f" />
-                <path d="M 60 20 C 70 30 75 60 75 90 L 60 90 C 60 70 55 40 50 30 Z" fill="#111" />
-                <path d="M 30 25 Q 22 28 22 35 Q 22 38 25 40 Q 22 45 28 50 L 32 55" fill="none" stroke="#111" stroke-width="2"/>
-            </g>
             <g id="svg-bulb">
                 <path d="M 45 0 L 55 0 L 55 20 L 45 20 Z" fill="#555"/>
                 <path d="M 30 20 C 30 20 70 20 70 50 C 70 80 50 100 50 100 C 50 100 30 80 30 50 C 30 20 30 20 30 20 Z" fill="#fff" opacity="0.8"/>
@@ -375,7 +370,9 @@
             <h2 class="serif" style="position: absolute; top: 12vh; color: rgba(255,255,255,0.7); font-size: 2.2rem; letter-spacing: 5px; z-index: 4; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));">16 JANUARY 2026</h2>
             
             <div class="meeting-stage" id="meeting-stage">
-                <svg id="char-a" class="char-svg" viewBox="0 0 100 100" style="transform: scaleX(-1);"><use href="#svg-aaradhya"/></svg>
+                
+                <!-- NEW GIRL: Actual hand-drawn image file -->
+                <img id="char-a" src="IMG_0083.png" class="char-svg" style="transform: scaleX(-1);">
                 
                 <!-- NEW GUY: Actual hand-drawn image file updated to correct name -->
                 <img id="char-p" src="IMG_0080.png" class="char-svg" style="transform: scaleX(-1);">
@@ -533,7 +530,7 @@
                 { img: "[COFFEE PHOTO]", caption: "That café we always go to." },
                 { img: "[SILLY SELFIE]", caption: "Absolute chaos." },
                 { img: "[ADD NAVRATRI / NEW MEMORIES HERE]", caption: "Recent adventures." },
-                { img: "<img src='IMG_0010.jpg' style='width: 100%; height: 100%; object-fit: cover;'>", caption: "Us." } 
+                { img: "<img src='IMG_0010.jpeg' style='width: 100%; height: 100%; object-fit: cover;'>", caption: "Us." } 
             ]
         };
 
