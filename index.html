@@ -84,39 +84,23 @@
         .ncc-ending:hover .article-img { filter: invert(1); }
 
         /* =========================================================
-           3. FIRST MEETING (MORNING SUN & MAGICAL HEART)
+           3. FIRST MEETING 
            ========================================================= */
         #s3-meeting { 
             background: linear-gradient(to bottom, #a1c4fd 0%, #e0f6ff 45%, #c8e6c9 70%, #81c784 100%); 
             align-items: center; justify-content: center; overflow: hidden; 
         }
         
-        /* Glowing Morning Sun */
         .morning-sun {
-            position: absolute;
-            top: 5%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 180px;
-            height: 180px;
+            position: absolute; top: 5%; left: 50%; transform: translateX(-50%);
+            width: 180px; height: 180px; border-radius: 50%; z-index: 1;
             background: radial-gradient(circle, #fffde7 0%, #fff59d 40%, transparent 70%);
-            border-radius: 50%;
             box-shadow: 0 0 60px #fff9c4, 0 0 120px #fff176;
-            z-index: 1;
             animation: slow-pulse 5s infinite alternate;
         }
-        @keyframes slow-pulse {
-            0% { transform: translateX(-50%) scale(1); opacity: 0.8;}
-            100% { transform: translateX(-50%) scale(1.1); opacity: 1;}
-        }
+        @keyframes slow-pulse { 0% { transform: translateX(-50%) scale(1); opacity: 0.8;} 100% { transform: translateX(-50%) scale(1.1); opacity: 1;} }
 
-        /* Morning Tree Canopy */
         .tree-canopy { position: absolute; top: 0; left: 0; width: 100%; height: 45vh; z-index: 2; pointer-events: none; opacity: 0.95; filter: drop-shadow(0 15px 15px rgba(0,0,0,0.2)); }
-        .tree-canopy path:nth-child(1) { fill: #2e7d32; }
-        .tree-canopy path:nth-child(2) { fill: #388e3c; }
-        .tree-canopy path:nth-child(3) { fill: #4caf50; }
-        .tree-canopy path:nth-child(4) { fill: #388e3c; }
-        .tree-canopy path:nth-child(5) { fill: #43a047; }
         
         #petal-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 3; overflow: hidden;}
         .petal { position: absolute; top: -20px; background: #ffb6c1; border-radius: 15px 0 15px 0; opacity: 0.8; animation: fall linear forwards; box-shadow: 0 0 8px rgba(255,182,193,0.8); }
@@ -128,7 +112,6 @@
         }
 
         .meeting-stage { position: relative; width: 100%; max-width: 900px; height: 50vh; overflow: hidden; border-bottom: 2px solid rgba(0,100,0,0.1); z-index: 5;}
-        
         .char-svg { position: absolute; bottom: 0; width: 140px; height: 260px; transition: left 1s linear, transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); filter: drop-shadow(0 15px 10px rgba(0,0,0,0.2)); z-index: 5;}
         
         .char-svg.walking { animation: lively-bob 0.6s infinite alternate cubic-bezier(0.4, 0, 0.2, 1); }
@@ -137,28 +120,17 @@
         #char-a { left: -20%; } 
         #char-p { left: 10%; }  
         
-        /* The Magical Heart */
         #meeting-heart {
-            position: absolute;
-            width: 60px;
-            height: 60px;
-            top: 45%;
-            transform: translate(-50%, -50%) scale(0);
-            opacity: 0;
+            position: absolute; width: 60px; height: 60px; top: 45%;
+            transform: translate(-50%, -50%) scale(0); opacity: 0; z-index: 6;
             transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.8s;
-            z-index: 6;
             filter: drop-shadow(0 0 15px rgba(255, 42, 42, 0.8));
         }
         #meeting-heart.beat {
-            transform: translate(-50%, -50%) scale(1);
-            opacity: 1;
+            transform: translate(-50%, -50%) scale(1); opacity: 1;
             animation: heartbeat 1.2s infinite alternate ease-in-out;
         }
-        @keyframes heartbeat {
-            0% { transform: translate(-50%, -50%) scale(1); }
-            100% { transform: translate(-50%, -50%) scale(1.15); }
-        }
-
+        @keyframes heartbeat { 0% { transform: translate(-50%, -50%) scale(1); } 100% { transform: translate(-50%, -50%) scale(1.15); } }
         #meeting-glow { position: absolute; top:45%; left:50%; transform: translate(-50%, -50%); width: 400px; height: 400px; background: radial-gradient(circle, rgba(255, 255, 255, 0.6) 0%, transparent 50%); opacity: 0; transition: opacity 2s; pointer-events: none; z-index: 4; }
 
         /* =========================================================
@@ -223,27 +195,72 @@
         .redacted:hover { color: #fff; background: transparent; }
 
         /* =========================================================
-           8. MUSEUM
+           8. MUSEUM (THE MEMORY ROOM & DVD PLAYER)
            ========================================================= */
-        #s8-museum { background: #151413; padding: 10vh 5vw; align-items: center; }
-        .gallery-wall { display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; max-width: 1100px; padding-bottom: 100px; }
-        .frame { background: #fff; padding: 12px 12px 40px 12px; box-shadow: 2px 10px 20px rgba(0,0,0,0.4); transition: 0.4s ease; cursor: pointer; position: relative; }
-        .frame::before { content:''; position:absolute; top:0;left:0;right:0;bottom:0; background: var(--paper-texture); opacity:0.3; pointer-events:none;}
+        #s8-museum { 
+            background: repeating-linear-gradient(to right, #1a1614, #1a1614 60px, #161210 60px, #161210 120px); 
+            align-items: center; justify-content: flex-start; padding: 0; position: relative;
+        }
         
-        .frame:nth-child(3n+1) { transform: rotate(-3deg); }
-        .frame:nth-child(3n+2) { transform: rotate(2deg); }
-        .frame:nth-child(3n) { transform: rotate(-1deg); }
-        .frame:hover { transform: scale(1.05) rotate(0); z-index: 10; box-shadow: 5px 15px 30px rgba(0,0,0,0.6); }
+        /* Dark vignette / spotlight overlay on the room */
+        .room-lighting { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center 40%, transparent 20%, rgba(0,0,0,0.8) 100%); pointer-events: none; z-index: 1;}
+
+        .museum-title { position: absolute; top: 5%; width: 100%; text-align: center; z-index: 2;}
         
-        .frame-img { width: 240px; height: 180px; background: #ddd; display: flex; align-items: center; justify-content: center; font-family: var(--font-typewriter); color: #888; font-size: 0.8rem; overflow: hidden; background-size: cover; background-position: center;}
-        .frame-caption { font-family: 'Courier New', monospace; color: #333; text-align: center; margin-top: 15px; font-size: 0.9rem; font-weight: bold; letter-spacing: -0.5px;}
+        /* Wall Area for Polaroids */
+        .gallery-wall { display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; width: 100%; max-width: 1100px; padding: 15vh 5vw 50px 5vw; z-index: 2; margin-bottom: 20vh; }
         
-        #audio-overlay { position: fixed; top:0; left:0; width:100vw; height:100vh; background: rgba(0,0,0,0.9); display: flex; align-items: center; justify-content: center; flex-direction: column; opacity: 0; pointer-events: none; transition: opacity 2s; z-index: 100; }
-        #audio-overlay.active { opacity: 1; pointer-events: all; }
-        #final-photo-display { width: 300px; height: 300px; background: #fff; padding: 10px 10px 30px 10px; margin-bottom: 30px; transform: scale(0.9); transition: transform 2s ease; }
-        #audio-overlay.active #final-photo-display { transform: scale(1); }
-        .btn-play-audio { padding: 15px 40px; background: none; border: 1px solid #fff; color: #fff; font-family: var(--font-serif); font-size: 1.2rem; cursor: pointer; letter-spacing: 2px; transition: 0.4s; border-radius: 30px;}
-        .btn-play-audio:hover { background: #fff; color: #000; }
+        /* Physical Polaroid Styling */
+        .polaroid { background: #fdfdfd; padding: 12px 12px 40px 12px; box-shadow: 2px 10px 20px rgba(0,0,0,0.6); transition: 0.4s ease; cursor: pointer; position: relative; }
+        .polaroid::before { content:''; position:absolute; top:0;left:0;right:0;bottom:0; background: var(--paper-texture); opacity:0.3; pointer-events:none;}
+        
+        /* Tape at the top of Polaroids */
+        .polaroid::after { content: ''; position: absolute; top: -10px; left: 50%; width: 45px; height: 18px; background: rgba(255,255,255,0.4); box-shadow: 0 1px 2px rgba(0,0,0,0.1); transform: translateX(-50%) rotate(-2deg); border-radius: 1px; }
+
+        .polaroid:nth-child(3n+1) { transform: rotate(-3deg); }
+        .polaroid:nth-child(3n+2) { transform: rotate(2deg); }
+        .polaroid:nth-child(3n) { transform: rotate(-1deg); }
+        .polaroid:hover { transform: scale(1.05) rotate(0); z-index: 10; box-shadow: 5px 15px 30px rgba(0,0,0,0.8); }
+        
+        .polaroid.viewed { filter: brightness(0.7); } /* Darkens once clicked so you know you've seen it */
+        
+        .polaroid-img { width: 220px; height: 180px; background: #ddd; display: flex; align-items: center; justify-content: center; font-family: var(--font-typewriter); color: #888; font-size: 0.8rem; overflow: hidden; background-size: cover; background-position: center;}
+        
+        /* The Wooden Shelf */
+        .room-shelf { position: absolute; bottom: 0; width: 100%; height: 18vh; background: #2d1a11; border-top: 10px solid #1a0f0a; box-shadow: 0 -20px 40px rgba(0,0,0,0.9); display: flex; align-items: flex-start; justify-content: center; z-index: 5; }
+
+        /* The DVD Player */
+        #dvd-player-wrapper { margin-top: -15px; cursor: pointer; position: relative; }
+        .dvd-player { width: 280px; height: 50px; background: #111; border-radius: 4px; box-shadow: inset 0 2px 5px rgba(255,255,255,0.1), 0 10px 20px rgba(0,0,0,0.8); position: relative; border-bottom: 3px solid #000; border-top: 1px solid #333;}
+        .dvd-feet { position: absolute; bottom: -5px; width: 15px; height: 5px; background: #000; border-radius: 2px;}
+        
+        .dvd-slot { position: absolute; top: 15px; left: 20px; width: 120px; height: 4px; background: #000; border-radius: 2px; box-shadow: inset 0 1px 2px rgba(0,0,0,0.8); }
+        .dvd-screen { position: absolute; top: 10px; right: 40px; width: 80px; height: 25px; background: #050505; border-radius: 2px; border: 1px solid #222; display: flex; align-items: center; justify-content: center; font-family: 'Courier New', monospace; font-weight: bold; font-size: 0.8rem; color: #333; overflow: hidden;}
+        
+        .dvd-led { position: absolute; top: 18px; right: 15px; width: 6px; height: 6px; border-radius: 50%; background: #400; box-shadow: 0 0 5px #f00; transition: 0.3s;}
+        
+        /* DVD Player States */
+        #dvd-player-wrapper.booting .dvd-led { background: #0f0; box-shadow: 0 0 10px #0f0; }
+        #dvd-player-wrapper.booting .dvd-screen { color: #0df; text-shadow: 0 0 5px #0df; }
+        
+        #dvd-player-wrapper.ready { animation: dvd-pulse 1s infinite alternate; }
+        #dvd-player-wrapper.ready .dvd-led { background: #0f0; box-shadow: 0 0 10px #0f0; }
+        #dvd-player-wrapper.ready .dvd-screen { color: #0f0; text-shadow: 0 0 5px #0f0; }
+        
+        @keyframes dvd-pulse { 0% { filter: drop-shadow(0 0 5px rgba(0,255,0,0.2)); transform: translateY(0); } 100% { filter: drop-shadow(0 0 20px rgba(0,255,0,0.8)); transform: translateY(-2px); } }
+
+        /* Audio Visualizer Bars */
+        .dvd-bars { display: none; height: 10px; align-items: flex-end; gap: 2px; margin-left: 8px;}
+        .dvd-bar { width: 3px; background: #0f0; animation: eq 0.5s infinite alternate ease-in-out;}
+        #dvd-player-wrapper.playing .dvd-bars { display: flex; }
+        @keyframes eq { 0% { height: 2px; } 100% { height: 10px; } }
+
+        /* Polaroid Lightbox Modal */
+        #polaroid-modal { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.9); z-index: 100; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 0.4s ease; flex-direction: column; }
+        #polaroid-modal.active { opacity: 1; pointer-events: all; }
+        #modal-frame { transform: scale(1.2); cursor: default; pointer-events: none; }
+        .btn-close-modal { margin-top: 30px; padding: 10px 30px; background: none; border: 1px solid #fff; color: #fff; font-family: var(--font-serif); cursor: pointer; transition: 0.3s; border-radius: 30px;}
+        .btn-close-modal:hover { background: #fff; color: #000; }
 
         /* =========================================================
            9. GOODBYE
@@ -263,7 +280,7 @@
 
     <svg width="0" height="0" style="display:none;">
         <defs>
-            <!-- Hand-drawn Piggy -->
+            <!-- (Mascots & Silhouettes code remains identical) -->
             <g id="svg-piggy">
                 <path d="M 22 25 Q 16 35 22 45 Q 26 50 20 55" fill="none" stroke="#333" stroke-width="2.5" stroke-linecap="round" id="p-sweat" />
                 <path d="M 30 35 Q 25 55 30 75 Q 50 90 70 75 Q 75 55 70 35 Q 50 20 30 35 Z" fill="#ffc8d2" />
@@ -279,8 +296,6 @@
                 <path d="M 40 85 L 40 95" fill="none" stroke="#ffc8d2" stroke-width="4" stroke-linecap="round" class="piggy-legs" style="animation-delay: 0s;"/>
                 <path d="M 60 85 L 60 95" fill="none" stroke="#ffc8d2" stroke-width="4" stroke-linecap="round" class="piggy-legs" style="animation-delay: 0.1s;"/>
             </g>
-
-            <!-- Hand-drawn Mendhak -->
             <g id="svg-mendhak">
                 <path d="M 25 45 Q 15 65 25 80 Q 50 95 75 80 Q 85 65 75 45 Q 95 30 80 20 Q 70 15 65 30 Q 50 25 35 30 Q 30 15 20 20 Q 5 30 25 45 Z" fill="#fff" stroke="#68b94f" stroke-width="3.5" stroke-linejoin="round" />
                 <ellipse cx="45" cy="55" rx="8" ry="16" fill="none" stroke="#68b94f" stroke-width="3" transform="rotate(-15 45 55)" />
@@ -289,7 +304,6 @@
                 <line x1="64" y1="56" x2="72" y2="56" stroke="#68b94f" stroke-width="3" stroke-linecap="round" class="mendhak-eye" id="m-pupil-r" />
                 <path d="M 48 76 L 73 72" fill="none" stroke="#68b94f" stroke-width="3" stroke-linecap="round" id="m-jaw" class="mendhak-jaw" />
             </g>
-
             <g id="svg-mendhak-flower">
                 <use href="#svg-mendhak" />
                 <g class="sunflower-arm">
@@ -300,56 +314,36 @@
                     <circle cx="105" cy="35" r="6" fill="#5c4033" />
                 </g>
             </g>
-
-            <!-- AARADHYA SILHOUETTE -->
             <g id="svg-aaradhya">
                 <path d="M 50 10 C 60 10 65 20 65 30 C 65 40 55 45 50 50 C 45 55 40 70 40 90 L 20 90 C 20 60 30 50 35 45 C 30 40 25 30 30 20 C 35 10 40 10 50 10 Z" fill="#1a1a1f" />
                 <path d="M 60 20 C 70 30 75 60 75 90 L 60 90 C 60 70 55 40 50 30 Z" fill="#111" />
                 <path d="M 30 25 Q 22 28 22 35 Q 22 38 25 40 Q 22 45 28 50 L 32 55" fill="none" stroke="#111" stroke-width="2"/>
             </g>
-            
-            <!-- EXACT LINE-FOR-LINE DIGITIZED SKETCH OF THE BOY -->
             <g id="svg-pulkit">
-                <!-- Base Silhouette to block the background -->
                 <path d="M40,10 C20,10 20,40 35,45 C35,45 35,50 33,53 C23,55 20,65 20,78 C25,82 28,75 28,75 C30,78 35,78 34,80 L32,110 C40,105 45,95 50,85 C55,95 60,105 68,110 L66,80 C65,78 70,78 72,75 C72,75 75,82 82,85 C82,82 80,65 67,53 C65,50 65,45 65,45 C80,40 80,10 60,10 Z" fill="#1a1a1f"/>
-                
                 <ellipse cx="50" cy="35" rx="15" ry="17" fill="#1a1a1f" stroke="#eaddd7" stroke-width="1.5"/>
-                
                 <path d="M35,25 Q30,15 40,10 Q50,5 60,10 Q70,15 65,25 Q75,30 65,40 Q60,45 50,45 Q40,45 35,40 Q25,30 35,25 Z" fill="none" stroke="#eaddd7" stroke-width="1.5" stroke-linejoin="round"/>
                 <path d="M40,15 Q45,10 50,15 T60,15 M35,20 Q40,25 45,20 T55,25 M38,30 Q45,25 50,30 T62,25 M42,35 Q48,40 55,35 M45,25 Q50,22 52,28 M38,22 Q42,18 48,22 M55,22 Q58,20 62,25" fill="none" stroke="#eaddd7" stroke-width="1.2"/>
-                
                 <circle cx="33" cy="35" r="2.5" fill="#1a1a1f" stroke="#eaddd7" stroke-width="1.5"/>
                 <circle cx="67" cy="35" r="2.5" fill="#1a1a1f" stroke="#eaddd7" stroke-width="1.5"/>
-                
                 <path d="M42,52 L50,64 L58,52" fill="none" stroke="#eaddd7" stroke-width="1.5" stroke-linejoin="round"/>
-                
                 <path d="M46,55 L46,59 M48,56 L48,61 M50,57 L50,63 M52,56 L52,61 M54,55 L54,59" fill="none" stroke="#eaddd7" stroke-width="1.2" stroke-linecap="round"/>
                 <path d="M48,64 L48,67 M52,64 L52,67 M50,65 L50,69" fill="none" stroke="#eaddd7" stroke-width="1.2" stroke-linecap="round"/>
-                
                 <path d="M35,53 Q33,65 34,78 M65,53 Q67,65 66,78" fill="none" stroke="#eaddd7" stroke-width="1.5"/>
-                
                 <path d="M34,78 Q42,75 50,80 Q58,75 66,78" fill="none" stroke="#eaddd7" stroke-width="1.5"/>
-                
                 <path d="M35,58 Q45,60 50,58 M65,58 Q55,60 50,58" fill="none" stroke="#eaddd7" stroke-width="1.2"/>
                 <path d="M34,65 Q45,67 55,65" fill="none" stroke="#eaddd7" stroke-width="1.2"/>
                 <path d="M34,72 Q45,74 62,72" fill="none" stroke="#eaddd7" stroke-width="1.2"/>
-                
                 <path d="M35,53 Q25,55 23,65 L20,78 Q22,82 25,82 L28,75" fill="none" stroke="#eaddd7" stroke-width="1.5" stroke-linejoin="round"/>
                 <path d="M65,53 Q75,55 77,65 L80,75 M77,77 L82,78 Q85,82 82,85 L78,80" fill="none" stroke="#eaddd7" stroke-width="1.5" stroke-linejoin="round"/>
-                
                 <path d="M25,58 L23,60 M27,62 L24,64 M28,66 L25,68 M29,70 L26,72 M31,60 L33,62 M30,64 L32,66" fill="none" stroke="#eaddd7" stroke-width="1.2" stroke-linecap="round"/>
                 <path d="M75,58 L77,60 M73,62 L76,64 M72,66 L75,68 M71,70 L74,72 M69,60 L67,62 M70,64 L68,66" fill="none" stroke="#eaddd7" stroke-width="1.2" stroke-linecap="round"/>
-                
                 <path d="M77.5,74.5 L80,72.5 M76.5,76.5 L79,74.5" fill="none" stroke="#eaddd7" stroke-width="1.5"/>
-                
                 <path d="M34,78 Q30,95 32,110 M66,78 Q70,95 68,110" fill="none" stroke="#eaddd7" stroke-width="1.5"/>
                 <path d="M32,110 Q40,105 45,95 L50,85 L55,95 Q60,105 68,110" fill="none" stroke="#eaddd7" stroke-width="1.5" stroke-linejoin="round"/>
-                
                 <path d="M47,85 Q45,90 48,95 M53,85 Q55,90 52,95 M47,80 Q50,85 53,80" fill="none" stroke="#eaddd7" stroke-width="1.5"/>
-                
                 <path d="M40,80 L38,90 M60,80 L62,90" fill="none" stroke="#eaddd7" stroke-width="1.2"/>
             </g>
-
             <g id="svg-bulb">
                 <path d="M 45 0 L 55 0 L 55 20 L 45 20 Z" fill="#555"/>
                 <path d="M 30 20 C 30 20 70 20 70 50 C 70 80 50 100 50 100 C 50 100 30 80 30 50 C 30 20 30 20 30 20 Z" fill="#fff" opacity="0.8"/>
@@ -365,14 +359,11 @@
                 <svg id="anim-piggy" viewBox="0 0 100 100"><use href="#svg-piggy"/></svg>
                 <svg id="anim-mendhak" viewBox="0 0 100 100"><use href="#svg-mendhak"/></svg>
             </div>
-            
             <div id="opening-flash"></div>
-            
             <div id="lightbulb-scene">
                 <div id="tease-text">awlele mera bunty,<br>at least switch the lights on.</div>
                 <svg id="the-bulb" viewBox="0 0 100 100" onclick="turnOnLight()"><use href="#svg-bulb"/></svg>
             </div>
-
             <div id="main-title">
                 <h1 class="serif">14 OCTOBER 2026</h1>
                 <p style="font-family: var(--font-typewriter); letter-spacing: 3px; margin-top: 10px;">AARADHYA DAY</p>
@@ -394,11 +385,9 @@
             </div>
         </section>
 
-        <!-- 3. FIRST MEETING (MORNING SUN & MAGICAL HEART) -->
+        <!-- 3. FIRST MEETING -->
         <section id="s3-meeting" class="story-section">
-            
             <div class="morning-sun"></div>
-
             <svg class="tree-canopy" viewBox="0 0 100 100" preserveAspectRatio="none">
                 <path d="M 0 0 L 100 0 L 100 15 Q 85 30 70 15 Q 50 35 30 15 Q 15 30 0 15 Z" fill="#2e7d32" />
                 <path d="M 10 15 Q 20 40 10 60 Q 0 40 10 15" fill="#388e3c"/>
@@ -406,24 +395,17 @@
                 <path d="M 70 15 Q 80 40 70 55 Q 60 40 70 15" fill="#388e3c"/>
                 <path d="M 90 10 Q 100 35 90 50 Q 80 35 90 10" fill="#43a047"/>
             </svg>
-            
             <div id="petal-container"></div>
-
             <h2 class="serif" style="position: absolute; top: 12vh; color: rgba(255,255,255,0.7); font-size: 2.2rem; letter-spacing: 5px; z-index: 4; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));">16 JANUARY 2026</h2>
             
             <div class="meeting-stage" id="meeting-stage">
-                <!-- Characters -->
                 <svg id="char-a" class="char-svg" viewBox="0 0 100 100" style="transform: scaleX(-1);"><use href="#svg-aaradhya"/></svg>
                 <svg id="char-p" class="char-svg" viewBox="0 0 100 120" style="transform: scaleX(-1);"><use href="#svg-pulkit"/></svg>
-                
-                <!-- Magical Heart (hidden initially) -->
                 <svg id="meeting-heart" viewBox="0 0 100 100">
                     <path d="M 50 80 Q 20 50 20 30 A 15 15 0 0 1 50 30 A 15 15 0 0 1 80 30 Q 80 50 50 80 Z" fill="var(--accent-red)"/>
                 </svg>
-                
                 <div id="meeting-glow"></div>
             </div>
-            
             <button id="btn-post-meeting" class="btn-cinematic" style="opacity: 0; pointer-events: none; transition: 1s;" onclick="goToSection('s4-timeline')">The Story Begins</button>
         </section>
 
@@ -464,11 +446,35 @@
             <button class="btn-cinematic" style="margin-top: 80px;" onclick="goToSection('s8-museum')">Enter the Museum</button>
         </section>
 
-        <!-- 8. MUSEUM -->
+        <!-- 8. MUSEUM (THE MEMORY ROOM) -->
         <section id="s8-museum" class="story-section">
-            <h2 class="serif" style="font-size: 3rem; margin-bottom: 60px; text-align: center; color: #fff;">Our Little Museum</h2>
+            <div class="room-lighting"></div>
+            <div class="museum-title">
+                <h2 class="serif" style="font-size: 2.5rem; color: #eee; text-shadow: 0 2px 10px #000;">Our Little Museum</h2>
+                <p style="font-family: var(--font-typewriter); color: #aaa; font-size: 0.9rem; margin-top:5px;">Tap the memories on the wall.</p>
+            </div>
+            
             <div class="gallery-wall" id="museum-gallery"></div>
-            <div id="museum-end-trigger" style="height: 50px; width: 100%;"></div>
+            
+            <div class="room-shelf">
+                <div id="dvd-player-wrapper">
+                    <div class="dvd-player">
+                        <div class="dvd-slot"></div>
+                        <div class="dvd-led"></div>
+                        <div class="dvd-screen">
+                            <span id="dvd-text">OFF</span>
+                            <div class="dvd-bars">
+                                <div class="dvd-bar" style="animation-delay: 0s;"></div>
+                                <div class="dvd-bar" style="animation-delay: 0.1s;"></div>
+                                <div class="dvd-bar" style="animation-delay: 0.2s;"></div>
+                                <div class="dvd-bar" style="animation-delay: 0.3s;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dvd-feet" style="left: 20px;"></div>
+                    <div class="dvd-feet" style="right: 20px;"></div>
+                </div>
+            </div>
         </section>
 
         <!-- 9. GOODBYE -->
@@ -480,13 +486,13 @@
 
     </div> 
 
-    <!-- AUDIO UI -->
-    <div id="audio-overlay">
-        <div id="final-photo-display" class="frame">
-            <div class="frame-img" style="height: 220px; background: #eee; color: #333;">[FINAL MEMORY PHOTO]</div>
-            <div class="frame-caption">Us.</div>
+    <!-- POLAROID MODAL -->
+    <div id="polaroid-modal">
+        <div id="modal-frame" class="polaroid">
+            <div class="polaroid-img" id="modal-img"></div>
+            <div class="frame-caption" id="modal-caption" style="font-family: 'Courier New', monospace; color: #333; text-align: center; margin-top: 15px; font-size: 1rem; font-weight: bold;"></div>
         </div>
-        <button id="btn-play-song" class="btn-play-audio">Play Our Song</button>
+        <button class="btn-close-modal" onclick="closePolaroid()">Put Back</button>
     </div>
 
     <!-- AUDIO ELEMENTS -->
@@ -526,7 +532,7 @@
             ],
             archives: [
                 { tab: "MENDHAK-01", title: "The Habit", content: "[Evidence of her stealing hoodies]. Suspect claims <span class='redacted'>ignorance</span>." },
-                { tab: "PIGGY-01", title: "Food Crimes", content: "That one time she ate <span class='redacted'>[weird food]</span>. Unacceptable." },
+                { tab: "PIGGY-01", title: "Gogadudu", content: "<img src='IMG_0075.jpeg' style='max-width:100%; max-height:250px; object-fit:cover; border:3px solid #eee; border-radius:2px; margin-bottom:10px; box-shadow: 0 2px 5px rgba(0,0,0,0.5);'><br>that one time she drank milk dripping from her nose, yum x-)" },
                 { tab: "OBS-42", title: "Nose Scrunch", content: "Subject's nose scrunches when laughing at terrible jokes. Highly dangerous." }
             ],
             museum: [
@@ -546,7 +552,6 @@
             if(target) target.classList.add('active');
             
             if (id === 's4-timeline') setupTimelineObserver();
-            if (id === 's8-museum') setupMuseumObserver();
         }
 
         window.onload = () => {
@@ -648,16 +653,15 @@
                 arcGrid.innerHTML += `<div class="dossier" onclick="this.classList.toggle('open')"><div class="dossier-tab">${item.tab}</div><h3 class="serif" style="font-weight:bold;">${item.title}</h3><div class="dossier-content">${item.content}</div></div>`;
             });
 
+            // Museum Building
             const musGrid = document.getElementById('museum-gallery');
-            const galleryItems = SITE_DATA.museum.slice(0, -1);
-            const finalItem = SITE_DATA.museum[SITE_DATA.museum.length - 1];
-            
-            galleryItems.forEach(item => {
-                musGrid.innerHTML += `<div class="frame"><div class="frame-img">${item.img}</div><div class="frame-caption">${item.caption}</div></div>`;
+            SITE_DATA.museum.forEach((item, index) => {
+                musGrid.innerHTML += `
+                    <div class="polaroid" id="pol-${index}" onclick="openPolaroid(${index})">
+                        <div class="polaroid-img">${item.img}</div>
+                        <div class="frame-caption">${item.caption}</div>
+                    </div>`;
             });
-            
-            document.querySelector('#final-photo-display .frame-img').innerHTML = finalItem.img;
-            document.querySelector('#final-photo-display .frame-caption').innerHTML = finalItem.caption;
         }
 
         let petalInterval;
@@ -727,14 +731,12 @@
             A.classList.remove('walking');
             P.classList.remove('walking');
             
-            // Collision Impact
             A.style.transform = 'scaleX(-1) rotate(5deg)';
             P.style.transform = 'scaleX(1) rotate(-5deg)';
             await wait(200);
             A.style.transform = 'scaleX(-1) rotate(0deg)';
             P.style.transform = 'scaleX(1) rotate(0deg)';
             
-            // Calculate midpoint for the heart
             const rectA = A.getBoundingClientRect();
             const rectP = P.getBoundingClientRect();
             const stageRect = stage.getBoundingClientRect();
@@ -743,10 +745,9 @@
             const px = rectP.left - stageRect.left + (rectP.width/2);
             const midX = (ax + px) / 2;
             
-            // Magic Sound & Heart Appears
             heart.style.left = midX + 'px';
             heart.classList.add('beat');
-            magicSound.play().catch(e => console.log("Audio play prevented by browser"));
+            magicSound.play().catch(e => console.log("Audio prevented"));
             
             await wait(1500);
             glow.style.opacity = '1';
@@ -805,34 +806,70 @@
             btn.style.pointerEvents = 'all';
         }
 
-        function setupMuseumObserver() {
-            const trigger = document.getElementById('museum-end-trigger');
-            const observer = new IntersectionObserver((entries) => {
-                if(entries[0].isIntersecting) { observer.disconnect(); prepareAudioEnding(); }
-            }, { root: document.getElementById('s8-museum'), threshold: 0.1 });
-            observer.observe(trigger);
+        /* =========================================================
+           MUSEUM LOGIC (POLAROIDS & DVD PLAYER)
+           ========================================================= */
+        let viewedPolaroids = new Set();
+        let dvdState = 'OFF'; // OFF, BOOTING, READY, PLAYING
+
+        function openPolaroid(index) {
+            const item = SITE_DATA.museum[index];
+            document.getElementById('modal-img').innerHTML = item.img;
+            document.getElementById('modal-caption').innerText = item.caption;
+            document.getElementById('polaroid-modal').classList.add('active');
+            
+            // Mark as viewed
+            viewedPolaroids.add(index);
+            document.getElementById(`pol-${index}`).classList.add('viewed');
         }
 
-        async function prepareAudioEnding() {
-            const overlay = document.getElementById('audio-overlay');
-            const btn = document.getElementById('btn-play-song');
+        async function closePolaroid() {
+            document.getElementById('polaroid-modal').classList.remove('active');
+            
+            // Check if all are viewed
+            if (viewedPolaroids.size === SITE_DATA.museum.length && dvdState === 'OFF') {
+                bootDVDPlayer();
+            }
+        }
+
+        async function bootDVDPlayer() {
+            dvdState = 'BOOTING';
+            const dvd = document.getElementById('dvd-player-wrapper');
+            const txt = document.getElementById('dvd-text');
             const audio = document.getElementById('our-song');
             
-            await wait(1500); 
-            overlay.classList.add('active');
+            await wait(1000);
+            dvd.classList.add('booting');
             
-            btn.onclick = () => {
-                btn.style.display = 'none'; 
-                document.querySelector('#final-photo-display').style.transform = 'scale(1.1)'; 
-                
-                audio.play().catch(e => { setTimeout(triggerFinalGoodbye, 3000); });
-                audio.onended = () => { triggerFinalGoodbye(); };
+            // "READING..." sequence
+            txt.innerText = 'READING'; await wait(400);
+            txt.innerText = 'READING.'; await wait(400);
+            txt.innerText = 'READING..'; await wait(400);
+            txt.innerText = 'READING...'; await wait(800);
+            
+            dvdState = 'READY';
+            dvd.classList.remove('booting');
+            dvd.classList.add('ready');
+            txt.innerText = 'PLAY';
+            
+            // Setup click to play
+            dvd.onclick = () => {
+                if(dvdState === 'READY') {
+                    dvdState = 'PLAYING';
+                    dvd.classList.remove('ready');
+                    dvd.classList.add('playing');
+                    txt.innerText = 'TRACK 01'; // Text hides, bars show, but we keep text for style
+                    txt.style.display = 'none';
+                    
+                    audio.play().catch(e => { setTimeout(triggerFinalGoodbye, 3000); });
+                    audio.onended = () => { triggerFinalGoodbye(); };
+                }
             };
         }
 
         async function triggerFinalGoodbye() {
-            document.getElementById('audio-overlay').classList.remove('active');
-            await wait(1500);
+            document.getElementById('dvd-player-wrapper').classList.remove('playing');
+            await wait(1000);
             goToSection('s9-goodbye');
             
             const mendhak = document.getElementById('goodbye-mendhak');
