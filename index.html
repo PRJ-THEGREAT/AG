@@ -109,13 +109,12 @@
         
         .char-svg { position: absolute; bottom: 0; width: 140px; height: 260px; transition: left 1s linear, transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); filter: drop-shadow(0 15px 10px rgba(0,0,0,0.2)); z-index: 5;}
         
-        /* Specific CSS for the actual hand-drawn image to remove white background AND extra borders */
+        /* Specific CSS for the actual hand-drawn image to remove white background */
         img#char-p { 
-            object-fit: cover; /* Forces the image to fill its bounding box */
-            object-position: center;
+            object-fit: contain; /* Contain ensures it doesn't zoom in or crop */
+            object-position: center bottom; /* Anchors him to the floor */
             mix-blend-mode: multiply; 
-            filter: grayscale(100%) contrast(1.5) brightness(1.1); /* Cleans up shadows so paper becomes purely white/invisible */
-            clip-path: inset(2% 20% 0 20%); /* Digitally crops the extra borders off the sides of the photo */
+            filter: grayscale(100%) contrast(1.5) brightness(1.1); 
         }
         
         .char-svg.walking { animation: lively-bob 0.6s infinite alternate cubic-bezier(0.4, 0, 0.2, 1); }
@@ -379,7 +378,7 @@
                 <svg id="char-a" class="char-svg" viewBox="0 0 100 100" style="transform: scaleX(-1);"><use href="#svg-aaradhya"/></svg>
                 
                 <!-- NEW GUY: Actual hand-drawn image file updated to correct name -->
-                <img id="char-p" src="IMG_0079.jpeg" class="char-svg" style="transform: scaleX(-1);">
+                <img id="char-p" src="IMG_0080.png" class="char-svg" style="transform: scaleX(-1);">
                 
                 <svg id="meeting-heart" viewBox="0 0 100 100">
                     <path d="M 50 80 Q 20 50 20 30 A 15 15 0 0 1 50 30 A 15 15 0 0 1 80 30 Q 80 50 50 80 Z" fill="var(--accent-red)"/>
@@ -534,7 +533,7 @@
                 { img: "[COFFEE PHOTO]", caption: "That café we always go to." },
                 { img: "[SILLY SELFIE]", caption: "Absolute chaos." },
                 { img: "[ADD NAVRATRI / NEW MEMORIES HERE]", caption: "Recent adventures." },
-                { img: "<img src='IMG_0010.jpeg' style='width: 100%; height: 100%; object-fit: cover;'>", caption: "Us." } 
+                { img: "<img src='IMG_0010.jpg' style='width: 100%; height: 100%; object-fit: cover;'>", caption: "Us." } 
             ]
         };
 
