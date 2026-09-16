@@ -6,7 +6,7 @@
     <title>14 October 2026 - Aaradhya Day</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Courier+Prime&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Courier+Prime&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
         /* =========================================================
@@ -14,15 +14,16 @@
            ========================================================= */
         :root {
             --bg-dark: #070708;
-            --bg-magazine: #f2eee8;
+            --bg-newspaper: #f0ebe1;
             --text-light: #eaddd7;
-            --text-dark: #2c2a29;
+            --text-dark: #1a1a1a;
             --accent-red: #ff2a2a;
             --font-serif: 'Playfair Display', Georgia, serif;
             --font-sans: 'Inter', Helvetica, sans-serif;
+            --font-news: Georgia, 'Times New Roman', Times, serif;
             --font-typewriter: 'Courier Prime', monospace;
             --trans-cinematic: 2s cubic-bezier(0.4, 0, 0.2, 1);
-            --paper-texture: url('data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noiseFilter)" opacity="0.05"/></svg>');
+            --paper-texture: url('data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noiseFilter)" opacity="0.06"/></svg>');
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -30,7 +31,7 @@
         h1, h2, h3, .serif { font-family: var(--font-serif); font-weight: normal; }
         
         #app-container { position: relative; width: 100vw; height: 100vh; overflow: hidden; }
-        .story-section { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; pointer-events: none; filter: blur(10px); transition: opacity var(--trans-cinematic), filter var(--trans-cinematic); overflow-y: auto; overflow-x: hidden; display: flex; flex-direction: column; }
+        .story-section { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; pointer-events: none; filter: blur(10px); transition: opacity var(--trans-cinematic), filter var(--trans-cinematic); overflow-y: auto; overflow-x: hidden; display: flex; flex-direction: column; align-items: center; }
         .story-section.active { opacity: 1; pointer-events: all; filter: blur(0); }
         
         .btn-cinematic { margin: 40px auto; padding: 12px 30px; background: none; border: 1px solid currentColor; color: inherit; font-family: var(--font-serif); font-size: 1.1rem; cursor: pointer; transition: 0.4s ease; border-radius: 2px; letter-spacing: 1px; z-index: 20;}
@@ -39,7 +40,7 @@
         /* =========================================================
            1. UNHINGED OPENING
            ========================================================= */
-        #s1-opening { background: #000; align-items: center; justify-content: center; overflow: hidden; }
+        #s1-opening { background: #000; justify-content: center; overflow: hidden; }
         .stage-opening { position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
         
         #anim-piggy { position: absolute; width: 85px; height: 85px; transform: scale(0.1) translateY(100px); opacity: 0; transition: transform 2s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.5s; z-index: 2; }
@@ -54,62 +55,60 @@
         
         #opening-flash { position: absolute; top:0; left:0; width:100%; height:100%; background:#fff; opacity:0; pointer-events:none; z-index: 10; }
         
-        #lightbulb-scene { position: absolute; display: flex; flex-direction: column; align-items: center; opacity: 0; pointer-events: none; transition: 2s; z-index: 5; }
+        #lightbulb-scene { position: absolute; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 2s; z-index: 5; height: 100vh;}
         #tease-text { font-family: var(--font-typewriter); color: #888; font-size: 0.9rem; margin-bottom: 20px; text-align: center; }
         #the-bulb { width: 50px; cursor: pointer; filter: brightness(0.2); transition: filter 0.1s; animation: swing 4s infinite ease-in-out; transform-origin: top center; }
         #the-bulb.on { filter: drop-shadow(0 0 40px #fff7a0) brightness(1.5); animation: none; }
         
-        #main-title { position: absolute; display: flex; flex-direction: column; align-items: center; opacity: 0; pointer-events: none; transition: 3s ease; z-index: 4; text-align: center;}
+        #main-title { position: absolute; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 3s ease; z-index: 4; text-align: center; height: 100vh;}
         #main-title h1 { font-size: clamp(2rem, 6vw, 4rem); letter-spacing: 6px; }
         
         @keyframes swing { 0%, 100% { transform: rotate(-5deg); } 50% { transform: rotate(5deg); } }
 
         /* =========================================================
-           2. THE AARADHYA EDITION
+           2. THE AARADHYA EDITION (NEWSPAPER)
            ========================================================= */
-        #s2-edition { background-color: var(--bg-magazine); color: var(--text-dark); padding: 8vh 5vw; background-image: var(--paper-texture); align-items: center; }
-        .magazine-header { text-align: center; border-bottom: 3px double var(--text-dark); margin-bottom: 50px; padding-bottom: 20px; width: 100%; max-width: 900px; }
-        .magazine-header h1 { font-size: clamp(2.5rem, 8vw, 5rem); text-transform: uppercase; font-weight: 600; letter-spacing: 2px; }
-        .magazine-date { font-family: var(--font-typewriter); font-size: 0.9rem; border-top: 1px solid var(--text-dark); border-bottom: 1px solid var(--text-dark); padding: 5px 0; margin-top: 10px;}
+        #s2-edition { background-color: var(--bg-newspaper); color: var(--text-dark); padding: 8vh 5vw; background-image: var(--paper-texture); }
+        .newspaper-wrapper { width: 100%; max-width: 1200px; display: flex; flex-direction: column; align-items: center; }
         
-        .editorial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; max-width: 1000px; width: 100%; }
-        .article { background: #fff; padding: 15px; box-shadow: 2px 4px 15px rgba(0,0,0,0.04); position: relative; }
-        .article::before { content:''; position: absolute; top:0; left:0; right:0; bottom:0; background: var(--paper-texture); pointer-events: none; opacity: 0.5;}
-        .article-img { width: 100%; height: 250px; background: #eae5df; display: flex; align-items: center; justify-content: center; font-family: var(--font-typewriter); color: #999; margin-bottom: 20px; overflow: hidden; }
-        .article h3 { font-size: 1.8rem; margin-bottom: 10px; line-height: 1.2; }
-        .article p { font-size: 0.95rem; line-height: 1.6; color: #444; }
+        /* Classic Newspaper Masthead */
+        .newspaper-masthead { width: 100%; text-align: center; border-bottom: 5px double var(--text-dark); border-top: 2px solid var(--text-dark); margin-bottom: 40px; padding: 25px 0; }
+        .newspaper-masthead h1 { font-family: var(--font-serif); font-size: clamp(3rem, 10vw, 6rem); text-transform: uppercase; font-weight: 900; letter-spacing: -2px; margin: 0; line-height: 1; }
+        .newspaper-sub { font-family: var(--font-typewriter); font-size: 0.85rem; text-transform: uppercase; border-top: 1px solid var(--text-dark); border-bottom: 1px solid var(--text-dark); padding: 8px 10px; margin-top: 20px; display: flex; justify-content: space-between; font-weight: bold;}
         
-        .ncc-ending { margin-top: 80px; text-align: center; padding: 60px 20px; border: 1px solid var(--text-dark); cursor: pointer; transition: 0.5s; max-width: 600px; width: 100%; }
-        .ncc-ending:hover { background: var(--text-dark); color: var(--bg-magazine); }
-        .ncc-ending:hover .article-img { filter: invert(1); }
+        /* Masonry-style Grid */
+        .newspaper-grid { column-count: 3; column-gap: 40px; column-rule: 1px solid #ccc; width: 100%; }
+        @media(max-width: 900px) { .newspaper-grid { column-count: 2; } }
+        @media(max-width: 600px) { .newspaper-grid { column-count: 1; column-rule: none; } }
+        
+        /* Individual Articles */
+        .news-article { break-inside: avoid; margin-bottom: 40px; border-bottom: 1px solid #ccc; padding-bottom: 25px; }
+        
+        /* Image / Video Wrapper */
+        .news-media { width: 100%; margin-bottom: 15px; background: #e0dcd3; display: flex; align-items: center; justify-content: center; font-family: var(--font-typewriter); font-size: 0.8rem; color: #777; filter: grayscale(10%) contrast(105%); }
+        .news-media img, .news-media video { width: 100%; height: auto; display: block; border: 1px solid #ddd;}
+        
+        /* Typography */
+        .news-headline { font-size: clamp(1.5rem, 4vw, 2.2rem); font-family: var(--font-serif); line-height: 1.1; margin-bottom: 15px; font-weight: 700; letter-spacing: -0.5px;}
+        .news-text { font-size: 0.95rem; line-height: 1.6; color: #222; text-align: justify; font-family: var(--font-news); }
+
+        .ncc-ending { margin-top: 60px; text-align: center; padding: 40px 20px; border: 2px dashed var(--text-dark); cursor: pointer; transition: 0.3s; width: 100%; max-width: 600px; break-inside: avoid;}
+        .ncc-ending:hover { background: var(--text-dark); color: var(--bg-newspaper); }
+        .ncc-ending:hover .news-media img { filter: invert(1); }
 
         /* =========================================================
            3. FIRST MEETING 
            ========================================================= */
-        #s3-meeting { 
-            background: linear-gradient(to bottom, #a1c4fd 0%, #e0f6ff 45%, #c8e6c9 70%, #81c784 100%); 
-            align-items: center; justify-content: center; overflow: hidden; 
-        }
+        #s3-meeting { background: linear-gradient(to bottom, #a1c4fd 0%, #e0f6ff 45%, #c8e6c9 70%, #81c784 100%); justify-content: center; overflow: hidden; }
         
-        .morning-sun {
-            position: absolute; top: 5%; left: 50%; transform: translateX(-50%);
-            width: 180px; height: 180px; border-radius: 50%; z-index: 1;
-            background: radial-gradient(circle, #fffde7 0%, #fff59d 40%, transparent 70%);
-            box-shadow: 0 0 60px #fff9c4, 0 0 120px #fff176;
-            animation: slow-pulse 5s infinite alternate;
-        }
+        .morning-sun { position: absolute; top: 5%; left: 50%; transform: translateX(-50%); width: 180px; height: 180px; border-radius: 50%; z-index: 1; background: radial-gradient(circle, #fffde7 0%, #fff59d 40%, transparent 70%); box-shadow: 0 0 60px #fff9c4, 0 0 120px #fff176; animation: slow-pulse 5s infinite alternate; }
         @keyframes slow-pulse { 0% { transform: translateX(-50%) scale(1); opacity: 0.8;} 100% { transform: translateX(-50%) scale(1.1); opacity: 1;} }
 
         .tree-canopy { position: absolute; top: 0; left: 0; width: 100%; height: 45vh; z-index: 2; pointer-events: none; opacity: 0.95; filter: drop-shadow(0 15px 15px rgba(0,0,0,0.2)); }
         
         #petal-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 3; overflow: hidden;}
         .petal { position: absolute; top: -20px; background: #ffb6c1; border-radius: 15px 0 15px 0; opacity: 0.8; animation: fall linear forwards; box-shadow: 0 0 8px rgba(255,182,193,0.8); }
-        @keyframes fall {
-            0% { transform: translateY(0) rotate(0deg) scale(0.8); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(110vh) rotate(360deg) scale(1.2); opacity: 0; }
-        }
+        @keyframes fall { 0% { transform: translateY(0) rotate(0deg) scale(0.8); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translateY(110vh) rotate(360deg) scale(1.2); opacity: 0; } }
 
         .meeting-stage { position: relative; width: 100%; max-width: 900px; height: 50vh; overflow: hidden; border-bottom: 2px solid rgba(0,100,0,0.1); z-index: 5;}
         .char-svg { position: absolute; bottom: 0; width: 140px; height: 260px; transition: left 1s linear, transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); filter: drop-shadow(0 15px 10px rgba(0,0,0,0.2)); z-index: 5;}
@@ -120,16 +119,8 @@
         #char-a { left: -20%; } 
         #char-p { left: 10%; }  
         
-        #meeting-heart {
-            position: absolute; width: 60px; height: 60px; top: 45%;
-            transform: translate(-50%, -50%) scale(0); opacity: 0; z-index: 6;
-            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.8s;
-            filter: drop-shadow(0 0 15px rgba(255, 42, 42, 0.8));
-        }
-        #meeting-heart.beat {
-            transform: translate(-50%, -50%) scale(1); opacity: 1;
-            animation: heartbeat 1.2s infinite alternate ease-in-out;
-        }
+        #meeting-heart { position: absolute; width: 60px; height: 60px; top: 45%; transform: translate(-50%, -50%) scale(0); opacity: 0; z-index: 6; transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.8s; filter: drop-shadow(0 0 15px rgba(255, 42, 42, 0.8)); }
+        #meeting-heart.beat { transform: translate(-50%, -50%) scale(1); opacity: 1; animation: heartbeat 1.2s infinite alternate ease-in-out; }
         @keyframes heartbeat { 0% { transform: translate(-50%, -50%) scale(1); } 100% { transform: translate(-50%, -50%) scale(1.15); } }
         #meeting-glow { position: absolute; top:45%; left:50%; transform: translate(-50%, -50%); width: 400px; height: 400px; background: radial-gradient(circle, rgba(255, 255, 255, 0.6) 0%, transparent 50%); opacity: 0; transition: opacity 2s; pointer-events: none; z-index: 4; }
 
@@ -195,26 +186,15 @@
         .redacted:hover { color: #fff; background: transparent; }
 
         /* =========================================================
-           8. MUSEUM (THE MEMORY ROOM & DVD PLAYER)
+           8. MUSEUM 
            ========================================================= */
-        #s8-museum { 
-            background: repeating-linear-gradient(to right, #1a1614, #1a1614 60px, #161210 60px, #161210 120px); 
-            align-items: center; justify-content: flex-start; padding: 0; position: relative;
-        }
-        
-        /* Dark vignette / spotlight overlay on the room */
+        #s8-museum { background: repeating-linear-gradient(to right, #1a1614, #1a1614 60px, #161210 60px, #161210 120px); align-items: center; justify-content: flex-start; padding: 0; position: relative;}
         .room-lighting { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center 40%, transparent 20%, rgba(0,0,0,0.8) 100%); pointer-events: none; z-index: 1;}
-
         .museum-title { position: absolute; top: 5%; width: 100%; text-align: center; z-index: 2;}
-        
-        /* Wall Area for Polaroids */
         .gallery-wall { display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; width: 100%; max-width: 1100px; padding: 15vh 5vw 50px 5vw; z-index: 2; margin-bottom: 20vh; }
         
-        /* Physical Polaroid Styling */
         .polaroid { background: #fdfdfd; padding: 12px 12px 40px 12px; box-shadow: 2px 10px 20px rgba(0,0,0,0.6); transition: 0.4s ease; cursor: pointer; position: relative; }
         .polaroid::before { content:''; position:absolute; top:0;left:0;right:0;bottom:0; background: var(--paper-texture); opacity:0.3; pointer-events:none;}
-        
-        /* Tape at the top of Polaroids */
         .polaroid::after { content: ''; position: absolute; top: -10px; left: 50%; width: 45px; height: 18px; background: rgba(255,255,255,0.4); box-shadow: 0 1px 2px rgba(0,0,0,0.1); transform: translateX(-50%) rotate(-2deg); border-radius: 1px; }
 
         .polaroid:nth-child(3n+1) { transform: rotate(-3deg); }
@@ -222,24 +202,19 @@
         .polaroid:nth-child(3n) { transform: rotate(-1deg); }
         .polaroid:hover { transform: scale(1.05) rotate(0); z-index: 10; box-shadow: 5px 15px 30px rgba(0,0,0,0.8); }
         
-        .polaroid.viewed { filter: brightness(0.7); } /* Darkens once clicked so you know you've seen it */
-        
+        .polaroid.viewed { filter: brightness(0.7); } 
         .polaroid-img { width: 220px; height: 180px; background: #ddd; display: flex; align-items: center; justify-content: center; font-family: var(--font-typewriter); color: #888; font-size: 0.8rem; overflow: hidden; background-size: cover; background-position: center;}
         
-        /* The Wooden Shelf */
         .room-shelf { position: absolute; bottom: 0; width: 100%; height: 18vh; background: #2d1a11; border-top: 10px solid #1a0f0a; box-shadow: 0 -20px 40px rgba(0,0,0,0.9); display: flex; align-items: flex-start; justify-content: center; z-index: 5; }
 
-        /* The DVD Player */
         #dvd-player-wrapper { margin-top: -15px; cursor: pointer; position: relative; }
         .dvd-player { width: 280px; height: 50px; background: #111; border-radius: 4px; box-shadow: inset 0 2px 5px rgba(255,255,255,0.1), 0 10px 20px rgba(0,0,0,0.8); position: relative; border-bottom: 3px solid #000; border-top: 1px solid #333;}
         .dvd-feet { position: absolute; bottom: -5px; width: 15px; height: 5px; background: #000; border-radius: 2px;}
-        
         .dvd-slot { position: absolute; top: 15px; left: 20px; width: 120px; height: 4px; background: #000; border-radius: 2px; box-shadow: inset 0 1px 2px rgba(0,0,0,0.8); }
         .dvd-screen { position: absolute; top: 10px; right: 40px; width: 80px; height: 25px; background: #050505; border-radius: 2px; border: 1px solid #222; display: flex; align-items: center; justify-content: center; font-family: 'Courier New', monospace; font-weight: bold; font-size: 0.8rem; color: #333; overflow: hidden;}
         
         .dvd-led { position: absolute; top: 18px; right: 15px; width: 6px; height: 6px; border-radius: 50%; background: #400; box-shadow: 0 0 5px #f00; transition: 0.3s;}
         
-        /* DVD Player States */
         #dvd-player-wrapper.booting .dvd-led { background: #0f0; box-shadow: 0 0 10px #0f0; }
         #dvd-player-wrapper.booting .dvd-screen { color: #0df; text-shadow: 0 0 5px #0df; }
         
@@ -249,13 +224,11 @@
         
         @keyframes dvd-pulse { 0% { filter: drop-shadow(0 0 5px rgba(0,255,0,0.2)); transform: translateY(0); } 100% { filter: drop-shadow(0 0 20px rgba(0,255,0,0.8)); transform: translateY(-2px); } }
 
-        /* Audio Visualizer Bars */
         .dvd-bars { display: none; height: 10px; align-items: flex-end; gap: 2px; margin-left: 8px;}
         .dvd-bar { width: 3px; background: #0f0; animation: eq 0.5s infinite alternate ease-in-out;}
         #dvd-player-wrapper.playing .dvd-bars { display: flex; }
         @keyframes eq { 0% { height: 2px; } 100% { height: 10px; } }
 
-        /* Polaroid Lightbox Modal */
         #polaroid-modal { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.9); z-index: 100; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 0.4s ease; flex-direction: column; }
         #polaroid-modal.active { opacity: 1; pointer-events: all; }
         #modal-frame { transform: scale(1.2); cursor: default; pointer-events: none; }
@@ -280,7 +253,6 @@
 
     <svg width="0" height="0" style="display:none;">
         <defs>
-            <!-- (Mascots & Silhouettes code remains identical) -->
             <g id="svg-piggy">
                 <path d="M 22 25 Q 16 35 22 45 Q 26 50 20 55" fill="none" stroke="#333" stroke-width="2.5" stroke-linecap="round" id="p-sweat" />
                 <path d="M 30 35 Q 25 55 30 75 Q 50 90 70 75 Q 75 55 70 35 Q 50 20 30 35 Z" fill="#ffc8d2" />
@@ -371,17 +343,26 @@
             </div>
         </section>
 
-        <!-- 2. MAGAZINE -->
+        <!-- 2. NEWSPAPER EDITION -->
         <section id="s2-edition" class="story-section">
-            <div class="magazine-header">
-                <h1>The Aaradhya Edition</h1>
-                <div class="magazine-date">VOL 1. — UNAUTHORIZED BIOGRAPHY</div>
-            </div>
-            <div class="editorial-grid" id="magazine-grid"></div>
-            <div class="ncc-ending" onclick="triggerFirstMeeting()">
-                <h2 class="serif" style="font-size: 2rem; margin-bottom: 20px;">The Missing Star</h2>
-                <div class="article-img" style="border-radius: 50%; width: 200px; height: 200px; margin: 0 auto 20px auto; background: var(--text-dark); color: var(--bg-magazine);">[NCC PHOTO]</div>
-                <p style="font-family: var(--font-typewriter); font-size: 0.9rem;">click to meet your missing star</p>
+            <div class="newspaper-wrapper">
+                <div class="newspaper-masthead">
+                    <h1>The Aaradhya Edition</h1>
+                    <div class="newspaper-sub">
+                        <span>VOL 1. — UNAUTHORIZED BIOGRAPHY</span>
+                        <span>14 OCTOBER 2026</span>
+                    </div>
+                </div>
+                
+                <div class="newspaper-grid" id="newspaper-grid">
+                    <!-- Populated by JS -->
+                </div>
+                
+                <div class="ncc-ending" onclick="triggerFirstMeeting()">
+                    <h2 class="serif" style="font-size: 2.2rem; margin-bottom: 20px; font-weight:bold;">The Missing Star</h2>
+                    <div class="news-media" style="border-radius: 50%; width: 200px; height: 200px; margin: 0 auto 20px auto; background: var(--text-dark); color: var(--bg-newspaper);">[NCC PHOTO]</div>
+                    <p style="font-family: var(--font-typewriter); font-size: 0.9rem;">click to meet your missing star</p>
+                </div>
             </div>
         </section>
 
@@ -504,11 +485,23 @@
            DATA CONFIGURATION 
            ========================================================= */
         const SITE_DATA = {
-            magazine: [
-                { title: "The Early Years", text: "[Replace with childhood anecdote]", img: "[CHILDHOOD PHOTO 1]" },
-                { title: "Breaking News", text: "[Replace with a funny memory]", img: "[FUNNY MEMORY PHOTO]" },
-                { title: "Before I Knew You", text: "[Replace with school/hobby story]", img: "[SCHOOL/HOBBY PHOTO]" }
+            
+            newspaper: [
+                // 3 Videos
+                { headline: "CAUGHT ON TAPE", text: "[Replace with video story]", mediaHtml: "<video src='[VIDEO_1_FILENAME.mp4]' autoplay loop muted playsinline></video>" },
+                { headline: "THE DANCING QUEEN", text: "[Replace with video story]", mediaHtml: "<video src='[VIDEO_2_FILENAME.mp4]' autoplay loop muted playsinline></video>" },
+                { headline: "UNSEEN FOOTAGE", text: "[Replace with video story]", mediaHtml: "<video src='[VIDEO_3_FILENAME.mp4]' autoplay loop muted playsinline></video>" },
+                // 8 Pictures
+                { headline: "THE EARLY YEARS", text: "[Replace with photo story]", mediaHtml: "<img src='[PHOTO_1_FILENAME.jpg]'>" },
+                { headline: "BREAKING NEWS", text: "[Replace with photo story]", mediaHtml: "<img src='[PHOTO_2_FILENAME.jpg]'>" },
+                { headline: "BEFORE I KNEW YOU", text: "[Replace with photo story]", mediaHtml: "<img src='[PHOTO_3_FILENAME.jpg]'>" },
+                { headline: "A STAR IS BORN", text: "[Replace with photo story]", mediaHtml: "<img src='[PHOTO_4_FILENAME.jpg]'>" },
+                { headline: "LOCAL HERO", text: "[Replace with photo story]", mediaHtml: "<img src='[PHOTO_5_FILENAME.jpg]'>" },
+                { headline: "FRONT PAGE MATERIAL", text: "[Replace with photo story]", mediaHtml: "<img src='[PHOTO_6_FILENAME.jpg]'>" },
+                { headline: "THE ARCHIVES", text: "[Replace with photo story]", mediaHtml: "<img src='[PHOTO_7_FILENAME.jpg]'>" },
+                { headline: "STYLE ICON", text: "[Replace with photo story]", mediaHtml: "<img src='[PHOTO_8_FILENAME.jpg]'>" }
             ],
+
             timeline: [
                 { date: "16 Jan 2026", title: "First Meeting", text: "The magic connected." },
                 { date: "14 Feb 2026", title: "When things changed", text: "[ADD SPECIFIC DETAIL]" },
@@ -633,11 +626,19 @@
         }
 
         function buildDynamicContent() {
-            const magGrid = document.getElementById('magazine-grid');
-            SITE_DATA.magazine.forEach(item => {
-                magGrid.innerHTML += `<div class="article"><div class="article-img">${item.img}</div><h3 class="serif">${item.title}</h3><p>${item.text}</p></div>`;
+            
+            // Build Newspaper
+            const newsGrid = document.getElementById('newspaper-grid');
+            SITE_DATA.newspaper.forEach(item => {
+                newsGrid.innerHTML += `
+                    <div class="news-article">
+                        <div class="news-media">${item.mediaHtml}</div>
+                        <h3 class="news-headline">${item.headline}</h3>
+                        <p class="news-text">${item.text}</p>
+                    </div>`;
             });
 
+            // Timeline
             const tlContainer = document.getElementById('timeline-nodes-wrapper');
             SITE_DATA.timeline.forEach((item, index) => {
                 tlContainer.innerHTML += `<div class="timeline-node" id="tl-node-${index}"><div class="timeline-dot"></div><div class="timeline-content"><span class="timeline-date">${item.date}</span><h4 class="serif" style="font-size:1.2rem; margin-bottom:5px;">${item.title}</h4><p style="font-size:0.9rem; color:#ccc;">${item.text}</p></div></div>`;
@@ -810,7 +811,7 @@
            MUSEUM LOGIC (POLAROIDS & DVD PLAYER)
            ========================================================= */
         let viewedPolaroids = new Set();
-        let dvdState = 'OFF'; // OFF, BOOTING, READY, PLAYING
+        let dvdState = 'OFF'; 
 
         function openPolaroid(index) {
             const item = SITE_DATA.museum[index];
@@ -818,7 +819,6 @@
             document.getElementById('modal-caption').innerText = item.caption;
             document.getElementById('polaroid-modal').classList.add('active');
             
-            // Mark as viewed
             viewedPolaroids.add(index);
             document.getElementById(`pol-${index}`).classList.add('viewed');
         }
@@ -826,7 +826,6 @@
         async function closePolaroid() {
             document.getElementById('polaroid-modal').classList.remove('active');
             
-            // Check if all are viewed
             if (viewedPolaroids.size === SITE_DATA.museum.length && dvdState === 'OFF') {
                 bootDVDPlayer();
             }
@@ -841,7 +840,6 @@
             await wait(1000);
             dvd.classList.add('booting');
             
-            // "READING..." sequence
             txt.innerText = 'READING'; await wait(400);
             txt.innerText = 'READING.'; await wait(400);
             txt.innerText = 'READING..'; await wait(400);
@@ -852,13 +850,12 @@
             dvd.classList.add('ready');
             txt.innerText = 'PLAY';
             
-            // Setup click to play
             dvd.onclick = () => {
                 if(dvdState === 'READY') {
                     dvdState = 'PLAYING';
                     dvd.classList.remove('ready');
                     dvd.classList.add('playing');
-                    txt.innerText = 'TRACK 01'; // Text hides, bars show, but we keep text for style
+                    txt.innerText = 'TRACK 01'; 
                     txt.style.display = 'none';
                     
                     audio.play().catch(e => { setTimeout(triggerFinalGoodbye, 3000); });
