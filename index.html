@@ -130,21 +130,8 @@
         @keyframes heartbeat { 0% { transform: translate(-50%, -50%) scale(1); } 100% { transform: translate(-50%, -50%) scale(1.15); } }
         #meeting-glow { position: absolute; top:45%; left:50%; transform: translate(-50%, -50%); width: 400px; height: 400px; background: radial-gradient(circle, rgba(255, 255, 255, 0.6) 0%, transparent 50%); opacity: 0; transition: opacity 2s; pointer-events: none; z-index: 4; }
 
-        /* The Bold Black Transition Button */
-        #btn-post-meeting {
-            background-color: #000 !important;
-            color: #fff !important;
-            border: 2px solid #000 !important;
-            font-weight: bold;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-            border-radius: 4px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-        #btn-post-meeting:hover {
-            background-color: #222 !important;
-            color: #fff !important;
-        }
+        #btn-post-meeting { background-color: #000 !important; color: #fff !important; border: 2px solid #000 !important; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.4); border-radius: 4px; text-transform: uppercase; letter-spacing: 2px; }
+        #btn-post-meeting:hover { background-color: #222 !important; color: #fff !important; }
 
         /* =========================================================
            4. STORY OF US
@@ -276,6 +263,9 @@
         @keyframes float-slow { 0%, 100% { transform: translateY(0) rotate(-20deg); } 50% { transform: translateY(-20px) rotate(-15deg); } }
         @keyframes orbit { 0% { transform: translateX(0) translateY(0); } 50% { transform: translateX(-30px) translateY(15px); } 100% { transform: translateX(0) translateY(0); } }
         @keyframes orbit-rev { 0% { transform: translateX(0) translateY(0); } 50% { transform: translateX(20px) translateY(-20px); } 100% { transform: translateX(0) translateY(0); } }
+
+        @keyframes hint-pulse { 0% { transform: scale(1); } 100% { transform: scale(1.1); } }
+        @keyframes spacewalk { 0%, 100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-15px) rotate(3deg); } }
 
         .climax-text { font-family: var(--font-serif); font-size: clamp(1.5rem, 5vw, 3rem); color: #ffdf73; opacity: 0; transition: opacity 2s ease; z-index: 5; position: absolute; font-weight: bold; text-shadow: 0 2px 15px rgba(255,223,115,0.5); text-align: center; width: 100%; pointer-events: none;}
         
@@ -507,9 +497,9 @@
                 </div>
                 
                 <div style="position:relative;">
-                    <div id="tap-hint" style="position:absolute; top:-80px; right:30px; font-family:var(--font-typewriter); color:#ffdf73; font-weight:bold; opacity:0; transition:0.3s; white-space:nowrap; animation: slow-pulse 1s infinite alternate;">(Tap Mendhak!)</div>
+                    <div id="tap-hint" style="position:absolute; top:-80px; right:30px; font-family:var(--font-typewriter); color:#ffdf73; font-weight:bold; opacity:0; transition:0.3s; white-space:nowrap; animation: hint-pulse 1s infinite alternate; pointer-events:none;">(Tap Mendhak!)</div>
                     <div id="goodbye-mendhak-bubble" style="position:absolute; top:-40px; right:-20px; font-family:var(--font-typewriter); color:#68b94f; font-weight:bold; opacity:0; transition:0.3s; white-space:nowrap; background:rgba(0,0,0,0.8); padding:5px 10px; border-radius:10px; border:1px solid #68b94f;">NO , I DO!</div>
-                    <svg id="goodbye-mendhak" viewBox="0 0 150 100" style="width:170px; opacity:0; transform:translateY(20px); transition: opacity 3s ease, transform 3s ease; position:relative; z-index:5;"><use href="#svg-mendhak-flower"/></svg>
+                    <svg id="goodbye-mendhak" viewBox="0 0 150 100" style="width:170px; opacity:0; transform:translateY(20px); position:relative; z-index:5;"><use href="#svg-mendhak-flower"/></svg>
                 </div>
             </div>
             
@@ -517,7 +507,7 @@
             
             <div style="position:absolute; bottom:20%; display:flex; flex-direction:column; align-items:center; z-index:5;">
                 <div id="goodbye-text-2" class="climax-text" style="position:relative; top:0;">Byeeee, My Sunshine.</div>
-                <div id="goodbye-text-sub" style="font-family:var(--font-typewriter); color:#aaa; font-size:0.9rem; opacity:0; transition:opacity 2s ease; margin-top:10px;">(I still love you more ;)</div>
+                <div id="goodbye-text-sub" style="font-family:var(--font-typewriter); color:#aaa; font-size:0.9rem; opacity:0; transition:opacity 2s ease; margin-top:10px;">I STILL LOVE YOU MORE ;)</div>
             </div>
             
             <div id="goodbye-glow"></div>
@@ -949,8 +939,10 @@
             bg.style.opacity = '1';
             
             await wait(1000);
+            mendhak.style.transition = 'opacity 3s ease, transform 3s ease';
             mendhak.style.opacity = '1';
             mendhak.style.transform = 'translateY(0)';
+            mendhak.style.animation = 'spacewalk 6s infinite ease-in-out';
             
             await wait(2000);
             text1.style.opacity = '1';
@@ -987,7 +979,6 @@
             mendhak.onclick = async () => {
                 if (taps >= maxTaps) return;
                 taps++;
-                tapHint.style.opacity = '0'; // Hide hint on first tap
                 
                 // Hit Animation
                 piggy.style.transform = 'translateX(40px) rotate(15deg)';
@@ -1004,8 +995,10 @@
                 if (taps >= maxTaps) {
                     mendhak.onclick = null;
                     mendhak.style.cursor = 'default';
+                    tapHint.style.opacity = '0';
                     
                     await wait(150);
+                    mendhak.style.animation = 'none'; // Stop floating 
                     mendhak.style.transition = 'all 2s ease-in-out';
                     mendhak.style.transform = 'translate(30vw, -50vh) rotate(180deg) scale(0)';
                     mendhak.style.opacity = '0';
@@ -1018,10 +1011,20 @@
                     
                     await wait(3500);
                     text3.style.opacity = '0';
-                    piggy.style.transition = 'opacity 2s';
+                    
+                    // Piggy walks off stage left
+                    piggy.style.transition = 'transform 2s ease, opacity 2s ease';
+                    piggy.style.transform = 'translateX(-50vw)';
                     piggy.style.opacity = '0';
                     
                     await wait(2000);
+                    
+                    // Mendhak gently floats back to the center
+                    mendhak.style.transition = 'opacity 2s ease, transform 2s ease';
+                    mendhak.style.transform = 'translateY(0) scale(1) rotate(0deg)';
+                    mendhak.style.opacity = '1';
+                    mendhak.style.animation = 'spacewalk 6s infinite ease-in-out';
+                    
                     text2.style.opacity = '1';
                     textSub.style.opacity = '1';
                     glow.style.opacity = '1';
