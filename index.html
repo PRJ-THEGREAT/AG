@@ -71,24 +71,19 @@
         #s2-edition { background-color: var(--bg-newspaper); color: var(--text-dark); padding: 8vh 5vw; background-image: var(--paper-texture); }
         .newspaper-wrapper { width: 100%; max-width: 1200px; display: flex; flex-direction: column; align-items: center; }
         
-        /* Classic Newspaper Masthead */
         .newspaper-masthead { width: 100%; text-align: center; border-bottom: 5px double var(--text-dark); border-top: 2px solid var(--text-dark); margin-bottom: 40px; padding: 25px 0; }
         .newspaper-masthead h1 { font-family: var(--font-serif); font-size: clamp(3rem, 10vw, 6rem); text-transform: uppercase; font-weight: 900; letter-spacing: -2px; margin: 0; line-height: 1; }
         .newspaper-sub { font-family: var(--font-typewriter); font-size: 0.85rem; text-transform: uppercase; border-top: 1px solid var(--text-dark); border-bottom: 1px solid var(--text-dark); padding: 8px 10px; margin-top: 20px; display: flex; justify-content: space-between; font-weight: bold;}
         
-        /* Masonry-style Grid */
         .newspaper-grid { column-count: 3; column-gap: 40px; column-rule: 1px solid #ccc; width: 100%; }
         @media(max-width: 900px) { .newspaper-grid { column-count: 2; } }
         @media(max-width: 600px) { .newspaper-grid { column-count: 1; column-rule: none; } }
         
-        /* Individual Articles */
         .news-article { break-inside: avoid; margin-bottom: 40px; border-bottom: 1px solid #ccc; padding-bottom: 25px; }
         
-        /* Image / Video Wrapper */
         .news-media { width: 100%; margin-bottom: 15px; background: #e0dcd3; display: flex; align-items: center; justify-content: center; font-family: var(--font-typewriter); font-size: 0.8rem; color: #777; filter: grayscale(10%) contrast(105%); }
         .news-media img, .news-media video { width: 100%; height: auto; display: block; border: 1px solid #ddd;}
         
-        /* Typography */
         .news-headline { font-size: clamp(1.5rem, 4vw, 2.2rem); font-family: var(--font-serif); line-height: 1.1; margin-bottom: 15px; font-weight: 700; letter-spacing: -0.5px;}
         .news-text { font-size: 0.95rem; line-height: 1.6; color: #222; text-align: justify; font-family: var(--font-news); }
 
@@ -111,7 +106,11 @@
         @keyframes fall { 0% { transform: translateY(0) rotate(0deg) scale(0.8); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translateY(110vh) rotate(360deg) scale(1.2); opacity: 0; } }
 
         .meeting-stage { position: relative; width: 100%; max-width: 900px; height: 50vh; overflow: hidden; border-bottom: 2px solid rgba(0,100,0,0.1); z-index: 5;}
+        
         .char-svg { position: absolute; bottom: 0; width: 140px; height: 260px; transition: left 1s linear, transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); filter: drop-shadow(0 15px 10px rgba(0,0,0,0.2)); z-index: 5;}
+        
+        /* Specific CSS for the actual hand-drawn image to remove white background */
+        img#char-p { object-fit: contain; mix-blend-mode: multiply; filter: none; }
         
         .char-svg.walking { animation: lively-bob 0.6s infinite alternate cubic-bezier(0.4, 0, 0.2, 1); }
         @keyframes lively-bob { 0% { padding-bottom: 0px; } 100% { padding-bottom: 12px; } }
@@ -123,6 +122,22 @@
         #meeting-heart.beat { transform: translate(-50%, -50%) scale(1); opacity: 1; animation: heartbeat 1.2s infinite alternate ease-in-out; }
         @keyframes heartbeat { 0% { transform: translate(-50%, -50%) scale(1); } 100% { transform: translate(-50%, -50%) scale(1.15); } }
         #meeting-glow { position: absolute; top:45%; left:50%; transform: translate(-50%, -50%); width: 400px; height: 400px; background: radial-gradient(circle, rgba(255, 255, 255, 0.6) 0%, transparent 50%); opacity: 0; transition: opacity 2s; pointer-events: none; z-index: 4; }
+
+        /* The Bold Black Transition Button */
+        #btn-post-meeting {
+            background-color: #000 !important;
+            color: #fff !important;
+            border: 2px solid #000 !important;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        #btn-post-meeting:hover {
+            background-color: #222 !important;
+            color: #fff !important;
+        }
 
         /* =========================================================
            4. STORY OF US
@@ -186,7 +201,7 @@
         .redacted:hover { color: #fff; background: transparent; }
 
         /* =========================================================
-           8. MUSEUM 
+           8. MUSEUM (THE MEMORY ROOM)
            ========================================================= */
         #s8-museum { background: repeating-linear-gradient(to right, #1a1614, #1a1614 60px, #161210 60px, #161210 120px); align-items: center; justify-content: flex-start; padding: 0; position: relative;}
         .room-lighting { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center 40%, transparent 20%, rgba(0,0,0,0.8) 100%); pointer-events: none; z-index: 1;}
@@ -291,31 +306,6 @@
                 <path d="M 60 20 C 70 30 75 60 75 90 L 60 90 C 60 70 55 40 50 30 Z" fill="#111" />
                 <path d="M 30 25 Q 22 28 22 35 Q 22 38 25 40 Q 22 45 28 50 L 32 55" fill="none" stroke="#111" stroke-width="2"/>
             </g>
-            <g id="svg-pulkit">
-                <path d="M40,10 C20,10 20,40 35,45 C35,45 35,50 33,53 C23,55 20,65 20,78 C25,82 28,75 28,75 C30,78 35,78 34,80 L32,110 C40,105 45,95 50,85 C55,95 60,105 68,110 L66,80 C65,78 70,78 72,75 C72,75 75,82 82,85 C82,82 80,65 67,53 C65,50 65,45 65,45 C80,40 80,10 60,10 Z" fill="#1a1a1f"/>
-                <ellipse cx="50" cy="35" rx="15" ry="17" fill="#1a1a1f" stroke="#eaddd7" stroke-width="1.5"/>
-                <path d="M35,25 Q30,15 40,10 Q50,5 60,10 Q70,15 65,25 Q75,30 65,40 Q60,45 50,45 Q40,45 35,40 Q25,30 35,25 Z" fill="none" stroke="#eaddd7" stroke-width="1.5" stroke-linejoin="round"/>
-                <path d="M40,15 Q45,10 50,15 T60,15 M35,20 Q40,25 45,20 T55,25 M38,30 Q45,25 50,30 T62,25 M42,35 Q48,40 55,35 M45,25 Q50,22 52,28 M38,22 Q42,18 48,22 M55,22 Q58,20 62,25" fill="none" stroke="#eaddd7" stroke-width="1.2"/>
-                <circle cx="33" cy="35" r="2.5" fill="#1a1a1f" stroke="#eaddd7" stroke-width="1.5"/>
-                <circle cx="67" cy="35" r="2.5" fill="#1a1a1f" stroke="#eaddd7" stroke-width="1.5"/>
-                <path d="M42,52 L50,64 L58,52" fill="none" stroke="#eaddd7" stroke-width="1.5" stroke-linejoin="round"/>
-                <path d="M46,55 L46,59 M48,56 L48,61 M50,57 L50,63 M52,56 L52,61 M54,55 L54,59" fill="none" stroke="#eaddd7" stroke-width="1.2" stroke-linecap="round"/>
-                <path d="M48,64 L48,67 M52,64 L52,67 M50,65 L50,69" fill="none" stroke="#eaddd7" stroke-width="1.2" stroke-linecap="round"/>
-                <path d="M35,53 Q33,65 34,78 M65,53 Q67,65 66,78" fill="none" stroke="#eaddd7" stroke-width="1.5"/>
-                <path d="M34,78 Q42,75 50,80 Q58,75 66,78" fill="none" stroke="#eaddd7" stroke-width="1.5"/>
-                <path d="M35,58 Q45,60 50,58 M65,58 Q55,60 50,58" fill="none" stroke="#eaddd7" stroke-width="1.2"/>
-                <path d="M34,65 Q45,67 55,65" fill="none" stroke="#eaddd7" stroke-width="1.2"/>
-                <path d="M34,72 Q45,74 62,72" fill="none" stroke="#eaddd7" stroke-width="1.2"/>
-                <path d="M35,53 Q25,55 23,65 L20,78 Q22,82 25,82 L28,75" fill="none" stroke="#eaddd7" stroke-width="1.5" stroke-linejoin="round"/>
-                <path d="M65,53 Q75,55 77,65 L80,75 M77,77 L82,78 Q85,82 82,85 L78,80" fill="none" stroke="#eaddd7" stroke-width="1.5" stroke-linejoin="round"/>
-                <path d="M25,58 L23,60 M27,62 L24,64 M28,66 L25,68 M29,70 L26,72 M31,60 L33,62 M30,64 L32,66" fill="none" stroke="#eaddd7" stroke-width="1.2" stroke-linecap="round"/>
-                <path d="M75,58 L77,60 M73,62 L76,64 M72,66 L75,68 M71,70 L74,72 M69,60 L67,62 M70,64 L68,66" fill="none" stroke="#eaddd7" stroke-width="1.2" stroke-linecap="round"/>
-                <path d="M77.5,74.5 L80,72.5 M76.5,76.5 L79,74.5" fill="none" stroke="#eaddd7" stroke-width="1.5"/>
-                <path d="M34,78 Q30,95 32,110 M66,78 Q70,95 68,110" fill="none" stroke="#eaddd7" stroke-width="1.5"/>
-                <path d="M32,110 Q40,105 45,95 L50,85 L55,95 Q60,105 68,110" fill="none" stroke="#eaddd7" stroke-width="1.5" stroke-linejoin="round"/>
-                <path d="M47,85 Q45,90 48,95 M53,85 Q55,90 52,95 M47,80 Q50,85 53,80" fill="none" stroke="#eaddd7" stroke-width="1.5"/>
-                <path d="M40,80 L38,90 M60,80 L62,90" fill="none" stroke="#eaddd7" stroke-width="1.2"/>
-            </g>
             <g id="svg-bulb">
                 <path d="M 45 0 L 55 0 L 55 20 L 45 20 Z" fill="#555"/>
                 <path d="M 30 20 C 30 20 70 20 70 50 C 70 80 50 100 50 100 C 50 100 30 80 30 50 C 30 20 30 20 30 20 Z" fill="#fff" opacity="0.8"/>
@@ -381,13 +371,18 @@
             
             <div class="meeting-stage" id="meeting-stage">
                 <svg id="char-a" class="char-svg" viewBox="0 0 100 100" style="transform: scaleX(-1);"><use href="#svg-aaradhya"/></svg>
-                <svg id="char-p" class="char-svg" viewBox="0 0 100 120" style="transform: scaleX(-1);"><use href="#svg-pulkit"/></svg>
+                
+                <!-- NEW GUY: Actual hand-drawn image file inserted with multiply blend mode -->
+                <img id="char-p" src="IMG_20260914_134013_957.jpg" class="char-svg" style="transform: scaleX(-1);">
+                
                 <svg id="meeting-heart" viewBox="0 0 100 100">
                     <path d="M 50 80 Q 20 50 20 30 A 15 15 0 0 1 50 30 A 15 15 0 0 1 80 30 Q 80 50 50 80 Z" fill="var(--accent-red)"/>
                 </svg>
                 <div id="meeting-glow"></div>
             </div>
-            <button id="btn-post-meeting" class="btn-cinematic" style="opacity: 0; pointer-events: none; transition: 1s;" onclick="goToSection('s4-timeline')">The Story Begins</button>
+            
+            <!-- NEW BUTTON: Solid black and clearly visible -->
+            <button id="btn-post-meeting" class="btn-cinematic" onclick="goToSection('s4-timeline')">The Story Begins</button>
         </section>
 
         <!-- 4. TIMELINE -->
