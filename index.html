@@ -109,8 +109,14 @@
         
         .char-svg { position: absolute; bottom: 0; width: 140px; height: 260px; transition: left 1s linear, transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); filter: drop-shadow(0 15px 10px rgba(0,0,0,0.2)); z-index: 5;}
         
-        /* Specific CSS for the actual hand-drawn image to remove white background */
-        img#char-p { object-fit: contain; mix-blend-mode: multiply; filter: none; }
+        /* Specific CSS for the actual hand-drawn image to remove white background AND extra borders */
+        img#char-p { 
+            object-fit: cover; /* Forces the image to fill its bounding box */
+            object-position: center;
+            mix-blend-mode: multiply; 
+            filter: grayscale(100%) contrast(1.5) brightness(1.1); /* Cleans up shadows so paper becomes purely white/invisible */
+            clip-path: inset(2% 20% 0 20%); /* Digitally crops the extra borders off the sides of the photo */
+        }
         
         .char-svg.walking { animation: lively-bob 0.6s infinite alternate cubic-bezier(0.4, 0, 0.2, 1); }
         @keyframes lively-bob { 0% { padding-bottom: 0px; } 100% { padding-bottom: 12px; } }
@@ -372,7 +378,7 @@
             <div class="meeting-stage" id="meeting-stage">
                 <svg id="char-a" class="char-svg" viewBox="0 0 100 100" style="transform: scaleX(-1);"><use href="#svg-aaradhya"/></svg>
                 
-                <!-- NEW GUY: The newly uploaded image file inserted with multiply blend mode -->
+                <!-- NEW GUY: Actual hand-drawn image file updated to correct name -->
                 <img id="char-p" src="IMG_0079.jpeg" class="char-svg" style="transform: scaleX(-1);">
                 
                 <svg id="meeting-heart" viewBox="0 0 100 100">
