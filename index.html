@@ -167,7 +167,7 @@
         .envelope-wrapper.open .envelope { transform: translateY(50px); background: #cbbba6; }
 
         /* =========================================================
-           6. THE POEM (SPED UP)
+           6. THE POEM
            ========================================================= */
         #s6-poem { background: #030303; align-items: center; justify-content: center; padding: 20px; text-align: center; }
         .poem-pre { font-style: italic; color: #777; font-size: 1.1rem; opacity: 0; transition: opacity 1s; position: absolute; }
@@ -195,16 +195,27 @@
         .redacted:hover { color: #fff; background: transparent; }
 
         /* =========================================================
-           8. MUSEUM (THE MEMORY ROOM)
+           8. MUSEUM (THE MEMORY ROOM - HANGING BOHEMIAN STYLE)
            ========================================================= */
-        #s8-museum { background: repeating-linear-gradient(to right, #1a1614, #1a1614 60px, #161210 60px, #161210 120px); align-items: center; justify-content: flex-start; padding: 0; position: relative;}
+        #s8-museum { background: #211c18; align-items: center; justify-content: flex-start; padding: 0; position: relative; overflow-y: auto;}
         .room-lighting { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center 40%, transparent 20%, rgba(0,0,0,0.8) 100%); pointer-events: none; z-index: 1;}
-        .museum-title { position: absolute; top: 5%; width: 100%; text-align: center; z-index: 2;}
-        .gallery-wall { display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; width: 100%; max-width: 1100px; padding: 15vh 5vw 50px 5vw; z-index: 2; margin-bottom: 20vh; }
+        
+        .hanging-display-wrapper { position: relative; width: 90%; max-width: 1000px; margin-top: 15vh; z-index: 2; padding-bottom: 20vh; display: flex; flex-direction: column; align-items: center; }
+        
+        .museum-title { margin-bottom: 80px; text-align: center; }
         
         .polaroid { background: #fdfdfd; padding: 12px 12px 40px 12px; box-shadow: 2px 10px 20px rgba(0,0,0,0.6); transition: 0.4s ease; cursor: pointer; position: relative; }
         .polaroid::before { content:''; position:absolute; top:0;left:0;right:0;bottom:0; background: var(--paper-texture); opacity:0.3; pointer-events:none;}
-        .polaroid::after { content: ''; position: absolute; top: -10px; left: 50%; width: 45px; height: 18px; background: rgba(255,255,255,0.4); box-shadow: 0 1px 2px rgba(0,0,0,0.1); transform: translateX(-50%) rotate(-2deg); border-radius: 1px; }
+        
+        /* The Hanging String */
+        .photo-string { position: absolute; bottom: 100%; left: 50%; width: 1.5px; height: 1000px; background: rgba(255,255,255,0.3); z-index: -1; pointer-events: none;}
+        
+        /* The Wooden Clothespin */
+        .clothespin { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); width: 8px; height: 22px; background: #a67c52; border-radius: 2px; box-shadow: 1px 2px 4px rgba(0,0,0,0.5); z-index: 11; pointer-events: none;}
+        
+        /* Fairy Lights scattered on the strings */
+        .fairy-light { position: absolute; width: 5px; height: 5px; background: #fff; border-radius: 50%; box-shadow: 0 0 8px 3px #ffeb3b, 0 0 15px 5px #ffb300; animation: twinkle-light 2s infinite alternate; z-index: 12; pointer-events: none;}
+        @keyframes twinkle-light { 0% { opacity: 0.5; filter: brightness(0.8); transform: scale(0.9); } 100% { opacity: 1; filter: brightness(1.2); transform: scale(1.1); } }
 
         .polaroid:nth-child(3n+1) { transform: rotate(-3deg); }
         .polaroid:nth-child(3n+2) { transform: rotate(2deg); }
@@ -214,9 +225,9 @@
         .polaroid.viewed { filter: brightness(0.7); } 
         .polaroid-img { width: 220px; height: 180px; background: #ddd; display: flex; align-items: center; justify-content: center; font-family: var(--font-typewriter); color: #888; font-size: 0.8rem; overflow: hidden; background-size: cover; background-position: center;}
         
-        .room-shelf { position: absolute; bottom: 0; width: 100%; height: 18vh; background: #2d1a11; border-top: 10px solid #1a0f0a; box-shadow: 0 -20px 40px rgba(0,0,0,0.9); display: flex; align-items: flex-start; justify-content: center; z-index: 5; }
+        .room-shelf { position: fixed; bottom: 0; width: 100%; height: 15vh; background: #2d1a11; border-top: 10px solid #1a0f0a; box-shadow: 0 -20px 40px rgba(0,0,0,0.9); display: flex; align-items: flex-start; justify-content: center; z-index: 5; pointer-events: none;}
 
-        #dvd-player-wrapper { margin-top: -15px; cursor: pointer; position: relative; }
+        #dvd-player-wrapper { margin-top: -15px; cursor: pointer; position: relative; pointer-events: all;}
         .dvd-player { width: 280px; height: 50px; background: #111; border-radius: 4px; box-shadow: inset 0 2px 5px rgba(255,255,255,0.1), 0 10px 20px rgba(0,0,0,0.8); position: relative; border-bottom: 3px solid #000; border-top: 1px solid #333;}
         .dvd-feet { position: absolute; bottom: -5px; width: 15px; height: 5px; background: #000; border-radius: 2px;}
         .dvd-slot { position: absolute; top: 15px; left: 20px; width: 120px; height: 4px; background: #000; border-radius: 2px; box-shadow: inset 0 1px 2px rgba(0,0,0,0.8); }
@@ -449,12 +460,31 @@
         <!-- 8. MUSEUM (THE MEMORY ROOM) -->
         <section id="s8-museum" class="story-section">
             <div class="room-lighting"></div>
-            <div class="museum-title">
-                <h2 class="serif" style="font-size: 2.5rem; color: #eee; text-shadow: 0 2px 10px #000;">Our Little Museum</h2>
-                <p style="font-family: var(--font-typewriter); color: #aaa; font-size: 0.9rem; margin-top:5px;">Tap the memories on the wall.</p>
-            </div>
             
-            <div class="gallery-wall" id="museum-gallery"></div>
+            <div class="hanging-display-wrapper">
+                <div class="museum-title">
+                    <h2 class="serif" style="font-size: 2.5rem; color: #eee; text-shadow: 0 2px 10px #000;">Our Little Museum</h2>
+                    <p style="font-family: var(--font-typewriter); color: #ccc; font-size: 0.9rem; margin-top:5px;">Tap the memories on the wall.</p>
+                </div>
+
+                <svg style="position:absolute; top: -60px; left:50%; transform:translateX(-50%); width:70%; height:60px; overflow:visible; z-index:1;">
+                    <path d="M 50% 0 L 0 60 M 50% 0 L 100% 60" fill="none" stroke="#a67c52" stroke-width="2"/>
+                </svg>
+
+                <div style="position:relative; width:100%; height:16px; background:linear-gradient(to bottom, #8b5a2b, #5c3a21); border-radius:10px; box-shadow: 0 5px 15px rgba(0,0,0,0.8); z-index:3;">
+                    <span style="position:absolute; left:2%; top:-15px; font-size:2rem; filter:drop-shadow(2px 4px 4px rgba(0,0,0,0.5));">🌿</span>
+                    <span style="position:absolute; left:25%; top:-10px; font-size:1.5rem;">🌿</span>
+                    <span style="position:absolute; left:45%; top:-18px; font-size:2.2rem;">🌿</span>
+                    <span style="position:absolute; left:65%; top:-5px; font-size:1.8rem;">🌿</span>
+                    <span style="position:absolute; left:85%; top:-12px; font-size:2rem;">🌿</span>
+                    <span style="position:absolute; left:-10px; top:10px; font-size:1.8rem; transform:rotate(80deg);">🌿</span>
+                    <span style="position:absolute; right:-10px; top:15px; font-size:1.6rem; transform:rotate(-80deg);">🌿</span>
+                </div>
+
+                <div class="gallery-wall" id="museum-gallery" style="position:relative; display:flex; flex-wrap:wrap; justify-content:center; gap: 40px; padding-top: 40px; width: 100%; z-index:2;">
+                    <!-- JS Injects Polaroids -->
+                </div>
+            </div>
             
             <div class="room-shelf">
                 <div id="dvd-player-wrapper">
@@ -534,10 +564,10 @@
         const SITE_DATA = {
             
             newspaper: [
-                // 3 Videos
-                { headline: "THE CUTEST DANCE EVER !", text: "9 years ago when little miss aaradhya garg was just too cute to handle X) ", mediaHtml: "<video src='dancing_video.mp4.mov' autoplay loop muted playsinline></video>" },
-                { headline: "ALL EYES ON THE DANCING QUEEN", text: "Definitely my favourite dancer <3", mediaHtml: "<video src='Dev aaradhya 2 - (144p).mov' autoplay loop muted playsinline></video>" },
-                { headline: "UNSEEN FOOTAGE", text: "[Replace with video story]", mediaHtml: "<video src='[VIDEO_3_FILENAME.mp4]' autoplay loop muted playsinline></video>" },
+                // 3 Videos with standard controls so they do not loop automatically
+                { headline: "THE CUTEST DANCE EVER !", text: "9 years ago when little miss aaradhya garg was just too cute to handle X) ", mediaHtml: "<video src='dancing_video.mp4' controls></video>" },
+                { headline: "ALL EYES ON THE DANCING QUEEN", text: "Definitely my favourite dancer <3", mediaHtml: "<video src='Dev aaradhya 2 - (144p).mov' controls></video>" },
+                { headline: "UNSEEN FOOTAGE", text: "[Replace with video story]", mediaHtml: "<video src='[VIDEO_3_FILENAME.mp4]' controls></video>" },
                 // 8 Pictures
                 { headline: "THE EARLY YEARS", text: "[Replace with photo story]", mediaHtml: "<img src='[PHOTO_1_FILENAME.jpg]'>" },
                 { headline: "BREAKING NEWS", text: "[Replace with photo story]", mediaHtml: "<img src='[PHOTO_2_FILENAME.jpg]'>" },
@@ -710,8 +740,14 @@
 
             const musGrid = document.getElementById('museum-gallery');
             SITE_DATA.museum.forEach((item, index) => {
+                const randomMargin = Math.floor(Math.random() * 60) + 20; 
                 musGrid.innerHTML += `
-                    <div class="polaroid" id="pol-${index}" onclick="openPolaroid(${index})">
+                    <div class="polaroid" id="pol-${index}" onclick="openPolaroid(${index})" style="margin-top: ${randomMargin}px;">
+                        <div class="photo-string"></div>
+                        <div class="clothespin"></div>
+                        <div class="fairy-light" style="top: -${Math.random()*50 + 20}px; left: ${Math.random()*100}%;"></div>
+                        <div class="fairy-light" style="top: ${Math.random()*100}%; left: -${Math.random()*10 + 5}px;"></div>
+                        <div class="fairy-light" style="top: ${Math.random()*100}%; right: -${Math.random()*10 + 5}px;"></div>
                         <div class="polaroid-img">${item.img}</div>
                         <div class="frame-caption">${item.caption}</div>
                     </div>`;
