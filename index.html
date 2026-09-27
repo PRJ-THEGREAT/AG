@@ -6,8 +6,8 @@
     <title>AARADHYA DAY - 14th October , 2026</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Imported Vintage Serif and 8-Bit Arcade Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Courier+Prime&family=Inter:wght@300;400;600&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <!-- Imported Old English, Vintage Serif, and 8-Bit Arcade Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Courier+Prime&family=Inter:wght@300;400;600&family=UnifrakturMaguntia&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Press+Start+2P&display=swap" rel="stylesheet">
     
     <style>
         /* =========================================================
@@ -15,16 +15,19 @@
            ========================================================= */
         :root {
             --bg-dark: #070708;
-            --bg-newspaper: #d5c3a1;
+            --bg-newspaper: #d5c3a1; /* Even richer, older vintage parchment tone */
             --text-light: #eaddd7;
-            --text-dark: #2b1f14;
+            --text-dark: #2b1f14; /* Faded, aged dark brown ink */
             --accent-red: #ff2a2a;
             --font-serif: 'Playfair Display', Georgia, serif;
             --font-sans: 'Inter', Helvetica, sans-serif;
             --font-typewriter: 'Courier Prime', monospace;
+            /* Vintage Newspaper Fonts */
             --font-masthead: var(--font-serif);
             --font-news: 'Old Standard TT', serif;
+            /* Arcade Font */
             --font-arcade: 'Press Start 2P', monospace;
+            
             --trans-cinematic: 2s cubic-bezier(0.4, 0, 0.2, 1);
             --paper-texture: url('data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noiseFilter)" opacity="0.15"/></svg>');
         }
@@ -97,6 +100,7 @@
         .newspaper-wrapper { width: 100%; max-width: 1200px; display: flex; flex-direction: column; align-items: center; }
         
         .newspaper-masthead { width: 100%; text-align: center; border-bottom: 5px double var(--text-dark); border-top: 2px solid var(--text-dark); margin-bottom: 40px; padding: 25px 0; }
+        /* Changed from unreadable font to highly readable bold serif */
         .newspaper-masthead h1 { font-family: var(--font-masthead); font-weight: 900; font-size: clamp(3rem, 10vw, 6rem); text-transform: uppercase; letter-spacing: 2px; margin: 0; line-height: 1; text-shadow: 1px 1px 0px rgba(0,0,0,0.1); }
         .newspaper-sub { font-family: var(--font-typewriter); font-size: 0.85rem; text-transform: uppercase; border-top: 1px solid var(--text-dark); border-bottom: 1px solid var(--text-dark); padding: 8px 10px; margin-top: 20px; display: flex; justify-content: space-between; font-weight: bold;}
         
@@ -208,7 +212,7 @@
         .redacted:hover { color: #fff; background: transparent; }
 
         /* =========================================================
-           7. MUSEUM (THE MEMORY ROOM & VINTAGE GRAMOPHONE)
+           7. MUSEUM (THE MEMORY ROOM)
            ========================================================= */
         #s7-museum { background: #211c18; align-items: center; justify-content: flex-start; padding: 0; position: relative; overflow-y: auto;}
         .room-lighting { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center 40%, transparent 20%, rgba(0,0,0,0.8) 100%); pointer-events: none; z-index: 1;}
@@ -234,6 +238,7 @@
         .polaroid.viewed { filter: brightness(0.7); } 
         .polaroid-img { width: 220px; height: 180px; background: #ddd; display: flex; align-items: center; justify-content: center; font-family: var(--font-typewriter); color: #888; font-size: 0.8rem; overflow: hidden; background-size: cover; background-position: center;}
         
+        /* Shelf rests at the very bottom, integrated into normal scroll flow so it doesn't cover images */
         .room-shelf { position: relative; width: 100%; min-height: 250px; background: #2d1a11; border-top: 10px solid #1a0f0a; box-shadow: 0 -20px 40px rgba(0,0,0,0.5); display: flex; align-items: flex-end; justify-content: center; z-index: 5; margin-top: auto; flex-shrink: 0; padding-bottom: 25px;}
 
         /* GRAMOPHONE COMPONENT */
@@ -309,7 +314,6 @@
         @keyframes float-slow { 0%, 100% { transform: translateY(0) rotate(-20deg); } 50% { transform: translateY(-20px) rotate(-15deg); } }
         @keyframes orbit { 0% { transform: translateX(0) translateY(0); } 50% { transform: translateX(-30px) translateY(15px); } 100% { transform: translateX(0) translateY(0); } }
         @keyframes orbit-rev { 0% { transform: translateX(0) translateY(0); } 50% { transform: translateX(20px) translateY(-20px); } 100% { transform: translateX(0) translateY(0); } }
-
         @keyframes hint-pulse { 0% { transform: scale(1); } 100% { transform: scale(1.1); } }
         @keyframes spacewalk { 0%, 100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-15px) rotate(3deg); } }
 
@@ -324,6 +328,7 @@
         .health-bar-container { position: absolute; top: 60px; width: 35%; height: 30px; border: 4px solid #fff; background: #222; box-shadow: 4px 4px 0 #000; }
         #hb-piggy { left: 5%; }
         #hb-mendhak { right: 5%; }
+        /* Floats added to ensure health drains towards the center of the screen */
         .health-fill { height: 100%; width: 100%; background: #39ff14; transition: width 0.1s ease-out, background-color 0.2s;}
         #piggy-hp-fill { float: left; border-right: 2px solid #000;}
         #mendhak-hp-fill { float: right; border-left: 2px solid #000;}
@@ -615,6 +620,7 @@
                 
                 <div class="player-name" id="pn-mendhak">MENDHAK</div>
                 <div class="health-bar-container" id="hb-mendhak">
+                    <!-- Fixed: Float right forces the bar to shrink from left to right as health decreases -->
                     <div class="health-fill" id="mendhak-hp-fill" style="width: 100%; float: right;"></div>
                 </div>
             </div>
@@ -668,7 +674,7 @@
     </div>
 
     <!-- AUDIO ELEMENTS -->
-    <audio id="our-song" src="assets/audio/Song.mp3" preload="auto"></audio>
+    <audio id="our-song" src="our_song.mp4" preload="auto"></audio>
     <audio id="magic-sound" src="assets/audio/magic.mp3" preload="auto"></audio>
 
     <script>
@@ -716,9 +722,9 @@
             museum: [
                 { img: "<img src='IMG_0092.jpeg' style='width: 100%; height: 100%; object-fit: cover;'>", caption: "Our first date" },
                 { img: "<img src='IMG_0091.jpeg' style='width: 100%; height: 100%; object-fit: cover;'>", caption: "piggu and mendhak <3" },
-                { img: "<img src='IMG_0090.jpeg' style='width: 100%; height: 100%; object-fit: cover;'>", caption: "shadishuda , haha" },
-                { img: "<img src='IMG_0093.jpeg' style='width: 100%; height: 100%; object-fit: cover;'>", caption: "first trip together" },
-                { img: "<img src='IMG_0010.jpeg' style='width: 100%; height: 100%; object-fit: cover;'>", caption: "Us." } 
+                { img: "<img src='IMG_0090.jpg' style='width: 100%; height: 100%; object-fit: cover;'>", caption: "shadishuda , haha" },
+                { img: "<img src='IMG_20260720_001053.jpg' style='width: 100%; height: 100%; object-fit: cover;'>", caption: "first trip together" },
+                { img: "<img src='IMG_0010.jpg' style='width: 100%; height: 100%; object-fit: cover;'>", caption: "Us." } 
             ]
         };
 
@@ -890,6 +896,7 @@
 
             const musGrid = document.getElementById('museum-gallery');
             SITE_DATA.museum.forEach((item, index) => {
+                // Ensure rows hang straight by using standard spacing instead of random margins
                 musGrid.innerHTML += `
                     <div class="polaroid" id="pol-${index}" onclick="openPolaroid(${index})" style="margin-top: 60px;">
                         <div class="photo-string"></div>
@@ -1274,15 +1281,20 @@
             ];
             
             function spawnMascot() {
+                // Schedule the next one randomly between 5 and 15 seconds
                 const nextSpawnDelay = Math.random() * 10000 + 5000;
                 setTimeout(spawnMascot, nextSpawnDelay);
 
                 const active = document.querySelector('.story-section.active');
                 if(!active || active.id === 's1-opening' || active.id === 's8-goodbye') return;
                 
+                // Find which mascots are currently ON screen
                 const activeMascots = Array.from(document.querySelectorAll('.mascot-egg')).map(el => el.dataset.name);
+                
+                // Filter out mascots that are already walking so there are NO duplicates
                 const availableMascots = mascots.filter(m => !activeMascots.includes(m.name));
                 
+                // If all 4 happen to be on screen (rare, but possible), just skip this cycle
                 if (availableMascots.length === 0) return; 
                 
                 const mascot = availableMascots[Math.floor(Math.random() * availableMascots.length)];
@@ -1316,7 +1328,7 @@
                 egg.appendChild(innerEl);
                 
                 const type = Math.random();
-                const duration = Math.random() * 4000 + 4000;
+                const duration = Math.random() * 4000 + 4000; // 4 to 8 seconds to walk across
                 egg.style.transition = `transform ${duration}ms linear`;
                 
                 if(type < 0.3) {
@@ -1348,6 +1360,7 @@
                 setTimeout(() => { if(egg.parentNode) egg.remove(); }, duration + 100);
             }
             
+            // Kick off the first spawn after a random short delay
             setTimeout(spawnMascot, Math.random() * 5000 + 3000);
         }
     </script>
