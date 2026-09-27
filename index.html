@@ -6,8 +6,8 @@
     <title>AARADHYA DAY - 14th October , 2026</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Imported Vintage Serif and 8-Bit Arcade Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Courier+Prime&family=Inter:wght@300;400;600&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <!-- Imported Old English, Vintage Serif, and 8-Bit Arcade Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Courier+Prime&family=Inter:wght@300;400;600&family=UnifrakturMaguntia&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Press+Start+2P&display=swap" rel="stylesheet">
     
     <style>
         /* =========================================================
@@ -15,7 +15,7 @@
            ========================================================= */
         :root {
             --bg-dark: #070708;
-            --bg-newspaper: #d5c3a1; /* Richer, older vintage parchment tone */
+            --bg-newspaper: #d5c3a1; /* Even richer, older vintage parchment tone */
             --text-light: #eaddd7;
             --text-dark: #2b1f14; /* Faded, aged dark brown ink */
             --accent-red: #ff2a2a;
@@ -1201,38 +1201,77 @@
 
         function initMascotSystem() {
             const container = document.body;
-            const svgs = ['#svg-piggy', '#svg-mendhak'];
+            const mascots = [
+                { type: 'svg', src: '#svg-piggy' },
+                { type: 'svg', src: '#svg-mendhak' },
+                { type: 'img', src: 'IMG_0097.png' },
+                { type: 'img', src: 'IMG_0096.png' }
+            ];
             
             setInterval(() => {
                 const active = document.querySelector('.story-section.active');
-                if(!active || !['s2-edition', 's6-archives'].includes(active.id)) return;
+                if(!active || active.id === 's1-opening' || active.id === 's8-goodbye') return;
                 
-                const egg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-                egg.setAttribute("viewBox", "0 0 100 100");
-                egg.setAttribute("class", "mascot-egg");
+                const egg = document.createElement("div");
+                egg.style.position = "absolute";
                 egg.style.width = "70px";
                 egg.style.height = "70px";
+                egg.style.zIndex = "90";
+                egg.style.pointerEvents = "none";
                 
-                const useNode = document.createElementNS("http://www.w3.org/2000/svg", "use");
-                useNode.setAttribute("href", svgs[Math.floor(Math.random() * svgs.length)]);
-                egg.appendChild(useNode);
+                const mascot = mascots[Math.floor(Math.random() * mascots.length)];
+                let innerEl;
+                
+                if(mascot.type === 'svg') {
+                    innerEl = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+                    innerEl.setAttribute("viewBox", "0 0 100 100");
+                    innerEl.style.width = "100%"; 
+                    innerEl.style.height = "100%";
+                    const useNode = document.createElementNS("http://www.w3.org/2000/svg", "use");
+                    useNode.setAttribute("href", mascot.src);
+                    innerEl.appendChild(useNode);
+                } else {
+                    innerEl = document.createElement('img');
+                    innerEl.src = mascot.src;
+                    innerEl.style.width = "100%"; 
+                    innerEl.style.height = "100%";
+                    innerEl.style.objectFit = "contain";
+                }
+                egg.appendChild(innerEl);
                 
                 const type = Math.random();
-                if(type < 0.5) {
-                    egg.style.bottom = "10px"; egg.style.left = "-100px";
+                const duration = Math.random() * 3000 + 3000; 
+                egg.style.transition = `transform ${duration}ms linear`;
+                
+                if(type < 0.3) {
+                    egg.style.bottom = (Math.random() * 30) + "px"; 
+                    egg.style.left = "-100px";
                     container.appendChild(egg);
                     setTimeout(() => egg.style.transform = `translateX(${window.innerWidth + 200}px)`, 50);
-                } else {
-                    egg.style.top = (Math.random() * 60 + 20) + "%"; egg.style.right = "-50px"; egg.style.transform = "rotate(-20deg)";
+                } else if(type < 0.6) {
+                    egg.style.bottom = (Math.random() * 30) + "px"; 
+                    egg.style.right = "-100px";
+                    innerEl.style.transform = "scaleX(-1)"; 
                     container.appendChild(egg);
-                    setTimeout(() => {
-                        egg.style.transform = "rotate(-20deg) translateX(-80px)";
-                        setTimeout(() => egg.style.transform = "rotate(-20deg) translateX(0)", 2000);
-                    }, 50);
+                    setTimeout(() => egg.style.transform = `translateX(-${window.innerWidth + 200}px)`, 50);
+                } else if(type < 0.8) {
+                    egg.style.top = (Math.random() * 40 + 10) + "%"; 
+                    egg.style.right = "-100px"; 
+                    egg.style.transform = "rotate(-15deg)";
+                    innerEl.style.transform = "scaleX(-1)"; 
+                    container.appendChild(egg);
+                    setTimeout(() => egg.style.transform = `rotate(-15deg) translate(-${window.innerWidth + 200}px, 150px)`, 50);
+                } else {
+                    egg.style.top = (Math.random() * 40 + 10) + "%"; 
+                    egg.style.left = "-100px"; 
+                    egg.style.transform = "rotate(15deg)";
+                    container.appendChild(egg);
+                    setTimeout(() => egg.style.transform = `rotate(15deg) translate(${window.innerWidth + 200}px, 150px)`, 50);
                 }
-                setTimeout(() => { if(egg.parentNode) egg.remove(); }, 4000);
                 
-            }, 4000); 
+                setTimeout(() => { if(egg.parentNode) egg.remove(); }, duration + 100);
+                
+            }, 1200); 
         }
     </script>
 </body>
