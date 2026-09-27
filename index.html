@@ -15,7 +15,7 @@
            ========================================================= */
         :root {
             --bg-dark: #070708;
-            --bg-newspaper: #d5c3a1; /* Richer, older vintage parchment tone */
+            --bg-newspaper: #d5c3a1; /* Even richer, older vintage parchment tone */
             --text-light: #eaddd7;
             --text-dark: #2b1f14; /* Faded, aged dark brown ink */
             --accent-red: #ff2a2a;
@@ -44,7 +44,7 @@
         .btn-cinematic:hover { background: currentColor; color: var(--bg-dark); }
 
         /* =========================================================
-           1. UNHINGED OPENING & FLORAL BLOOM
+           1. UNHINGED OPENING
            ========================================================= */
         #s1-opening { background: #000; justify-content: center; overflow: hidden; }
         .stage-opening { position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
@@ -76,11 +76,11 @@
         #the-bulb.on { filter: drop-shadow(0 0 40px #fff7a0) brightness(1.5); animation: none; }
         
         /* SEQUENCE TEXT */
-        #main-title { position: absolute; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 3s ease; z-index: 4; text-align: center; height: 100vh;}
+        #main-title { position: absolute; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 3s ease; z-index: 4; text-align: center; height: 100vh; width: 100%;}
         
-        #title-date { font-size: clamp(2rem, 6vw, 4rem); letter-spacing: 6px; opacity: 0; transform: translateY(20px); transition: opacity 1.5s ease, transform 1.5s ease; margin-bottom: 10px; }
-        #title-day { font-family: var(--font-typewriter); letter-spacing: 3px; opacity: 0; transform: translateY(20px); transition: opacity 1.5s ease, transform 1.5s ease; margin-bottom: 30px; font-size: 1.2rem; }
-        #title-bday { font-size: clamp(1.5rem, 5vw, 2.5rem); letter-spacing: 2px; color: #ffdf73; opacity: 0; transform: translateY(20px); transition: opacity 1.5s ease, transform 1.5s ease; }
+        #title-date { font-size: clamp(2rem, 6vw, 4rem); letter-spacing: 6px; opacity: 0; transform: translateY(20px); transition: opacity 1.5s ease, transform 1.5s ease; margin-bottom: 10px; text-align: center;}
+        #title-day { font-family: var(--font-typewriter); letter-spacing: 3px; opacity: 0; transform: translateY(20px); transition: opacity 1.5s ease, transform 1.5s ease; margin-bottom: 30px; font-size: 1.2rem; text-align: center;}
+        #title-bday { font-size: clamp(1.5rem, 5vw, 2.5rem); letter-spacing: 2px; color: #ffdf73; opacity: 0; transform: translateY(20px); transition: opacity 1.5s ease, transform 1.5s ease; text-align: center;}
         
         .pulse-heart { display: inline-block; animation: heartbeat 1.2s infinite alternate ease-in-out; margin-left: 10px;}
         #enter-btn { opacity: 0; transition: opacity 2s ease; margin-top: 60px; pointer-events: none;}
@@ -166,10 +166,10 @@
         #btn-post-meeting:hover { background-color: #222 !important; color: #fff !important; }
 
         /* =========================================================
-           4. LETTERS (Moved up since Timeline was removed)
+           4. LETTERS
            ========================================================= */
-        #s5-letters { padding: 10vh 5vw; background: #1a1818; align-items: center; perspective: 1000px;}
-        .letters-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; max-width: 900px; width: 100%; margin-top: 60px; }
+        #s4-letters { padding: 10vh 5vw; background: #1a1818; align-items: center; perspective: 1000px;}
+        .letters-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; max-width: 900px; width: 100%; margin-top: 60px; justify-content: center; }
         
         .envelope-wrapper { position: relative; height: 200px; cursor: pointer; perspective: 1000px; }
         .envelope { position: absolute; width: 100%; height: 100%; background: #dcd0c0; border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); transition: 0.6s ease; transform-style: preserve-3d; display: flex; align-items: center; justify-content: center; text-align: center; padding: 20px;}
@@ -185,20 +185,20 @@
         /* =========================================================
            5. THE POEM
            ========================================================= */
-        #s6-poem { background: #030303; align-items: center; justify-content: center; padding: 20px; text-align: center; }
-        .poem-pre { font-style: italic; color: #777; font-size: 1.1rem; opacity: 0; transition: opacity 1s; position: absolute; }
-        #poem-container { max-width: 600px; width: 100%; }
+        #s5-poem { background: #030303; align-items: center; justify-content: center; padding: 20px; text-align: center; }
+        .poem-pre { font-style: italic; color: #777; font-size: 1.1rem; opacity: 0; transition: opacity 1s; position: absolute; left: 0; width: 100%; text-align: center; }
+        #poem-container { max-width: 600px; width: 100%; text-align: center;}
         .poem-line { font-family: var(--font-serif); font-size: clamp(1.2rem, 4vw, 1.8rem); line-height: 2.2; color: #eaeaea; opacity: 0; transform: translateY(15px); transition: opacity 1s ease, transform 1s ease; margin-bottom: 20px; text-shadow: 0 2px 10px rgba(255,255,255,0.1); }
         .poem-line.visible { opacity: 1; transform: translateY(0); }
 
         /* =========================================================
            6. THE ARCHIVES
            ========================================================= */
-        #s7-archives { background: #2a2826; padding: 10vh 5vw; align-items: center; }
-        .archive-header { border: 4px solid var(--accent-red); padding: 30px; margin-bottom: 50px; text-align: center; max-width: 600px; position: relative; background: rgba(0,0,0,0.2); }
+        #s6-archives { background: #2a2826; padding: 10vh 5vw; align-items: center; }
+        .archive-header { border: 4px solid var(--accent-red); padding: 30px; margin-bottom: 50px; text-align: center; max-width: 600px; width: 100%; position: relative; background: rgba(0,0,0,0.2); }
         .stamp-top-secret { position: absolute; top: -20px; right: -20px; color: var(--accent-red); font-family: var(--font-typewriter); font-size: 1.8rem; font-weight: bold; border: 4px solid var(--accent-red); padding: 5px 15px; transform: rotate(15deg); background: #2a2826; }
         
-        .folder-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 900px; width: 100%; }
+        .folder-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 900px; width: 100%; justify-content: center;}
         .dossier { background: #d2b48c; padding: 25px; color: #111; position: relative; border-left: 15px solid #a88d67; cursor: pointer; border-radius: 2px 15px 2px 2px; box-shadow: 2px 5px 15px rgba(0,0,0,0.3); transition: transform 0.3s;}
         .dossier:hover { transform: translateY(-5px); }
         .dossier::after { content: ''; position: absolute; top:0; left:0; right:0; bottom:0; background: var(--paper-texture); pointer-events: none; opacity: 0.3;}
@@ -213,7 +213,7 @@
         /* =========================================================
            7. MUSEUM (THE MEMORY ROOM)
            ========================================================= */
-        #s8-museum { background: #211c18; align-items: center; justify-content: flex-start; padding: 0; position: relative; overflow-y: auto;}
+        #s7-museum { background: #211c18; align-items: center; justify-content: flex-start; padding: 0; position: relative; overflow-y: auto;}
         .room-lighting { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center 40%, transparent 20%, rgba(0,0,0,0.8) 100%); pointer-events: none; z-index: 1;}
         
         .hanging-display-wrapper { position: relative; width: 90%; max-width: 1000px; margin-top: 15vh; z-index: 2; padding-bottom: 20vh; display: flex; flex-direction: column; align-items: center; }
@@ -223,7 +223,7 @@
         .polaroid { background: #fdfdfd; padding: 12px 12px 40px 12px; box-shadow: 2px 10px 20px rgba(0,0,0,0.6); transition: 0.4s ease; cursor: pointer; position: relative; }
         .polaroid::before { content:''; position:absolute; top:0;left:0;right:0;bottom:0; background: var(--paper-texture); opacity:0.3; pointer-events:none;}
         
-        .photo-string { position: absolute; bottom: 100%; left: 50%; width: 1.5px; height: 1000px; background: rgba(255,255,255,0.3); z-index: -1; pointer-events: none;}
+        .photo-string { position: absolute; bottom: 100%; left: 50%; width: 1.5px; height: 300px; background: rgba(255,255,255,0.3); z-index: -1; pointer-events: none;}
         .clothespin { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); width: 8px; height: 22px; background: #a67c52; border-radius: 2px; box-shadow: 1px 2px 4px rgba(0,0,0,0.5); z-index: 11; pointer-events: none;}
         
         .fairy-light { position: absolute; width: 5px; height: 5px; background: #fff; border-radius: 50%; box-shadow: 0 0 8px 3px #ffeb3b, 0 0 15px 5px #ffb300; animation: twinkle-light 2s infinite alternate; z-index: 12; pointer-events: none;}
@@ -270,7 +270,7 @@
         /* =========================================================
            8. GOODBYE (ARCADE MINI GAME & SOLAR SYSTEM)
            ========================================================= */
-        #s9-goodbye { background: #030208; align-items: center; justify-content: center; text-align: center; overflow: hidden; }
+        #s8-goodbye { background: #030208; align-items: center; justify-content: center; text-align: center; overflow: hidden; }
         #solar-system { position: absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; opacity: 0; transition: opacity 3s; z-index: 0; background: radial-gradient(circle at 50% 120%, #1a1a3a 0%, #030208 80%); overflow: hidden;}
         
         .stars { width: 100%; height: 100%; background: transparent; }
@@ -290,7 +290,7 @@
         @keyframes hint-pulse { 0% { transform: scale(1); } 100% { transform: scale(1.1); } }
         @keyframes spacewalk { 0%, 100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-15px) rotate(3deg); } }
 
-        .climax-text { font-family: var(--font-serif); font-size: clamp(1.5rem, 5vw, 3rem); color: #ffdf73; opacity: 0; transition: opacity 2s ease; z-index: 5; position: absolute; font-weight: bold; text-shadow: 0 2px 15px rgba(255,223,115,0.5); text-align: center; width: 100%; pointer-events: none;}
+        .climax-text { font-family: var(--font-serif); font-size: clamp(1.5rem, 5vw, 3rem); color: #ffdf73; opacity: 0; transition: opacity 2s ease; z-index: 5; position: absolute; font-weight: bold; text-shadow: 0 2px 15px rgba(255,223,115,0.5); text-align: center; width: 100%; pointer-events: none; left: 0;}
         #goodbye-glow { position: absolute; top:50%; left:50%; transform: translate(-50%, -50%); width: 300px; height: 300px; background: radial-gradient(circle, rgba(255,223,115,0.15) 0%, transparent 60%); opacity: 0; transition: 4s; pointer-events: none; z-index: 3;}
         
         /* NEW ARCADE CSS */
@@ -306,7 +306,7 @@
         #pn-piggy { left: 5%; }
         #pn-mendhak { right: 5%; }
         
-        #vs-screen, #ko-screen { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(5); opacity: 0; font-family: var(--font-arcade); color: #ffeb3b; font-size: 2.5rem; text-shadow: 4px 4px 0px #ff2a2a, 8px 8px 0px #000; text-align: center; pointer-events: none; z-index: 20; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        #vs-screen, #ko-screen { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(5); opacity: 0; font-family: var(--font-arcade); color: #ffeb3b; font-size: 2.5rem; text-shadow: 4px 4px 0px #ff2a2a, 8px 8px 0px #000; text-align: center; pointer-events: none; z-index: 20; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); width: 100vw; }
         
     </style>
 </head>
@@ -555,7 +555,7 @@
             </div>
             
             <div id="vs-screen">PIGGY<br><br><span style="font-size:1.5rem; color:#fff; text-shadow:none;">VS</span><br><br>MENDHAK</div>
-            <div id="ko-screen" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(5); opacity: 0; font-family: var(--font-arcade); color: #ff2a2a; font-size: 4rem; text-shadow: 6px 6px 0px #fff; pointer-events: none; z-index: 20; transition: all 0.2s;">K.O.!</div>
+            <div id="ko-screen" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(5); opacity: 0; font-family: var(--font-arcade); color: #ff2a2a; font-size: 4rem; text-shadow: 6px 6px 0px #fff; pointer-events: none; z-index: 20; transition: all 0.2s; width: 100vw; text-align: center;">K.O.!</div>
 
             <!-- THE UNIVERSE -->
             <div id="solar-system">
@@ -568,14 +568,14 @@
             <div id="goodbye-text-1" class="climax-text" style="top:30%;">I LOVE YOU TO THE MOON AND BACK</div>
             
             <!-- MINI GAME STAGE -->
-            <div id="goodbye-stage" style="position:relative; display:flex; align-items:flex-end; justify-content:center; gap:40px; margin-top:10vh; z-index:5;">
+            <div id="goodbye-stage" style="position:relative; display:flex; align-items:flex-end; justify-content:center; gap:40px; margin-top:10vh; z-index:5; width: 100%;">
                 <div style="position:relative;">
                     <div id="goodbye-piggy-bubble" style="position:absolute; top:-40px; left:-20px; font-family:var(--font-typewriter); color:#fff; font-weight:bold; opacity:0; transition:0.3s; white-space:nowrap; background:rgba(0,0,0,0.8); padding:5px 10px; border-radius:10px; border:1px solid #ffc8d2;">I Lovee Youuu More</div>
                     <svg id="goodbye-piggy" viewBox="0 0 100 100" style="width:120px; opacity:0; transform:translateX(-50vw); transition: opacity 1s, transform 1s, scale 0.3s;"><use href="#svg-piggy"/></svg>
                 </div>
                 
                 <div style="position:relative;">
-                    <div id="tap-hint" style="position:absolute; top:-80px; right:30px; font-family:var(--font-typewriter); color:#ffdf73; font-weight:bold; opacity:0; transition:0.3s; white-space:nowrap; pointer-events:none;">(Tap Mendhak!)</div>
+                    <div id="tap-hint" style="position:absolute; top:-80px; right:30px; font-family:var(--font-typewriter); color:#ffdf73; font-weight:bold; opacity:0; transition:0.3s; white-space:nowrap; animation: hint-pulse 1s infinite alternate; pointer-events:none;">(Tap Mendhak!)</div>
                     <div id="goodbye-mendhak-bubble" style="position:absolute; top:-40px; right:-20px; font-family:var(--font-typewriter); color:#68b94f; font-weight:bold; opacity:0; transition:0.3s; white-space:nowrap; background:rgba(0,0,0,0.8); padding:5px 10px; border-radius:10px; border:1px solid #68b94f;">NO , I DO!</div>
                     <svg id="goodbye-mendhak" viewBox="0 0 150 100" style="width:170px; opacity:0; transform:translateY(20px); position:relative; z-index:5;"><use href="#svg-mendhak-flower"/></svg>
                 </div>
@@ -795,9 +795,9 @@
 
             const musGrid = document.getElementById('museum-gallery');
             SITE_DATA.museum.forEach((item, index) => {
-                const randomMargin = Math.floor(Math.random() * 60) + 20; 
+                // Ensure rows hang straight by using standard spacing instead of random margins
                 musGrid.innerHTML += `
-                    <div class="polaroid" id="pol-${index}" onclick="openPolaroid(${index})" style="margin-top: ${randomMargin}px;">
+                    <div class="polaroid" id="pol-${index}" onclick="openPolaroid(${index})" style="margin-top: 60px;">
                         <div class="photo-string"></div>
                         <div class="clothespin"></div>
                         <div class="fairy-light" style="top: -${Math.random()*50 + 20}px; left: ${Math.random()*100}%;"></div>
@@ -1117,7 +1117,7 @@
                     
                     // K.O. SCREEN
                     koScreen.style.opacity = '1';
-                    koScreen.style.transform = 'translate(-50%, -50%) scale(1)';
+                    koScreen.style.transform = 'translate(-50%, -50%) scale(2)';
                     await wait(1500);
                     
                     // FLASH OUT OF ARCADE MODE
