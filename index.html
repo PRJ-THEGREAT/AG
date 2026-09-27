@@ -15,7 +15,7 @@
            ========================================================= */
         :root {
             --bg-dark: #070708;
-            --bg-newspaper: #d5c3a1; /* Even richer, older vintage parchment tone */
+            --bg-newspaper: #d5c3a1; /* Richer, older vintage parchment tone */
             --text-light: #eaddd7;
             --text-dark: #2b1f14; /* Faded, aged dark brown ink */
             --accent-red: #ff2a2a;
@@ -44,7 +44,7 @@
         .btn-cinematic:hover { background: currentColor; color: var(--bg-dark); }
 
         /* =========================================================
-           1. UNHINGED OPENING
+           1. UNHINGED OPENING & FLORAL BLOOM
            ========================================================= */
         #s1-opening { background: #000; justify-content: center; overflow: hidden; }
         .stage-opening { position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
@@ -64,11 +64,11 @@
         
         #opening-flash { position: absolute; top:0; left:0; width:100%; height:100%; background:#fff; opacity:0; pointer-events:none; z-index: 99; transition: opacity 0.2s;}
         
-        /* FLORAL FRAME */
+        /* DENSE FLORAL FRAME */
         #floral-frame { position: absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index: 3; overflow: hidden; }
-        .flower { position: absolute; font-size: clamp(3.5rem, 10vw, 7rem); filter: brightness(0.1) saturate(0) contrast(1.5); transform: scale(0.4) rotate(0deg); transition: filter 2.5s ease, transform 2.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 1s; opacity: 0;}
+        .flower { position: absolute; font-size: clamp(2.5rem, 8vw, 5rem); filter: brightness(0.1) saturate(0) contrast(1.5); transform: scale(0.2) rotate(0deg); transition: filter 2.5s ease, transform 2.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 1s; opacity: 0; margin-left:-1em; margin-top:-1em; text-align:center; width:2em; height:2em; line-height:2em;}
         #floral-frame.dark-visible .flower { opacity: 0.6; }
-        #floral-frame.bloomed .flower { filter: brightness(1) saturate(1.2) contrast(1) drop-shadow(0 5px 15px rgba(0,0,0,0.5)); transform: scale(1) rotate(var(--rot)); opacity: 1;}
+        #floral-frame.bloomed .flower { filter: brightness(1) saturate(1.2) contrast(1) drop-shadow(0 5px 15px rgba(0,0,0,0.5)); transform: scale(var(--target-scale, 1)) rotate(var(--rot, 0deg)); opacity: 1;}
 
         #lightbulb-scene { position: absolute; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 2s; z-index: 5; height: 100vh;}
         #tease-text { font-family: var(--font-typewriter); color: #888; font-size: 0.9rem; margin-bottom: 20px; text-align: center; }
@@ -166,7 +166,7 @@
         #btn-post-meeting:hover { background-color: #222 !important; color: #fff !important; }
 
         /* =========================================================
-           4. LETTERS
+           4. LETTERS (Moved up since Timeline was removed)
            ========================================================= */
         #s4-letters { padding: 10vh 5vw; background: #1a1818; align-items: center; perspective: 1000px;}
         .letters-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; max-width: 900px; width: 100%; margin-top: 60px; justify-content: center; }
@@ -186,7 +186,7 @@
            5. THE POEM
            ========================================================= */
         #s5-poem { background: #030303; align-items: center; justify-content: center; padding: 20px; text-align: center; }
-        .poem-pre { font-style: italic; color: #777; font-size: 1.1rem; opacity: 0; transition: opacity 1s; position: absolute; left: 0; width: 100%; text-align: center; }
+        .poem-pre { font-style: italic; color: #777; font-size: 1.1rem; opacity: 0; transition: opacity 1s; position: absolute; left: 50%; transform: translate(-50%, -50%); text-align: center; width: 90%; max-width: 500px; }
         #poem-container { max-width: 600px; width: 100%; text-align: center;}
         .poem-line { font-family: var(--font-serif); font-size: clamp(1.2rem, 4vw, 1.8rem); line-height: 2.2; color: #eaeaea; opacity: 0; transform: translateY(15px); transition: opacity 1s ease, transform 1s ease; margin-bottom: 20px; text-shadow: 0 2px 10px rgba(255,255,255,0.1); }
         .poem-line.visible { opacity: 1; transform: translateY(0); }
@@ -286,7 +286,6 @@
         @keyframes float-slow { 0%, 100% { transform: translateY(0) rotate(-20deg); } 50% { transform: translateY(-20px) rotate(-15deg); } }
         @keyframes orbit { 0% { transform: translateX(0) translateY(0); } 50% { transform: translateX(-30px) translateY(15px); } 100% { transform: translateX(0) translateY(0); } }
         @keyframes orbit-rev { 0% { transform: translateX(0) translateY(0); } 50% { transform: translateX(20px) translateY(-20px); } 100% { transform: translateX(0) translateY(0); } }
-
         @keyframes hint-pulse { 0% { transform: scale(1); } 100% { transform: scale(1.1); } }
         @keyframes spacewalk { 0%, 100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-15px) rotate(3deg); } }
 
@@ -379,14 +378,7 @@
         <section id="s1-opening" class="story-section active">
             
             <div id="floral-frame">
-                <div class="flower" style="top:5%; left:5%; --rot:-15deg;">🌹</div>
-                <div class="flower" style="top:5%; right:5%; --rot:15deg;">🌻</div>
-                <div class="flower" style="top:40%; left:2%; --rot:45deg;">🌷</div>
-                <div class="flower" style="top:40%; right:2%; --rot:-45deg;">🌼</div>
-                <div class="flower" style="bottom:5%; left:5%; --rot:-20deg;">🪷</div>
-                <div class="flower" style="bottom:5%; right:5%; --rot:20deg;">🏵️</div>
-                <div class="flower" style="top:-2%; left:50%; margin-left:-3rem; --rot:0deg;">🌺</div>
-                <div class="flower" style="bottom:-2%; left:50%; margin-left:-3rem; --rot:180deg;">🌸</div>
+                <!-- Dynamically injected via JS -->
             </div>
 
             <div class="stage-opening" id="stage-opening">
@@ -471,7 +463,7 @@
         <!-- 5. POEM -->
         <section id="s5-poem" class="story-section">
             <div id="poem-intro-1" class="poem-pre" style="top: 40%;">ONE LAST THING.</div>
-            <div id="poem-intro-2" class="poem-pre" style="top: 50%; max-width: 400px;">I wanted to give you something that couldn't be put in a photograph.</div>
+            <div id="poem-intro-2" class="poem-pre" style="top: 50%;">I wanted to give you something that couldn't be put in a photograph.</div>
             <div id="poem-container"></div>
             <button id="btn-post-poem" class="btn-cinematic" style="opacity: 0; pointer-events: none;" onclick="goToSection('s6-archives')">Open Archives</button>
         </section>
@@ -613,7 +605,7 @@
         const SITE_DATA = {
             
             newspaper: [
-                { headline: "THE CUTEST DANCE EVER !", text: "9 years ago when little miss aaradhya garg was just too cute to handle X) ", mediaHtml: "<video src='dancing_video.mp4.mov' autoplay loop muted playsinline></video>" },
+                { headline: "THE CUTEST DANCE EVER !", text: "9 years ago when little miss aaradhya garg was just too cute to handle X) ", mediaHtml: "<video src='dancing_video.mp4' autoplay loop muted playsinline></video>" },
                 { headline: "ALL EYES ON THE DANCING QUEEN", text: "Definitely my favourite dancer <3", mediaHtml: "<video src='Dev aaradhya 2 - (144p).mov' autoplay loop muted playsinline></video>" },
                 { headline: "UNSEEN FOOTAGE", text: "[Replace with video story]", mediaHtml: "<video src='[VIDEO_3_FILENAME.mp4]' autoplay loop muted playsinline></video>" },
                 { headline: "THE EARLY YEARS", text: "[Replace with photo story]", mediaHtml: "<img src='[PHOTO_1_FILENAME.jpg]'>" },
@@ -651,9 +643,9 @@
             museum: [
                 { img: "<img src='IMG_0092.jpeg' style='width: 100%; height: 100%; object-fit: cover;'>", caption: "Our first date" },
                 { img: "<img src='IMG_0091.jpeg' style='width: 100%; height: 100%; object-fit: cover;'>", caption: "piggu and mendhak <3" },
-                { img: "<img src='IMG_0090.jpeg' style='width: 100%; height: 100%; object-fit: cover;'>", caption: "shadishuda , haha" },
-                { img: "<img src='IMG_0093.jpeg' style='width: 100%; height: 100%; object-fit: cover;'>", caption: "first trip together" },
-                { img: "<img src='IMG_0010.jpeg' style='width: 100%; height: 100%; object-fit: cover;'>", caption: "Us." } 
+                { img: "<img src='IMG_0090.jpg' style='width: 100%; height: 100%; object-fit: cover;'>", caption: "shadishuda , haha" },
+                { img: "<img src='IMG_20260720_001053.jpg' style='width: 100%; height: 100%; object-fit: cover;'>", caption: "first trip together" },
+                { img: "<img src='IMG_0010.jpg' style='width: 100%; height: 100%; object-fit: cover;'>", caption: "Us." } 
             ]
         };
 
@@ -666,9 +658,39 @@
         }
 
         window.onload = () => {
+            buildFloralFrame();
             buildDynamicContent();
             playOpeningSequence();
         };
+
+        function buildFloralFrame() {
+            const frame = document.getElementById('floral-frame');
+            const emojis = ['🌹', '🌻', '🌷', '🌼', '🪷', '🏵️', '🌺', '🌸'];
+            const numFlowers = 70; 
+            
+            for(let i=0; i<numFlowers; i++) {
+                let f = document.createElement('div');
+                f.className = 'flower';
+                f.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+                
+                let edge = i % 4; 
+                let depth = Math.random() * 12 - 4; 
+                let spread = Math.random() * 110 - 5; 
+                
+                if (edge === 0) { f.style.top = depth + '%'; f.style.left = spread + '%'; }
+                else if (edge === 1) { f.style.bottom = depth + '%'; f.style.left = spread + '%'; }
+                else if (edge === 2) { f.style.left = depth + '%'; f.style.top = spread + '%'; }
+                else { f.style.right = depth + '%'; f.style.top = spread + '%'; }
+                
+                let size = Math.random() * 0.7 + 0.5; 
+                let rot = Math.random() * 360 - 180;
+                
+                f.style.setProperty('--target-scale', size);
+                f.style.setProperty('--rot', rot + 'deg');
+                
+                frame.appendChild(f);
+            }
+        }
 
         async function playOpeningSequence() {
             const piggy = document.getElementById('anim-piggy');
@@ -1084,18 +1106,15 @@
             mendhak.onclick = async () => {
                 if (taps >= maxTaps) return;
                 
-                if (taps === 0) mendhak.style.animation = 'none'; 
+                // IMPORTANT: Stop the CSS animation on the first tap so JS transforms work properly!
+                if (taps === 0) {
+                    mendhak.style.animation = 'none'; 
+                }
                 
                 taps++;
                 tapHint.style.opacity = '0';
-                currentRotation += 90; 
                 
-                // Update Health Bar
-                let hpPercent = 100 - ((taps / maxTaps) * 100);
-                const hpFill = document.getElementById('mendhak-hp-fill');
-                hpFill.style.width = hpPercent + '%';
-                if(hpPercent <= 30) hpFill.style.background = '#ff2a2a';
-                else if(hpPercent <= 60) hpFill.style.background = '#ffeb3b';
+                currentRotation += 90; // He rotates 90 degrees with every hit
                 
                 // Hit Animation
                 piggy.style.transform = 'translateX(60px) rotate(20deg)';
