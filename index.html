@@ -548,7 +548,6 @@
                 
                 <div class="player-name" id="pn-mendhak">MENDHAK</div>
                 <div class="health-bar-container" id="hb-mendhak">
-                    <!-- Fixed: Float right forces the bar to shrink from left to right as health decreases -->
                     <div class="health-fill" id="mendhak-hp-fill" style="width: 100%; float: right;"></div>
                 </div>
             </div>
@@ -1202,24 +1201,40 @@
         function initMascotSystem() {
             const container = document.body;
             const mascots = [
-                { type: 'svg', src: '#svg-piggy' },
-                { type: 'svg', src: '#svg-mendhak' },
-                { type: 'img', src: 'IMG_0097.png' },
-                { type: 'img', src: 'IMG_0096.png' }
+                { type: 'svg', src: '#svg-piggy', name: 'piggy' },
+                { type: 'svg', src: '#svg-mendhak', name: 'mendhak' },
+                { type: 'img', src: 'IMG_0097.png', name: 'img97' },
+                { type: 'img', src: 'IMG_0096.png', name: 'img96' }
             ];
             
-            setInterval(() => {
+            function spawnMascot() {
+                // Schedule the next one randomly between 5 and 15 seconds
+                const nextSpawnDelay = Math.random() * 10000 + 5000;
+                setTimeout(spawnMascot, nextSpawnDelay);
+
                 const active = document.querySelector('.story-section.active');
                 if(!active || active.id === 's1-opening' || active.id === 's8-goodbye') return;
                 
+                // Find which mascots are currently ON screen
+                const activeMascots = Array.from(document.querySelectorAll('.mascot-egg')).map(el => el.dataset.name);
+                
+                // Filter out mascots that are already walking so there are NO duplicates
+                const availableMascots = mascots.filter(m => !activeMascots.includes(m.name));
+                
+                // If all 4 happen to be on screen (rare, but possible), just skip this cycle
+                if (availableMascots.length === 0) return; 
+                
+                const mascot = availableMascots[Math.floor(Math.random() * availableMascots.length)];
+                
                 const egg = document.createElement("div");
+                egg.setAttribute("class", "mascot-egg");
+                egg.dataset.name = mascot.name;
                 egg.style.position = "absolute";
                 egg.style.width = "70px";
                 egg.style.height = "70px";
                 egg.style.zIndex = "90";
                 egg.style.pointerEvents = "none";
                 
-                const mascot = mascots[Math.floor(Math.random() * mascots.length)];
                 let innerEl;
                 
                 if(mascot.type === 'svg') {
@@ -1240,7 +1255,7 @@
                 egg.appendChild(innerEl);
                 
                 const type = Math.random();
-                const duration = Math.random() * 3000 + 3000; 
+                const duration = Math.random() * 4000 + 4000; // 4 to 8 seconds to walk across
                 egg.style.transition = `transform ${duration}ms linear`;
                 
                 if(type < 0.3) {
@@ -1270,8 +1285,10 @@
                 }
                 
                 setTimeout(() => { if(egg.parentNode) egg.remove(); }, duration + 100);
-                
-            }, 1200); 
+            }
+            
+            // Kick off the first spawn after a random short delay
+            setTimeout(spawnMascot, Math.random() * 5000 + 3000);
         }
     </script>
 </body>
