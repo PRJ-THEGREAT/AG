@@ -15,7 +15,7 @@
            ========================================================= */
         :root {
             --bg-dark: #070708;
-            --bg-newspaper: #d5c3a1; /* Even richer, older vintage parchment tone */
+            --bg-newspaper: #d5c3a1; /* Richer, older vintage parchment tone */
             --text-light: #eaddd7;
             --text-dark: #2b1f14; /* Faded, aged dark brown ink */
             --accent-red: #ff2a2a;
@@ -44,7 +44,7 @@
         .btn-cinematic:hover { background: currentColor; color: var(--bg-dark); }
 
         /* =========================================================
-           1. UNHINGED OPENING
+           1. UNHINGED OPENING & FLORAL BLOOM
            ========================================================= */
         #s1-opening { background: #000; justify-content: center; overflow: hidden; }
         .stage-opening { position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
@@ -64,13 +64,26 @@
         
         #opening-flash { position: absolute; top:0; left:0; width:100%; height:100%; background:#fff; opacity:0; pointer-events:none; z-index: 99; transition: opacity 0.2s;}
         
+        /* FLORAL FRAME */
+        #floral-frame { position: absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index: 3; overflow: hidden; }
+        .flower { position: absolute; font-size: clamp(3.5rem, 10vw, 7rem); filter: brightness(0.1) saturate(0) contrast(1.5); transform: scale(0.4) rotate(0deg); transition: filter 2.5s ease, transform 2.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 1s; opacity: 0;}
+        #floral-frame.dark-visible .flower { opacity: 0.6; }
+        #floral-frame.bloomed .flower { filter: brightness(1) saturate(1.2) contrast(1) drop-shadow(0 5px 15px rgba(0,0,0,0.5)); transform: scale(1) rotate(var(--rot)); opacity: 1;}
+
         #lightbulb-scene { position: absolute; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 2s; z-index: 5; height: 100vh;}
         #tease-text { font-family: var(--font-typewriter); color: #888; font-size: 0.9rem; margin-bottom: 20px; text-align: center; }
         #the-bulb { width: 50px; cursor: pointer; filter: brightness(0.2); transition: filter 0.1s; animation: swing 4s infinite ease-in-out; transform-origin: top center; }
         #the-bulb.on { filter: drop-shadow(0 0 40px #fff7a0) brightness(1.5); animation: none; }
         
+        /* SEQUENCE TEXT */
         #main-title { position: absolute; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 3s ease; z-index: 4; text-align: center; height: 100vh;}
-        #main-title h1 { font-size: clamp(2rem, 6vw, 4rem); letter-spacing: 6px; }
+        
+        #title-date { font-size: clamp(2rem, 6vw, 4rem); letter-spacing: 6px; opacity: 0; transform: translateY(20px); transition: opacity 1.5s ease, transform 1.5s ease; margin-bottom: 10px; }
+        #title-day { font-family: var(--font-typewriter); letter-spacing: 3px; opacity: 0; transform: translateY(20px); transition: opacity 1.5s ease, transform 1.5s ease; margin-bottom: 30px; font-size: 1.2rem; }
+        #title-bday { font-size: clamp(1.5rem, 5vw, 2.5rem); letter-spacing: 2px; color: #ffdf73; opacity: 0; transform: translateY(20px); transition: opacity 1.5s ease, transform 1.5s ease; }
+        
+        .pulse-heart { display: inline-block; animation: heartbeat 1.2s infinite alternate ease-in-out; margin-left: 10px;}
+        #enter-btn { opacity: 0; transition: opacity 2s ease; margin-top: 60px; pointer-events: none;}
         
         @keyframes swing { 0%, 100% { transform: rotate(-5deg); } 50% { transform: rotate(5deg); } }
 
@@ -153,23 +166,7 @@
         #btn-post-meeting:hover { background-color: #222 !important; color: #fff !important; }
 
         /* =========================================================
-           4. STORY OF US
-           ========================================================= */
-        #s4-timeline { padding: 10vh 5vw; background: linear-gradient(to bottom, #050a08, #1a1a24); align-items: center; }
-        .timeline-container { position: relative; max-width: 600px; width: 100%; margin-top: 50px; padding-bottom: 50px;}
-        .timeline-line { position: absolute; left: 20px; top: 0; bottom: 0; width: 2px; background: rgba(255,255,255,0.1); }
-        .timeline-progress { position: absolute; left: -1px; top: 0; width: 4px; background: var(--text-light); height: 0; transition: height 0.5s ease-out; }
-        
-        .timeline-node { position: relative; padding-left: 60px; margin-bottom: 60px; opacity: 0; transform: translateY(30px); transition: 1s ease; }
-        .timeline-node.visible { opacity: 1; transform: translateY(0); }
-        .timeline-dot { position: absolute; left: 16px; top: 5px; width: 10px; height: 10px; border-radius: 50%; background: #555; transition: 0.5s; }
-        .timeline-node.visible .timeline-dot { background: var(--text-light); box-shadow: 0 0 10px #fff; }
-        
-        .timeline-date { font-family: var(--font-typewriter); font-size: 0.85rem; color: #999; margin-bottom: 8px; display: block; letter-spacing: 1px;}
-        .timeline-content { background: rgba(255,255,255,0.03); padding: 20px; border: 1px solid rgba(255,255,255,0.05); border-radius: 4px; }
-
-        /* =========================================================
-           5. LETTERS
+           4. LETTERS (Moved up since Timeline was removed)
            ========================================================= */
         #s5-letters { padding: 10vh 5vw; background: #1a1818; align-items: center; perspective: 1000px;}
         .letters-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; max-width: 900px; width: 100%; margin-top: 60px; }
@@ -186,7 +183,7 @@
         .envelope-wrapper.open .envelope { transform: translateY(50px); background: #cbbba6; }
 
         /* =========================================================
-           6. THE POEM (SPED UP)
+           5. THE POEM
            ========================================================= */
         #s6-poem { background: #030303; align-items: center; justify-content: center; padding: 20px; text-align: center; }
         .poem-pre { font-style: italic; color: #777; font-size: 1.1rem; opacity: 0; transition: opacity 1s; position: absolute; }
@@ -195,7 +192,7 @@
         .poem-line.visible { opacity: 1; transform: translateY(0); }
 
         /* =========================================================
-           7. THE ARCHIVES
+           6. THE ARCHIVES
            ========================================================= */
         #s7-archives { background: #2a2826; padding: 10vh 5vw; align-items: center; }
         .archive-header { border: 4px solid var(--accent-red); padding: 30px; margin-bottom: 50px; text-align: center; max-width: 600px; position: relative; background: rgba(0,0,0,0.2); }
@@ -214,7 +211,7 @@
         .redacted:hover { color: #fff; background: transparent; }
 
         /* =========================================================
-           8. MUSEUM (THE MEMORY ROOM)
+           7. MUSEUM (THE MEMORY ROOM)
            ========================================================= */
         #s8-museum { background: #211c18; align-items: center; justify-content: flex-start; padding: 0; position: relative; overflow-y: auto;}
         .room-lighting { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center 40%, transparent 20%, rgba(0,0,0,0.8) 100%); pointer-events: none; z-index: 1;}
@@ -271,7 +268,7 @@
         .btn-close-modal:hover { background: #fff; color: #000; }
 
         /* =========================================================
-           9. GOODBYE (ARCADE MINI GAME & SOLAR SYSTEM)
+           8. GOODBYE (ARCADE MINI GAME & SOLAR SYSTEM)
            ========================================================= */
         #s9-goodbye { background: #030208; align-items: center; justify-content: center; text-align: center; overflow: hidden; }
         #solar-system { position: absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; opacity: 0; transition: opacity 3s; z-index: 0; background: radial-gradient(circle at 50% 120%, #1a1a3a 0%, #030208 80%); overflow: hidden;}
@@ -289,6 +286,7 @@
         @keyframes float-slow { 0%, 100% { transform: translateY(0) rotate(-20deg); } 50% { transform: translateY(-20px) rotate(-15deg); } }
         @keyframes orbit { 0% { transform: translateX(0) translateY(0); } 50% { transform: translateX(-30px) translateY(15px); } 100% { transform: translateX(0) translateY(0); } }
         @keyframes orbit-rev { 0% { transform: translateX(0) translateY(0); } 50% { transform: translateX(20px) translateY(-20px); } 100% { transform: translateX(0) translateY(0); } }
+
         @keyframes hint-pulse { 0% { transform: scale(1); } 100% { transform: scale(1.1); } }
         @keyframes spacewalk { 0%, 100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-15px) rotate(3deg); } }
 
@@ -296,7 +294,7 @@
         #goodbye-glow { position: absolute; top:50%; left:50%; transform: translate(-50%, -50%); width: 300px; height: 300px; background: radial-gradient(circle, rgba(255,223,115,0.15) 0%, transparent 60%); opacity: 0; transition: 4s; pointer-events: none; z-index: 3;}
         
         /* NEW ARCADE CSS */
-        .arcade-mode-active { filter: contrast(150%) saturate(150%); } /* Gives the sprites a harsher retro look */
+        .arcade-mode-active { filter: contrast(150%) saturate(150%); } 
         #arcade-scanlines { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.2)); background-size: 100% 4px; pointer-events: none; z-index: 14; opacity: 0; transition: opacity 0.3s;}
         
         #arcade-ui { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0; transition: 0.3s; z-index: 15; }
@@ -379,6 +377,18 @@
 
         <!-- 1. OPENING -->
         <section id="s1-opening" class="story-section active">
+            
+            <div id="floral-frame">
+                <div class="flower" style="top:5%; left:5%; --rot:-15deg;">🌹</div>
+                <div class="flower" style="top:5%; right:5%; --rot:15deg;">🌻</div>
+                <div class="flower" style="top:40%; left:2%; --rot:45deg;">🌷</div>
+                <div class="flower" style="top:40%; right:2%; --rot:-45deg;">🌼</div>
+                <div class="flower" style="bottom:5%; left:5%; --rot:-20deg;">🪷</div>
+                <div class="flower" style="bottom:5%; right:5%; --rot:20deg;">🏵️</div>
+                <div class="flower" style="top:-2%; left:50%; margin-left:-3rem; --rot:0deg;">🌺</div>
+                <div class="flower" style="bottom:-2%; left:50%; margin-left:-3rem; --rot:180deg;">🌸</div>
+            </div>
+
             <div class="stage-opening" id="stage-opening">
                 <svg id="anim-piggy" viewBox="0 0 100 100"><use href="#svg-piggy"/></svg>
                 <div id="piggy-text">heyy Aaradh-</div>
@@ -387,14 +397,17 @@
                 <div id="mendhak-text">yum yumm</div>
             </div>
             <div id="opening-flash"></div>
+            
             <div id="lightbulb-scene">
                 <div id="tease-text">awlele mera bunty,<br>at least switch the lights on.</div>
                 <svg id="the-bulb" viewBox="0 0 100 100" onclick="turnOnLight()"><use href="#svg-bulb"/></svg>
             </div>
+            
             <div id="main-title">
-                <h1 class="serif">14 OCTOBER 2026</h1>
-                <p style="font-family: var(--font-typewriter); letter-spacing: 3px; margin-top: 10px;">AARADHYA DAY</p>
-                <button class="btn-cinematic" style="margin-top: 60px;" onclick="goToSection('s2-edition')">Enter</button>
+                <h1 id="title-date" class="serif">14 OCTOBER 2026</h1>
+                <p id="title-day" style="font-family: var(--font-typewriter); letter-spacing: 3px;">AARADHYA DAY</p>
+                <h2 id="title-bday" class="serif">HAPPY BIRTHDAY JAANU <span class="pulse-heart">❤️</span></h2>
+                <button id="enter-btn" class="btn-cinematic" onclick="goToSection('s2-edition')">Enter</button>
             </div>
         </section>
 
@@ -445,48 +458,37 @@
                 <div id="meeting-glow"></div>
             </div>
             
-            <button id="btn-post-meeting" class="btn-cinematic" onclick="goToSection('s4-timeline')">The Story Begins</button>
+            <button id="btn-post-meeting" class="btn-cinematic" onclick="goToSection('s4-letters')">Read Messages</button>
         </section>
 
-        <!-- 4. TIMELINE -->
-        <section id="s4-timeline" class="story-section">
-            <h2 class="serif" style="font-size: 3rem; text-align: center;">The Story of Us</h2>
-            <div class="timeline-container">
-                <div class="timeline-line"></div>
-                <div class="timeline-progress" id="tl-progress"></div>
-                <div id="timeline-nodes-wrapper"></div>
-            </div>
-            <button class="btn-cinematic" onclick="goToSection('s5-letters')">Read Messages</button>
-        </section>
-
-        <!-- 5. LETTERS -->
-        <section id="s5-letters" class="story-section">
-            <h2 class="serif" style="font-size: 3rem; text-align: center;">Letters for You</h2>
+        <!-- 4. LETTERS -->
+        <section id="s4-letters" class="story-section">
+            <h2 class="serif" style="font-size: 3rem; text-align: center; margin-top: 10vh;">Letters for You</h2>
             <div class="letters-grid" id="letters-grid"></div>
             <button class="btn-cinematic" style="margin-top: 80px;" onclick="triggerPoem()">One Last Thing...</button>
         </section>
 
-        <!-- 6. POEM -->
-        <section id="s6-poem" class="story-section">
+        <!-- 5. POEM -->
+        <section id="s5-poem" class="story-section">
             <div id="poem-intro-1" class="poem-pre" style="top: 40%;">ONE LAST THING.</div>
             <div id="poem-intro-2" class="poem-pre" style="top: 50%; max-width: 400px;">I wanted to give you something that couldn't be put in a photograph.</div>
             <div id="poem-container"></div>
-            <button id="btn-post-poem" class="btn-cinematic" style="opacity: 0; pointer-events: none;" onclick="goToSection('s7-archives')">Open Archives</button>
+            <button id="btn-post-poem" class="btn-cinematic" style="opacity: 0; pointer-events: none;" onclick="goToSection('s6-archives')">Open Archives</button>
         </section>
 
-        <!-- 7. ARCHIVES -->
-        <section id="s7-archives" class="story-section">
+        <!-- 6. ARCHIVES -->
+        <section id="s6-archives" class="story-section">
             <div class="archive-header">
                 <h2 class="serif" style="font-size: 2.5rem;">THE AARADHYA ARCHIVES</h2>
                 <p style="font-family: var(--font-typewriter); margin-top: 10px; color: #aaa;">FILE NO. 14-10-26</p>
                 <div class="stamp-top-secret">CONFIDENTIAL<br>EYES ONLY</div>
             </div>
             <div class="folder-grid" id="archive-grid"></div>
-            <button class="btn-cinematic" style="margin-top: 80px;" onclick="goToSection('s8-museum')">Enter the Museum</button>
+            <button class="btn-cinematic" style="margin-top: 80px;" onclick="goToSection('s7-museum')">Enter the Museum</button>
         </section>
 
-        <!-- 8. MUSEUM (THE MEMORY ROOM) -->
-        <section id="s8-museum" class="story-section">
+        <!-- 7. MUSEUM (THE MEMORY ROOM) -->
+        <section id="s7-museum" class="story-section">
             <div class="room-lighting"></div>
             
             <div class="hanging-display-wrapper">
@@ -535,8 +537,8 @@
             </div>
         </section>
 
-        <!-- 9. GOODBYE (ARCADE MINI GAME & SOLAR SYSTEM) -->
-        <section id="s9-goodbye" class="story-section">
+        <!-- 8. GOODBYE (ARCADE MINI GAME & SOLAR SYSTEM) -->
+        <section id="s8-goodbye" class="story-section">
             
             <!-- ARCADE OVERLAYS -->
             <div id="arcade-scanlines"></div>
@@ -573,7 +575,7 @@
                 </div>
                 
                 <div style="position:relative;">
-                    <div id="tap-hint" style="position:absolute; top:-80px; right:30px; font-family:var(--font-typewriter); color:#ffdf73; font-weight:bold; opacity:0; transition:0.3s; white-space:nowrap; animation: hint-pulse 1s infinite alternate; pointer-events:none;">(Tap Mendhak!)</div>
+                    <div id="tap-hint" style="position:absolute; top:-80px; right:30px; font-family:var(--font-typewriter); color:#ffdf73; font-weight:bold; opacity:0; transition:0.3s; white-space:nowrap; pointer-events:none;">(Tap Mendhak!)</div>
                     <div id="goodbye-mendhak-bubble" style="position:absolute; top:-40px; right:-20px; font-family:var(--font-typewriter); color:#68b94f; font-weight:bold; opacity:0; transition:0.3s; white-space:nowrap; background:rgba(0,0,0,0.8); padding:5px 10px; border-radius:10px; border:1px solid #68b94f;">NO , I DO!</div>
                     <svg id="goodbye-mendhak" viewBox="0 0 150 100" style="width:170px; opacity:0; transform:translateY(20px); position:relative; z-index:5;"><use href="#svg-mendhak-flower"/></svg>
                 </div>
@@ -624,19 +626,13 @@
                 { headline: "STYLE ICON", text: "[Replace with photo story]", mediaHtml: "<img src='[PHOTO_8_FILENAME.jpg]'>" }
             ],
 
-            timeline: [
-                { date: "16 Jan 2026", title: "First Meeting", text: "The magic connected." },
-                { date: "14 Feb 2026", title: "When things changed", text: "[ADD SPECIFIC DETAIL]" },
-                { date: "April 2026", title: "The Unofficial Chapter", text: "[ADD INSIDE JOKE]" },
-                { date: "Summer 2026", title: "Becoming Us", text: "[ADD FAVORITE MEMORY]" },
-                { date: "Today", title: "Aaradhya Day", text: "Celebrating you." }
-            ],
             letters: [
                 { label: "OPEN WHEN YOU'RE HAPPY", text: "I love seeing you smile. Keep this energy forever. [ADD FULL TEXT]" },
                 { label: "OPEN WHEN YOU MISS ME", text: "I'm right here. Call me immediately. [ADD FULL TEXT]" },
                 { label: "THINGS NEVER TO FORGET", text: "You are the most important part of my day. [ADD FULL TEXT]" },
                 { label: "BIRTHDAY LETTER", text: "Happy Birthday, Aaradhya. My universe is better with you in it. [ADD FULL TEXT]" }
             ],
+            
             poem: [
                 "I never thought a quiet Tuesday",
                 "Could turn into a lifetime.",
@@ -645,17 +641,19 @@
                 "It wasn't magic, it was just you.",
                 "Happy Birthday, my missing star."
             ],
+            
             archives: [
                 { tab: "MENDHAK-01", title: "my generator", content: "<video src='VID_20260407_082942_930.mp4' controls style='width:100%; max-height:250px; background:#000; border:3px solid #eee; border-radius:2px; margin-bottom:10px; box-shadow: 0 2px 5px rgba(0,0,0,0.5);'></video><br>Subject is found guilty for having the most wholehearted and best laugh in the world , memorable day btw" },
                 { tab: "PIGGY-01", title: "Gogadudu", content: "<img src='IMG_0075.jpeg' style='max-width:100%; max-height:250px; object-fit:cover; border:3px solid #eee; border-radius:2px; margin-bottom:10px; box-shadow: 0 2px 5px rgba(0,0,0,0.5);'><br>that one time she drank milk dripping from her nose, yum x-)" },
                 { tab: "OBS-42", title: "Nose Scrunch", content: "Subject's nose scrunches when laughing at terrible jokes. Highly dangerous." }
             ],
+            
             museum: [
                 { img: "<img src='IMG_0092.jpeg' style='width: 100%; height: 100%; object-fit: cover;'>", caption: "Our first date" },
                 { img: "<img src='IMG_0091.jpeg' style='width: 100%; height: 100%; object-fit: cover;'>", caption: "piggu and mendhak <3" },
-                { img: "<img src='IMG_0090.jpeg' style='width: 100%; height: 100%; object-fit: cover;'>", caption: "shadishuda , haha" },
-                { img: "<img src='IMG_0093.jpeg' style='width: 100%; height: 100%; object-fit: cover;'>", caption: "first trip together" },
-                { img: "<img src='IMG_0010.jpeg' style='width: 100%; height: 100%; object-fit: cover;'>", caption: "Us." } 
+                { img: "<img src='IMG_0090.jpg' style='width: 100%; height: 100%; object-fit: cover;'>", caption: "shadishuda , haha" },
+                { img: "<img src='IMG_20260720_001053.jpg' style='width: 100%; height: 100%; object-fit: cover;'>", caption: "first trip together" },
+                { img: "<img src='IMG_0010.jpg' style='width: 100%; height: 100%; object-fit: cover;'>", caption: "Us." } 
             ]
         };
 
@@ -665,8 +663,6 @@
             document.querySelectorAll('.story-section').forEach(sec => sec.classList.remove('active'));
             const target = document.getElementById(id);
             if(target) target.classList.add('active');
-            
-            if (id === 's4-timeline') setupTimelineObserver();
         }
 
         window.onload = () => {
@@ -733,6 +729,7 @@
             await wait(1000);
             document.getElementById('lightbulb-scene').style.opacity = '1';
             document.getElementById('lightbulb-scene').style.pointerEvents = 'all';
+            document.getElementById('floral-frame').classList.add('dark-visible');
         }
 
         async function turnOnLight() {
@@ -753,6 +750,24 @@
             document.getElementById('main-title').style.opacity = '1';
             document.getElementById('main-title').style.pointerEvents = 'all';
             
+            document.getElementById('floral-frame').classList.add('bloomed');
+            await wait(1000);
+            
+            document.getElementById('title-date').style.opacity = '1';
+            document.getElementById('title-date').style.transform = 'translateY(0)';
+            await wait(1200);
+            
+            document.getElementById('title-day').style.opacity = '1';
+            document.getElementById('title-day').style.transform = 'translateY(0)';
+            await wait(1200);
+            
+            document.getElementById('title-bday').style.opacity = '1';
+            document.getElementById('title-bday').style.transform = 'translateY(0)';
+            await wait(1500);
+            
+            document.getElementById('enter-btn').style.opacity = '1';
+            document.getElementById('enter-btn').style.pointerEvents = 'all';
+            
             initMascotSystem();
         }
 
@@ -766,11 +781,6 @@
                         <h3 class="news-headline">${item.headline}</h3>
                         <p class="news-text">${item.text}</p>
                     </div>`;
-            });
-
-            const tlContainer = document.getElementById('timeline-nodes-wrapper');
-            SITE_DATA.timeline.forEach((item, index) => {
-                tlContainer.innerHTML += `<div class="timeline-node" id="tl-node-${index}"><div class="timeline-dot"></div><div class="timeline-content"><span class="timeline-date">${item.date}</span><h4 class="serif" style="font-size:1.2rem; margin-bottom:5px;">${item.title}</h4><p style="font-size:0.9rem; color:#ccc;">${item.text}</p></div></div>`;
             });
 
             const letGrid = document.getElementById('letters-grid');
@@ -892,24 +902,8 @@
             btn.style.pointerEvents = 'all';
         }
 
-        function setupTimelineObserver() {
-            const nodes = document.querySelectorAll('.timeline-node');
-            const progress = document.getElementById('tl-progress');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if(entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        const visibleNodes = document.querySelectorAll('.timeline-node.visible');
-                        const last = visibleNodes[visibleNodes.length-1];
-                        if(last) progress.style.height = (last.offsetTop + 20) + 'px';
-                    }
-                });
-            }, { root: document.getElementById('s4-timeline'), threshold: 0.6 });
-            nodes.forEach(n => observer.observe(n));
-        }
-
         async function triggerPoem() {
-            goToSection('s6-poem');
+            goToSection('s5-poem');
             const i1 = document.getElementById('poem-intro-1');
             const i2 = document.getElementById('poem-intro-2');
             const container = document.getElementById('poem-container');
@@ -1001,7 +995,7 @@
         async function triggerFinalGoodbye() {
             document.getElementById('dvd-player-wrapper').classList.remove('playing');
             await wait(1000);
-            goToSection('s9-goodbye');
+            goToSection('s8-goodbye');
             
             const mendhak = document.getElementById('goodbye-mendhak');
             const piggy = document.getElementById('goodbye-piggy');
@@ -1181,7 +1175,7 @@
             
             setInterval(() => {
                 const active = document.querySelector('.story-section.active');
-                if(!active || !['s2-edition', 's4-timeline', 's7-archives'].includes(active.id)) return;
+                if(!active || !['s2-edition', 's6-archives'].includes(active.id)) return;
                 
                 const egg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
                 egg.setAttribute("viewBox", "0 0 100 100");
