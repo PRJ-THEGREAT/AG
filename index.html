@@ -100,7 +100,6 @@
         .newspaper-wrapper { width: 100%; max-width: 1200px; display: flex; flex-direction: column; align-items: center; }
         
         .newspaper-masthead { width: 100%; text-align: center; border-bottom: 5px double var(--text-dark); border-top: 2px solid var(--text-dark); margin-bottom: 40px; padding: 25px 0; }
-        /* Changed from unreadable font to highly readable bold serif */
         .newspaper-masthead h1 { font-family: var(--font-masthead); font-weight: 900; font-size: clamp(3rem, 10vw, 6rem); text-transform: uppercase; letter-spacing: 2px; margin: 0; line-height: 1; text-shadow: 1px 1px 0px rgba(0,0,0,0.1); }
         .newspaper-sub { font-family: var(--font-typewriter); font-size: 0.85rem; text-transform: uppercase; border-top: 1px solid var(--text-dark); border-bottom: 1px solid var(--text-dark); padding: 8px 10px; margin-top: 20px; display: flex; justify-content: space-between; font-weight: bold;}
         
@@ -143,7 +142,17 @@
 
         .meeting-stage { position: relative; width: 100%; max-width: 900px; height: 50vh; overflow: hidden; border-bottom: 2px solid rgba(0,100,0,0.1); z-index: 5;}
         
-        .char-svg { position: absolute; bottom: 0; width: 140px; height: 260px; transition: left 1s linear, transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); filter: drop-shadow(0 15px 10px rgba(0,0,0,0.2)); z-index: 5;}
+        /* DYNAMIC SCALING FOR CHARACTERS ON MOBILE */
+        .char-svg { 
+            position: absolute; 
+            bottom: 0; 
+            width: clamp(90px, 28vw, 140px); /* Keeps them small on phones, large on desktop */
+            height: 40vh; 
+            max-height: 260px;
+            transition: left 1s linear, transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); 
+            filter: drop-shadow(0 15px 10px rgba(0,0,0,0.2)); 
+            z-index: 5;
+        }
         
         img#char-p, img#char-a { 
             object-fit: contain; 
@@ -158,7 +167,7 @@
         #char-a { left: -20%; } 
         #char-p { left: 10%; }  
         
-        #meeting-heart { position: absolute; width: 60px; height: 60px; top: 45%; transform: translate(-50%, -50%) scale(0); opacity: 0; z-index: 6; transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.8s; filter: drop-shadow(0 0 15px rgba(255, 42, 42, 0.8)); }
+        #meeting-heart { position: absolute; width: clamp(40px, 10vw, 60px); height: clamp(40px, 10vw, 60px); top: 45%; transform: translate(-50%, -50%) scale(0); opacity: 0; z-index: 6; transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.8s; filter: drop-shadow(0 0 15px rgba(255, 42, 42, 0.8)); }
         #meeting-heart.beat { transform: translate(-50%, -50%) scale(1); opacity: 1; animation: heartbeat 1.2s infinite alternate ease-in-out; }
         @keyframes heartbeat { 0% { transform: translate(-50%, -50%) scale(1); } 100% { transform: translate(-50%, -50%) scale(1.15); } }
         #meeting-glow { position: absolute; top:45%; left:50%; transform: translate(-50%, -50%); width: 400px; height: 400px; background: radial-gradient(circle, rgba(255, 255, 255, 0.6) 0%, transparent 50%); opacity: 0; transition: opacity 2s; pointer-events: none; z-index: 4; }
@@ -328,16 +337,18 @@
         .health-bar-container { position: absolute; top: 60px; width: 35%; height: 30px; border: 4px solid #fff; background: #222; box-shadow: 4px 4px 0 #000; }
         #hb-piggy { left: 5%; }
         #hb-mendhak { right: 5%; }
-        /* Floats added to ensure health drains towards the center of the screen */
+        
         .health-fill { height: 100%; width: 100%; background: #39ff14; transition: width 0.1s ease-out, background-color 0.2s;}
         #piggy-hp-fill { float: left; border-right: 2px solid #000;}
         #mendhak-hp-fill { float: right; border-left: 2px solid #000;}
 
-        .player-name { font-family: var(--font-arcade); color: #fff; font-size: 1rem; position: absolute; top: 30px; text-shadow: 3px 3px 0px #000; }
+        /* Responsive Text for Arcade Overlay */
+        .player-name { font-family: var(--font-arcade); color: #fff; font-size: clamp(0.6rem, 3vw, 1rem); position: absolute; top: 30px; text-shadow: 3px 3px 0px #000; }
         #pn-piggy { left: 5%; }
         #pn-mendhak { right: 5%; }
         
-        #vs-screen, #ko-screen { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(5); opacity: 0; font-family: var(--font-arcade); color: #ffeb3b; font-size: 2.5rem; text-shadow: 4px 4px 0px #ff2a2a, 8px 8px 0px #000; text-align: center; pointer-events: none; z-index: 20; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); width: 100vw; }
+        #vs-screen { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(3); opacity: 0; font-family: var(--font-arcade); color: #ffeb3b; font-size: clamp(1.2rem, 5vw, 2.5rem); text-shadow: 4px 4px 0px #ff2a2a, 6px 6px 0px #000; text-align: center; pointer-events: none; z-index: 20; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); width: 100vw; }
+        #ko-screen { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(3); opacity: 0; font-family: var(--font-arcade); color: #ff2a2a; font-size: clamp(3rem, 15vw, 6rem); text-shadow: 4px 4px 0px #fff, 8px 8px 0px #000; text-align: center; pointer-events: none; z-index: 20; transition: all 0.2s; width: 100vw; }
         
     </style>
 </head>
@@ -626,7 +637,7 @@
             </div>
             
             <div id="vs-screen">PIGGY<br><br><span style="font-size:1.5rem; color:#fff; text-shadow:none;">VS</span><br><br>MENDHAK</div>
-            <div id="ko-screen" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(5); opacity: 0; font-family: var(--font-arcade); color: #ff2a2a; font-size: 4rem; text-shadow: 6px 6px 0px #fff; pointer-events: none; z-index: 20; transition: all 0.2s; width: 100vw; text-align: center;">K.O.!</div>
+            <div id="ko-screen" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(3); opacity: 0; font-family: var(--font-arcade); color: #ff2a2a; font-size: clamp(3rem, 15vw, 6rem); text-shadow: 4px 4px 0px #fff, 8px 8px 0px #000; text-align: center; pointer-events: none; z-index: 20; transition: all 0.2s; width: 100vw;">K.O.!</div>
 
             <!-- THE UNIVERSE -->
             <div id="solar-system">
@@ -897,7 +908,6 @@
 
             const musGrid = document.getElementById('museum-gallery');
             SITE_DATA.museum.forEach((item, index) => {
-                // Ensure rows hang straight by using standard spacing instead of random margins
                 musGrid.innerHTML += `
                     <div class="polaroid" id="pol-${index}" onclick="openPolaroid(${index})" style="margin-top: 60px;">
                         <div class="photo-string"></div>
@@ -941,7 +951,7 @@
             const btn = document.getElementById('btn-post-meeting');
             const stage = document.getElementById('meeting-stage');
             
-            A.style.left = '-20%'; A.style.transform = 'scaleX(-1)';
+            A.style.left = '-30%'; A.style.transform = 'scaleX(-1)';
             P.style.left = '10%';  P.style.transform = 'scaleX(-1)';
             heart.classList.remove('beat');
             
@@ -950,19 +960,19 @@
             A.classList.add('walking');
             P.classList.add('walking');
             
-            A.style.left = '20%';
-            P.style.left = '50%';
+            A.style.left = '10%';
+            P.style.left = '55%';
             await wait(1000);
             
             P.classList.remove('walking'); 
-            P.style.left = '52%'; 
+            P.style.left = '60%'; 
             P.style.transform = 'scaleX(1)'; 
             await wait(800);
             
             P.classList.add('walking');
             P.style.transform = 'scaleX(-1)'; 
             P.style.left = '80%';
-            A.style.left = '40%';
+            A.style.left = '25%';
             await wait(800);
             
             P.classList.remove('walking');
@@ -970,9 +980,9 @@
             await wait(600);
             
             P.classList.add('walking');
-            P.style.left = '55%'; 
+            P.style.left = '60%'; 
             await wait(500);
-            A.style.left = '45%'; 
+            A.style.left = '30%'; 
             
             await wait(800);
             A.classList.remove('walking');
@@ -1220,7 +1230,7 @@
                     
                     // K.O. SCREEN
                     koScreen.style.opacity = '1';
-                    koScreen.style.transform = 'translate(-50%, -50%) scale(2)';
+                    koScreen.style.transform = 'translate(-50%, -50%) scale(1)';
                     await wait(1500);
                     
                     // FLASH OUT OF ARCADE MODE
