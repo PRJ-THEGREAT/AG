@@ -15,17 +15,15 @@
            ========================================================= */
         :root {
             --bg-dark: #070708;
-            --bg-newspaper: #d5c3a1; /* Even richer, older vintage parchment tone */
+            --bg-newspaper: #d5c3a1; 
             --text-light: #eaddd7;
-            --text-dark: #2b1f14; /* Faded, aged dark brown ink */
+            --text-dark: #2b1f14; 
             --accent-red: #ff2a2a;
             --font-serif: 'Playfair Display', Georgia, serif;
             --font-sans: 'Inter', Helvetica, sans-serif;
             --font-typewriter: 'Courier Prime', monospace;
-            /* Vintage Newspaper Fonts */
             --font-masthead: var(--font-serif);
             --font-news: 'Old Standard TT', serif;
-            /* Arcade Font */
             --font-arcade: 'Press Start 2P', monospace;
             
             --trans-cinematic: 2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -64,11 +62,11 @@
         
         #opening-flash { position: absolute; top:0; left:0; width:100%; height:100%; background:#fff; opacity:0; pointer-events:none; z-index: 99; transition: opacity 0.2s;}
         
-        /* DENSE FLORAL FRAME */
+        /* OPTIMIZED DENSE FLORAL FRAME */
         #floral-frame { position: absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index: 3; overflow: hidden; }
-        .flower { position: absolute; font-size: clamp(2.5rem, 8vw, 5rem); filter: brightness(0.1) saturate(0) contrast(1.5); transform: scale(0.2) rotate(0deg); transition: filter 2.5s ease, transform 2.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 1s; opacity: 0; margin-left:-1em; margin-top:-1em; text-align:center; width:2em; height:2em; line-height:2em;}
-        #floral-frame.dark-visible .flower { opacity: 0.6; }
-        #floral-frame.bloomed .flower { filter: brightness(1) saturate(1.2) contrast(1) drop-shadow(0 5px 15px rgba(0,0,0,0.5)); transform: scale(var(--target-scale, 1)) rotate(var(--rot, 0deg)); opacity: 1;}
+        .flower { position: absolute; font-size: clamp(2rem, 8vw, 4.5rem); transform: scale(0.2) rotate(0deg); opacity: 0; transition: transform 2.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 1.5s ease; margin-left:-1em; margin-top:-1em; text-align:center; width:2em; height:2em; line-height:2em; will-change: transform, opacity;}
+        #floral-frame.dark-visible .flower { opacity: 0.15; }
+        #floral-frame.bloomed .flower { transform: scale(var(--target-scale, 1)) rotate(var(--rot, 0deg)); opacity: 1; text-shadow: 0 5px 10px rgba(0,0,0,0.6);}
 
         #lightbulb-scene { position: absolute; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 2s; z-index: 5; height: 100vh;}
         #tease-text { font-family: var(--font-typewriter); color: #888; font-size: 0.9rem; margin-bottom: 20px; text-align: center; }
@@ -78,9 +76,9 @@
         /* SEQUENCE TEXT */
         #main-title { position: absolute; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 3s ease; z-index: 4; text-align: center; height: 100vh; width: 100%;}
         
-        #title-date { font-size: clamp(2rem, 6vw, 4rem); letter-spacing: 6px; opacity: 0; transform: translateY(20px); transition: opacity 1.5s ease, transform 1.5s ease; margin-bottom: 10px; text-align: center;}
-        #title-day { font-family: var(--font-typewriter); letter-spacing: 3px; opacity: 0; transform: translateY(20px); transition: opacity 1.5s ease, transform 1.5s ease; margin-bottom: 30px; font-size: 1.2rem; text-align: center;}
-        #title-bday { font-size: clamp(1.5rem, 5vw, 2.5rem); letter-spacing: 2px; color: #ffdf73; opacity: 0; transform: translateY(20px); transition: opacity 1.5s ease, transform 1.5s ease; text-align: center;}
+        #title-date { font-size: clamp(2rem, 6vw, 4rem); letter-spacing: 6px; opacity: 0; transform: translateY(20px); transition: opacity 1.5s ease, transform 1.5s ease; margin-bottom: 10px; text-align: center; z-index: 10;}
+        #title-day { font-family: var(--font-typewriter); letter-spacing: 3px; opacity: 0; transform: translateY(20px); transition: opacity 1.5s ease, transform 1.5s ease; margin-bottom: 30px; font-size: 1.2rem; text-align: center; z-index: 10;}
+        #title-bday { font-size: clamp(1.5rem, 5vw, 2.5rem); letter-spacing: 2px; color: #ffdf73; opacity: 0; transform: translateY(20px); transition: opacity 1.5s ease, transform 1.5s ease; text-align: center; z-index: 10;}
         
         .pulse-heart { display: inline-block; animation: heartbeat 1.2s infinite alternate ease-in-out; margin-left: 10px;}
         #enter-btn { opacity: 0; transition: opacity 2s ease; margin-top: 60px; pointer-events: none;}
@@ -142,25 +140,9 @@
 
         .meeting-stage { position: relative; width: 100%; max-width: 900px; height: 50vh; overflow: hidden; border-bottom: 2px solid rgba(0,100,0,0.1); z-index: 5;}
         
-        /* DYNAMIC SCALING FOR CHARACTERS ON MOBILE */
-        .char-svg { 
-            position: absolute; 
-            bottom: 0; 
-            width: clamp(90px, 28vw, 140px); /* Keeps them small on phones, large on desktop */
-            height: 40vh; 
-            max-height: 260px;
-            transition: left 1s linear, transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); 
-            filter: drop-shadow(0 15px 10px rgba(0,0,0,0.2)); 
-            z-index: 5;
-        }
-        
-        img#char-p, img#char-a { 
-            object-fit: contain; 
-            object-position: center bottom; 
-            mix-blend-mode: multiply; 
-            filter: grayscale(100%) contrast(1.5) brightness(1.1); 
-        }
-        
+        /* Mobile Fixed Character Scale & Placement */
+        .char-svg { position: absolute; bottom: 0; width: clamp(90px, 28vw, 140px); height: 40vh; max-height: 260px; transition: left 1s linear, transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); filter: drop-shadow(0 15px 10px rgba(0,0,0,0.2)); z-index: 5;}
+        img#char-p, img#char-a { object-fit: contain; object-position: center bottom; mix-blend-mode: multiply; filter: grayscale(100%) contrast(1.5) brightness(1.1); }
         .char-svg.walking { animation: lively-bob 0.6s infinite alternate cubic-bezier(0.4, 0, 0.2, 1); }
         @keyframes lively-bob { 0% { padding-bottom: 0px; } 100% { padding-bottom: 12px; } }
 
@@ -221,11 +203,24 @@
         .redacted:hover { color: #fff; background: transparent; }
 
         /* =========================================================
-           7. MUSEUM (THE MEMORY ROOM)
+           7. MUSEUM (THE MEMORY ROOM & DOOR OVERLAY)
            ========================================================= */
         #s7-museum { background: #211c18; align-items: center; justify-content: flex-start; padding: 0; position: relative; overflow-y: auto;}
         .room-lighting { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center 40%, transparent 20%, rgba(0,0,0,0.8) 100%); pointer-events: none; z-index: 1;}
         
+        /* THE GRAND WOODEN DOOR ENTRANCE */
+        #museum-door-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 50; display: flex; overflow: hidden; }
+        .wood-door { width: 50%; height: 100%; background: #3d2314; border: 2px solid #2b170b; box-shadow: inset 0 0 80px rgba(0,0,0,0.9); transition: transform 1.8s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; align-items: center; justify-content: space-around; position: relative; }
+        .wood-door.left { transform-origin: left; border-right: 4px solid #1a0f07; }
+        .wood-door.right { transform-origin: right; border-left: 4px solid #2b170b; }
+        .wood-panel { width: 60%; height: 30%; border: 2px solid rgba(0,0,0,0.4); border-radius: 4px; box-shadow: inset 0 5px 15px rgba(0,0,0,0.6), 0 2px 2px rgba(255,255,255,0.05); }
+        #door-knob-left { position: absolute; right: 15px; top: 50%; width: 20px; height: 20px; background: #c5a059; border-radius: 50%; box-shadow: 2px 2px 5px #000; transform: translateY(-50%);}
+        #door-knob-right { position: absolute; left: 15px; top: 50%; width: 20px; height: 20px; background: #c5a059; border-radius: 50%; box-shadow: -2px 2px 5px #000; transform: translateY(-50%);}
+        #door-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #d5c3a1; font-family: var(--font-serif); font-size: 1.5rem; letter-spacing: 3px; z-index: 51; pointer-events: none; transition: opacity 0.5s; text-shadow: 0 2px 10px #000; text-align: center;}
+        
+        #museum-door-overlay.open .wood-door.left { transform: perspective(1200px) rotateY(-105deg); }
+        #museum-door-overlay.open .wood-door.right { transform: perspective(1200px) rotateY(105deg); }
+
         .hanging-display-wrapper { position: relative; width: 90%; max-width: 1000px; margin-top: 15vh; z-index: 2; padding-bottom: 50px; display: flex; flex-direction: column; align-items: center; }
         
         .museum-title { margin-bottom: 80px; text-align: center; }
@@ -247,7 +242,6 @@
         .polaroid.viewed { filter: brightness(0.7); } 
         .polaroid-img { width: 220px; height: 180px; background: #ddd; display: flex; align-items: center; justify-content: center; font-family: var(--font-typewriter); color: #888; font-size: 0.8rem; overflow: hidden; background-size: cover; background-position: center;}
         
-        /* Shelf rests at the very bottom, integrated into normal scroll flow so it doesn't cover images */
         .room-shelf { position: relative; width: 100%; min-height: 250px; background: #2d1a11; border-top: 10px solid #1a0f0a; box-shadow: 0 -20px 40px rgba(0,0,0,0.5); display: flex; align-items: flex-end; justify-content: center; z-index: 5; margin-top: auto; flex-shrink: 0; padding-bottom: 25px;}
 
         /* GRAMOPHONE COMPONENT */
@@ -481,7 +475,7 @@
             </svg>
             <div id="petal-container"></div>
             
-            <h2 class="serif" style="position: absolute; top: 12vh; color: rgba(255,255,255,0.7); font-size: 2.2rem; font-weight: bold; letter-spacing: 5px; z-index: 4; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));">16 JANUARY 2026</h2>
+            <h2 class="serif" style="position: absolute; top: 12vh; width: 100%; text-align: center; left: 0; color: #111; font-size: clamp(1.8rem, 5vw, 2.5rem); font-weight: 900; letter-spacing: 5px; z-index: 10; text-shadow: 0 2px 10px rgba(255,255,255,0.8);">16 JANUARY 2026</h2>
             
             <div class="meeting-stage" id="meeting-stage">
                 <img id="char-a" src="IMG_0083.png" class="char-svg" style="transform: scaleX(-1);">
@@ -524,6 +518,22 @@
 
         <!-- 7. MUSEUM (THE MEMORY ROOM) -->
         <section id="s7-museum" class="story-section">
+            
+            <!-- THE GRAND WOODEN DOOR OVERLAY -->
+            <div id="museum-door-overlay" onclick="openMuseumDoor()">
+                <div id="door-text">TAP TO ENTER</div>
+                <div class="wood-door left" id="door-left">
+                    <div class="wood-panel"></div>
+                    <div class="wood-panel"></div>
+                    <div id="door-knob-left"></div>
+                </div>
+                <div class="wood-door right" id="door-right">
+                    <div class="wood-panel"></div>
+                    <div class="wood-panel"></div>
+                    <div id="door-knob-right"></div>
+                </div>
+            </div>
+
             <div class="room-lighting"></div>
             
             <div class="hanging-display-wrapper">
@@ -631,13 +641,12 @@
                 
                 <div class="player-name" id="pn-mendhak">MENDHAK</div>
                 <div class="health-bar-container" id="hb-mendhak">
-                    <!-- Fixed: Float right forces the bar to shrink from left to right as health decreases -->
                     <div class="health-fill" id="mendhak-hp-fill" style="width: 100%; float: right;"></div>
                 </div>
             </div>
             
             <div id="vs-screen">PIGGY<br><br><span style="font-size:1.5rem; color:#fff; text-shadow:none;">VS</span><br><br>MENDHAK</div>
-            <div id="ko-screen" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(5); opacity: 0; font-family: var(--font-arcade); color: #ff2a2a; font-size: clamp(3rem, 15vw, 6rem); text-shadow: 4px 4px 0px #fff, 8px 8px 0px #000; text-align: center; pointer-events: none; z-index: 20; transition: all 0.2s; width: 100vw;">K.O.!</div>
+            <div id="ko-screen" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(3); opacity: 0; font-family: var(--font-arcade); color: #ff2a2a; font-size: clamp(3rem, 15vw, 6rem); text-shadow: 4px 4px 0px #fff, 8px 8px 0px #000; text-align: center; pointer-events: none; z-index: 20; transition: all 0.2s; width: 100vw;">K.O.!</div>
 
             <!-- THE UNIVERSE -->
             <div id="solar-system">
@@ -685,7 +694,7 @@
     </div>
 
     <!-- AUDIO ELEMENTS -->
-    <audio id="our-song" src="our_song.mp3" preload="auto"></audio>
+    <audio id="our-song" src="Song.mp3" preload="auto"></audio>
     <audio id="magic-sound" src="assets/audio/magic.mp3" preload="auto"></audio>
 
     <script>
@@ -710,7 +719,7 @@
 
             letters: [
                 { label: "FROM: MOM & DAD", text: "To me, Aaradhya is the brightest light in our family. Seeing you grow into such a beautiful soul makes us prouder every day. Happy Birthday! [ADD FULL TEXT]" },
-                { label: "FROM: [FRIEND'S NAME]", text: "To me, Aaradhya is the kind of friend who brings joy everywhere she goes. Thanks for all the amazing memories. Happy Birthday! [ADD FULL TEXT]" },
+                { label: "FROM: Shristi", text: "For me Aaradhya is, my happy place🪷✨️. The person I call whenever something funny, stupid, exciting, or heartbreaking happens😸. She isn't just my best friend; she's the sister i always wanted . and bakwass jitni bhi karti ho I love her so much!!❤️" },
                 { label: "FROM: [FRIEND'S NAME]", text: "To me, Aaradhya is the most annoying but amazing person to be around. You always make life fun. Have the best birthday! [ADD FULL TEXT]" },
                 { label: "FROM: ME", text: "To me, Aaradhya is everything. You are my sunshine, my missing star, and the absolute best part of my day. Happy Birthday, Jaanu. [ADD FULL TEXT]" }
             ],
@@ -733,9 +742,9 @@
             museum: [
                 { img: "<img src='IMG_0092.jpeg' style='width: 100%; height: 100%; object-fit: cover;'>", caption: "Our first date" },
                 { img: "<img src='IMG_0091.jpeg' style='width: 100%; height: 100%; object-fit: cover;'>", caption: "piggu and mendhak <3" },
-                { img: "<img src='IMG_0090.jpeg' style='width: 100%; height: 100%; object-fit: cover;'>", caption: "shadishuda , haha" },
-                { img: "<img src='IMG_0093.jpeg' style='width: 100%; height: 100%; object-fit: cover;'>", caption: "first trip together" },
-                { img: "<img src='IMG_0010.jpeg' style='width: 100%; height: 100%; object-fit: cover;'>", caption: "Us." } 
+                { img: "<img src='IMG_0090.jpg' style='width: 100%; height: 100%; object-fit: cover;'>", caption: "shadishuda , haha" },
+                { img: "<img src='IMG_20260720_001053.jpg' style='width: 100%; height: 100%; object-fit: cover;'>", caption: "first trip together" },
+                { img: "<img src='IMG_0010.jpg' style='width: 100%; height: 100%; object-fit: cover;'>", caption: "Us." } 
             ]
         };
 
@@ -756,7 +765,7 @@
         function buildFloralFrame() {
             const frame = document.getElementById('floral-frame');
             const emojis = ['🌹', '🌻', '🌷', '🌼', '🪷', '🏵️', '🌺', '🌸'];
-            const numFlowers = 70; 
+            const numFlowers = 40; /* Reduced count to prevent lag */
             
             for(let i=0; i<numFlowers; i++) {
                 let f = document.createElement('div');
@@ -764,8 +773,8 @@
                 f.innerText = emojis[Math.floor(Math.random() * emojis.length)];
                 
                 let edge = i % 4; 
-                let depth = Math.random() * 12 - 4; 
-                let spread = Math.random() * 110 - 5; 
+                let depth = Math.random() * 8 - 2; /* Strictly kept to the outer 8% to avoid covering text */
+                let spread = Math.random() * 100; 
                 
                 if (edge === 0) { f.style.top = depth + '%'; f.style.left = spread + '%'; }
                 else if (edge === 1) { f.style.bottom = depth + '%'; f.style.left = spread + '%'; }
@@ -907,7 +916,6 @@
 
             const musGrid = document.getElementById('museum-gallery');
             SITE_DATA.museum.forEach((item, index) => {
-                // Ensure rows hang straight by using standard spacing instead of random margins
                 musGrid.innerHTML += `
                     <div class="polaroid" id="pol-${index}" onclick="openPolaroid(${index})" style="margin-top: 60px;">
                         <div class="photo-string"></div>
@@ -1045,6 +1053,20 @@
             await wait(1000);
             btn.style.opacity = '1';
             btn.style.pointerEvents = 'all';
+        }
+
+        async function openMuseumDoor() {
+            const overlay = document.getElementById('museum-door-overlay');
+            const leftDoor = document.getElementById('door-left');
+            const rightDoor = document.getElementById('door-right');
+            const dText = document.getElementById('door-text');
+            
+            dText.style.opacity = '0';
+            overlay.classList.add('open');
+            
+            await wait(1800);
+            overlay.style.pointerEvents = 'none';
+            overlay.style.display = 'none'; // fully remove it from view
         }
 
         let viewedPolaroids = new Set();
@@ -1292,20 +1314,15 @@
             ];
             
             function spawnMascot() {
-                // Schedule the next one randomly between 5 and 15 seconds
                 const nextSpawnDelay = Math.random() * 10000 + 5000;
                 setTimeout(spawnMascot, nextSpawnDelay);
 
                 const active = document.querySelector('.story-section.active');
                 if(!active || active.id === 's1-opening' || active.id === 's8-goodbye') return;
                 
-                // Find which mascots are currently ON screen
                 const activeMascots = Array.from(document.querySelectorAll('.mascot-egg')).map(el => el.dataset.name);
-                
-                // Filter out mascots that are already walking so there are NO duplicates
                 const availableMascots = mascots.filter(m => !activeMascots.includes(m.name));
                 
-                // If all 4 happen to be on screen (rare, but possible), just skip this cycle
                 if (availableMascots.length === 0) return; 
                 
                 const mascot = availableMascots[Math.floor(Math.random() * availableMascots.length)];
@@ -1339,7 +1356,7 @@
                 egg.appendChild(innerEl);
                 
                 const type = Math.random();
-                const duration = Math.random() * 4000 + 4000; // 4 to 8 seconds to walk across
+                const duration = Math.random() * 4000 + 4000; 
                 egg.style.transition = `transform ${duration}ms linear`;
                 
                 if(type < 0.3) {
@@ -1371,7 +1388,6 @@
                 setTimeout(() => { if(egg.parentNode) egg.remove(); }, duration + 100);
             }
             
-            // Kick off the first spawn after a random short delay
             setTimeout(spawnMascot, Math.random() * 5000 + 3000);
         }
     </script>
