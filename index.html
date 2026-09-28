@@ -323,6 +323,23 @@
         .climax-text { font-family: var(--font-serif); font-size: clamp(1.5rem, 5vw, 3rem); color: #ffdf73; opacity: 0; transition: opacity 2s ease; z-index: 5; position: absolute; font-weight: bold; text-shadow: 0 2px 15px rgba(255,223,115,0.5); text-align: center; width: 100%; pointer-events: none; left: 0;}
         #goodbye-glow { position: absolute; top:50%; left:50%; transform: translate(-50%, -50%); width: 300px; height: 300px; background: radial-gradient(circle, rgba(255,223,115,0.15) 0%, transparent 60%); opacity: 0; transition: 4s; pointer-events: none; z-index: 3;}
         
+        /* FLORAL TEXT EFFECT FOR FINAL GOODBYE */
+        .floral-text {
+            background-color: #ffdf73;
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='20' font-size='22'%3E🌹🌻🌷🌼%3C/text%3E%3Ctext x='-10' y='45' font-size='22'%3E🌺🌸🏵️🪷%3C/text%3E%3Ctext y='70' font-size='22'%3E🌷🌼🌹🌻%3C/text%3E%3Ctext x='-10' y='95' font-size='22'%3E🏵️🪷🌺🌸%3C/text%3E%3C/svg%3E");
+            background-size: 60px 60px;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+            font-weight: 900;
+            animation: flowery-pan 15s linear infinite;
+        }
+        @keyframes flowery-pan {
+            0% { background-position: 0 0; }
+            100% { background-position: 60px 60px; }
+        }
+
         /* NEW ARCADE CSS */
         .arcade-mode-active { filter: contrast(150%) saturate(150%); } 
         #arcade-scanlines { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.2)); background-size: 100% 4px; pointer-events: none; z-index: 14; opacity: 0; transition: opacity 0.3s;}
@@ -678,8 +695,9 @@
             <div id="goodbye-text-3" class="climax-text" style="top:40%; color:#ffc8d2; font-size:clamp(1.5rem, 4vw, 2.5rem);">PIGGY LOVES MENDHAK MORE !</div>
             
             <div style="position:absolute; bottom:20%; display:flex; flex-direction:column; align-items:center; z-index:5;">
-                <div id="goodbye-text-2" class="climax-text" style="position:relative; top:0;">Byeeee, My Sunshine.</div>
-                <div id="goodbye-text-sub" style="font-family:var(--font-typewriter); color:#aaa; font-size:0.9rem; opacity:0; transition:opacity 2s ease; margin-top:10px;">(I STILL LOVE YOU MORE ;)</div>
+                <!-- REPLACED: NEW FLORAL TEXT -->
+                <div id="goodbye-text-2" class="climax-text floral-text" style="position:relative; top:0; font-size: clamp(2.5rem, 8vw, 5rem); line-height: 1.1;">HAPPY BIRTHDAY<br>LOVE</div>
+                <div id="goodbye-text-sub" style="font-family:var(--font-typewriter); color:#aaa; font-size:0.9rem; opacity:0; transition:opacity 2s ease; margin-top:20px;">(I STILL LOVE YOU MORE ;)</div>
             </div>
             
             <div id="goodbye-glow"></div>
@@ -1127,6 +1145,42 @@
             };
         }
 
+        function startGoodbyeFlowers() {
+            const container = document.getElementById('s8-goodbye');
+            const emojis = ['🌹', '🌻', '🌷', '🌼', '🪷', '🏵️', '🌺', '🌸'];
+            for(let i=0; i<35; i++) {
+                let f = document.createElement('div');
+                f.style.position = 'absolute';
+                f.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+                f.style.fontSize = (Math.random() * 1.5 + 1) + 'rem';
+                f.style.left = '50%';
+                f.style.bottom = '25%';
+                f.style.zIndex = '4';
+                f.style.pointerEvents = 'none';
+                f.style.opacity = '0';
+                container.appendChild(f);
+                
+                let angle = Math.random() * Math.PI * 2;
+                let distance = Math.random() * 250 + 50;
+                let tx = Math.cos(angle) * distance;
+                let ty = Math.sin(angle) * distance - 50;
+                let rot = Math.random() * 360;
+                
+                f.style.transition = `all ${Math.random()*1.5 + 1.5}s cubic-bezier(0.175, 0.885, 0.32, 1.275)`;
+                
+                setTimeout(() => {
+                    f.style.opacity = '0.9';
+                    f.style.transform = `translate(calc(-50% + ${tx}px), calc(50% + ${ty}px)) rotate(${rot}deg)`;
+                }, 50);
+                
+                setTimeout(() => {
+                    f.style.transition = 'all 8s linear';
+                    f.style.transform = `translate(calc(-50% + ${tx}px), calc(50% + ${ty + 150}px)) rotate(${rot + 180}deg)`;
+                    f.style.opacity = '0';
+                }, 2000);
+            }
+        }
+
         /* =========================================================
            MINI-GAME AND FINAL GOODBYE SEQUENCE
            ========================================================= */
@@ -1304,6 +1358,9 @@
                     text2.style.opacity = '1';
                     textSub.style.opacity = '1';
                     glow.style.opacity = '1';
+                    
+                    // Trigger the Flower Explosion
+                    startGoodbyeFlowers();
                 }
             }
         }
