@@ -100,6 +100,7 @@
         .newspaper-wrapper { width: 100%; max-width: 1200px; display: flex; flex-direction: column; align-items: center; }
         
         .newspaper-masthead { width: 100%; text-align: center; border-bottom: 5px double var(--text-dark); border-top: 2px solid var(--text-dark); margin-bottom: 40px; padding: 25px 0; }
+        /* Changed from unreadable font to highly readable bold serif */
         .newspaper-masthead h1 { font-family: var(--font-masthead); font-weight: 900; font-size: clamp(3rem, 10vw, 6rem); text-transform: uppercase; letter-spacing: 2px; margin: 0; line-height: 1; text-shadow: 1px 1px 0px rgba(0,0,0,0.1); }
         .newspaper-sub { font-family: var(--font-typewriter); font-size: 0.85rem; text-transform: uppercase; border-top: 1px solid var(--text-dark); border-bottom: 1px solid var(--text-dark); padding: 8px 10px; margin-top: 20px; display: flex; justify-content: space-between; font-weight: bold;}
         
@@ -142,17 +143,7 @@
 
         .meeting-stage { position: relative; width: 100%; max-width: 900px; height: 50vh; overflow: hidden; border-bottom: 2px solid rgba(0,100,0,0.1); z-index: 5;}
         
-        /* DYNAMIC SCALING FOR CHARACTERS ON MOBILE */
-        .char-svg { 
-            position: absolute; 
-            bottom: 0; 
-            width: clamp(90px, 28vw, 140px); /* Keeps them small on phones, large on desktop */
-            height: 40vh; 
-            max-height: 260px;
-            transition: left 1s linear, transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); 
-            filter: drop-shadow(0 15px 10px rgba(0,0,0,0.2)); 
-            z-index: 5;
-        }
+        .char-svg { position: absolute; bottom: 0; width: 140px; height: 260px; transition: left 1s linear, transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); filter: drop-shadow(0 15px 10px rgba(0,0,0,0.2)); z-index: 5;}
         
         img#char-p, img#char-a { 
             object-fit: contain; 
@@ -167,7 +158,7 @@
         #char-a { left: -20%; } 
         #char-p { left: 10%; }  
         
-        #meeting-heart { position: absolute; width: clamp(40px, 10vw, 60px); height: clamp(40px, 10vw, 60px); top: 45%; transform: translate(-50%, -50%) scale(0); opacity: 0; z-index: 6; transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.8s; filter: drop-shadow(0 0 15px rgba(255, 42, 42, 0.8)); }
+        #meeting-heart { position: absolute; width: 60px; height: 60px; top: 45%; transform: translate(-50%, -50%) scale(0); opacity: 0; z-index: 6; transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.8s; filter: drop-shadow(0 0 15px rgba(255, 42, 42, 0.8)); }
         #meeting-heart.beat { transform: translate(-50%, -50%) scale(1); opacity: 1; animation: heartbeat 1.2s infinite alternate ease-in-out; }
         @keyframes heartbeat { 0% { transform: translate(-50%, -50%) scale(1); } 100% { transform: translate(-50%, -50%) scale(1.15); } }
         #meeting-glow { position: absolute; top:45%; left:50%; transform: translate(-50%, -50%); width: 400px; height: 400px; background: radial-gradient(circle, rgba(255, 255, 255, 0.6) 0%, transparent 50%); opacity: 0; transition: opacity 2s; pointer-events: none; z-index: 4; }
@@ -337,7 +328,7 @@
         .health-bar-container { position: absolute; top: 60px; width: 35%; height: 30px; border: 4px solid #fff; background: #222; box-shadow: 4px 4px 0 #000; }
         #hb-piggy { left: 5%; }
         #hb-mendhak { right: 5%; }
-        
+        /* Floats added to ensure health drains towards the center of the screen */
         .health-fill { height: 100%; width: 100%; background: #39ff14; transition: width 0.1s ease-out, background-color 0.2s;}
         #piggy-hp-fill { float: left; border-right: 2px solid #000;}
         #mendhak-hp-fill { float: right; border-left: 2px solid #000;}
@@ -498,7 +489,7 @@
 
         <!-- 4. LETTERS -->
         <section id="s4-letters" class="story-section">
-            <h2 class="serif" style="font-size: 3rem; text-align: center; margin-top: 10vh;">Letters for You</h2>
+            <h2 class="serif" style="font-size: 3rem; text-align: center; margin-top: 10vh;">From Your Favorite People</h2>
             <div class="letters-grid" id="letters-grid"></div>
             <button class="btn-cinematic" style="margin-top: 80px;" onclick="triggerPoem()">One Last Thing...</button>
         </section>
@@ -631,7 +622,6 @@
                 
                 <div class="player-name" id="pn-mendhak">MENDHAK</div>
                 <div class="health-bar-container" id="hb-mendhak">
-                    <!-- Fixed: Float right forces the bar to shrink from left to right as health decreases -->
                     <div class="health-fill" id="mendhak-hp-fill" style="width: 100%; float: right;"></div>
                 </div>
             </div>
@@ -685,8 +675,7 @@
     </div>
 
     <!-- AUDIO ELEMENTS -->
-    <!-- AUDIO EXTENSION FIXED -->
-    <audio id="our-song" src="our_song.mp3" preload="auto"></audio>
+    <audio id="our-song" src="our_song.mp4" preload="auto"></audio>
     <audio id="magic-sound" src="assets/audio/magic.mp3" preload="auto"></audio>
 
     <script>
@@ -710,10 +699,10 @@
             ],
 
             letters: [
-                { label: "OPEN WHEN YOU'RE HAPPY", text: "I love seeing you smile. Keep this energy forever. [ADD FULL TEXT]" },
-                { label: "OPEN WHEN YOU MISS ME", text: "I'm right here. Call me immediately. [ADD FULL TEXT]" },
-                { label: "THINGS NEVER TO FORGET", text: "You are the most important part of my day. [ADD FULL TEXT]" },
-                { label: "BIRTHDAY LETTER", text: "Happy Birthday, Aaradhya. My universe is better with you in it. [ADD FULL TEXT]" }
+                { label: "FROM: MOM & DAD", text: "To me, Aaradhya is the brightest light in our family. Seeing you grow into such a beautiful soul makes us prouder every day. Happy Birthday! [ADD FULL TEXT]" },
+                { label: "FROM: [FRIEND'S NAME]", text: "To me, Aaradhya is the kind of friend who brings joy everywhere she goes. Thanks for all the amazing memories. Happy Birthday! [ADD FULL TEXT]" },
+                { label: "FROM: [FRIEND'S NAME]", text: "To me, Aaradhya is the most annoying but amazing person to be around. You always make life fun. Have the best birthday! [ADD FULL TEXT]" },
+                { label: "FROM: ME", text: "To me, Aaradhya is everything. You are my sunshine, my missing star, and the absolute best part of my day. Happy Birthday, Jaanu. [ADD FULL TEXT]" }
             ],
             
             poem: [
@@ -908,6 +897,7 @@
 
             const musGrid = document.getElementById('museum-gallery');
             SITE_DATA.museum.forEach((item, index) => {
+                // Ensure rows hang straight by using standard spacing instead of random margins
                 musGrid.innerHTML += `
                     <div class="polaroid" id="pol-${index}" onclick="openPolaroid(${index})" style="margin-top: 60px;">
                         <div class="photo-string"></div>
