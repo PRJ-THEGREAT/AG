@@ -457,7 +457,9 @@
                 
                 <div class="ncc-ending" onclick="triggerFirstMeeting()">
                     <h2 class="serif" style="font-size: 2.2rem; margin-bottom: 20px; font-weight:bold;">The Missing Star</h2>
-                    <div class="news-media" style="border-radius: 50%; width: 200px; height: 200px; margin: 0 auto 20px auto; background: var(--text-dark); color: var(--bg-newspaper);">[NCC PHOTO]</div>
+                    <div class="news-media" style="border-radius: 50%; width: 200px; height: 200px; margin: 0 auto 20px auto; background: var(--text-dark); padding: 0; overflow: hidden;">
+                        <img src="IMG_0121.jpeg" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; border: none;">
+                    </div>
                     <p style="font-family: var(--font-typewriter); font-size: 0.9rem;">click to meet your missing star</p>
                 </div>
             </div>
@@ -641,6 +643,7 @@
                 
                 <div class="player-name" id="pn-mendhak">MENDHAK</div>
                 <div class="health-bar-container" id="hb-mendhak">
+                    <!-- Fixed: Float right forces the bar to shrink from left to right as health decreases -->
                     <div class="health-fill" id="mendhak-hp-fill" style="width: 100%; float: right;"></div>
                 </div>
             </div>
@@ -765,7 +768,7 @@
         function buildFloralFrame() {
             const frame = document.getElementById('floral-frame');
             const emojis = ['🌹', '🌻', '🌷', '🌼', '🪷', '🏵️', '🌺', '🌸'];
-            const numFlowers = 40; /* Reduced count to prevent lag */
+            const numFlowers = 150; /* Super dense to remove gaps */
             
             for(let i=0; i<numFlowers; i++) {
                 let f = document.createElement('div');
@@ -773,15 +776,15 @@
                 f.innerText = emojis[Math.floor(Math.random() * emojis.length)];
                 
                 let edge = i % 4; 
-                let depth = Math.random() * 8 - 2; /* Strictly kept to the outer 8% to avoid covering text */
-                let spread = Math.random() * 100; 
+                let depth = Math.random() * 10 - 4; /* Outer 10% to fill thick borders */
+                let spread = Math.random() * 105 - 2.5; /* Spread across full edge */
                 
                 if (edge === 0) { f.style.top = depth + '%'; f.style.left = spread + '%'; }
                 else if (edge === 1) { f.style.bottom = depth + '%'; f.style.left = spread + '%'; }
                 else if (edge === 2) { f.style.left = depth + '%'; f.style.top = spread + '%'; }
                 else { f.style.right = depth + '%'; f.style.top = spread + '%'; }
                 
-                let size = Math.random() * 0.7 + 0.5; 
+                let size = Math.random() * 0.8 + 0.7; /* Made them slightly bigger */
                 let rot = Math.random() * 360 - 180;
                 
                 f.style.setProperty('--target-scale', size);
@@ -916,6 +919,7 @@
 
             const musGrid = document.getElementById('museum-gallery');
             SITE_DATA.museum.forEach((item, index) => {
+                // Ensure rows hang straight by using standard spacing instead of random margins
                 musGrid.innerHTML += `
                     <div class="polaroid" id="pol-${index}" onclick="openPolaroid(${index})" style="margin-top: 60px;">
                         <div class="photo-string"></div>
@@ -1314,15 +1318,20 @@
             ];
             
             function spawnMascot() {
+                // Schedule the next one randomly between 5 and 15 seconds
                 const nextSpawnDelay = Math.random() * 10000 + 5000;
                 setTimeout(spawnMascot, nextSpawnDelay);
 
                 const active = document.querySelector('.story-section.active');
                 if(!active || active.id === 's1-opening' || active.id === 's8-goodbye') return;
                 
+                // Find which mascots are currently ON screen
                 const activeMascots = Array.from(document.querySelectorAll('.mascot-egg')).map(el => el.dataset.name);
+                
+                // Filter out mascots that are already walking so there are NO duplicates
                 const availableMascots = mascots.filter(m => !activeMascots.includes(m.name));
                 
+                // If all 4 happen to be on screen (rare, but possible), just skip this cycle
                 if (availableMascots.length === 0) return; 
                 
                 const mascot = availableMascots[Math.floor(Math.random() * availableMascots.length)];
@@ -1356,7 +1365,7 @@
                 egg.appendChild(innerEl);
                 
                 const type = Math.random();
-                const duration = Math.random() * 4000 + 4000; 
+                const duration = Math.random() * 4000 + 4000; // 4 to 8 seconds to walk across
                 egg.style.transition = `transform ${duration}ms linear`;
                 
                 if(type < 0.3) {
@@ -1388,6 +1397,7 @@
                 setTimeout(() => { if(egg.parentNode) egg.remove(); }, duration + 100);
             }
             
+            // Kick off the first spawn after a random short delay
             setTimeout(spawnMascot, Math.random() * 5000 + 3000);
         }
     </script>
