@@ -166,13 +166,12 @@
         .envelope-wrapper { position: relative; height: 200px; cursor: pointer; perspective: 1000px; }
         .envelope { 
             position: absolute; width: 100%; height: 100%; 
-            background: var(--paper-texture), #cda984; /* Aged vintage parchment color */
+            background: var(--paper-texture), #cda984; 
             border-radius: 2px; 
             box-shadow: inset 0 0 30px rgba(90, 50, 10, 0.5), 0 10px 30px rgba(0,0,0,0.5); 
             transition: 0.6s ease; transform-style: preserve-3d; display: flex; align-items: center; justify-content: center; text-align: center; padding: 20px;
         }
         
-        /* Name placed at the bottom half to avoid flap */
         .envelope-front { 
             font-family: var(--font-typewriter); 
             font-weight: bold; 
@@ -189,16 +188,15 @@
         
         .envelope-flap { 
             position: absolute; top: 0; left: 0; width: 100%; height: 55%; 
-            background: var(--paper-texture), #bd956d; /* Slightly darker flap for 3D contrast */
+            background: var(--paper-texture), #bd956d; 
             clip-path: polygon(0 0, 100% 0, 50% 100%); 
             transform-origin: top; transition: transform 0.6s ease; z-index: 3; 
             box-shadow: inset 0 -5px 20px rgba(90, 50, 10, 0.4);
         }
         
-        /* Red Wax Seal */
         .wax-seal {
             position: absolute;
-            top: 55%; /* Matches flap tip */
+            top: 55%; 
             left: 50%;
             transform: translate(-50%, -50%);
             width: 45px;
@@ -227,7 +225,7 @@
         }
         
         .envelope-wrapper.open .envelope-flap { transform: rotateX(180deg); z-index: 1; }
-        .envelope-wrapper.open .wax-seal { opacity: 0; transform: translate(-50%, -100px) scale(0); } /* Seal breaks/vanishes */
+        .envelope-wrapper.open .wax-seal { opacity: 0; transform: translate(-50%, -100px) scale(0); }
         .envelope-wrapper.open .letter-paper { transform: translateY(-120px) scale(1.05); opacity: 1; z-index: 6; height: 250px;}
         .envelope-wrapper.open .envelope { transform: translateY(50px); background: var(--paper-texture), #bd956d; }
 
@@ -375,7 +373,6 @@
         @keyframes orbit { 0% { transform: translateX(0) translateY(0); } 50% { transform: translateX(-30px) translateY(15px); } 100% { transform: translateX(0) translateY(0); } }
         @keyframes orbit-rev { 0% { transform: translateX(0) translateY(0); } 50% { transform: translateX(20px) translateY(-20px); } 100% { transform: translateX(0) translateY(0); } }
         @keyframes hint-pulse { 0% { transform: scale(1); } 100% { transform: scale(1.1); } }
-        @keyframes spacewalk { 0%, 100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-15px) rotate(3deg); } }
 
         .climax-text { font-family: var(--font-serif); font-size: clamp(1.5rem, 5vw, 3rem); color: #ffdf73; opacity: 0; transition: opacity 2s ease; z-index: 5; position: absolute; font-weight: bold; text-shadow: 0 2px 15px rgba(255,223,115,0.5); text-align: center; width: 100%; pointer-events: none; left: 0;}
         #goodbye-glow { position: absolute; top:50%; left:50%; transform: translate(-50%, -50%); width: 300px; height: 300px; background: radial-gradient(circle, rgba(255,223,115,0.15) 0%, transparent 60%); opacity: 0; transition: 4s; pointer-events: none; z-index: 3;}
@@ -395,6 +392,27 @@
         @keyframes flowery-pan {
             0% { background-position: 0 0; }
             100% { background-position: 60px 60px; }
+        }
+
+        /* TEAM ROCKET TWINKLE EFFECT */
+        .twinkle-star {
+            width: 0; height: 0;
+            box-shadow: 0 0 20px 10px #fff, 0 0 40px 20px #ffdf73;
+            border-radius: 50%;
+            position: relative;
+        }
+        .twinkle-star::before, .twinkle-star::after {
+            content: ''; position: absolute; background: #fff;
+            top: 50%; left: 50%; transform: translate(-50%, -50%);
+            border-radius: 50%;
+        }
+        .twinkle-star::before { width: 80px; height: 4px; }
+        .twinkle-star::after { width: 4px; height: 80px; }
+        
+        @keyframes twinkle-burst {
+            0% { transform: scale(0) rotate(0deg); opacity: 1; filter: brightness(2); }
+            50% { transform: scale(1.5) rotate(45deg); opacity: 1; filter: brightness(3); }
+            100% { transform: scale(0) rotate(90deg); opacity: 0; filter: brightness(1); }
         }
 
         /* NEW ARCADE CSS */
@@ -446,34 +464,6 @@
                 <line x1="41" y1="56" x2="49" y2="56" stroke="#68b94f" stroke-width="3" stroke-linecap="round" class="mendhak-eye" id="m-pupil-l" />
                 <line x1="64" y1="56" x2="72" y2="56" stroke="#68b94f" stroke-width="3" stroke-linecap="round" class="mendhak-eye" id="m-pupil-r" />
                 <path d="M 48 76 L 73 72" fill="none" stroke="#68b94f" stroke-width="3" stroke-linecap="round" id="m-jaw" class="mendhak-jaw" />
-            </g>
-            
-            <g id="svg-mendhak-flower">
-                <use href="#svg-mendhak" />
-                <g class="sunflower-arm">
-                    <path d="M 75 80 Q 110 50 120 20" fill="none" stroke="#5d8a3f" stroke-width="6" stroke-linecap="round"/>
-                    <path d="M 115 20 Q 100 10 95 25 Q 110 30 115 20" fill="#2ed573"/>
-                    <path d="M 120 25 Q 130 40 140 30 Q 135 15 120 25" fill="#2ed573"/>
-                    <path d="M 115 20 L 95 5 L 105 0 L 115 20" fill="#fff" stroke="#ddd"/>
-                    <path d="M 120 20 L 140 -5 L 145 5 L 120 20" fill="#fff" stroke="#ddd"/>
-                    <path d="M 110 20 Q 100 -5 105 -15 Q 110 -5 110 20" fill="#ff4757" stroke="#ff6b81"/>
-                    <path d="M 120 20 Q 135 -5 130 -15 Q 125 -5 120 20" fill="#ff6b81" stroke="#ff4757"/>
-                    <circle cx="115" cy="5" r="10" fill="#e84118"/>
-                    <path d="M 110 5 Q 115 0 120 5 Q 115 10 110 5 Z" fill="none" stroke="#c23616" stroke-width="2"/>
-                    <circle cx="100" cy="15" r="12" fill="#ffdf73" />
-                    <circle cx="100" cy="15" r="6" fill="#5c4033" />
-                    <circle cx="130" cy="15" r="10" fill="#ffdf73" />
-                    <circle cx="130" cy="15" r="5" fill="#5c4033" />
-                    <circle cx="95" cy="30" r="5" fill="#fff" />
-                    <circle cx="95" cy="30" r="2" fill="#f1c40f" />
-                    <circle cx="135" cy="25" r="5" fill="#fff" />
-                    <circle cx="135" cy="25" r="2" fill="#f1c40f" />
-                    <circle cx="110" cy="-5" r="3" fill="#fff" />
-                    <circle cx="115" cy="-8" r="3" fill="#fff" />
-                    <circle cx="120" cy="-3" r="3" fill="#fff" />
-                    <circle cx="125" cy="30" r="3" fill="#fff" />
-                    <circle cx="120" cy="33" r="3" fill="#fff" />
-                </g>
             </g>
 
             <g id="svg-bulb">
@@ -745,14 +735,20 @@
                 <div style="position:relative;">
                     <div id="tap-hint" style="position:absolute; top:-80px; right:30px; font-family:var(--font-typewriter); color:#ffdf73; font-weight:bold; opacity:0; transition:0.3s; white-space:nowrap; animation: hint-pulse 1s infinite alternate; pointer-events:none;">(Tap Mendhak!)</div>
                     <div id="goodbye-mendhak-bubble" style="position:absolute; top:-40px; right:-20px; font-family:var(--font-typewriter); color:#68b94f; font-weight:bold; opacity:0; transition:0.3s; white-space:nowrap; background:rgba(0,0,0,0.8); padding:5px 10px; border-radius:10px; border:1px solid #68b94f;">NO , I DO!</div>
-                    <svg id="goodbye-mendhak" viewBox="0 0 150 100" style="width:170px; opacity:0; transform:translateY(20px); position:relative; z-index:5;"><use href="#svg-mendhak-flower"/></svg>
+                    
+                    <!-- SVG Mendhak (Flies away) -->
+                    <svg id="goodbye-mendhak" viewBox="0 0 100 100" style="width:140px; opacity:0; transform:translateY(20px); position:relative; z-index:5;"><use href="#svg-mendhak"/></svg>
+                    <!-- Twinkle Burst Div -->
+                    <div id="vanish-twinkle" style="position:absolute; bottom:0; left:50%; opacity:0; pointer-events:none;">
+                        <div class="twinkle-star"></div>
+                    </div>
                 </div>
             </div>
             
-            <div id="goodbye-text-3" class="climax-text" style="top:40%; color:#ffc8d2; font-size:clamp(1.5rem, 4vw, 2.5rem);">PIGGY LOVES MENDHAK MORE !</div>
-            
+            <!-- FINAL IMAGE (Appears at end instead of returning Mendhak) -->
+            <img id="final-image" src="IMG_0125.png" style="position:absolute; width:180px; bottom: 32%; opacity:0; transform: translateY(20px); transition: opacity 2s ease, transform 2s ease; z-index: 6; pointer-events: none; object-fit: contain; max-height: 30vh;">
+
             <div style="position:absolute; bottom:20%; display:flex; flex-direction:column; align-items:center; z-index:5;">
-                <!-- REPLACED: NEW FLORAL TEXT -->
                 <div id="goodbye-text-2" class="climax-text floral-text" style="position:relative; top:0; font-size: clamp(2.5rem, 8vw, 5rem); line-height: 1.1;">HAPPY BIRTHDAY<br>LOVE</div>
                 <div id="goodbye-text-sub" style="font-family:var(--font-typewriter); color:#aaa; font-size:0.9rem; opacity:0; transition:opacity 2s ease; margin-top:20px;">(I STILL LOVE YOU MORE ;)</div>
             </div>
@@ -772,7 +768,7 @@
     </div>
 
     <!-- AUDIO ELEMENTS -->
-    <audio id="our-song" src="our_song.mp3" preload="auto"></audio>
+    <audio id="our-song" src="Song.mp3" preload="auto"></audio>
     <audio id="magic-sound" src="assets/audio/magic.mp3" preload="auto"></audio>
 
     <script>
@@ -1401,6 +1397,13 @@
                     mendhak.style.transform = `translate(30vw, -50vh) rotate(${currentRotation + 1440}deg) scale(0)`;
                     mendhak.style.opacity = '0';
                     
+                    await wait(2000); // Wait for flight to finish
+                    
+                    // Trigger twinkle
+                    const twinkle = document.getElementById('vanish-twinkle');
+                    twinkle.style.transform = `translate(30vw, -50vh)`; // Match Mendhak's final position
+                    twinkle.querySelector('.twinkle-star').style.animation = 'twinkle-burst 0.8s ease-out forwards';
+                    
                     piggy.style.transition = 'transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
                     piggy.style.transform = 'scale(1.2)';
                     
@@ -1417,11 +1420,11 @@
                     
                     await wait(2000);
                     
-                    // Mendhak gracefully returns
-                    mendhak.style.transition = 'opacity 2s ease, transform 2s ease';
-                    mendhak.style.transform = 'translateY(0) scale(1) rotate(0deg)';
-                    mendhak.style.opacity = '1';
-                    mendhak.style.animation = 'spacewalk 6s infinite ease-in-out';
+                    // finalImg appears instead of Mendhak returning
+                    const finalImg = document.getElementById('final-image');
+                    finalImg.style.opacity = '1';
+                    finalImg.style.transform = 'translateY(0)';
+                    finalImg.style.animation = 'float-slow 6s infinite ease-in-out';
                     
                     text2.style.opacity = '1';
                     textSub.style.opacity = '1';
@@ -1439,7 +1442,8 @@
                 { type: 'svg', src: '#svg-piggy', name: 'piggy' },
                 { type: 'svg', src: '#svg-mendhak', name: 'mendhak' },
                 { type: 'img', src: 'IMG_0097.png', name: 'img97' },
-                { type: 'img', src: 'IMG_0096.png', name: 'img96' }
+                { type: 'img', src: 'IMG_0096.png', name: 'img96' },
+                { type: 'img', src: 'IMG_0101.png', name: 'img101' }
             ];
             
             function spawnMascot() {
@@ -1456,7 +1460,7 @@
                 // Filter out mascots that are already walking so there are NO duplicates
                 const availableMascots = mascots.filter(m => !activeMascots.includes(m.name));
                 
-                // If all 4 happen to be on screen (rare, but possible), just skip this cycle
+                // If all happen to be on screen, just skip this cycle
                 if (availableMascots.length === 0) return; 
                 
                 const mascot = availableMascots[Math.floor(Math.random() * availableMascots.length)];
