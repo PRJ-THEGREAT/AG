@@ -357,7 +357,7 @@
 
         /* Books Standing Upright */
         .book-row {
-            bottom: 25px;
+            bottom: 50px; /* Pushed further back */
             left: 5%;
             display: flex;
             align-items: flex-end;
@@ -387,7 +387,7 @@
 
         /* Headphones resting on books */
         .desk-headphones {
-            bottom: 120px;
+            bottom: 145px;
             left: 8%;
             width: 80px;
             transform: rotate(-15deg);
@@ -396,8 +396,8 @@
 
         /* Photo Frame */
         .desk-frame-wrapper { 
-            bottom: 20px; 
-            left: 25%; 
+            bottom: 45px; /* Pushed back */
+            left: 26%; 
             width: clamp(60px, 10vw, 80px); 
             height: clamp(80px, 14vw, 110px); 
             background: #eee; 
@@ -409,29 +409,55 @@
         .desk-frame-wrapper img { width: 100%; height: 100%; object-fit: cover; }
 
         /* Pen Stand */
-        .desk-pen-stand { left: 40%; bottom: 35px; width: 35px; height: 50px; z-index: 6;}
+        .desk-pen-stand { left: 41%; bottom: 60px; width: 35px; height: 50px; z-index: 6;}
         .cup { width: 100%; height: 100%; background: linear-gradient(to right, #7a604a, #d4be9f, #7a604a); border-radius: 4px; position: absolute; bottom: 0; z-index: 5; border-top: 2px solid #3d2a1a; box-shadow: inset 0 5px 10px rgba(0,0,0,0.6);}
         .pen { position: absolute; width: 4px; height: 40px; border-radius: 2px; bottom: 10px; z-index: 1;}
         .pen-1 { background: #cc0000; left: 5px; transform: rotate(-20deg); }
         .pen-2 { background: #222; left: 15px; transform: rotate(5deg); }
         .pen-3 { background: #0044cc; left: 25px; transform: rotate(25deg); }
+        
+        /* NEW: Half-Folded Paint Stained T-Shirt */
+        .t-shirt {
+            left: 51%; bottom: 50px;
+            width: 80px; height: 60px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            transform: rotate(-8deg) skewX(15deg);
+            z-index: 4;
+            box-shadow: 
+                inset -8px 0 15px rgba(0,0,0,0.1),
+                inset 0 -8px 15px rgba(0,0,0,0.05);
+            /* Center fold line and splatters */
+            background-image:
+                linear-gradient(to right, transparent 48%, rgba(0,0,0,0.1) 50%, transparent 52%),
+                radial-gradient(circle at 20% 30%, #ff2a2a 5px, transparent 7px),
+                radial-gradient(circle at 25% 25%, #ff2a2a 2px, transparent 3px),
+                radial-gradient(circle at 75% 40%, #0044cc 7px, transparent 10px),
+                radial-gradient(circle at 40% 70%, #ffeb3b 6px, transparent 9px),
+                radial-gradient(circle at 80% 80%, #7ab55c 5px, transparent 8px),
+                radial-gradient(circle at 50% 20%, #ff7da6 8px, transparent 11px),
+                radial-gradient(circle at 10% 80%, #ff2a2a 3px, transparent 5px);
+        }
 
         /* Real Sunflower */
-        .real-sunflower { left: 32%; bottom: 15px; font-size: clamp(2rem, 5vw, 3.5rem); transform: rotate(70deg); pointer-events: none;}
+        .real-sunflower { left: 32%; bottom: 40px; font-size: clamp(2rem, 5vw, 3.5rem); transform: rotate(70deg); pointer-events: none;}
 
         /* Origami Tulips */
         .origami-tulip { width: clamp(20px, 3vw, 30px); pointer-events: none;}
-        .tulip-1 { left: 18%; bottom: 15px; transform: rotate(-40deg); }
-        .tulip-2 { left: 48%; bottom: 30px; transform: rotate(20deg); }
-        .tulip-3 { right: 38%; bottom: 15px; transform: rotate(-25deg); }
-        .tulip-4 { right: 8%; bottom: 25px; transform: rotate(50deg); }
+        .tulip-1 { left: 18%; bottom: 40px; transform: rotate(-40deg); } /* Pink */
+        .tulip-2 { left: 48%; bottom: 55px; transform: rotate(20deg) scale(1.3); } /* Lined, Bigger */
+        .tulip-3 { right: 38%; bottom: 40px; transform: rotate(-25deg); } /* Lined */
+        .tulip-4 { right: 12%; bottom: 50px; transform: rotate(50deg); } /* Lined */
 
         /* Scattered Candies */
         .candy { position: absolute; z-index: 11; font-family: var(--font-sans); font-weight: bold; font-size: 0.5rem; display: flex; align-items: center; justify-content: center; pointer-events: none; filter: drop-shadow(-4px 6px 4px rgba(0,0,0,0.6));}
-        .kissme { left: 22%; bottom: 10px; width: 40px; height: 14px; background: linear-gradient(to right, #cc0000 20%, #ffcc00 20%, #ffcc00 80%, #cc0000 80%); color: #cc0000; transform: rotate(-15deg); }
-        .melody { right: 45%; bottom: 12px; width: 35px; height: 16px; background: #3e2723; color: #ffeb3b; border-left: 4px solid #ffeb3b; border-right: 4px solid #ffeb3b; transform: rotate(20deg); font-size: 0.4rem;}
-        .pan-candy { left: 40%; bottom: 10px; width: 25px; height: 18px; background: radial-gradient(circle, #4caf50, #1b5e20); color: #ffeb3b; border-radius: 3px; transform: rotate(35deg); font-size: 0.4rem;}
-        .choki { right: 28%; bottom: 15px; width: 60px; height: 8px; background: #3e2723; border-left: 15px solid #d32f2f; color: #fff; transform: rotate(-30deg); font-size: 0.35rem; justify-content: flex-end; padding-right: 4px; }
+        .kissme { left: 25%; bottom: 35px; width: 40px; height: 14px; background: linear-gradient(to right, #cc0000 20%, #fff 20%, #fff 80%, #cc0000 80%); color: #cc0000; transform: rotate(-15deg); }
+        .melody { right: 48%; bottom: 40px; width: 35px; height: 16px; background: #111; color: #d4af37; border-left: 4px solid #d4af37; border-right: 4px solid #d4af37; transform: rotate(20deg); font-size: 0.4rem;}
+        .pan-candy { left: 42%; bottom: 45px; width: 25px; height: 18px; background: #4caf50; color: #fff; border-radius: 3px; transform: rotate(35deg); font-size: 0.4rem;}
+        
+        .choki { background: #3e2723; border-left: 15px solid #f5f5dc; color: #f5f5dc; font-size: 0.35rem; justify-content: flex-end; padding-right: 4px; width: 70px; height: 8px;}
+        .choki-1 { right: 30%; bottom: 38px; transform: rotate(-30deg); }
+        .choki-2 { right: 28%; bottom: 45px; transform: rotate(-10deg); z-index: 10; }
         
         /* Tic Tac Box */
         .tictac-box { 
@@ -440,7 +466,7 @@
             border: 1px solid rgba(255, 255, 255, 0.4); 
             border-top: 5px solid #fff; 
             border-radius: 4px; 
-            bottom: 20px; right: 35%; 
+            bottom: 45px; right: 38%; 
             transform: rotate(15deg); 
             display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: center; padding: 2px; gap: 1px;
             box-shadow: inset 0 0 5px rgba(255,255,255,0.3);
@@ -448,7 +474,7 @@
         .mint { width: 6px; height: 4px; background: #fff; border-radius: 4px; opacity: 0.9;}
 
         /* GRAMOPHONE COMPONENT on Desk */
-        #gramophone-wrapper { right: 5%; bottom: 15px; width: clamp(160px, 25vw, 240px); height: clamp(140px, 20vw, 210px); cursor: pointer; user-select: none; transition: transform 0.3s;}
+        #gramophone-wrapper { right: 4%; bottom: 35px; width: clamp(160px, 25vw, 240px); height: clamp(140px, 20vw, 210px); cursor: pointer; user-select: none; transition: transform 0.3s;}
         #gramophone-wrapper:hover { transform: scale(1.03); }
 
         .gramo-horn { position: absolute; top: -10px; left: 10px; width: 60%; height: 60%; z-index: 4; filter: drop-shadow(0 10px 10px rgba(0,0,0,0.6)); pointer-events: none;}
@@ -673,10 +699,21 @@
                 <path d="M 30 20 C 30 20 70 20 70 50 C 70 80 50 100 50 100 C 50 100 30 80 30 50 C 30 20 30 20 30 20 Z" fill="#fff" opacity="0.8"/>
             </g>
             
-            <!-- Origami Tulip -->
-            <g id="svg-origami-tulip">
+            <!-- Origami Tulip Pink -->
+            <g id="svg-origami-tulip-pink">
                 <path d="M 25 10 L 10 30 L 25 50 L 40 30 Z" fill="#ff7da6"/>
                 <path d="M 25 10 L 25 50 L 40 30 Z" fill="#e65a88"/>
+                <path d="M 25 50 L 25 90" stroke="#7ab55c" stroke-width="3"/>
+                <path d="M 25 70 L 15 60 L 25 80" fill="#7ab55c"/>
+            </g>
+            
+            <!-- Origami Tulip Lined Notebook Paper -->
+            <g id="svg-origami-tulip-lined">
+                <path d="M 25 10 L 10 30 L 25 50 L 40 30 Z" fill="#fff" stroke="#ddd" stroke-width="0.5"/>
+                <path d="M 25 10 L 25 50 L 40 30 Z" fill="#f9f9f9" stroke="#ddd" stroke-width="0.5"/>
+                <!-- Notebook Lines -->
+                <path d="M 17 20 L 33 20 M 13 25 L 37 25 M 12 30 L 38 30 M 15 35 L 35 35 M 18 40 L 32 40 M 22 45 L 28 45" stroke="#90caf9" stroke-width="0.5" fill="none"/>
+                <!-- Stem -->
                 <path d="M 25 50 L 25 90" stroke="#7ab55c" stroke-width="3"/>
                 <path d="M 25 70 L 15 60 L 25 80" fill="#7ab55c"/>
             </g>
@@ -827,6 +864,20 @@
                     <p style="font-family: var(--font-typewriter); color: #ccc; font-size: 0.9rem; margin-top:5px;">Tap the memories on the wall.</p>
                 </div>
 
+                <svg style="position:absolute; top: -60px; left:50%; transform:translateX(-50%); width:70%; height:60px; overflow:visible; z-index:1;">
+                    <path d="M 50% 0 L 0 60 M 50% 0 L 100% 60" fill="none" stroke="#a67c52" stroke-width="2"/>
+                </svg>
+
+                <div style="position:relative; width:100%; height:16px; background:linear-gradient(to bottom, #8b5a2b, #5c3a21); border-radius:10px; box-shadow: 0 5px 15px rgba(0,0,0,0.8); z-index:3;">
+                    <span style="position:absolute; left:2%; top:-15px; font-size:2rem; filter:drop-shadow(2px 4px 4px rgba(0,0,0,0.5));">🌿</span>
+                    <span style="position:absolute; left:25%; top:-10px; font-size:1.5rem;">🌿</span>
+                    <span style="position:absolute; left:45%; top:-18px; font-size:2.2rem;">🌿</span>
+                    <span style="position:absolute; left:65%; top:-5px; font-size:1.8rem;">🌿</span>
+                    <span style="position:absolute; left:85%; top:-12px; font-size:2rem;">🌿</span>
+                    <span style="position:absolute; left:-10px; top:10px; font-size:1.8rem; transform:rotate(80deg);">🌿</span>
+                    <span style="position:absolute; right:-10px; top:15px; font-size:1.6rem; transform:rotate(-80deg);">🌿</span>
+                </div>
+
                 <div class="gallery-wall" id="museum-gallery" style="position:relative; display:flex; flex-wrap:wrap; justify-content:center; gap: 40px; padding-top: 40px; width: 100%; z-index:2;">
                     <!-- JS Injects Polaroids -->
                 </div>
@@ -858,21 +909,25 @@
                         <div class="pen pen-3"></div>
                         <div class="cup"></div>
                     </div>
+                    
+                    <!-- THE PAINT STAINED T-SHIRT -->
+                    <div class="t-shirt desk-item"></div>
 
                     <!-- REAL SUNFLOWER -->
                     <div class="real-sunflower desk-item">🌻</div>
 
                     <!-- ORIGAMI TULIPS -->
-                    <svg viewBox="0 0 50 100" class="origami-tulip tulip-1 desk-item"><use href="#svg-origami-tulip"/></svg>
-                    <svg viewBox="0 0 50 100" class="origami-tulip tulip-2 desk-item"><use href="#svg-origami-tulip"/></svg>
-                    <svg viewBox="0 0 50 100" class="origami-tulip tulip-3 desk-item"><use href="#svg-origami-tulip"/></svg>
-                    <svg viewBox="0 0 50 100" class="origami-tulip tulip-4 desk-item"><use href="#svg-origami-tulip"/></svg>
+                    <svg viewBox="0 0 50 100" class="origami-tulip tulip-1 desk-item"><use href="#svg-origami-tulip-pink"/></svg>
+                    <svg viewBox="0 0 50 100" class="origami-tulip tulip-2 desk-item"><use href="#svg-origami-tulip-lined"/></svg>
+                    <svg viewBox="0 0 50 100" class="origami-tulip tulip-3 desk-item"><use href="#svg-origami-tulip-lined"/></svg>
+                    <svg viewBox="0 0 50 100" class="origami-tulip tulip-4 desk-item"><use href="#svg-origami-tulip-lined"/></svg>
 
                     <!-- TOFFEE WRAPPERS & TIC-TAC -->
                     <div class="candy kissme desk-item">KissMe</div>
                     <div class="candy melody desk-item">Melody</div>
                     <div class="candy pan-candy desk-item">Pan</div>
-                    <div class="candy choki desk-item">Choki Choki</div>
+                    <div class="candy choki choki-1 desk-item">Choki Choki</div>
+                    <div class="candy choki choki-2 desk-item">Choki Choki</div>
                     
                     <div class="tictac-box desk-item">
                         <div class="mint"></div><div class="mint"></div><div class="mint"></div>
@@ -959,6 +1014,7 @@
                 
                 <div class="player-name" id="pn-mendhak">MENDHAK</div>
                 <div class="health-bar-container" id="hb-mendhak">
+                    <!-- Fixed: Float right forces the bar to shrink from left to right as health decreases -->
                     <div class="health-fill" id="mendhak-hp-fill" style="width: 100%; float: right;"></div>
                 </div>
             </div>
