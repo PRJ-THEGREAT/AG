@@ -297,13 +297,66 @@
         .polaroid.viewed { filter: brightness(0.7); } 
         .polaroid-img { width: 220px; height: 180px; background: #ddd; display: flex; align-items: center; justify-content: center; font-family: var(--font-typewriter); color: #888; font-size: 0.8rem; overflow: hidden; background-size: cover; background-position: center;}
         
-        .room-shelf { position: relative; width: 100%; min-height: 250px; background: #2d1a11; border-top: 10px solid #1a0f0a; box-shadow: 0 -20px 40px rgba(0,0,0,0.5); display: flex; align-items: flex-end; justify-content: center; z-index: 5; margin-top: auto; flex-shrink: 0; padding-bottom: 25px;}
+        /* =========================================================
+           THE VINTAGE DESK OVERHAUL (Room Shelf Replacement)
+           ========================================================= */
+        .room-table { 
+            position: relative; 
+            width: 100%; 
+            min-height: 280px; 
+            background: linear-gradient(to bottom, #543620, #2d1a11); 
+            border-top: 15px solid #3c2415; /* Table Lip */
+            box-shadow: 0 -20px 40px rgba(0,0,0,0.8), inset 0 8px 15px rgba(0,0,0,0.5); 
+            display: flex; align-items: flex-end; justify-content: center; z-index: 5; margin-top: auto; flex-shrink: 0; padding-bottom: 25px;
+        }
+
+        /* Books */
+        .book-stack { position: absolute; left: 8%; bottom: 30px; width: clamp(90px, 15vw, 130px); z-index: 8; }
+        .book { width: 100%; border-radius: 2px; position: relative; margin-bottom: -4px; border: 1px solid rgba(0,0,0,0.6); display: flex; align-items: center; padding-left: 8px; font-family: var(--font-serif); font-size: clamp(0.4rem, 1vw, 0.6rem); font-weight: bold; color: #fff; text-shadow: 1px 1px 0 #000; box-shadow: 2px 5px 10px rgba(0,0,0,0.5); }
+        .book-1 { background: #6c584c; height: 22px; transform: rotate(-4deg); z-index: 1; }
+        .book-2 { background: #a98467; height: 20px; transform: rotate(2deg); z-index: 2; color: #333; text-shadow: none; }
+        .book-3 { background: #e56b6f; height: 35px; transform: rotate(-2deg); z-index: 3; flex-direction: column; align-items: center; justify-content: center; padding: 4px; text-align: center; line-height: 1.1;}
+        .book-3 span { font-size: clamp(0.35rem, 1vw, 0.5rem); letter-spacing: 0.5px; }
+
+        /* Headphones resting on books */
+        .headphones-svg { position: absolute; left: 10%; bottom: 45px; width: clamp(60px, 10vw, 90px); z-index: 10; transform: rotate(15deg); filter: drop-shadow(5px 10px 5px rgba(0,0,0,0.6)); pointer-events: none;}
+
+        /* Photo Frame */
+        .desk-frame { position: absolute; left: 28%; bottom: 40px; width: clamp(60px, 10vw, 80px); height: clamp(75px, 12vw, 100px); background: #fff; border: 6px solid #22140a; box-shadow: 5px 5px 15px rgba(0,0,0,0.7), inset 0 0 5px rgba(0,0,0,0.5); z-index: 7; transform: rotate(6deg); display: flex; align-items: center; justify-content: center; }
+        .desk-frame img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* Pen Stand */
+        .pen-stand { position: absolute; left: 42%; bottom: 50px; width: 35px; height: 45px; z-index: 6; }
+        .stand-cup { position: absolute; bottom: 0; width: 100%; height: 100%; background: linear-gradient(to right, #8b5a2b, #d2b48c, #8b5a2b); border-radius: 3px; box-shadow: 3px 5px 10px rgba(0,0,0,0.6); border: 1px solid #5a3a1b; z-index: 2;}
+        .pen { position: absolute; width: 4px; height: 35px; border-radius: 2px; bottom: 10px; z-index: 1;}
+        .pen-1 { background: #cc0000; left: 5px; transform: rotate(-15deg); }
+        .pen-2 { background: #222; left: 15px; transform: rotate(5deg); }
+        .pen-3 { background: #0044cc; left: 25px; transform: rotate(20deg); }
+
+        /* Real Sunflower */
+        .real-sunflower { position: absolute; left: 32%; bottom: 10px; font-size: clamp(2rem, 5vw, 3rem); transform: rotate(70deg); z-index: 9; filter: drop-shadow(2px 5px 5px rgba(0,0,0,0.5)); pointer-events: none;}
+
+        /* Origami Tulips */
+        .origami-tulip { position: absolute; width: clamp(20px, 3vw, 30px); z-index: 8; filter: drop-shadow(2px 4px 4px rgba(0,0,0,0.4)); pointer-events: none;}
+        .tulip-1 { left: 18%; bottom: 15px; transform: rotate(-40deg); }
+        .tulip-2 { left: 50%; bottom: 25px; transform: rotate(15deg); }
+        .tulip-3 { right: 35%; bottom: 10px; transform: rotate(-25deg); }
+        .tulip-4 { right: 8%; bottom: 20px; transform: rotate(50deg); }
+
+        /* Candies & Wrappers */
+        .candy { position: absolute; z-index: 9; font-family: var(--font-sans); font-weight: bold; font-size: 0.5rem; display: flex; align-items: center; justify-content: center; box-shadow: 1px 2px 4px rgba(0,0,0,0.5); pointer-events: none;}
+        .kissme { left: 22%; bottom: 8px; width: 40px; height: 14px; background: linear-gradient(to right, #cc0000 20%, #ffcc00 20%, #ffcc00 80%, #cc0000 80%); color: #cc0000; transform: rotate(-15deg); }
+        .melody { left: 45%; bottom: 12px; width: 35px; height: 15px; background: #3e2723; color: #ffeb3b; border-left: 3px solid #ffeb3b; border-right: 3px solid #ffeb3b; transform: rotate(25deg); font-size: 0.4rem; letter-spacing: 1px;}
+        .pan-candy { right: 45%; bottom: 8px; width: 25px; height: 18px; background: radial-gradient(circle, #4caf50, #1b5e20); color: #ffeb3b; transform: rotate(-10deg); border-radius: 2px; font-size: 0.4rem;}
+        .choki { right: 28%; bottom: 15px; width: 60px; height: 8px; background: #3e2723; border-left: 15px solid #d32f2f; color: #fff; transform: rotate(-35deg); font-size: 0.35rem; text-align: right; padding-right: 2px;}
+        .tictac { right: 38%; bottom: 18px; width: 20px; height: 30px; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.4); border-radius: 4px; border-top: 5px solid #fff; transform: rotate(15deg); box-shadow: inset 0 0 5px rgba(255,255,255,0.2), 2px 2px 4px rgba(0,0,0,0.4); z-index: 9; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; padding-bottom: 2px;}
+        .tictac::after { content: 'tic tac'; font-family: var(--font-sans); font-size: 0.3rem; color: rgba(255,255,255,0.8); font-weight: bold;}
 
         /* GRAMOPHONE COMPONENT */
-        #gramophone-wrapper { position: relative; width: 260px; height: 230px; cursor: pointer; user-select: none; transition: transform 0.3s; margin-top: -80px;}
+        #gramophone-wrapper { position: absolute; right: 8%; bottom: 20px; width: clamp(180px, 30vw, 260px); height: clamp(160px, 25vw, 230px); cursor: pointer; user-select: none; transition: transform 0.3s; z-index: 10;}
         #gramophone-wrapper:hover { transform: scale(1.03); }
 
-        .gramo-horn { position: absolute; top: -10px; left: 10px; width: 140px; height: 120px; z-index: 4; filter: drop-shadow(0 10px 10px rgba(0,0,0,0.6)); pointer-events: none;}
+        .gramo-horn { position: absolute; top: -10px; left: 10px; width: 60%; height: 60%; z-index: 4; filter: drop-shadow(0 10px 10px rgba(0,0,0,0.6)); pointer-events: none;}
         .sound-wave { position: absolute; top: -15px; left: -10px; width: 40px; height: 40px; border: 2px solid rgba(255,215,0,0.7); border-radius: 50%; opacity: 0; pointer-events: none; z-index: 5;}
         #gramophone-wrapper.playing .sound-wave { animation: pulse-soundwave 1.8s infinite ease-out; }
 
@@ -312,23 +365,23 @@
             100% { transform: scale(2.2) translate(-20px, -20px); opacity: 0; }
         }
 
-        .gramo-turntable { position: absolute; top: 75px; right: 25px; width: 110px; height: 35px; background: #1c130d; border-radius: 50%; border: 3px solid #734822; box-shadow: 0 4px 10px rgba(0,0,0,0.6); z-index: 2;}
-        .vinyl-disc { position: absolute; top: -6px; left: 5px; width: 100px; height: 35px; background: radial-gradient(ellipse at center, #3a2210 12%, #111 13%, #222 35%, #050505 50%, #222 65%, #0a0a0a 100%); border-radius: 50%; border: 1px solid #333; box-shadow: inset 0 0 10px rgba(0,0,0,0.9); }
-        .vinyl-disc::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 26px; height: 12px; background: #c5a059; border-radius: 50%; border: 1px solid #7a581e;}
+        .gramo-turntable { position: absolute; top: 35%; right: 10%; width: 45%; height: 15%; background: #1c130d; border-radius: 50%; border: 3px solid #734822; box-shadow: 0 4px 10px rgba(0,0,0,0.6); z-index: 2;}
+        .vinyl-disc { position: absolute; top: -6px; left: 5px; width: 90%; height: 100%; background: radial-gradient(ellipse at center, #3a2210 12%, #111 13%, #222 35%, #050505 50%, #222 65%, #0a0a0a 100%); border-radius: 50%; border: 1px solid #333; box-shadow: inset 0 0 10px rgba(0,0,0,0.9); }
+        .vinyl-disc::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 25%; height: 35%; background: #c5a059; border-radius: 50%; border: 1px solid #7a581e;}
         
         #gramophone-wrapper.playing .vinyl-disc { animation: spin-disc 1.2s infinite linear; }
         @keyframes spin-disc { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-        .gramo-arm { position: absolute; top: 62px; right: 10px; width: 55px; height: 50px; z-index: 3; transform-origin: 45px 35px; transform: rotate(-25deg); transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); pointer-events: none;}
+        .gramo-arm { position: absolute; top: 25%; right: 5%; width: 25%; height: 25%; z-index: 3; transform-origin: 75% 70%; transform: rotate(-25deg); transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); pointer-events: none;}
         #gramophone-wrapper.playing .gramo-arm { transform: rotate(5deg); }
 
-        .gramo-base { position: absolute; bottom: 0; left: 20px; width: 220px; height: 95px; background: linear-gradient(135deg, #4a2810 0%, #2b1406 100%); border-radius: 8px; border-top: 5px solid #6b3f1c; border-bottom: 5px solid #1a0a02; box-shadow: 0 15px 25px rgba(0,0,0,0.8), inset 0 2px 4px rgba(255,255,255,0.15); z-index: 1;}
+        .gramo-base { position: absolute; bottom: 0; left: 10%; width: 85%; height: 40%; background: linear-gradient(135deg, #4a2810 0%, #2b1406 100%); border-radius: 8px; border-top: 5px solid #6b3f1c; border-bottom: 5px solid #1a0a02; box-shadow: 0 15px 25px rgba(0,0,0,0.8), inset 0 2px 4px rgba(255,255,255,0.15); z-index: 1;}
         .gramo-brass-corners { position: absolute; top: 0; left: 0; right: 0; bottom: 0; border: 1px solid #c5a059; margin: 5px; border-radius: 4px; pointer-events: none; opacity: 0.6;}
 
         /* DIGITAL DISPLAY INTEGRATION */
-        .digital-panel { position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 10px; background: #080808; padding: 6px 14px; border-radius: 4px; border: 1px solid #4a3418; box-shadow: inset 0 2px 5px rgba(0,0,0,0.8), 0 2px 5px rgba(0,0,0,0.5); z-index: 2;}
-        .gramo-screen { min-width: 90px; height: 24px; display: flex; align-items: center; justify-content: center; font-family: 'Courier New', monospace; font-weight: bold; font-size: 0.8rem; color: #444; letter-spacing: 1px; transition: color 0.3s;}
-        .gramo-led { width: 8px; height: 8px; border-radius: 50%; background: #4a0000; box-shadow: 0 0 5px #f00; transition: 0.3s;}
+        .digital-panel { position: absolute; bottom: 15%; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 10px; background: #080808; padding: 4px 10px; border-radius: 4px; border: 1px solid #4a3418; box-shadow: inset 0 2px 5px rgba(0,0,0,0.8), 0 2px 5px rgba(0,0,0,0.5); z-index: 2;}
+        .gramo-screen { min-width: 60px; height: 18px; display: flex; align-items: center; justify-content: center; font-family: 'Courier New', monospace; font-weight: bold; font-size: 0.6rem; color: #444; letter-spacing: 1px; transition: color 0.3s;}
+        .gramo-led { width: 6px; height: 6px; border-radius: 50%; background: #4a0000; box-shadow: 0 0 5px #f00; transition: 0.3s;}
         
         #gramophone-wrapper.booting .gramo-led { background: #00ff66; box-shadow: 0 0 10px #00ff66; }
         #gramophone-wrapper.booting .gramo-screen { color: #0df; text-shadow: 0 0 6px #0df; }
@@ -342,10 +395,10 @@
 
         @keyframes gramo-pulse { 0% { filter: drop-shadow(0 0 5px rgba(0,255,100,0.2)); } 100% { filter: drop-shadow(0 0 20px rgba(0,255,100,0.6)); } }
 
-        .dvd-bars { display: none; height: 12px; align-items: flex-end; gap: 2px; margin-left: 6px;}
-        .dvd-bar { width: 3px; background: #00ff66; animation: eq 0.5s infinite alternate ease-in-out;}
+        .dvd-bars { display: none; height: 10px; align-items: flex-end; gap: 2px; margin-left: 6px;}
+        .dvd-bar { width: 2px; background: #00ff66; animation: eq 0.5s infinite alternate ease-in-out;}
         #gramophone-wrapper.playing .dvd-bars { display: flex; }
-        @keyframes eq { 0% { height: 2px; } 100% { height: 12px; } }
+        @keyframes eq { 0% { height: 2px; } 100% { height: 10px; } }
 
         #polaroid-modal { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.9); z-index: 100; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 0.4s ease; flex-direction: column; }
         #polaroid-modal.active { opacity: 1; pointer-events: all; }
@@ -354,7 +407,7 @@
         .btn-close-modal:hover { background: #fff; color: #000; }
 
         /* =========================================================
-           8. GOODBYE (ARCADE MINI GAME & FULL SOLAR SYSTEM)
+           8. GOODBYE (ARCADE MINI GAME & SOLAR SYSTEM)
            ========================================================= */
         #s8-goodbye { background: #030208; align-items: center; justify-content: center; text-align: center; overflow: hidden; }
         #solar-system { position: absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; opacity: 0; transition: opacity 3s; z-index: 0; background: radial-gradient(circle at 50% 120%, #1a1a3a 0%, #010103 80%); overflow: hidden;}
@@ -524,6 +577,23 @@
                 <path d="M 45 0 L 55 0 L 55 20 L 45 20 Z" fill="#555"/>
                 <path d="M 30 20 C 30 20 70 20 70 50 C 70 80 50 100 50 100 C 50 100 30 80 30 50 C 30 20 30 20 30 20 Z" fill="#fff" opacity="0.8"/>
             </g>
+            
+            <!-- Origami Tulip -->
+            <g id="svg-origami-tulip">
+                <path d="M 25 10 L 10 30 L 25 50 L 40 30 Z" fill="#ff7da6"/>
+                <path d="M 25 10 L 25 50 L 40 30 Z" fill="#e65a88"/>
+                <path d="M 25 50 L 25 90" stroke="#7ab55c" stroke-width="3"/>
+                <path d="M 25 70 L 15 60 L 25 80" fill="#7ab55c"/>
+            </g>
+
+            <!-- Headphones -->
+            <g id="svg-headphones">
+                <path d="M 20 50 A 30 30 0 0 1 80 50" fill="none" stroke="#222" stroke-width="6"/>
+                <rect x="10" y="45" width="15" height="30" rx="5" fill="#333"/>
+                <rect x="75" y="45" width="15" height="30" rx="5" fill="#333"/>
+                <rect x="25" y="50" width="8" height="20" rx="4" fill="#ddd"/>
+                <rect x="67" y="50" width="8" height="20" rx="4" fill="#ddd"/>
+            </g>
         </defs>
     </svg>
 
@@ -681,7 +751,46 @@
                 </div>
             </div>
             
-            <div class="room-shelf">
+            <div class="room-table">
+                <!-- THE PIGGY BOOKS -->
+                <div class="book-stack">
+                    <div class="book book-1">Pig Care 101</div>
+                    <div class="book book-2">Oink! A Memoir</div>
+                    <div class="book book-3">HOW TO BE<br><span>PRJ'S GOOD GIRL</span></div>
+                </div>
+
+                <!-- HEADPHONES -->
+                <svg viewBox="0 0 100 100" class="headphones-svg"><use href="#svg-headphones"/></svg>
+
+                <!-- DESK PHOTO FRAME -->
+                <div class="desk-frame">
+                    <img src="IMG_DESK_FRAME.jpeg" alt="Desk Frame Placeholder">
+                </div>
+
+                <!-- PEN STAND -->
+                <div class="pen-stand">
+                    <div class="pen pen-1"></div>
+                    <div class="pen pen-2"></div>
+                    <div class="pen pen-3"></div>
+                    <div class="stand-cup"></div>
+                </div>
+
+                <!-- REAL SUNFLOWER -->
+                <div class="real-sunflower">🌻</div>
+
+                <!-- ORIGAMI TULIPS -->
+                <svg viewBox="0 0 50 100" class="origami-tulip tulip-1"><use href="#svg-origami-tulip"/></svg>
+                <svg viewBox="0 0 50 100" class="origami-tulip tulip-2"><use href="#svg-origami-tulip"/></svg>
+                <svg viewBox="0 0 50 100" class="origami-tulip tulip-3"><use href="#svg-origami-tulip"/></svg>
+                <svg viewBox="0 0 50 100" class="origami-tulip tulip-4"><use href="#svg-origami-tulip"/></svg>
+
+                <!-- TOFFEE WRAPPERS & TIC-TAC -->
+                <div class="candy kissme">KissMe</div>
+                <div class="candy melody">Melody</div>
+                <div class="candy pan-candy">Pan</div>
+                <div class="candy choki">Choki Choki</div>
+                <div class="candy tictac"></div>
+
                 <!-- VINTAGE GRAMOPHONE PLAYER -->
                 <div id="gramophone-wrapper">
                     <!-- Pulsing Soundwave -->
@@ -837,7 +946,7 @@
     </div>
 
     <!-- AUDIO ELEMENTS -->
-    <audio id="our-song" src="Song.mp3" preload="auto"></audio>
+    <audio id="our-song" src="our_song.mp3" preload="auto"></audio>
     <audio id="magic-sound" src="assets/audio/magic.mp3" preload="auto"></audio>
 
     <script>
@@ -862,7 +971,7 @@
 
             letters: [
                 { label: "FROM: MOM & DAD", text: "To me, Aaradhya is the brightest light in our family. Seeing you grow into such a beautiful soul makes us prouder every day. Happy Birthday! [ADD FULL TEXT]" },
-                { label: "FROM: Shristi", text: "For me Aaradhya is, my happy place🪷✨️️. The person I call whenever something funny, stupid, exciting, or heartbreaking happens😸. She isn't just my best friend; she's the sister i always wanted . and bakwass jitni bhi karti ho I love her so much!!❤️" },
+                { label: "FROM: Shristi", text: "For me Aaradhya is, my happy place🪷✨. The person I call whenever something funny, stupid, exciting, or heartbreaking happens😸. She isn't just my best friend; she's the sister i always wanted . and bakwass jitni bhi karti ho I love her so much!!❤️" },
                 { label: "FROM: Riddhima", text: "For me, Aaradhya✨ is someone I would run to as soon as I get any tea.😋 I can share everything with her; she's more than just a best friend. I love everything about her,💋💋 especially her laugh. Around her, I can be the real me, knowing she will never judge me." },
                 { label: "FROM: [FRIEND 3]", text: "To me, Aaradhya is... [ADD FULL TEXT]" },
                 { label: "FROM: [FRIEND 4]", text: "To me, Aaradhya is... [ADD FULL TEXT]" },
@@ -891,7 +1000,10 @@
                 { img: "<img src='IMG_0091.jpeg' style='width: 100%; height: 100%; object-fit: cover;'>", caption: "piggu and mendhak <3" },
                 { img: "<img src='IMG_0090.jpeg' style='width: 100%; height: 100%; object-fit: cover;'>", caption: "shadishuda , haha" },
                 { img: "<img src='IMG_0093.jpeg' style='width: 100%; height: 100%; object-fit: cover;'>", caption: "first trip together" },
-                { img: "<img src='IMG_0010.jpeg' style='width: 100%; height: 100%; object-fit: cover;'>", caption: "Us." } 
+                { img: "<img src='IMG_0010.jpeg' style='width: 100%; height: 100%; object-fit: cover;'>", caption: "Us." },
+                { img: "<img src='[NEW_PHOTO_1.jpg]' style='width: 100%; height: 100%; object-fit: cover;'>", caption: "Add Caption Here" },
+                { img: "<img src='[NEW_PHOTO_2.jpg]' style='width: 100%; height: 100%; object-fit: cover;'>", caption: "Add Caption Here" },
+                { img: "<img src='[NEW_PHOTO_3.jpg]' style='width: 100%; height: 100%; object-fit: cover;'>", caption: "Add Caption Here" }
             ]
         };
 
