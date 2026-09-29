@@ -158,21 +158,78 @@
         #btn-post-meeting:hover { background-color: #222 !important; color: #fff !important; }
 
         /* =========================================================
-           4. LETTERS 
+           4. LETTERS (VINTAGE STAMPED ENVELOPES)
            ========================================================= */
         #s4-letters { padding: 10vh 5vw; background: #1a1818; align-items: center; perspective: 1000px;}
         .letters-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; max-width: 900px; width: 100%; margin-top: 60px; justify-content: center; }
         
         .envelope-wrapper { position: relative; height: 200px; cursor: pointer; perspective: 1000px; }
-        .envelope { position: absolute; width: 100%; height: 100%; background: #dcd0c0; border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); transition: 0.6s ease; transform-style: preserve-3d; display: flex; align-items: center; justify-content: center; text-align: center; padding: 20px;}
-        .envelope-front { font-family: var(--font-typewriter); font-weight: bold; color: #444; position: relative; z-index: 2; }
-        .envelope-flap { position: absolute; top: 0; left: 0; width: 100%; height: 50%; background: #cfc1ae; clip-path: polygon(0 0, 100% 0, 50% 100%); transform-origin: top; transition: transform 0.6s ease; z-index: 3; }
+        .envelope { 
+            position: absolute; width: 100%; height: 100%; 
+            background: var(--paper-texture), #cda984; /* Aged vintage parchment color */
+            border-radius: 2px; 
+            box-shadow: inset 0 0 30px rgba(90, 50, 10, 0.5), 0 10px 30px rgba(0,0,0,0.5); 
+            transition: 0.6s ease; transform-style: preserve-3d; display: flex; align-items: center; justify-content: center; text-align: center; padding: 20px;
+        }
         
-        .letter-paper { position: absolute; top: 10px; left: 5%; width: 90%; height: 90%; background: #fdfbf7; color: #222; padding: 20px; font-family: var(--font-serif); font-size: 0.95rem; line-height: 1.6; transition: 0.8s ease; z-index: 1; opacity: 0; overflow-y: auto; border: 1px solid #eee; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        /* Name placed at the bottom half to avoid flap */
+        .envelope-front { 
+            font-family: var(--font-typewriter); 
+            font-weight: bold; 
+            color: #332211; 
+            position: absolute; 
+            bottom: 25px; 
+            left: 0; 
+            width: 100%; 
+            text-align: center; 
+            z-index: 4; 
+            font-size: 1.05rem; 
+            text-shadow: 1px 1px 0 rgba(255,255,255,0.2);
+        }
+        
+        .envelope-flap { 
+            position: absolute; top: 0; left: 0; width: 100%; height: 55%; 
+            background: var(--paper-texture), #bd956d; /* Slightly darker flap for 3D contrast */
+            clip-path: polygon(0 0, 100% 0, 50% 100%); 
+            transform-origin: top; transition: transform 0.6s ease; z-index: 3; 
+            box-shadow: inset 0 -5px 20px rgba(90, 50, 10, 0.4);
+        }
+        
+        /* Red Wax Seal */
+        .wax-seal {
+            position: absolute;
+            top: 55%; /* Matches flap tip */
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 45px;
+            height: 45px;
+            background: radial-gradient(circle at 30% 30%, #a41010, #5c0000);
+            border-radius: 50%;
+            color: #eaddd7;
+            font-family: var(--font-serif);
+            font-size: 0.65rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 2px 3px 5px rgba(0,0,0,0.5), inset 0 0 4px rgba(0,0,0,0.8);
+            z-index: 5;
+            transition: 0.5s ease;
+            pointer-events: none;
+            letter-spacing: 1px;
+            border: 1px solid #3a0000;
+        }
+
+        .letter-paper { 
+            position: absolute; top: 10px; left: 5%; width: 90%; height: 90%; 
+            background: #fdfbf7; color: #222; padding: 20px; font-family: var(--font-serif); font-size: 0.95rem; line-height: 1.6; 
+            transition: 0.8s ease; z-index: 1; opacity: 0; overflow-y: auto; border: 1px solid #eee; box-shadow: 0 0 10px rgba(0,0,0,0.1); 
+        }
         
         .envelope-wrapper.open .envelope-flap { transform: rotateX(180deg); z-index: 1; }
-        .envelope-wrapper.open .letter-paper { transform: translateY(-120px) scale(1.05); opacity: 1; z-index: 4; height: 250px;}
-        .envelope-wrapper.open .envelope { transform: translateY(50px); background: #cbbba6; }
+        .envelope-wrapper.open .wax-seal { opacity: 0; transform: translate(-50%, -100px) scale(0); } /* Seal breaks/vanishes */
+        .envelope-wrapper.open .letter-paper { transform: translateY(-120px) scale(1.05); opacity: 1; z-index: 6; height: 250px;}
+        .envelope-wrapper.open .envelope { transform: translateY(50px); background: var(--paper-texture), #bd956d; }
 
         /* =========================================================
            5. THE POEM
@@ -742,6 +799,10 @@
                 { label: "FROM: MOM & DAD", text: "To me, Aaradhya is the brightest light in our family. Seeing you grow into such a beautiful soul makes us prouder every day. Happy Birthday! [ADD FULL TEXT]" },
                 { label: "FROM: Shristi", text: "For me Aaradhya is, my happy place🪷✨️. The person I call whenever something funny, stupid, exciting, or heartbreaking happens😸. She isn't just my best friend; she's the sister i always wanted . and bakwass jitni bhi karti ho I love her so much!!❤️" },
                 { label: "FROM: Riddhima", text: "For me, Aaradhya✨ is someone I would run to as soon as I get any tea.😋 I can share everything with her; she's more than just a best friend. I love everything about her,💋💋 especially her laugh. Around her, I can be the real me, knowing she will never judge me." },
+                { label: "FROM: [FRIEND 3]", text: "To me, Aaradhya is... [ADD FULL TEXT]" },
+                { label: "FROM: [FRIEND 4]", text: "To me, Aaradhya is... [ADD FULL TEXT]" },
+                { label: "FROM: [FRIEND 5]", text: "To me, Aaradhya is... [ADD FULL TEXT]" },
+                { label: "FROM: [FRIEND 6]", text: "To me, Aaradhya is... [ADD FULL TEXT]" },
                 { label: "FROM: ME", text: "To me, Aaradhya is everything. You are my sunshine, my missing star, and the absolute best part of my day. Happy Birthday, Jaanu. [ADD FULL TEXT]" }
             ],
             
@@ -786,7 +847,7 @@
         function buildFloralFrame() {
             const frame = document.getElementById('floral-frame');
             const emojis = ['🌹', '🌻', '🌷', '🌼', '🪷', '🏵️', '🌺', '🌸'];
-            const numFlowers = 150; /* Super dense to remove gaps */
+            const numFlowers = 150; 
             
             for(let i=0; i<numFlowers; i++) {
                 let f = document.createElement('div');
@@ -794,15 +855,15 @@
                 f.innerText = emojis[Math.floor(Math.random() * emojis.length)];
                 
                 let edge = i % 4; 
-                let depth = Math.random() * 10 - 4; /* Outer 10% to fill thick borders */
-                let spread = Math.random() * 105 - 2.5; /* Spread across full edge */
+                let depth = Math.random() * 10 - 4; 
+                let spread = Math.random() * 105 - 2.5; 
                 
                 if (edge === 0) { f.style.top = depth + '%'; f.style.left = spread + '%'; }
                 else if (edge === 1) { f.style.bottom = depth + '%'; f.style.left = spread + '%'; }
                 else if (edge === 2) { f.style.left = depth + '%'; f.style.top = spread + '%'; }
                 else { f.style.right = depth + '%'; f.style.top = spread + '%'; }
                 
-                let size = Math.random() * 0.8 + 0.7; /* Made them slightly bigger */
+                let size = Math.random() * 0.8 + 0.7; 
                 let rot = Math.random() * 360 - 180;
                 
                 f.style.setProperty('--target-scale', size);
@@ -927,7 +988,15 @@
 
             const letGrid = document.getElementById('letters-grid');
             SITE_DATA.letters.forEach(item => {
-                letGrid.innerHTML += `<div class="envelope-wrapper" onclick="this.classList.toggle('open')"><div class="envelope"><div class="envelope-front">${item.label}</div><div class="envelope-flap"></div><div class="letter-paper">${item.text}</div></div></div>`;
+                letGrid.innerHTML += `
+                    <div class="envelope-wrapper" onclick="this.classList.toggle('open')">
+                        <div class="envelope">
+                            <div class="envelope-front">${item.label}</div>
+                            <div class="envelope-flap"></div>
+                            <div class="wax-seal">A-DAY</div>
+                            <div class="letter-paper">${item.text}</div>
+                        </div>
+                    </div>`;
             });
 
             const arcGrid = document.getElementById('archive-grid');
@@ -937,7 +1006,6 @@
 
             const musGrid = document.getElementById('museum-gallery');
             SITE_DATA.museum.forEach((item, index) => {
-                // Ensure rows hang straight by using standard spacing instead of random margins
                 musGrid.innerHTML += `
                     <div class="polaroid" id="pol-${index}" onclick="openPolaroid(${index})" style="margin-top: 60px;">
                         <div class="photo-string"></div>
