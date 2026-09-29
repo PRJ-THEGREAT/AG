@@ -260,8 +260,12 @@
         /* =========================================================
            7. MUSEUM (THE MEMORY ROOM & DOOR OVERLAY)
            ========================================================= */
-        #s7-museum { background: #211c18; align-items: center; justify-content: flex-start; padding: 0; position: relative; overflow-y: auto;}
-        .room-lighting { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center 40%, transparent 20%, rgba(0,0,0,0.8) 100%); pointer-events: none; z-index: 1;}
+        #s7-museum { 
+            background: #e6d7c3; /* Warm Sepia Wall */
+            background-image: radial-gradient(circle at 30% 30%, rgba(255, 230, 180, 0.4) 0%, transparent 70%),
+                              linear-gradient(to bottom, #dccbae 0%, #c4af97 100%);
+            align-items: center; justify-content: flex-start; padding: 0; position: relative; overflow-y: auto;
+        }
         
         /* THE GRAND WOODEN DOOR ENTRANCE */
         #museum-door-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 50; display: flex; overflow: hidden; }
@@ -278,83 +282,150 @@
 
         .hanging-display-wrapper { position: relative; width: 90%; max-width: 1000px; margin-top: 15vh; z-index: 2; padding-bottom: 50px; display: flex; flex-direction: column; align-items: center; }
         
-        .museum-title { margin-bottom: 80px; text-align: center; }
+        .museum-title h2 { color: #332211; text-shadow: 1px 2px 4px rgba(255,255,255,0.5); }
+        .museum-title p { color: #665544; }
         
-        .polaroid { background: #fdfdfd; padding: 12px 12px 40px 12px; box-shadow: 2px 10px 20px rgba(0,0,0,0.6); transition: 0.4s ease; cursor: pointer; position: relative; }
+        .polaroid { background: #fdfdfd; padding: 12px 12px 40px 12px; box-shadow: 2px 10px 20px rgba(0,0,0,0.3); transition: 0.4s ease; cursor: pointer; position: relative; }
         .polaroid::before { content:''; position:absolute; top:0;left:0;right:0;bottom:0; background: var(--paper-texture); opacity:0.3; pointer-events:none;}
         
-        .photo-string { position: absolute; bottom: 100%; left: 50%; width: 1.5px; height: 300px; background: rgba(255,255,255,0.3); z-index: -1; pointer-events: none;}
-        .clothespin { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); width: 8px; height: 22px; background: #a67c52; border-radius: 2px; box-shadow: 1px 2px 4px rgba(0,0,0,0.5); z-index: 11; pointer-events: none;}
+        /* Brown Twine Strings */
+        .photo-string { position: absolute; bottom: 100%; left: 50%; width: 2px; height: 300px; background: #7a583e; z-index: -1; pointer-events: none;}
+        .clothespin { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); width: 8px; height: 22px; background: #8b5a2b; border-radius: 2px; box-shadow: 1px 2px 4px rgba(0,0,0,0.4); z-index: 11; pointer-events: none;}
         
         .fairy-light { position: absolute; width: 5px; height: 5px; background: #fff; border-radius: 50%; box-shadow: 0 0 8px 3px #ffeb3b, 0 0 15px 5px #ffb300; animation: twinkle-light 2s infinite alternate; z-index: 12; pointer-events: none;}
-        @keyframes twinkle-light { 0% { opacity: 0.5; filter: brightness(0.8); transform: scale(0.9); } 100% { opacity: 1; filter: brightness(1.2); transform: scale(1.1); } }
-
+        
         .polaroid:nth-child(3n+1) { transform: rotate(-3deg); }
         .polaroid:nth-child(3n+2) { transform: rotate(2deg); }
         .polaroid:nth-child(3n) { transform: rotate(-1deg); }
-        .polaroid:hover { transform: scale(1.05) rotate(0); z-index: 10; box-shadow: 5px 15px 30px rgba(0,0,0,0.8); }
+        .polaroid:hover { transform: scale(1.05) rotate(0); z-index: 10; box-shadow: 5px 15px 30px rgba(0,0,0,0.5); }
         
-        .polaroid.viewed { filter: brightness(0.7); } 
+        .polaroid.viewed { filter: brightness(0.85) sepia(0.2); } 
         .polaroid-img { width: 220px; height: 180px; background: #ddd; display: flex; align-items: center; justify-content: center; font-family: var(--font-typewriter); color: #888; font-size: 0.8rem; overflow: hidden; background-size: cover; background-position: center;}
         
         /* =========================================================
-           THE VINTAGE DESK OVERHAUL (Room Shelf Replacement)
+           THE VINTAGE 3D DESK OVERHAUL 
            ========================================================= */
-        .room-table { 
+        .vintage-desk-area { 
             position: relative; 
             width: 100%; 
-            min-height: 280px; 
-            background: linear-gradient(to bottom, #543620, #2d1a11); 
-            border-top: 15px solid #3c2415; /* Table Lip */
-            box-shadow: 0 -20px 40px rgba(0,0,0,0.8), inset 0 8px 15px rgba(0,0,0,0.5); 
-            display: flex; align-items: flex-end; justify-content: center; z-index: 5; margin-top: auto; flex-shrink: 0; padding-bottom: 25px;
+            height: 45vh; /* Taller to accommodate standing items */
+            min-height: 350px; 
+            margin-top: auto; 
+            perspective: 1500px; /* 3D Depth */
+            display: flex; 
+            justify-content: center;
+            overflow: hidden;
+            z-index: 5;
         }
 
-        /* Books */
-        .book-stack { position: absolute; left: 8%; bottom: 30px; width: clamp(90px, 15vw, 130px); z-index: 8; }
-        .book { width: 100%; border-radius: 2px; position: relative; margin-bottom: -4px; border: 1px solid rgba(0,0,0,0.6); display: flex; align-items: center; padding-left: 8px; font-family: var(--font-serif); font-size: clamp(0.4rem, 1vw, 0.6rem); font-weight: bold; color: #fff; text-shadow: 1px 1px 0 #000; box-shadow: 2px 5px 10px rgba(0,0,0,0.5); }
-        .book-1 { background: #6c584c; height: 22px; transform: rotate(-4deg); z-index: 1; }
-        .book-2 { background: #a98467; height: 20px; transform: rotate(2deg); z-index: 2; color: #333; text-shadow: none; }
-        .book-3 { background: #e56b6f; height: 35px; transform: rotate(-2deg); z-index: 3; flex-direction: column; align-items: center; justify-content: center; padding: 4px; text-align: center; line-height: 1.1;}
-        .book-3 span { font-size: clamp(0.35rem, 1vw, 0.5rem); letter-spacing: 0.5px; }
+        .desk-surface {
+            position: absolute;
+            top: 20%; 
+            left: -10vw;
+            width: 120vw;
+            height: 150%;
+            background: linear-gradient(to bottom, #4a2f1d, #2b180d);
+            border-top: 4px solid #1a0f07;
+            transform: rotateX(70deg); /* Lays the table flat into the screen */
+            transform-origin: top;
+            box-shadow: inset 0 20px 50px rgba(0,0,0,0.9);
+            z-index: 1;
+        }
+        
+        .desk-item {
+            position: absolute;
+            z-index: 5;
+            filter: drop-shadow(-15px 25px 10px rgba(0,0,0,0.5)); /* Shadows point down-left */
+        }
+
+        /* Books Standing Vertically */
+        .book-row {
+            bottom: 35%;
+            left: 5%;
+            display: flex;
+            align-items: flex-end;
+            gap: 2px;
+            z-index: 4;
+            filter: drop-shadow(-20px 30px 15px rgba(0,0,0,0.6));
+        }
+        .book-v {
+            width: 35px;
+            border-radius: 3px 0 0 3px;
+            box-shadow: inset 2px 0 5px rgba(255,255,255,0.1), -5px 5px 10px rgba(0,0,0,0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            font-family: var(--font-serif);
+            font-size: 0.7rem;
+            font-weight: bold;
+            color: #fff;
+            padding: 10px 0;
+            border-left: 2px solid rgba(0,0,0,0.5);
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+        .b1 { height: 160px; background: #3d2314; }
+        .b2 { height: 140px; background: #6b4423; color: #f0e6d2; font-family: var(--font-sans);}
+        .b3 { height: 180px; background: #802020; transform: rotate(-5deg); transform-origin: bottom left; margin-left: 10px; font-size: 0.65rem;} /* Leaning book */
 
         /* Headphones resting on books */
-        .headphones-svg { position: absolute; left: 10%; bottom: 45px; width: clamp(60px, 10vw, 90px); z-index: 10; transform: rotate(15deg); filter: drop-shadow(5px 10px 5px rgba(0,0,0,0.6)); pointer-events: none;}
+        .desk-headphones {
+            bottom: 35%;
+            left: 12%;
+            width: 80px;
+            transform: rotate(-20deg) scaleY(0.9);
+            z-index: 6;
+            filter: drop-shadow(-10px 15px 8px rgba(0,0,0,0.6));
+        }
 
         /* Photo Frame */
-        .desk-frame { position: absolute; left: 28%; bottom: 40px; width: clamp(60px, 10vw, 80px); height: clamp(75px, 12vw, 100px); background: #fff; border: 6px solid #22140a; box-shadow: 5px 5px 15px rgba(0,0,0,0.7), inset 0 0 5px rgba(0,0,0,0.5); z-index: 7; transform: rotate(6deg); display: flex; align-items: center; justify-content: center; }
-        .desk-frame img { width: 100%; height: 100%; object-fit: cover; }
+        .desk-frame-wrapper { 
+            position: absolute; 
+            left: 28%; 
+            bottom: 32%; 
+            width: clamp(70px, 12vw, 100px); 
+            height: clamp(90px, 16vw, 130px); 
+            background: #eee; 
+            border: 8px solid #c4a47c; 
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.5); 
+            transform: rotate(5deg) scaleY(0.95); 
+            z-index: 3; 
+            display: flex; align-items: center; justify-content: center; 
+        }
+        .desk-frame-wrapper img { width: 100%; height: 100%; object-fit: cover; }
 
         /* Pen Stand */
-        .pen-stand { position: absolute; left: 42%; bottom: 50px; width: 35px; height: 45px; z-index: 6; }
-        .stand-cup { position: absolute; bottom: 0; width: 100%; height: 100%; background: linear-gradient(to right, #8b5a2b, #d2b48c, #8b5a2b); border-radius: 3px; box-shadow: 3px 5px 10px rgba(0,0,0,0.6); border: 1px solid #5a3a1b; z-index: 2;}
-        .pen { position: absolute; width: 4px; height: 35px; border-radius: 2px; bottom: 10px; z-index: 1;}
-        .pen-1 { background: #cc0000; left: 5px; transform: rotate(-15deg); }
-        .pen-2 { background: #222; left: 15px; transform: rotate(5deg); }
-        .pen-3 { background: #0044cc; left: 25px; transform: rotate(20deg); }
+        .desk-pen-stand { position: absolute; left: 45%; bottom: 35%; width: 45px; height: 60px; z-index: 2; transform: scaleY(0.95); filter: drop-shadow(-15px 20px 10px rgba(0,0,0,0.5));}
+        .cup { width: 100%; height: 100%; background: linear-gradient(to right, #7a604a, #d4be9f, #7a604a); border-radius: 4px; position: absolute; bottom: 0; z-index: 5; border-top: 2px solid #3d2a1a; box-shadow: inset 0 5px 10px rgba(0,0,0,0.6);}
+        .pen { position: absolute; width: 4px; height: 50px; border-radius: 2px; bottom: 10px; z-index: 1;}
+        .pen-1 { background: #cc0000; left: 8px; transform: rotate(-20deg); }
+        .pen-2 { background: #222; left: 20px; transform: rotate(5deg); }
+        .pen-3 { background: #0044cc; left: 32px; transform: rotate(25deg); }
 
         /* Real Sunflower */
-        .real-sunflower { position: absolute; left: 32%; bottom: 10px; font-size: clamp(2rem, 5vw, 3rem); transform: rotate(70deg); z-index: 9; filter: drop-shadow(2px 5px 5px rgba(0,0,0,0.5)); pointer-events: none;}
+        .real-sunflower { position: absolute; left: 30%; bottom: 10%; font-size: clamp(2.5rem, 6vw, 4rem); transform: rotate(60deg) scaleY(0.8) skewX(10deg); z-index: 8; filter: drop-shadow(-8px 15px 5px rgba(0,0,0,0.5)); pointer-events: none;}
 
         /* Origami Tulips */
-        .origami-tulip { position: absolute; width: clamp(20px, 3vw, 30px); z-index: 8; filter: drop-shadow(2px 4px 4px rgba(0,0,0,0.4)); pointer-events: none;}
-        .tulip-1 { left: 18%; bottom: 15px; transform: rotate(-40deg); }
-        .tulip-2 { left: 50%; bottom: 25px; transform: rotate(15deg); }
-        .tulip-3 { right: 35%; bottom: 10px; transform: rotate(-25deg); }
-        .tulip-4 { right: 8%; bottom: 20px; transform: rotate(50deg); }
+        .origami-tulip { position: absolute; width: clamp(20px, 3vw, 30px); z-index: 8; filter: drop-shadow(-6px 10px 4px rgba(0,0,0,0.5)); pointer-events: none; transform-origin: bottom;}
+        .tulip-1 { left: 15%; bottom: 12%; transform: rotate(-50deg) skewX(15deg) scaleY(0.7); }
+        .tulip-2 { left: 45%; bottom: 18%; transform: rotate(25deg) skewX(-10deg) scaleY(0.7); }
+        .tulip-3 { right: 40%; bottom: 5%; transform: rotate(-35deg) skewX(10deg) scaleY(0.7); }
+        .tulip-4 { right: 10%; bottom: 15%; transform: rotate(60deg) skewX(-15deg) scaleY(0.7); }
 
-        /* Candies & Wrappers */
-        .candy { position: absolute; z-index: 9; font-family: var(--font-sans); font-weight: bold; font-size: 0.5rem; display: flex; align-items: center; justify-content: center; box-shadow: 1px 2px 4px rgba(0,0,0,0.5); pointer-events: none;}
-        .kissme { left: 22%; bottom: 8px; width: 40px; height: 14px; background: linear-gradient(to right, #cc0000 20%, #ffcc00 20%, #ffcc00 80%, #cc0000 80%); color: #cc0000; transform: rotate(-15deg); }
-        .melody { left: 45%; bottom: 12px; width: 35px; height: 15px; background: #3e2723; color: #ffeb3b; border-left: 3px solid #ffeb3b; border-right: 3px solid #ffeb3b; transform: rotate(25deg); font-size: 0.4rem; letter-spacing: 1px;}
-        .pan-candy { right: 45%; bottom: 8px; width: 25px; height: 18px; background: radial-gradient(circle, #4caf50, #1b5e20); color: #ffeb3b; transform: rotate(-10deg); border-radius: 2px; font-size: 0.4rem;}
-        .choki { right: 28%; bottom: 15px; width: 60px; height: 8px; background: #3e2723; border-left: 15px solid #d32f2f; color: #fff; transform: rotate(-35deg); font-size: 0.35rem; text-align: right; padding-right: 2px;}
-        .tictac { right: 38%; bottom: 18px; width: 20px; height: 30px; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.4); border-radius: 4px; border-top: 5px solid #fff; transform: rotate(15deg); box-shadow: inset 0 0 5px rgba(255,255,255,0.2), 2px 2px 4px rgba(0,0,0,0.4); z-index: 9; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; padding-bottom: 2px;}
-        .tictac::after { content: 'tic tac'; font-family: var(--font-sans); font-size: 0.3rem; color: rgba(255,255,255,0.8); font-weight: bold;}
+        /* 3D Flattened Candies & Wrappers */
+        .candy { position: absolute; z-index: 9; font-family: var(--font-sans); font-weight: bold; font-size: 0.5rem; display: flex; align-items: center; justify-content: center; filter: drop-shadow(-4px 8px 5px rgba(0,0,0,0.6)); pointer-events: none; transform-origin: bottom;}
+        .kissme { left: 20%; bottom: 15%; width: 45px; height: 16px; background: linear-gradient(to right, #cc0000 20%, #ffcc00 20%, #ffcc00 80%, #cc0000 80%); color: #cc0000; transform: rotate(-25deg) skewX(20deg) scaleY(0.8); }
+        .melody { right: 45%; bottom: 12%; width: 40px; height: 18px; background: #3e2723; color: #ffeb3b; border-left: 4px solid #ffeb3b; border-right: 4px solid #ffeb3b; transform: rotate(15deg) skewX(-15deg) scaleY(0.8); }
+        .pan-candy { left: 38%; bottom: 8%; width: 28px; height: 20px; background: radial-gradient(circle, #4caf50, #1b5e20); color: #ffeb3b; border-radius: 3px; transform: rotate(45deg) skewX(10deg) scaleY(0.8); }
+        .choki { right: 25%; bottom: 12%; width: 70px; height: 10px; background: #3e2723; border-left: 20px solid #d32f2f; color: #fff; transform: rotate(-40deg) skewX(20deg) scaleY(0.8); font-size: 0.4rem; justify-content: flex-end; padding-right: 4px; }
+        
+        .tictac-box { width: 24px; height: 38px; background: rgba(255, 255, 255, 0.4); border: 1px solid rgba(255, 255, 255, 0.8); border-top: 6px solid #fff; border-radius: 4px; bottom: 20%; right: 35%; transform: rotate(15deg) skewX(-10deg) scaleY(0.85); z-index: 6; display: flex; align-items: center; justify-content: center; position: absolute; filter: drop-shadow(-8px 12px 6px rgba(0,0,0,0.5));}
+        .tictac-box::after { content: 'tic tac'; font-family: var(--font-sans); font-size: 0.3rem; color: rgba(255,255,255,0.9); font-weight: bold; transform: rotate(-90deg);}
 
-        /* GRAMOPHONE COMPONENT */
-        #gramophone-wrapper { position: absolute; right: 8%; bottom: 20px; width: clamp(180px, 30vw, 260px); height: clamp(160px, 25vw, 230px); cursor: pointer; user-select: none; transition: transform 0.3s; z-index: 10;}
-        #gramophone-wrapper:hover { transform: scale(1.03); }
+        /* GRAMOPHONE COMPONENT on 3D Desk */
+        #gramophone-wrapper { position: absolute; right: 5%; bottom: 25%; width: clamp(160px, 25vw, 240px); height: clamp(140px, 20vw, 210px); cursor: pointer; user-select: none; transition: transform 0.3s; z-index: 5; transform: scaleY(0.95); filter: drop-shadow(-20px 30px 15px rgba(0,0,0,0.7));}
+        #gramophone-wrapper:hover { transform: scaleY(0.95) scale(1.03); }
 
         .gramo-horn { position: absolute; top: -10px; left: 10px; width: 60%; height: 60%; z-index: 4; filter: drop-shadow(0 10px 10px rgba(0,0,0,0.6)); pointer-events: none;}
         .sound-wave { position: absolute; top: -15px; left: -10px; width: 40px; height: 40px; border: 2px solid rgba(255,215,0,0.7); border-radius: 50%; opacity: 0; pointer-events: none; z-index: 5;}
@@ -728,22 +799,8 @@
             
             <div class="hanging-display-wrapper">
                 <div class="museum-title">
-                    <h2 class="serif" style="font-size: 2.5rem; color: #eee; text-shadow: 0 2px 10px #000;">Our Little Museum</h2>
-                    <p style="font-family: var(--font-typewriter); color: #ccc; font-size: 0.9rem; margin-top:5px;">Tap the memories on the wall.</p>
-                </div>
-
-                <svg style="position:absolute; top: -60px; left:50%; transform:translateX(-50%); width:70%; height:60px; overflow:visible; z-index:1;">
-                    <path d="M 50% 0 L 0 60 M 50% 0 L 100% 60" fill="none" stroke="#a67c52" stroke-width="2"/>
-                </svg>
-
-                <div style="position:relative; width:100%; height:16px; background:linear-gradient(to bottom, #8b5a2b, #5c3a21); border-radius:10px; box-shadow: 0 5px 15px rgba(0,0,0,0.8); z-index:3;">
-                    <span style="position:absolute; left:2%; top:-15px; font-size:2rem; filter:drop-shadow(2px 4px 4px rgba(0,0,0,0.5));">🌿</span>
-                    <span style="position:absolute; left:25%; top:-10px; font-size:1.5rem;">🌿</span>
-                    <span style="position:absolute; left:45%; top:-18px; font-size:2.2rem;">🌿</span>
-                    <span style="position:absolute; left:65%; top:-5px; font-size:1.8rem;">🌿</span>
-                    <span style="position:absolute; left:85%; top:-12px; font-size:2rem;">🌿</span>
-                    <span style="position:absolute; left:-10px; top:10px; font-size:1.8rem; transform:rotate(80deg);">🌿</span>
-                    <span style="position:absolute; right:-10px; top:15px; font-size:1.6rem; transform:rotate(-80deg);">🌿</span>
+                    <h2 class="serif" style="font-size: 2.5rem;">Our Little Museum</h2>
+                    <p style="font-family: var(--font-typewriter); font-size: 0.9rem; margin-top:5px;">Tap the memories on the wall.</p>
                 </div>
 
                 <div class="gallery-wall" id="museum-gallery" style="position:relative; display:flex; flex-wrap:wrap; justify-content:center; gap: 40px; padding-top: 40px; width: 100%; z-index:2;">
@@ -751,45 +808,47 @@
                 </div>
             </div>
             
-            <div class="room-table">
+            <div class="vintage-desk-area">
+                <div class="desk-surface"></div>
+                
                 <!-- THE PIGGY BOOKS -->
-                <div class="book-stack">
-                    <div class="book book-1">Pig Care 101</div>
-                    <div class="book book-2">Oink! A Memoir</div>
-                    <div class="book book-3">HOW TO BE<br><span>PRJ'S GOOD GIRL</span></div>
+                <div class="book-row desk-item">
+                    <div class="book-v b1">PIG CARE 101</div>
+                    <div class="book-v b2">OINK! MEMOIR</div>
+                    <div class="book-v b3">HOW TO BE<br>PRJ'S GOOD GIRL</div>
                 </div>
 
                 <!-- HEADPHONES -->
-                <svg viewBox="0 0 100 100" class="headphones-svg"><use href="#svg-headphones"/></svg>
+                <svg viewBox="0 0 100 100" class="desk-headphones desk-item"><use href="#svg-headphones"/></svg>
 
                 <!-- DESK PHOTO FRAME -->
-                <div class="desk-frame">
-                    <img src="IMG_DESK_FRAME.jpeg" alt="Desk Frame Placeholder">
+                <div class="desk-frame-wrapper desk-item">
+                    <img src="IMG_DESK_FRAME.jpeg" alt="Desk Photo">
                 </div>
 
                 <!-- PEN STAND -->
-                <div class="pen-stand">
+                <div class="desk-pen-stand desk-item">
                     <div class="pen pen-1"></div>
                     <div class="pen pen-2"></div>
                     <div class="pen pen-3"></div>
-                    <div class="stand-cup"></div>
+                    <div class="cup"></div>
                 </div>
 
                 <!-- REAL SUNFLOWER -->
-                <div class="real-sunflower">🌻</div>
+                <div class="real-sunflower desk-item">🌻</div>
 
                 <!-- ORIGAMI TULIPS -->
-                <svg viewBox="0 0 50 100" class="origami-tulip tulip-1"><use href="#svg-origami-tulip"/></svg>
-                <svg viewBox="0 0 50 100" class="origami-tulip tulip-2"><use href="#svg-origami-tulip"/></svg>
-                <svg viewBox="0 0 50 100" class="origami-tulip tulip-3"><use href="#svg-origami-tulip"/></svg>
-                <svg viewBox="0 0 50 100" class="origami-tulip tulip-4"><use href="#svg-origami-tulip"/></svg>
+                <svg viewBox="0 0 50 100" class="origami-tulip tulip-1 desk-item"><use href="#svg-origami-tulip"/></svg>
+                <svg viewBox="0 0 50 100" class="origami-tulip tulip-2 desk-item"><use href="#svg-origami-tulip"/></svg>
+                <svg viewBox="0 0 50 100" class="origami-tulip tulip-3 desk-item"><use href="#svg-origami-tulip"/></svg>
+                <svg viewBox="0 0 50 100" class="origami-tulip tulip-4 desk-item"><use href="#svg-origami-tulip"/></svg>
 
                 <!-- TOFFEE WRAPPERS & TIC-TAC -->
-                <div class="candy kissme">KissMe</div>
-                <div class="candy melody">Melody</div>
-                <div class="candy pan-candy">Pan</div>
-                <div class="candy choki">Choki Choki</div>
-                <div class="candy tictac"></div>
+                <div class="candy kissme desk-item">KissMe</div>
+                <div class="candy melody desk-item">Melody</div>
+                <div class="candy pan-candy desk-item">Pan</div>
+                <div class="candy choki desk-item">Choki Choki</div>
+                <div class="tictac-box desk-item"></div>
 
                 <!-- VINTAGE GRAMOPHONE PLAYER -->
                 <div id="gramophone-wrapper">
@@ -946,7 +1005,7 @@
     </div>
 
     <!-- AUDIO ELEMENTS -->
-    <audio id="our-song" src="our_song.mp3" preload="auto"></audio>
+    <audio id="our-song" src="Song.mp3" preload="auto"></audio>
     <audio id="magic-sound" src="assets/audio/magic.mp3" preload="auto"></audio>
 
     <script>
