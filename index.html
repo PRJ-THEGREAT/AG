@@ -354,26 +354,51 @@
         .btn-close-modal:hover { background: #fff; color: #000; }
 
         /* =========================================================
-           8. GOODBYE (ARCADE MINI GAME & SOLAR SYSTEM)
+           8. GOODBYE (ARCADE MINI GAME & FULL SOLAR SYSTEM)
            ========================================================= */
         #s8-goodbye { background: #030208; align-items: center; justify-content: center; text-align: center; overflow: hidden; }
-        #solar-system { position: absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; opacity: 0; transition: opacity 3s; z-index: 0; background: radial-gradient(circle at center, #1a1a3a 0%, #030208 80%); overflow: hidden;}
+        #solar-system { position: absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; opacity: 0; transition: opacity 3s; z-index: 0; background: radial-gradient(circle at 50% 120%, #1a1a3a 0%, #010103 80%); overflow: hidden;}
         
-        .stars { width: 100%; height: 100%; background: transparent; }
-        .stars::after { content:''; position:absolute; width:3px; height:3px; border-radius: 50%; background:white; box-shadow: 10vw 20vh #fff, 25vw 80vh #fff, 85vw 15vh #fff, 60vw 60vh #fff, 90vw 90vh #fff, 40vw 30vh #fff, 75vw 85vh #fff, 30vw 10vh #fff, 50vw 50vh #fff, 15vw 45vh #fff, 80vw 35vh #fff, 5vw 90vh #fff; animation: twinkle 3s infinite alternate; }
-        @keyframes twinkle { 0% { opacity: 0.2; } 100% { opacity: 1; } }
+        /* Deep Space Nebulas */
+        .nebula { position: absolute; filter: blur(50px); opacity: 0.3; pointer-events: none; z-index: 1;}
+        .nebula.pink { width: 50vw; height: 50vw; background: #ff007f; top: -10%; left: -10%; border-radius: 50%;}
+        .nebula.blue { width: 60vw; height: 40vw; background: #00e5ff; bottom: 0%; right: -10%; border-radius: 50%;}
+        .nebula.purple { width: 40vw; height: 40vw; background: #8a2be2; top: 30%; left: 50%; border-radius: 50%; transform: translateX(-50%);}
+
+        /* 3-Layer Star System */
+        .stars-1, .stars-2, .stars-3 { position: absolute; top:0; left:0; width: 100%; height: 100%; background: transparent; z-index: 2;}
+        .stars-1::after { content:''; position:absolute; width:1px; height:1px; background:white; box-shadow: 10vw 5vh #fff, 20vw 15vh #fff, 30vw 25vh #fff, 40vw 10vh #fff, 50vw 35vh #fff, 60vw 15vh #fff, 70vw 25vh #fff, 80vw 5vh #fff, 90vw 20vh #fff, 95vw 40vh #fff, 5vw 50vh #fff, 15vw 60vh #fff, 25vw 55vh #fff, 35vw 70vh #fff, 45vw 65vh #fff, 55vw 80vh #fff, 65vw 60vh #fff, 75vw 75vh #fff, 85vw 55vh #fff, 95vw 85vh #fff, 10vw 90vh #fff, 20vw 80vh #fff, 30vw 95vh #fff, 40vw 85vh #fff, 50vw 90vh #fff, 60vw 95vh #fff, 70vw 85vh #fff, 80vw 95vh #fff, 90vw 90vh #fff, 5vw 25vh #fff, 15vw 45vh #fff, 25vw 15vh #fff, 35vw 35vh #fff, 45vw 25vh #fff, 55vw 45vh #fff, 65vw 15vh #fff, 75vw 35vh #fff, 85vw 25vh #fff, 95vw 45vh #fff; animation: twinkle 3s infinite alternate; }
+        .stars-2::after { content:''; position:absolute; width:2px; height:2px; border-radius:50%; background:white; box-shadow: 8vw 8vh #fff, 18vw 28vh #fff, 28vw 18vh #fff, 38vw 38vh #fff, 48vw 8vh #fff, 58vw 28vh #fff, 68vw 18vh #fff, 78vw 38vh #fff, 88vw 8vh #fff, 98vw 28vh #fff, 8vw 48vh #fff, 18vw 68vh #fff, 28vw 58vh #fff, 38vw 78vh #fff, 48vw 48vh #fff, 58vw 68vh #fff, 68vw 58vh #fff, 78vw 78vh #fff, 88vw 48vh #fff, 98vw 68vh #fff, 8vw 88vh #fff, 18vw 98vh #fff, 28vw 88vh #fff, 38vw 98vh #fff, 48vw 88vh #fff, 58vw 98vh #fff, 68vw 88vh #fff, 78vw 98vh #fff, 88vw 88vh #fff, 98vw 98vh #fff; animation: twinkle 4s infinite alternate-reverse; }
+        .stars-3::after { content:''; position:absolute; width:3px; height:3px; border-radius:50%; background:white; box-shadow: 12vw 12vh #fff, 32vw 32vh #fff, 52vw 52vh #fff, 72vw 72vh #fff, 92vw 92vh #fff, 22vw 42vh #fff, 42vw 62vh #fff, 62vw 82vh #fff, 82vw 22vh #fff, 12vw 82vh #fff, 32vw 12vh #fff, 52vw 92vh #fff, 72vw 42vh #fff, 92vw 62vh #fff; animation: twinkle 2.5s infinite alternate; filter: drop-shadow(0 0 5px #fff); }
+        @keyframes twinkle { 0% { opacity: 0.1; } 100% { opacity: 1; } }
         
-        .planet { position: absolute; border-radius: 50%; }
+        /* Shooting Stars */
+        .shooting-star { position: absolute; width: 100px; height: 2px; background: linear-gradient(90deg, rgba(255,255,255,1), transparent); opacity: 0; z-index: 2;}
+        @keyframes shoot { 0% { transform: translateX(0) translateY(0) rotate(-35deg); opacity: 1; } 10% { transform: translateX(-300px) translateY(200px) rotate(-35deg); opacity: 0; } 100% { opacity: 0; } }
+
+        /* Planets */
+        .planet { position: absolute; border-radius: 50%; z-index: 3;}
         .moon { width: 90px; height: 90px; background: radial-gradient(circle at 30% 30%, #e0e0e0 0%, #9e9e9e 100%); top: 15%; right: 20%; box-shadow: 0 0 30px rgba(255,255,255,0.2); animation: orbit 60s linear infinite; }
         .saturn { width: 50px; height: 50px; background: #d4a373; top: 70%; left: 15%; transform: rotate(-20deg); animation: float-slow 10s ease-in-out infinite; box-shadow: inset -10px -10px 15px rgba(0,0,0,0.5);}
         .saturn::before { content:''; position:absolute; top:50%; left:50%; width: 100px; height: 15px; border: 4px solid rgba(220,200,180,0.8); border-radius: 50%; transform: translate(-50%, -50%); }
         .mars { width: 30px; height: 30px; background: radial-gradient(circle at 30% 30%, #e07a5f, #813422); top: 30%; left: 25%; animation: orbit-rev 40s linear infinite; box-shadow: inset -5px -5px 10px rgba(0,0,0,0.6);}
+        .jupiter { width: 75px; height: 75px; background: linear-gradient(180deg, #c88b3a, #e0b476, #a66a2c, #e0b476, #c88b3a); top: 20%; left: 10%; box-shadow: inset -10px -10px 20px rgba(0,0,0,0.7); animation: orbit-large 80s linear infinite; }
+        .neptune { width: 45px; height: 45px; background: radial-gradient(circle at 30% 30%, #3a7bd5, #001f54); bottom: 25%; right: 15%; box-shadow: inset -8px -8px 15px rgba(0,0,0,0.6); animation: orbit-float 50s linear infinite; }
         
         @keyframes float-slow { 0%, 100% { transform: translateY(0) rotate(-20deg); } 50% { transform: translateY(-20px) rotate(-15deg); } }
         @keyframes orbit { 0% { transform: translateX(0) translateY(0); } 50% { transform: translateX(-30px) translateY(15px); } 100% { transform: translateX(0) translateY(0); } }
         @keyframes orbit-rev { 0% { transform: translateX(0) translateY(0); } 50% { transform: translateX(20px) translateY(-20px); } 100% { transform: translateX(0) translateY(0); } }
+        @keyframes orbit-large { 0% { transform: translateX(0) translateY(0); } 50% { transform: translateX(-50px) translateY(20px); } 100% { transform: translateX(0) translateY(0); } }
+        @keyframes orbit-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-30px); } }
+        
         @keyframes hint-pulse { 0% { transform: scale(1); } 100% { transform: scale(1.1); } }
         @keyframes spacewalk { 0%, 100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-15px) rotate(3deg); } }
+
+        /* FINAL IMAGE ANIMATION - Centered strictly */
+        @keyframes final-float {
+            0%, 100% { transform: translate(-50%, 0) scale(1); }
+            50% { transform: translate(-50%, -15px) scale(1.03); }
+        }
 
         .climax-text { font-family: var(--font-serif); font-size: clamp(1.5rem, 5vw, 3rem); color: #ffdf73; opacity: 0; transition: opacity 2s ease; z-index: 5; position: absolute; font-weight: bold; text-shadow: 0 2px 15px rgba(255,223,115,0.5); text-align: center; width: 100%; pointer-events: none; left: 0;}
         #goodbye-glow { position: absolute; top:50%; left:50%; transform: translate(-50%, -50%); width: 300px; height: 300px; background: radial-gradient(circle, rgba(255,223,115,0.15) 0%, transparent 60%); opacity: 0; transition: 4s; pointer-events: none; z-index: 3;}
@@ -744,9 +769,21 @@
             <div id="vs-screen">PIGGY<br><br><span style="font-size:1.5rem; color:#fff; text-shadow:none;">VS</span><br><br>MENDHAK</div>
             <div id="ko-screen" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(3); opacity: 0; font-family: var(--font-arcade); color: #ff2a2a; font-size: clamp(3rem, 15vw, 6rem); text-shadow: 4px 4px 0px #fff, 8px 8px 0px #000; text-align: center; pointer-events: none; z-index: 20; transition: all 0.2s; width: 100vw;">K.O.!</div>
 
-            <!-- THE UNIVERSE -->
+            <!-- FULL UNIVERSE & DEEP SPACE BACKGROUND -->
             <div id="solar-system">
-                <div class="stars"></div>
+                <div class="nebula pink"></div>
+                <div class="nebula blue"></div>
+                <div class="nebula purple"></div>
+                
+                <div class="stars-1"></div>
+                <div class="stars-2"></div>
+                <div class="stars-3"></div>
+                
+                <div class="shooting-star" style="top: 10%; right: 20%; animation: shoot 6s infinite linear 1s;"></div>
+                <div class="shooting-star" style="top: 40%; right: 5%; animation: shoot 8s infinite linear 4s;"></div>
+                
+                <div class="planet jupiter"></div>
+                <div class="planet neptune"></div>
                 <div class="planet saturn"></div>
                 <div class="planet mars"></div>
                 <div class="planet moon"></div>
@@ -770,15 +807,15 @@
                 </div>
             </div>
 
-            <!-- THE TWINKLE STAR (Absolutely positioned where Mendhak vanishes) -->
-            <div id="vanish-twinkle" style="position:absolute; top:15%; right:15%; opacity:0; pointer-events:none; z-index: 20;">
+            <!-- THE TWINKLE STAR (Absolutely positioned near where Mendhak vanishes) -->
+            <div id="vanish-twinkle" style="position:absolute; top: 15%; right: 15%; opacity:0; pointer-events:none; z-index: 20;">
                 <div class="twinkle-star"></div>
             </div>
             
             <div id="goodbye-text-3" class="climax-text" style="top:40%; color:#ffc8d2; font-size:clamp(1.5rem, 4vw, 2.5rem);">PIGGY LOVES MENDHAK MORE !</div>
             
-            <!-- FINAL IMAGE (Appears at end instead of returning Mendhak) -->
-            <img id="final-image" src="IMG_0125.png" style="position:absolute; width:clamp(150px, 40vw, 250px); bottom: 35%; left: 50%; transform: translate(-50%, 20px) scale(0.8); opacity:0; transition: opacity 2s ease, transform 2s ease; z-index: 6; pointer-events: none; object-fit: contain; max-height: 40vh;">
+            <!-- FINAL IMAGE (Strictly Centered Float) -->
+            <img id="final-image" src="IMG_0125.png" style="position:absolute; width:clamp(150px, 40vw, 250px); bottom: 35%; left: 50%; transform: translate(-50%, 0) scale(0.8); opacity:0; transition: opacity 2s ease, transform 2s ease; z-index: 6; pointer-events: none; object-fit: contain; max-height: 40vh;">
 
             <div style="position:absolute; bottom:20%; display:flex; flex-direction:column; align-items:center; z-index:5;">
                 <div id="goodbye-text-2" class="climax-text floral-text" style="position:relative; top:0; font-size: clamp(2.5rem, 8vw, 5rem); line-height: 1.1;">HAPPY BIRTHDAY<br>LOVE</div>
@@ -825,7 +862,7 @@
 
             letters: [
                 { label: "FROM: MOM & DAD", text: "To me, Aaradhya is the brightest light in our family. Seeing you grow into such a beautiful soul makes us prouder every day. Happy Birthday! [ADD FULL TEXT]" },
-                { label: "FROM: Shristi", text: "For me Aaradhya is, my happy place🪷✨️. The person I call whenever something funny, stupid, exciting, or heartbreaking happens😸. She isn't just my best friend; she's the sister i always wanted . and bakwass jitni bhi karti ho I love her so much!!❤️" },
+                { label: "FROM: Shristi", text: "For me Aaradhya is, my happy place🪷✨️️. The person I call whenever something funny, stupid, exciting, or heartbreaking happens😸. She isn't just my best friend; she's the sister i always wanted . and bakwass jitni bhi karti ho I love her so much!!❤️" },
                 { label: "FROM: Riddhima", text: "For me, Aaradhya✨ is someone I would run to as soon as I get any tea.😋 I can share everything with her; she's more than just a best friend. I love everything about her,💋💋 especially her laugh. Around her, I can be the real me, knowing she will never judge me." },
                 { label: "FROM: [FRIEND 3]", text: "To me, Aaradhya is... [ADD FULL TEXT]" },
                 { label: "FROM: [FRIEND 4]", text: "To me, Aaradhya is... [ADD FULL TEXT]" },
@@ -1034,7 +1071,6 @@
 
             const musGrid = document.getElementById('museum-gallery');
             SITE_DATA.museum.forEach((item, index) => {
-                // Ensure rows hang straight by using standard spacing instead of random margins
                 musGrid.innerHTML += `
                     <div class="polaroid" id="pol-${index}" onclick="openPolaroid(${index})" style="margin-top: 60px;">
                         <div class="photo-string"></div>
@@ -1185,7 +1221,7 @@
             
             await wait(1800);
             overlay.style.pointerEvents = 'none';
-            overlay.style.display = 'none'; // fully remove it from view
+            overlay.style.display = 'none'; 
         }
 
         let viewedPolaroids = new Set();
@@ -1245,7 +1281,7 @@
         function startGoodbyeFlowers() {
             const container = document.getElementById('s8-goodbye');
             const emojis = ['🌹', '🌻', '🌷', '🌼', '🪷', '🏵️', '🌺', '🌸'];
-            for(let i=0; i<35; i++) {
+            for(let i=0; i<45; i++) {
                 let f = document.createElement('div');
                 f.style.position = 'absolute';
                 f.innerText = emojis[Math.floor(Math.random() * emojis.length)];
@@ -1430,7 +1466,7 @@
                     mendhak.style.transform = `translate(30vw, -50vh) rotate(${currentRotation + 1440}deg) scale(0)`;
                     mendhak.style.opacity = '0';
                     
-                    // Trigger twinkle exactly as he vanishes
+                    // Twinkle exactly as he vanishes
                     setTimeout(() => {
                         const twinkle = document.getElementById('vanish-twinkle');
                         twinkle.style.opacity = '1';
@@ -1457,8 +1493,12 @@
                     // Final image fades in
                     const finalImg = document.getElementById('final-image');
                     finalImg.style.opacity = '1';
+                    
+                    // First set it cleanly to 0, then let the animation take over
                     finalImg.style.transform = 'translate(-50%, 0) scale(1)';
-                    finalImg.style.animation = 'float-slow 6s infinite ease-in-out';
+                    setTimeout(() => {
+                        finalImg.style.animation = 'final-float 6s infinite ease-in-out';
+                    }, 2000);
                     
                     text2.style.opacity = '1';
                     textSub.style.opacity = '1';
