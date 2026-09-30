@@ -161,7 +161,7 @@
            4. LETTERS (VINTAGE STAMPED ENVELOPES)
            ========================================================= */
         #s4-letters { padding: 10vh 5vw; background: #1a1818; align-items: center; perspective: 1000px;}
-        .letters-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; max-width: 900px; width: 100%; margin-top: 60px; justify-content: center; }
+        .letters-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; max-width: 1200px; width: 100%; margin-top: 60px; justify-content: center; }
         
         .envelope-wrapper { position: relative; height: 200px; cursor: pointer; perspective: 1000px; }
         .envelope { 
@@ -194,14 +194,15 @@
             box-shadow: inset 0 -5px 20px rgba(90, 50, 10, 0.4);
         }
         
+        /* Realistic Wax Seal */
         .wax-seal {
             position: absolute;
             top: 55%; 
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 45px;
-            height: 45px;
-            background: radial-gradient(circle at 30% 30%, #a41010, #5c0000);
+            width: 48px;
+            height: 48px;
+            background: radial-gradient(circle at 35% 25%, #d92525 0%, #8a0b0b 40%, #4a0000 100%);
             border-radius: 50%;
             color: #eaddd7;
             font-family: var(--font-serif);
@@ -210,18 +211,32 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 2px 3px 5px rgba(0,0,0,0.5), inset 0 0 4px rgba(0,0,0,0.8);
+            box-shadow: 2px 4px 6px rgba(0,0,0,0.6), inset 1px 1px 3px rgba(255,255,255,0.3), inset -2px -2px 4px rgba(0,0,0,0.7);
             z-index: 5;
             transition: 0.5s ease;
             pointer-events: none;
             letter-spacing: 1px;
-            border: 1px solid #3a0000;
+            border: 2px solid #5c0000;
+        }
+        /* Wax seal inner indent */
+        .wax-seal::after {
+            content: '';
+            position: absolute;
+            top: 4px; left: 4px; right: 4px; bottom: 4px;
+            border-radius: 50%;
+            border: 1px solid rgba(0,0,0,0.3);
+            box-shadow: inset 0 0 5px rgba(0,0,0,0.6);
+            pointer-events: none;
         }
 
+        /* Aged Crumpled Letter Paper */
         .letter-paper { 
             position: absolute; top: 10px; left: 5%; width: 90%; height: 90%; 
-            background: #fdfbf7; color: #222; padding: 20px; font-family: var(--font-serif); font-size: 0.95rem; line-height: 1.6; 
-            transition: 0.8s ease; z-index: 1; opacity: 0; overflow-y: auto; border: 1px solid #eee; box-shadow: 0 0 10px rgba(0,0,0,0.1); 
+            background-color: #e3d3b6;
+            background-image: var(--paper-texture), linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 50%, rgba(0,0,0,0.1) 100%), radial-gradient(circle at center, transparent 40%, rgba(90, 50, 10, 0.5) 100%);
+            color: #3e2723; padding: 20px; font-family: var(--font-serif); font-size: 0.95rem; line-height: 1.6; 
+            transition: 0.8s ease; z-index: 1; opacity: 0; overflow-y: auto; border: 1px solid #c2a88a; 
+            box-shadow: inset 0 0 15px rgba(70, 40, 10, 0.6), inset 2px 2px 5px rgba(255,255,255,0.4), 0 5px 15px rgba(0,0,0,0.3); 
         }
         
         .envelope-wrapper.open .envelope-flap { transform: rotateX(180deg); z-index: 1; }
@@ -1165,7 +1180,7 @@
         <div class="book-3d-wrapper" id="the-3d-book">
             <div class="book-3d-back"></div>
             <div class="book-3d-pages">
-                JUST BE YOURSELF MERI JAAN , YOU'LL ALWAYS BE PRJ'S PYARII SI GOOD GIRL 💋
+                just be yourself meri jaan , you're already PRJ's pyari si good girl 💋
             </div>
             <div class="book-3d-cover">
                 <div class="book-3d-cover-front">
@@ -1210,7 +1225,9 @@
                 { label: "FROM: Paridhi", text: "For me Aaradhya is the friend i had never expected would turn out this good, her cheerful and funny side made me enjoy time with her more, every moment spent with her made me laugh until my stomach hurt and every joke of hers made me happy with a bright smile." },
                 { label: "FROM: Leora", text: "AARADHYA FOR ME.......<br>☆You are the the meethi chutney😋 to my golgappa🍽...<br>☆You are the double circulation🩺 to my heart🫀<br>☆ Annddd i missssss youuu sooooo mucchhh😭😭😭😭💖💖💖💖💖" },
                 { label: "FROM: Navya", text: "For me Aaradhya is <br>Likee the sweetesttt nd veryyyy cutessttt personn i hve ever mettt shess justt ekdummm merii chotuu si beheennn ekdumm jr vali to koi vibes he nhi aati hai .. ndd honestly i love herr smm like boht he sweet si haii 😚😚😚 .. i never knew ki ek jr se me itna attach houngi aur itni pyarii hai bhyii vo 🫠😍 and obv alwayss she'll be my funny sii happyy place ilysmm cutuuu😚😚😚😚 you'll always hold a very special place in my heart nd life .. lovee youu bothhh (puklit nd cutu)🫶🫶🫶🫶🫶🫶🫶" },
-                { label: "FROM: ME", text: "To me, Aaradhya is everything. You are my sunshine, my missing star, and the absolute best part of my day. Happy Birthday, Jaanu. [ADD FULL TEXT]" }
+                { label: "FROM: Yashasvi", text: "[ADD YASHASVI'S TEXT HERE]" },
+                { label: "FROM: Aarushi", text: "[ADD AARUSHI'S TEXT HERE]" },
+                { label: "FROM: PRJ", text: "To me, Aaradhya is everything. You are my sunshine, my missing star, and the absolute best part of my day. Happy Birthday, Jaanu. [ADD FULL TEXT]" }
             ],
             
             poem: [
