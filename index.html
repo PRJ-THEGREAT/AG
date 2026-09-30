@@ -358,11 +358,11 @@
         /* Books Standing Upright */
         .book-row {
             bottom: 50px;
-            left: 4%;
+            left: 2%; /* Shifted left to make room */
             display: flex;
             align-items: flex-end;
             gap: 2px;
-            z-index: 8;
+            z-index: 12;
         }
         .book-v {
             width: 30px;
@@ -383,21 +383,35 @@
         }
         .b1 { height: 140px; background: #3d2314; }
         .b2 { height: 120px; background: #6b4423; color: #f0e6d2; font-family: var(--font-sans);}
-        .b3 { height: 160px; background: #802020; transform: rotate(-5deg); transform-origin: bottom left; margin-left: 10px; font-size: 0.6rem;}
+        
+        /* Interactive Easter Egg Book */
+        .b3 { 
+            height: 160px; 
+            background: #802020; 
+            transform: rotate(-5deg); 
+            transform-origin: bottom left; 
+            margin-left: 10px; 
+            font-size: 0.6rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            pointer-events: auto;
+        }
+        .b3:hover { transform: rotate(-8deg) scale(1.05); }
 
         /* Headphones resting on books */
         .desk-headphones {
             bottom: 145px;
-            left: 8%;
-            width: 80px;
+            left: 4%; /* Shifted to only overlap first book */
+            width: 70px;
             transform: rotate(-15deg);
-            z-index: 9;
+            z-index: 11; /* Behind the red interactive book */
+            pointer-events: none; /* Prevents blocking clicks */
         }
 
         /* Photo Frame */
         .desk-frame-wrapper { 
             bottom: 60px; 
-            left: 18%; 
+            left: 25%; /* Pushed right to free the book */
             width: clamp(60px, 10vw, 80px); 
             height: clamp(80px, 14vw, 110px); 
             background: #eee; 
@@ -409,7 +423,7 @@
         .desk-frame-wrapper img { width: 100%; height: 100%; object-fit: cover; }
 
         /* Pen Stand */
-        .desk-pen-stand { left: 32%; bottom: 70px; width: 35px; height: 50px; z-index: 6;}
+        .desk-pen-stand { left: 40%; bottom: 70px; width: 35px; height: 50px; z-index: 6;}
         .cup { width: 100%; height: 100%; background: linear-gradient(to right, #7a604a, #d4be9f, #7a604a); border-radius: 4px; position: absolute; bottom: 0; z-index: 5; border-top: 2px solid #3d2a1a; box-shadow: inset 0 5px 10px rgba(0,0,0,0.6);}
         .pen { position: absolute; width: 4px; height: 40px; border-radius: 2px; bottom: 10px; z-index: 1;}
         .pen-1 { background: #cc0000; left: 5px; transform: rotate(-20deg); }
@@ -419,7 +433,7 @@
         /* NEW: Unfolded Paint Stained T-Shirt with Warli Art */
         .t-shirt-svg {
             position: absolute;
-            left: 42%; bottom: 45px;
+            left: 48%; bottom: 45px;
             width: clamp(90px, 14vw, 130px); 
             height: auto;
             transform: rotate(-5deg) scaleY(0.9);
@@ -428,21 +442,21 @@
         }
 
         /* Real Sunflower */
-        .real-sunflower { left: 25%; bottom: 20px; font-size: clamp(2rem, 5vw, 3.5rem); transform: rotate(70deg); pointer-events: none;}
+        .real-sunflower { left: 30%; bottom: 25px; font-size: clamp(2rem, 5vw, 3.5rem); transform: rotate(70deg); pointer-events: none;}
 
         /* Origami Lilies */
         .origami-lily { width: clamp(20px, 3vw, 30px); pointer-events: none;}
-        .lily-1 { left: 12%; bottom: 25px; transform: rotate(-40deg); } /* Pink */
-        .lily-2 { left: 36%; bottom: 35px; transform: rotate(20deg) scale(1.4); } /* Lined, Bigger */
-        .lily-3 { right: 32%; bottom: 30px; transform: rotate(-25deg); } /* Lined */
-        .lily-4 { right: 25%; bottom: 15px; transform: rotate(50deg); } /* Lined */
+        .lily-1 { left: 15%; bottom: 25px; transform: rotate(-40deg); } /* Pink */
+        .lily-2 { left: 40%; bottom: 35px; transform: rotate(20deg) scale(1.4); } /* Lined, Bigger */
+        .lily-3 { right: 35%; bottom: 30px; transform: rotate(-25deg); } /* Lined */
+        .lily-4 { right: 28%; bottom: 15px; transform: rotate(50deg); } /* Lined */
 
         /* Scattered Candies */
         .candy { position: absolute; z-index: 11; font-family: var(--font-sans); font-weight: bold; font-size: 0.5rem; display: flex; align-items: center; justify-content: center; pointer-events: none; filter: drop-shadow(-4px 6px 4px rgba(0,0,0,0.6));}
         
         .kissme { left: 22%; bottom: 15px; width: 40px; height: 14px; background: linear-gradient(to right, #cc0000 20%, #fff 20%, #fff 80%, #cc0000 80%); color: #cc0000; transform: rotate(-15deg); }
-        .pan-candy { left: 48%; bottom: 10px; width: 25px; height: 18px; background: #4caf50; color: #fff; border-radius: 3px; transform: rotate(35deg); font-size: 0.4rem;}
-        .melody { right: 42%; bottom: 20px; width: 35px; height: 16px; background: #111; color: #d4af37; border-left: 4px solid #d4af37; border-right: 4px solid #d4af37; transform: rotate(20deg); font-size: 0.4rem;}
+        .pan-candy { left: 48%; bottom: 15px; width: 25px; height: 18px; background: #4caf50; color: #fff; border-radius: 3px; transform: rotate(35deg); font-size: 0.4rem;}
+        .melody { right: 45%; bottom: 25px; width: 35px; height: 16px; background: #111; color: #d4af37; border-left: 4px solid #d4af37; border-right: 4px solid #d4af37; transform: rotate(20deg); font-size: 0.4rem;}
         
         .choki { background: #3e2723; border-left: 15px solid #f5f5dc; color: #f5f5dc; font-size: 0.35rem; justify-content: flex-end; padding-right: 4px; width: 70px; height: 8px;}
         .choki-1 { right: 20%; bottom: 10px; transform: rotate(-30deg); }
@@ -455,7 +469,7 @@
             border: 1px solid rgba(255, 255, 255, 0.4); 
             border-top: 5px solid #fff; 
             border-radius: 4px; 
-            bottom: 15px; right: 35%; 
+            bottom: 20px; right: 38%; 
             transform: rotate(15deg); 
             display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: center; padding: 2px; gap: 1px;
             box-shadow: inset 0 0 5px rgba(255,255,255,0.3);
@@ -510,9 +524,14 @@
         #gramophone-wrapper.playing .dvd-bars { display: flex; }
         @keyframes eq { 0% { height: 2px; } 100% { height: 10px; } }
 
-        #polaroid-modal { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.9); z-index: 100; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 0.4s ease; flex-direction: column; }
-        #polaroid-modal.active { opacity: 1; pointer-events: all; }
+        /* MODALS */
+        #polaroid-modal, #book-modal { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.9); z-index: 100; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 0.4s ease; flex-direction: column; }
+        #polaroid-modal.active, #book-modal.active { opacity: 1; pointer-events: all; }
         #modal-frame { transform: scale(1.2); cursor: default; pointer-events: none; }
+        
+        /* Book Easter Egg Style */
+        .easter-egg-box { background: #fdfbf7; padding: 40px; border-radius: 4px; max-width: 80%; text-align: center; font-family: var(--font-serif); font-size: 1.5rem; color: #222; box-shadow: 0 0 30px rgba(0,0,0,0.8); border: 2px solid #c4a47c; font-style: italic;}
+
         .btn-close-modal { margin-top: 30px; padding: 10px 30px; background: none; border: 1px solid #fff; color: #fff; font-family: var(--font-serif); cursor: pointer; transition: 0.3s; border-radius: 30px;}
         .btn-close-modal:hover { background: #fff; color: #000; }
 
@@ -871,7 +890,8 @@
                     <div class="book-row desk-item">
                         <div class="book-v b1">PIG CARE 101</div>
                         <div class="book-v b2">OINK! MEMOIR</div>
-                        <div class="book-v b3">HOW TO BE<br>PRJ'S GOOD GIRL</div>
+                        <!-- Interactive Easter Egg Book -->
+                        <div class="book-v b3" onclick="openBookMessage()">HOW TO BE<br>PRJ'S GOOD GIRL</div>
                     </div>
 
                     <!-- HEADPHONES -->
@@ -892,9 +912,7 @@
                     
                     <!-- THE OPEN PAINT STAINED T-SHIRT WITH WARLI ART -->
                     <svg viewBox="0 0 100 100" class="t-shirt-svg desk-item">
-                        <!-- T-Shirt Body -->
                         <path d="M 30 10 C 40 20 60 20 70 10 L 95 25 L 85 40 L 75 35 L 75 90 L 25 90 L 25 35 L 15 40 L 5 25 Z" fill="#f8f9fa" stroke="#e0e0e0" stroke-width="2"/>
-                        <!-- Paint Splatters -->
                         <circle cx="30" cy="70" r="4" fill="#ff2a2a"/>
                         <circle cx="25" cy="75" r="2" fill="#ff2a2a"/>
                         <circle cx="70" cy="80" r="5" fill="#0044cc"/>
@@ -903,17 +921,14 @@
                         <circle cx="55" cy="85" r="4" fill="#7ab55c"/>
                         <circle cx="60" cy="35" r="4" fill="#ff7da6"/>
                         
-                        <!-- Warli Art Graphic -->
                         <g transform="translate(25, 45) scale(0.6)">
-                            <!-- Warli Man -->
                             <circle cx="20" cy="10" r="5" fill="#111"/>
                             <polygon points="20,15 10,30 30,30" fill="#111"/>
                             <polygon points="20,45 10,30 30,30" fill="#111"/>
                             <path d="M 10 30 L 0 20 M 30 30 L 40 40" stroke="#111" stroke-width="2" stroke-linecap="round"/>
                             <path d="M 15 45 L 10 60 M 25 45 L 30 60" stroke="#111" stroke-width="2" stroke-linecap="round"/>
-                            <!-- Warli Woman -->
                             <circle cx="50" cy="10" r="5" fill="#111"/>
-                            <circle cx="55" cy="8" r="3" fill="#111"/> <!-- Hair bun -->
+                            <circle cx="55" cy="8" r="3" fill="#111"/> 
                             <polygon points="50,15 40,30 60,30" fill="#111"/>
                             <polygon points="50,45 40,30 60,30" fill="#111"/>
                             <path d="M 40 30 L 40 40 M 60 30 L 70 20" stroke="#111" stroke-width="2" stroke-linecap="round"/>
@@ -944,10 +959,7 @@
 
                     <!-- VINTAGE GRAMOPHONE PLAYER -->
                     <div id="gramophone-wrapper" class="desk-item">
-                        <!-- Pulsing Soundwave -->
                         <div class="sound-wave"></div>
-                        
-                        <!-- Brass Horn / Trumpet -->
                         <svg class="gramo-horn" viewBox="0 0 160 140">
                             <defs>
                                 <radialGradient id="hornGrad" cx="35%" cy="30%" r="75%">
@@ -968,22 +980,18 @@
                             <ellipse cx="26" cy="38" rx="20" ry="26" fill="url(#bellOpening)" transform="rotate(-30 26 38)"/>
                         </svg>
 
-                        <!-- Spinning Turntable & Vinyl Disc -->
                         <div class="gramo-turntable">
                             <div class="vinyl-disc"></div>
                         </div>
 
-                        <!-- Animated Tonearm / Needle -->
                         <svg class="gramo-arm" viewBox="0 0 60 60">
                             <circle cx="45" cy="35" r="7" fill="#888" stroke="#333" stroke-width="2"/>
                             <path d="M 45 35 L 25 20 L 12 28" fill="none" stroke="#d4af37" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
                             <circle cx="12" cy="28" r="5" fill="#silver" stroke="#222" stroke-width="1.5"/>
                         </svg>
 
-                        <!-- Wooden Cabinet Base -->
                         <div class="gramo-base">
                             <div class="gramo-brass-corners"></div>
-                            <!-- Digital Display Panel -->
                             <div class="digital-panel">
                                 <div class="gramo-led"></div>
                                 <div class="gramo-screen">
@@ -1095,9 +1103,17 @@
         </div>
         <button class="btn-close-modal" onclick="closePolaroid()">Put Back</button>
     </div>
+    
+    <!-- EASTER EGG BOOK MODAL -->
+    <div id="book-modal">
+        <div class="easter-egg-box">
+            just be yourself meri jaan , you're already PRJ's pyari si good girl 💋
+        </div>
+        <button class="btn-close-modal" onclick="closeBook()">Close</button>
+    </div>
 
     <!-- AUDIO ELEMENTS -->
-    <audio id="our-song" src="our_song.mp3" preload="auto"></audio>
+    <audio id="our-song" src="Song.mp3" preload="auto"></audio>
     <audio id="magic-sound" src="assets/audio/magic.mp3" preload="auto"></audio>
 
     <script>
@@ -1124,10 +1140,10 @@
                 { label: "FROM: MOM & DAD", text: "To me, Aaradhya is the brightest light in our family. Seeing you grow into such a beautiful soul makes us prouder every day. Happy Birthday! [ADD FULL TEXT]" },
                 { label: "FROM: Shristi", text: "For me Aaradhya is, my happy place🪷✨. The person I call whenever something funny, stupid, exciting, or heartbreaking happens😸. She isn't just my best friend; she's the sister i always wanted . and bakwass jitni bhi karti ho I love her so much!!❤️" },
                 { label: "FROM: Riddhima", text: "For me, Aaradhya✨ is someone I would run to as soon as I get any tea.😋 I can share everything with her; she's more than just a best friend. I love everything about her,💋💋 especially her laugh. Around her, I can be the real me, knowing she will never judge me." },
-                { label: "FROM: [FRIEND 3]", text: "To me, Aaradhya is... [ADD FULL TEXT]" },
-                { label: "FROM: [FRIEND 4]", text: "To me, Aaradhya is... [ADD FULL TEXT]" },
-                { label: "FROM: [FRIEND 5]", text: "To me, Aaradhya is... [ADD FULL TEXT]" },
-                { label: "FROM: [FRIEND 6]", text: "To me, Aaradhya is... [ADD FULL TEXT]" },
+                { label: "FROM: Ruhika", text: "For me Aaradhya is a funny,notorious and a very true friend of mine!! She helps me no matter what happens! We became really good friends in a very short time and I'm glad to have such a beautiful friend in my life like her!!" },
+                { label: "FROM: Paridhi", text: "For me Aaradhya is the friend i had never expected would turn out this good, her cheerful and funny side made me enjoy time with her more, every moment spent with her made me laugh until my stomach hurt and every joke of hers made me happy with a bright smile." },
+                { label: "FROM: Leora", text: "AARADHYA FOR ME.......<br>☆You are the the meethi chutney😋 to my golgappa🍽...<br>☆You are the double circulation🩺 to my heart🫀<br>☆ Annddd i missssss youuu sooooo mucchhh😭😭😭😭💖💖💖💖💖" },
+                { label: "FROM: Navya", text: "For me Aaradhya is <br>Likee the sweetesttt nd veryyyy cutessttt personn i hve ever mettt shess justt ekdummm merii chotuu si beheennn ekdumm jr vali to koi vibes he nhi aati hai .. ndd honestly i love herr smm like boht he sweet si haii 😚😚😚 .. i never knew ki ek jr se me itna attach houngi aur itni pyarii hai bhyii vo 🫠😍 and obv alwayss she'll be my funny sii happyy place ilysmm cutuuu😚😚😚😚 you'll always hold a very special place in my heart nd life .. lovee youu bothhh (puklit nd cutu)🫶🫶🫶🫶🫶🫶🫶" },
                 { label: "FROM: ME", text: "To me, Aaradhya is everything. You are my sunshine, my missing star, and the absolute best part of my day. Happy Birthday, Jaanu. [ADD FULL TEXT]" }
             ],
             
@@ -1174,7 +1190,7 @@
 
         function buildFloralFrame() {
             const frame = document.getElementById('floral-frame');
-            const emojis = ['🌹', '🌻', '🌷', '🌼', '🪷', '🏵️', '🌺', '🌸'];
+            const emojis = ['🌹', '🌻', '🌷', '🌼', '🪷', '🏵️️', '🌺', '🌸'];
             const numFlowers = 150; 
             
             for(let i=0; i<numFlowers; i++) {
@@ -1506,6 +1522,14 @@
             if (viewedPolaroids.size === SITE_DATA.museum.length && gramoState === 'OFF') {
                 bootGramophone();
             }
+        }
+        
+        function openBookMessage() {
+            document.getElementById('book-modal').classList.add('active');
+        }
+
+        function closeBook() {
+            document.getElementById('book-modal').classList.remove('active');
         }
 
         async function bootGramophone() {
