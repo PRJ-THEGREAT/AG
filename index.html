@@ -161,7 +161,7 @@
            4. LETTERS (VINTAGE STAMPED ENVELOPES)
            ========================================================= */
         #s4-letters { padding: 10vh 5vw; background: #1a1818; align-items: center; perspective: 1000px;}
-        .letters-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; max-width: 1200px; width: 100%; margin-top: 60px; justify-content: center; }
+        .letters-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; max-width: 900px; width: 100%; margin-top: 60px; justify-content: center; }
         
         .envelope-wrapper { position: relative; height: 200px; cursor: pointer; perspective: 1000px; }
         .envelope { 
@@ -194,49 +194,58 @@
             box-shadow: inset 0 -5px 20px rgba(90, 50, 10, 0.4);
         }
         
-        /* Realistic Wax Seal */
         .wax-seal {
             position: absolute;
             top: 55%; 
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 48px;
-            height: 48px;
-            background: radial-gradient(circle at 35% 25%, #d92525 0%, #8a0b0b 40%, #4a0000 100%);
-            border-radius: 50%;
-            color: #eaddd7;
+            width: 50px;
+            height: 50px;
+            background: radial-gradient(circle at 35% 35%, #c81a1a, #800000 60%, #4a0000);
+            border-radius: 45% 55% 50% 40% / 55% 45% 50% 50%; 
+            color: #ffcccc;
             font-family: var(--font-serif);
-            font-size: 0.65rem;
+            font-size: 0.7rem;
             font-weight: bold;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 2px 4px 6px rgba(0,0,0,0.6), inset 1px 1px 3px rgba(255,255,255,0.3), inset -2px -2px 4px rgba(0,0,0,0.7);
+            box-shadow: 2px 4px 6px rgba(0,0,0,0.6), inset 0 0 5px rgba(0,0,0,0.8), inset 2px 2px 5px rgba(255,255,255,0.2);
             z-index: 5;
             transition: 0.5s ease;
             pointer-events: none;
             letter-spacing: 1px;
-            border: 2px solid #5c0000;
+            border: 1px solid #4a0000;
         }
-        /* Wax seal inner indent */
         .wax-seal::after {
             content: '';
             position: absolute;
-            top: 4px; left: 4px; right: 4px; bottom: 4px;
+            width: 38px;
+            height: 38px;
             border-radius: 50%;
             border: 1px solid rgba(0,0,0,0.3);
-            box-shadow: inset 0 0 5px rgba(0,0,0,0.6);
+            box-shadow: inset 1px 1px 3px rgba(0,0,0,0.5), inset -1px -1px 2px rgba(255,255,255,0.1);
             pointer-events: none;
         }
 
-        /* Aged Crumpled Letter Paper */
         .letter-paper { 
             position: absolute; top: 10px; left: 5%; width: 90%; height: 90%; 
-            background-color: #e3d3b6;
-            background-image: var(--paper-texture), linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 50%, rgba(0,0,0,0.1) 100%), radial-gradient(circle at center, transparent 40%, rgba(90, 50, 10, 0.5) 100%);
-            color: #3e2723; padding: 20px; font-family: var(--font-serif); font-size: 0.95rem; line-height: 1.6; 
-            transition: 0.8s ease; z-index: 1; opacity: 0; overflow-y: auto; border: 1px solid #c2a88a; 
-            box-shadow: inset 0 0 15px rgba(70, 40, 10, 0.6), inset 2px 2px 5px rgba(255,255,255,0.4), 0 5px 15px rgba(0,0,0,0.3); 
+            background-color: #dcb897; 
+            background-image: 
+                var(--paper-texture),
+                linear-gradient(to right, rgba(0,0,0,0.05) 0%, transparent 10%, transparent 90%, rgba(0,0,0,0.05) 100%),
+                radial-gradient(circle at 50% 50%, transparent 60%, rgba(90, 50, 10, 0.4) 100%);
+            color: #2b1f14; padding: 20px; font-family: var(--font-serif); font-size: 0.95rem; line-height: 1.6; 
+            transition: 0.8s ease; z-index: 1; opacity: 0; overflow-y: auto; 
+            border: 1px solid #c2a383; border-radius: 2px;
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.4), 0 0 10px rgba(0,0,0,0.1); 
+        }
+        .letter-paper::before {
+            content: '';
+            position: absolute; top:0; left:0; width:100%; height:100%;
+            background: linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.1) 45%, transparent 50%),
+                        linear-gradient(-45deg, transparent 30%, rgba(0,0,0,0.05) 35%, transparent 40%);
+            pointer-events: none;
         }
         
         .envelope-wrapper.open .envelope-flap { transform: rotateX(180deg); z-index: 1; }
@@ -273,7 +282,7 @@
         .redacted:hover { color: #fff; background: transparent; }
 
         /* =========================================================
-           7. MUSEUM (THE MEMORY ROOM) RESTORED DARK THEME
+           7. MUSEUM (THE MEMORY ROOM) 
            ========================================================= */
         #s7-museum { background: #211c18; align-items: center; justify-content: flex-start; padding: 0; position: relative; overflow-y: auto;}
         .room-lighting { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center 40%, transparent 20%, rgba(0,0,0,0.8) 100%); pointer-events: none; z-index: 1;}
@@ -319,7 +328,7 @@
             position: relative; 
             width: 96%; 
             max-width: 1000px; 
-            margin: 40px auto 10vh auto; /* 10vh margin below creates space underneath */
+            margin: 40px auto 10vh auto;
             z-index: 5;
         }
 
@@ -339,15 +348,15 @@
             background: linear-gradient(to right, #24140b, #422615, #24140b);
             border-radius: 0 0 5px 5px;
             box-shadow: 0 20px 30px rgba(0,0,0,0.8), inset 0 2px 2px rgba(255,255,255,0.1);
-            z-index: 15; /* Sits above items that clip over the edge */
+            z-index: 15; 
             position: relative;
         }
 
         .desk-legs {
             position: absolute; 
-            top: 245px; /* Sits right under the lip */
+            top: 245px;
             width: 100%; 
-            height: 120px; /* Length of the legs visible in the dark */
+            height: 120px;
             display: flex; 
             justify-content: space-between; 
             padding: 0 8%; 
@@ -363,7 +372,6 @@
             border-radius: 0 0 3px 3px;
         }
         
-        /* Universal Drop Shadow to fake 3D depth across the flat surface */
         .desk-item {
             position: absolute;
             z-index: 10;
@@ -373,7 +381,7 @@
         /* Books Standing Upright */
         .book-row {
             bottom: 50px;
-            left: 2%; /* Shifted left to make room */
+            left: 2%; 
             display: flex;
             align-items: flex-end;
             gap: 2px;
@@ -399,7 +407,6 @@
         .b1 { height: 140px; background: #3d2314; }
         .b2 { height: 120px; background: #6b4423; color: #f0e6d2; font-family: var(--font-sans);}
         
-        /* Interactive Easter Egg Book */
         .b3 { 
             height: 160px; 
             background: #802020; 
@@ -413,20 +420,20 @@
         }
         .b3:hover { transform: rotate(-8deg) scale(1.05); }
 
-        /* Headphones resting on books */
+        /* Headphones */
         .desk-headphones {
             bottom: 145px;
-            left: 4%; /* Shifted to only overlap first book */
+            left: 4%; 
             width: 70px;
             transform: rotate(-15deg);
-            z-index: 11; /* Behind the red interactive book */
-            pointer-events: none; /* Prevents blocking clicks */
+            z-index: 11; 
+            pointer-events: none; 
         }
 
         /* Photo Frame */
         .desk-frame-wrapper { 
             bottom: 60px; 
-            left: 25%; /* Pushed right to free the book */
+            left: 25%; 
             width: clamp(60px, 10vw, 80px); 
             height: clamp(80px, 14vw, 110px); 
             background: #eee; 
@@ -461,10 +468,10 @@
 
         /* Origami Lilies */
         .origami-lily { width: clamp(20px, 3vw, 30px); pointer-events: none;}
-        .lily-1 { left: 15%; bottom: 25px; transform: rotate(-40deg); } /* Pink */
-        .lily-2 { left: 40%; bottom: 35px; transform: rotate(20deg) scale(1.4); } /* Lined, Bigger */
-        .lily-3 { right: 35%; bottom: 30px; transform: rotate(-25deg); } /* Lined */
-        .lily-4 { right: 28%; bottom: 15px; transform: rotate(50deg); } /* Lined */
+        .lily-1 { left: 15%; bottom: 25px; transform: rotate(-40deg); } 
+        .lily-2 { left: 40%; bottom: 35px; transform: rotate(20deg) scale(1.4); } 
+        .lily-3 { right: 35%; bottom: 30px; transform: rotate(-25deg); } 
+        .lily-4 { right: 28%; bottom: 15px; transform: rotate(50deg); } 
 
         /* Scattered Candies */
         .candy { position: absolute; z-index: 11; font-family: var(--font-sans); font-weight: bold; font-size: 0.5rem; display: flex; align-items: center; justify-content: center; pointer-events: none; filter: drop-shadow(-4px 6px 4px rgba(0,0,0,0.6));}
@@ -490,6 +497,23 @@
             box-shadow: inset 0 0 5px rgba(255,255,255,0.3);
         }
         .mint { width: 6px; height: 4px; background: #fff; border-radius: 4px; opacity: 0.9;}
+
+        /* Steaming Coffee Cup */
+        .desk-cup { 
+            left: 65%; bottom: 40px; width: 40px; height: 35px; background: #e0e0e0; border-radius: 2px 2px 10px 10px; 
+            z-index: 7; cursor: pointer; box-shadow: inset -5px -5px 10px rgba(0,0,0,0.3); border: 1px solid #999; border-top: 2px solid #5a3a1b;
+        }
+        .desk-cup::before { content:''; position: absolute; right: -12px; top: 5px; width: 14px; height: 18px; border: 3px solid #e0e0e0; border-radius: 50%; z-index: -1; }
+        .steam { position: absolute; background: rgba(255,255,255,0.7); border-radius: 50%; filter: blur(4px); animation: rise 3s infinite ease-in; pointer-events:none;}
+        .s1 { width: 8px; height: 18px; left: 5px; bottom: 35px; animation-delay: 0s;}
+        .s2 { width: 12px; height: 25px; left: 15px; bottom: 30px; animation-delay: 1s;}
+        .s3 { width: 8px; height: 15px; left: 25px; bottom: 35px; animation-delay: 2s;}
+        @keyframes rise { 0% { transform: translateY(0) scale(1); opacity: 0.8; } 100% { transform: translateY(-40px) scale(2); opacity: 0; } }
+        
+        .heart-steam { position: absolute; left: 2px; bottom: 45px; font-size: 1.8rem; opacity: 0; pointer-events:none; filter: drop-shadow(0 0 5px rgba(255,42,42,0.8));}
+        .desk-cup.love .steam { opacity: 0; animation: none; }
+        .desk-cup.love .heart-steam { animation: heart-float 3s forwards; }
+        @keyframes heart-float { 0% { transform: translateY(0) scale(0.5); opacity: 1; } 100% { transform: translateY(-60px) scale(1.5); opacity: 0; } }
 
         /* GRAMOPHONE COMPONENT on Desk */
         #gramophone-wrapper { right: 4%; bottom: 35px; width: clamp(160px, 25vw, 240px); height: clamp(140px, 20vw, 210px); cursor: pointer; user-select: none; transition: transform 0.3s;}
@@ -567,11 +591,9 @@
             display: flex; align-items: center; justify-content: center; text-align: center;
             font-family: var(--font-serif); font-size: 1.3rem; color: #2b1f14; font-style: italic;
             box-shadow: inset 3px 0 10px rgba(0,0,0,0.1);
-            opacity: 0; transition: opacity 0.5s 0.6s ease; /* Fades in after cover opens */
+            opacity: 0; transition: opacity 0.5s 0.6s ease;
         }
-        .book-3d-wrapper.open .book-3d-pages {
-            opacity: 1;
-        }
+        .book-3d-wrapper.open .book-3d-pages { opacity: 1; }
         .book-3d-cover {
             position: absolute; top:0; left:0; width: 100%; height: 100%;
             transform-origin: left center; transform-style: preserve-3d;
@@ -596,17 +618,40 @@
             backface-visibility: hidden;
             box-shadow: inset 5px 0 10px rgba(0,0,0,0.3);
         }
-        .book-3d-wrapper.open .book-3d-cover {
-            transform: rotateY(-145deg);
-        }
+        .book-3d-wrapper.open .book-3d-cover { transform: rotateY(-145deg); }
 
         .btn-close-modal { margin-top: 30px; padding: 10px 30px; background: none; border: 1px solid #fff; color: #fff; font-family: var(--font-serif); cursor: pointer; transition: 0.3s; border-radius: 30px;}
         .btn-close-modal:hover { background: #fff; color: #000; }
 
         /* =========================================================
-           8. GOODBYE (ARCADE MINI GAME & SOLAR SYSTEM)
+           8. GOODBYE (ARCADE MINI GAME, CALAMITY & FINAL SCENE)
            ========================================================= */
         #s8-goodbye { background: #030208; align-items: center; justify-content: center; text-align: center; overflow: hidden; }
+        
+        /* Calamity Shake Animation */
+        @keyframes calamity-shake {
+            0% { transform: translate(10px, 10px) rotate(0deg); }
+            10% { transform: translate(-10px, -20px) rotate(-1deg); }
+            20% { transform: translate(-30px, 0px) rotate(1deg); }
+            30% { transform: translate(30px, 20px) rotate(0deg); }
+            40% { transform: translate(10px, -10px) rotate(1deg); }
+            50% { transform: translate(-10px, 20px) rotate(-1deg); }
+            60% { transform: translate(-30px, 10px) rotate(0deg); }
+            70% { transform: translate(30px, 10px) rotate(-1deg); }
+            80% { transform: translate(-10px, -10px) rotate(1deg); }
+            90% { transform: translate(10px, 20px) rotate(0deg); }
+            100% { transform: translate(10px, -20px) rotate(-1deg); }
+        }
+        .calamity { animation: calamity-shake 0.5s infinite; }
+
+        /* Water Flood overlay */
+        #water-flood {
+            position: absolute; bottom: 0; left: 0; width: 100%; height: 0%;
+            background: linear-gradient(to top, rgba(0,68,204,0.8), rgba(0,229,255,0.6));
+            z-index: 4; transition: height 2s ease-in-out; pointer-events: none;
+        }
+        #water-flood.flood { height: 100%; }
+
         #solar-system { position: absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; opacity: 0; transition: opacity 3s; z-index: 0; background: radial-gradient(circle at 50% 120%, #1a1a3a 0%, #010103 80%); overflow: hidden;}
         
         /* Deep Space Nebulas */
@@ -656,7 +701,7 @@
         /* FLORAL TEXT EFFECT FOR FINAL GOODBYE */
         .floral-text {
             background-color: #ffdf73;
-            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='20' font-size='22'%3E🌹🌻🌷🌼%3C/text%3E%3Ctext x='-10' y='45' font-size='22'%3E🌺🌸🏵️🪷%3C/text%3E%3Ctext y='70' font-size='22'%3E🌷🌼🌹🌻%3C/text%3E%3Ctext x='-10' y='95' font-size='22'%3E🏵️🪷🌺🌸%3C/text%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='20' font-size='22'%3E🌹🌻🌷🌼%3C/text%3E%3Ctext x='-10' y='45' font-size='22'%3E🌺🌸🏵️️🪷%3C/text%3E%3Ctext y='70' font-size='22'%3E🌷🌼🌹🌻%3C/text%3E%3Ctext x='-10' y='95' font-size='22'%3E🏵️🪷🌺🌸%3C/text%3E%3C/svg%3E");
             background-size: 60px 60px;
             -webkit-background-clip: text;
             background-clip: text;
@@ -690,6 +735,13 @@
             50% { transform: scale(1.5) rotate(45deg); opacity: 1; filter: brightness(3); }
             100% { transform: scale(0) rotate(90deg); opacity: 0; filter: brightness(1); }
         }
+        
+        /* Mendhak Tears */
+        .tear { position: absolute; width: 4px; height: 8px; background: #00e5ff; border-radius: 50%; opacity: 0; }
+        .tear-left { left: 40px; top: 50px; }
+        .tear-right { right: 60px; top: 50px; animation-delay: 0.3s; }
+        @keyframes crying { 0% { transform: translateY(0); opacity:1; } 100% { transform: translateY(40px); opacity:0; } }
+        .crying-active .tear { animation: crying 0.6s infinite; }
 
         /* NEW ARCADE CSS */
         .arcade-mode-active { filter: contrast(150%) saturate(150%); } 
@@ -699,7 +751,6 @@
         .health-bar-container { position: absolute; top: 60px; width: 35%; height: 30px; border: 4px solid #fff; background: #222; box-shadow: 4px 4px 0 #000; }
         #hb-piggy { left: 5%; }
         #hb-mendhak { right: 5%; }
-        /* Floats added to ensure health drains towards the center of the screen */
         .health-fill { height: 100%; width: 100%; background: #39ff14; transition: width 0.1s ease-out, background-color 0.2s;}
         #piggy-hp-fill { float: left; border-right: 2px solid #000;}
         #mendhak-hp-fill { float: right; border-left: 2px solid #000;}
@@ -1027,6 +1078,14 @@
                         <div class="mint"></div><div class="mint"></div><div class="mint"></div>
                         <div class="mint"></div><div class="mint"></div><div class="mint"></div>
                     </div>
+                    
+                    <!-- NEW: Steaming Coffee Cup -->
+                    <div class="desk-cup desk-item" onclick="this.classList.toggle('love')">
+                        <div class="steam s1"></div>
+                        <div class="steam s2"></div>
+                        <div class="steam s3"></div>
+                        <div class="heart-steam">❤️</div>
+                    </div>
 
                     <!-- VINTAGE GRAMOPHONE PLAYER -->
                     <div id="gramophone-wrapper" class="desk-item">
@@ -1091,6 +1150,9 @@
         <!-- 8. GOODBYE (ARCADE MINI GAME & SOLAR SYSTEM) -->
         <section id="s8-goodbye" class="story-section">
             
+            <!-- WATER FLOOD OVERLAY -->
+            <div id="water-flood"></div>
+            
             <!-- ARCADE OVERLAYS -->
             <div id="arcade-scanlines"></div>
             <div id="arcade-ui">
@@ -1101,7 +1163,6 @@
                 
                 <div class="player-name" id="pn-mendhak">MENDHAK</div>
                 <div class="health-bar-container" id="hb-mendhak">
-                    <!-- Fixed: Float right forces the bar to shrink from left to right as health decreases -->
                     <div class="health-fill" id="mendhak-hp-fill" style="width: 100%; float: right;"></div>
                 </div>
             </div>
@@ -1133,6 +1194,10 @@
             
             <!-- MINI GAME STAGE -->
             <div id="goodbye-stage" style="position:relative; display:flex; align-items:flex-end; justify-content:center; gap:40px; margin-top:10vh; z-index:5; width: 100%;">
+                
+                <!-- KISS HEART -->
+                <div id="kiss-heart" style="position:absolute; top: 0; left: 50%; font-size: 3rem; opacity:0; transform: translate(-50%, -50%) scale(0.5); transition: 0.5s ease; filter: drop-shadow(0 0 10px #ff2a2a); pointer-events: none; z-index: 10;">❤️</div>
+                
                 <div style="position:relative;">
                     <div id="goodbye-piggy-bubble" style="position:absolute; top:-40px; left:-20px; font-family:var(--font-typewriter); color:#fff; font-weight:bold; opacity:0; transition:0.3s; white-space:nowrap; background:rgba(0,0,0,0.8); padding:5px 10px; border-radius:10px; border:1px solid #ffc8d2;">I Lovee Youuu More</div>
                     <svg id="goodbye-piggy" viewBox="0 0 100 100" style="width:120px; opacity:0; transform:translateX(-50vw); transition: opacity 1s, transform 1s, scale 0.3s;"><use href="#svg-piggy"/></svg>
@@ -1143,6 +1208,12 @@
                     <div id="goodbye-mendhak-bubble" style="position:absolute; top:-40px; right:-20px; font-family:var(--font-typewriter); color:#68b94f; font-weight:bold; opacity:0; transition:0.3s; white-space:nowrap; background:rgba(0,0,0,0.8); padding:5px 10px; border-radius:10px; border:1px solid #68b94f;">NO , I DO!</div>
                     
                     <svg id="goodbye-mendhak" viewBox="0 0 150 100" style="width:170px; opacity:0; transform:translateY(20px); position:relative; z-index:5;"><use href="#svg-mendhak-flower"/></svg>
+                    
+                    <!-- MENDHAK TEARS -->
+                    <div id="mendhak-tears-container" style="position:absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events:none;">
+                        <div class="tear tear-left"></div>
+                        <div class="tear tear-right"></div>
+                    </div>
                 </div>
             </div>
 
@@ -1180,7 +1251,7 @@
         <div class="book-3d-wrapper" id="the-3d-book">
             <div class="book-3d-back"></div>
             <div class="book-3d-pages">
-                just be yourself meri jaan , you're already PRJ's pyari si good girl 💋
+                JUST BE YOURSELF MERI JAAN , YOU'LL ALWAYS BE PRJ'S PYARII SI GOOD GIRL 💋
             </div>
             <div class="book-3d-cover">
                 <div class="book-3d-cover-front">
@@ -1194,7 +1265,7 @@
     </div>
 
     <!-- AUDIO ELEMENTS -->
-    <audio id="our-song" src="our_song.mp3" preload="auto"></audio>
+    <audio id="our-song" src="Song.mp3" preload="auto"></audio>
     <audio id="magic-sound" src="assets/audio/magic.mp3" preload="auto"></audio>
 
     <script>
@@ -1225,8 +1296,8 @@
                 { label: "FROM: Paridhi", text: "For me Aaradhya is the friend i had never expected would turn out this good, her cheerful and funny side made me enjoy time with her more, every moment spent with her made me laugh until my stomach hurt and every joke of hers made me happy with a bright smile." },
                 { label: "FROM: Leora", text: "AARADHYA FOR ME.......<br>☆You are the the meethi chutney😋 to my golgappa🍽...<br>☆You are the double circulation🩺 to my heart🫀<br>☆ Annddd i missssss youuu sooooo mucchhh😭😭😭😭💖💖💖💖💖" },
                 { label: "FROM: Navya", text: "For me Aaradhya is <br>Likee the sweetesttt nd veryyyy cutessttt personn i hve ever mettt shess justt ekdummm merii chotuu si beheennn ekdumm jr vali to koi vibes he nhi aati hai .. ndd honestly i love herr smm like boht he sweet si haii 😚😚😚 .. i never knew ki ek jr se me itna attach houngi aur itni pyarii hai bhyii vo 🫠😍 and obv alwayss she'll be my funny sii happyy place ilysmm cutuuu😚😚😚😚 you'll always hold a very special place in my heart nd life .. lovee youu bothhh (puklit nd cutu)🫶🫶🫶🫶🫶🫶🫶" },
-                { label: "FROM: Yashasvi", text: "[ADD YASHASVI'S TEXT HERE]" },
-                { label: "FROM: Aarushi", text: "[ADD AARUSHI'S TEXT HERE]" },
+                { label: "FROM: Yashasvi", text: "To me, Aaradhya is... [ADD FULL TEXT]" },
+                { label: "FROM: Aarushi", text: "To me, Aaradhya is... [ADD FULL TEXT]" },
                 { label: "FROM: PRJ", text: "To me, Aaradhya is everything. You are my sunshine, my missing star, and the absolute best part of my day. Happy Birthday, Jaanu. [ADD FULL TEXT]" }
             ],
             
@@ -1850,10 +1921,6 @@
                         setTimeout(() => { twinkle.style.opacity = '0'; }, 800);
                     }, 1800);
                     
-                    piggy.style.transition = 'transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
-                    piggy.style.transform = 'scale(1.2)';
-                    
-                    await wait(1500);
                     text3.style.opacity = '1';
                     
                     await wait(3500);
@@ -1866,11 +1933,73 @@
                     
                     await wait(2000);
                     
-                    // Final image fades in
+                    // CALAMITY SHAKE
+                    document.getElementById('s8-goodbye').classList.add('calamity');
+                    await wait(1000);
+                    document.getElementById('s8-goodbye').classList.remove('calamity');
+                    
+                    // PIGGY RUSHES BACK
+                    piggy.style.transition = 'transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.5s';
+                    piggy.style.transform = 'translateX(0vw) scale(1.2)';
+                    piggy.style.opacity = '1';
+                    
+                    await wait(500);
+                    pBubble.innerText = "OHHH SHITT MENDHAK IS CRYING !";
+                    pBubble.style.opacity = '1';
+                    
+                    await wait(1500);
+                    
+                    // MENDHAK RETURNS CRYING
+                    mendhak.style.transition = 'all 2s ease-out';
+                    mendhak.style.transform = 'translate(0, 0) scale(1)';
+                    mendhak.style.opacity = '1';
+                    
+                    await wait(1000);
+                    document.getElementById('mendhak-tears-container').classList.add('crying-active');
+                    
+                    await wait(1000);
+                    
+                    // WATER FLOOD
+                    document.getElementById('water-flood').classList.add('flood');
+                    
+                    await wait(3000);
+                    pBubble.innerText = "come let me give you a kiss";
+                    
+                    await wait(2500);
+                    pBubble.style.opacity = '0';
+                    
+                    // THE KISS
+                    piggy.style.transition = 'transform 1s ease-in-out';
+                    mendhak.style.transition = 'transform 1s ease-in-out';
+                    piggy.style.transform = 'translateX(30px) scale(1.2)';
+                    mendhak.style.transform = 'translateX(-30px) scale(1)';
+                    
+                    await wait(1000);
+                    const kissHeart = document.getElementById('kiss-heart');
+                    kissHeart.style.opacity = '1';
+                    kissHeart.style.transform = 'translate(-50%, -50%) scale(1)';
+                    
+                    await wait(1000);
+                    // Tears stop, water drains
+                    document.getElementById('mendhak-tears-container').classList.remove('crying-active');
+                    document.getElementById('water-flood').classList.remove('flood');
+                    
+                    await wait(2000);
+                    kissHeart.style.opacity = '0';
+                    
+                    // BOTH LEAVE HAPPILY
+                    piggy.style.transition = 'transform 2s ease-in, opacity 2s ease';
+                    mendhak.style.transition = 'transform 2s ease-in, opacity 2s ease';
+                    piggy.style.transform = 'translateX(50vw) scale(1.2)';
+                    mendhak.style.transform = 'translateX(50vw) scale(1)';
+                    piggy.style.opacity = '0';
+                    mendhak.style.opacity = '0';
+                    
+                    await wait(2000);
+                    
+                    // FINAL IMAGE
                     const finalImg = document.getElementById('final-image');
                     finalImg.style.opacity = '1';
-                    
-                    // First set it cleanly to 0, then let the animation take over
                     finalImg.style.transform = 'translate(-50%, 0) scale(1)';
                     setTimeout(() => {
                         finalImg.style.animation = 'final-float 6s infinite ease-in-out';
