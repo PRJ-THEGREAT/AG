@@ -642,14 +642,14 @@
             90% { transform: translate(10px, 20px) rotate(0deg); }
             100% { transform: translate(10px, -20px) rotate(-1deg); }
         }
-        .calamity { animation: calamity-shake 0.5s infinite; }
+        .calamity { animation: calamity-shake 0.3s infinite; }
 
         /* REALISTIC SVG WATER FLOOD OVERLAY */
         #water-flood {
             position: absolute; bottom: 0; left: 0; width: 100%; height: 0%;
-            z-index: 4; transition: height 8s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 25; transition: height 8s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex; flex-direction: column; justify-content: flex-start;
-            overflow: hidden; pointer-events: none;
+            overflow: hidden; pointer-events: none; opacity: 0.85;
         }
         #water-flood.flood { height: 100%; }
         .waves { width: 100%; height: 15vh; min-height: 100px; max-height: 150px; margin-bottom: -7px; }
@@ -685,7 +685,7 @@
         @keyframes shoot { 0% { transform: translateX(0) translateY(0) rotate(-35deg); opacity: 1; } 10% { transform: translateX(-300px) translateY(200px) rotate(-35deg); opacity: 0; } 100% { opacity: 0; } }
 
         /* Planets & Space Objects */
-        .space-object-wrapper { position: absolute; z-index: 3; transition: transform 2s ease-in-out; }
+        .space-object-wrapper { position: absolute; z-index: 3; }
         .space-object { position: relative; width: 100%; height: 100%; transition: transform 2s ease; }
         .planet { border-radius: 50%; }
         
@@ -710,7 +710,7 @@
         .sat-wrap { top: 10%; left: 40%; font-size: 1.5rem; animation: float-slow 15s ease-in-out infinite reverse; }
         .alien-wrap { bottom: 15%; left: 35%; font-size: 1.5rem; animation: orbit-rev 35s linear infinite; }
 
-        /* Drowning Animation */
+        /* Drowning Animation for characters inside wraps */
         @keyframes drown-tumble {
             0% { transform: translateY(0) rotate(0deg); }
             25% { transform: translateY(-30px) rotate(15deg); }
@@ -718,7 +718,7 @@
             75% { transform: translateY(-20px) rotate(5deg); }
             100% { transform: translateY(0) rotate(0deg); }
         }
-        .drowning .space-object, #goodbye-piggy.drowning, #goodbye-mendhak.drowning {
+        .drowning .space-object, svg.drowning {
             animation: drown-tumble 3s infinite ease-in-out !important;
         }
         
@@ -776,15 +776,6 @@
             0% { transform: scale(0) rotate(0deg); opacity: 1; filter: brightness(2); }
             50% { transform: scale(1.5) rotate(45deg); opacity: 1; filter: brightness(3); }
             100% { transform: scale(0) rotate(90deg); opacity: 0; filter: brightness(1); }
-        }
-        
-        /* Mendhak Waterfall Tears */
-        .mendhak-crying-tears { transition: opacity 0.5s; }
-        svg.is-crying .mendhak-crying-tears { opacity: 1 !important; }
-        .tear-line { animation: tear-fall 0.4s linear infinite; }
-        @keyframes tear-fall {
-            from { stroke-dashoffset: 25; }
-            to { stroke-dashoffset: 0; }
         }
 
         /* NEW ARCADE CSS */
@@ -1242,41 +1233,41 @@
                 <div class="stars-3"></div>
                 
                 <!-- Space Objects Wrapper (Used for drowning tumble effect) -->
-                <div class="space-object-wrapper ufo-wrap">
+                <div class="space-object-wrapper ufo-wrap" id="ufo-wrap">
                     <div class="space-object" id="ufo">🛸</div>
                 </div>
-                <div class="space-object-wrapper sat-wrap">
-                    <div class="space-object" id="sat">🛰️</div>
+                <div class="space-object-wrapper sat-wrap" id="sat-wrap">
+                    <div class="space-object" id="sat">🛰️️</div>
                 </div>
-                <div class="space-object-wrapper alien-wrap">
+                <div class="space-object-wrapper alien-wrap" id="alien-wrap">
                     <div class="space-object" id="alien">👽</div>
                 </div>
                 
-                <div class="space-object-wrapper jupiter-wrap"><div class="planet jupiter space-object"></div></div>
-                <div class="space-object-wrapper neptune-wrap"><div class="planet neptune space-object"></div></div>
-                <div class="space-object-wrapper saturn-wrap"><div class="planet saturn space-object"></div></div>
-                <div class="space-object-wrapper mars-wrap"><div class="planet mars space-object"></div></div>
-                <div class="space-object-wrapper moon-wrap"><div class="planet moon space-object"></div></div>
+                <div class="space-object-wrapper jupiter-wrap" id="jupiter-wrap"><div class="planet jupiter space-object"></div></div>
+                <div class="space-object-wrapper neptune-wrap" id="neptune-wrap"><div class="planet neptune space-object"></div></div>
+                <div class="space-object-wrapper saturn-wrap" id="saturn-wrap"><div class="planet saturn space-object"></div></div>
+                <div class="space-object-wrapper mars-wrap" id="mars-wrap"><div class="planet mars space-object"></div></div>
+                <div class="space-object-wrapper moon-wrap" id="moon-wrap"><div class="planet moon space-object"></div></div>
             </div>
             
             <div id="goodbye-text-1" class="climax-text" style="top:30%;">I LOVE YOU TO THE MOON AND BACK</div>
             
             <!-- MINI GAME STAGE -->
-            <div id="goodbye-stage" style="position:relative; display:flex; align-items:flex-end; justify-content:center; gap:40px; margin-top:10vh; z-index:5; width: 100%;">
+            <div id="goodbye-stage" style="position:relative; display:flex; align-items:flex-end; justify-content:center; margin-top:10vh; z-index:5; width: 100%;">
                 
                 <!-- KISS HEART -->
-                <div id="kiss-heart" style="position:absolute; top: 0; left: 50%; font-size: 3rem; opacity:0; transform: translate(-50%, -50%) scale(0.5); transition: 0.5s ease; filter: drop-shadow(0 0 10px #ff2a2a); pointer-events: none; z-index: 10;">❤️</div>
+                <div id="kiss-heart" style="position:absolute; top: -15vh; left: 50%; font-size: 3rem; opacity:0; transform: translate(-50%, -50%) scale(0.5); transition: 0.5s ease; filter: drop-shadow(0 0 10px #ff2a2a); pointer-events: none; z-index: 30;">❤️</div>
                 
-                <div style="position:relative;">
+                <div id="piggy-wrap" style="position:absolute; bottom: 0; left:30vw; z-index:11;">
                     <div id="goodbye-piggy-bubble" style="position:absolute; top:-40px; left:-20px; font-family:var(--font-typewriter); color:#fff; font-weight:bold; opacity:0; transition:0.3s; white-space:nowrap; background:rgba(0,0,0,0.8); padding:5px 10px; border-radius:10px; border:1px solid #ffc8d2; z-index: 12;">I Lovee Youuu More</div>
-                    <svg id="goodbye-piggy" viewBox="0 0 100 100" style="width:120px; opacity:0; transform:translateX(-50vw); transition: opacity 1s, transform 1s, scale 0.3s; position:relative; z-index:11;"><use href="#svg-piggy"/></svg>
+                    <svg id="goodbye-piggy" viewBox="0 0 100 100" style="width:120px; opacity:0; transform:translateX(-50vw); overflow:visible;"><use href="#svg-piggy"/></svg>
                 </div>
                 
-                <div style="position:relative;">
+                <div id="mendhak-wrap" style="position:absolute; bottom: 0; right:25vw; z-index:11;">
                     <div id="tap-hint" style="position:absolute; top:-80px; right:30px; font-family:var(--font-typewriter); color:#ffdf73; font-weight:bold; opacity:0; transition:0.3s; white-space:nowrap; animation: hint-pulse 1s infinite alternate; pointer-events:none; z-index: 12;">(Tap Mendhak!)</div>
                     <div id="goodbye-mendhak-bubble" style="position:absolute; top:-40px; right:-20px; font-family:var(--font-typewriter); color:#68b94f; font-weight:bold; opacity:0; transition:0.3s; white-space:nowrap; background:rgba(0,0,0,0.8); padding:5px 10px; border-radius:10px; border:1px solid #68b94f; z-index: 12;">NO , I DO!</div>
                     
-                    <svg id="goodbye-mendhak" viewBox="0 0 150 100" style="width:170px; opacity:0; transform:translateY(20px); position:relative; z-index:5;"><use href="#svg-mendhak-flower"/></svg>
+                    <svg id="goodbye-mendhak" viewBox="0 0 150 100" style="width:170px; opacity:0; transform:translateY(20px); overflow:visible;"><use href="#svg-mendhak-flower"/></svg>
                 </div>
             </div>
 
@@ -1288,9 +1279,9 @@
             <div id="goodbye-text-3" class="climax-text" style="top:40%; color:#ffc8d2; font-size:clamp(1.5rem, 4vw, 2.5rem);">PIGGY LOVES MENDHAK MORE !</div>
             
             <!-- FINAL IMAGE -->
-            <img id="final-image" src="IMG_0125.png" style="position:absolute; width:clamp(150px, 40vw, 250px); bottom: 35%; left: 50%; transform: translate(-50%, 0) scale(0.8); opacity:0; transition: opacity 2s ease, transform 2s ease; z-index: 6; pointer-events: none; object-fit: contain; max-height: 40vh;">
+            <img id="final-image" src="IMG_0125.png" style="position:absolute; width:clamp(150px, 40vw, 250px); bottom: 35%; left: 50%; transform: translate(-50%, 0) scale(0.8); opacity:0; transition: opacity 2s ease, transform 2s ease; z-index: 30; pointer-events: none; object-fit: contain; max-height: 40vh;">
 
-            <div style="position:absolute; bottom:20%; display:flex; flex-direction:column; align-items:center; z-index:5;">
+            <div style="position:absolute; bottom:20%; display:flex; flex-direction:column; align-items:center; z-index:30;">
                 <div id="goodbye-text-2" class="climax-text floral-text" style="position:relative; top:0; font-size: clamp(2.5rem, 8vw, 5rem); line-height: 1.1;">HAPPY BIRTHDAY<br>LOVE</div>
                 <div id="goodbye-text-sub" style="font-family:var(--font-typewriter); color:#aaa; font-size:0.9rem; opacity:0; transition:opacity 2s ease; margin-top:20px;">(I STILL LOVE YOU MORE ;)</div>
             </div>
@@ -1835,6 +1826,10 @@
             
             const mendhak = document.getElementById('goodbye-mendhak');
             const piggy = document.getElementById('goodbye-piggy');
+            
+            const piggyWrap = document.getElementById('piggy-wrap');
+            const mendhakWrap = document.getElementById('mendhak-wrap');
+            
             const text1 = document.getElementById('goodbye-text-1');
             const text2 = document.getElementById('goodbye-text-2');
             const text3 = document.getElementById('goodbye-text-3');
@@ -1985,19 +1980,15 @@
                         setTimeout(() => { twinkle.style.opacity = '0'; }, 800);
                     }, 1800);
                     
-                    piggy.style.transition = 'transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
-                    piggy.style.transform = 'scale(1.2)';
-                    
-                    await wait(1500);
                     text3.style.opacity = '1';
                     
                     await wait(3500);
                     text3.style.opacity = '0';
                     
                     // Piggy walks off stage
-                    piggy.style.transition = 'transform 2s ease, opacity 2s ease';
-                    piggy.style.transform = 'translateX(-50vw)';
-                    piggy.style.opacity = '0';
+                    piggyWrap.style.transition = 'transform 2s ease, opacity 2s ease';
+                    piggyWrap.style.transform = 'translateX(-50vw)';
+                    piggyWrap.style.opacity = '0';
                     
                     await wait(2000);
                     
@@ -2007,62 +1998,102 @@
                     document.getElementById('s8-goodbye').classList.remove('calamity');
                     
                     // PIGGY RUSHES BACK
-                    piggy.style.transition = 'transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.5s';
-                    piggy.style.transform = 'translateX(0vw) scale(1.2)';
-                    piggy.style.opacity = '1';
+                    piggyWrap.style.transition = 'transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.5s';
+                    piggyWrap.style.transform = 'translateX(0vw)';
+                    piggy.style.transform = 'scale(1.2)';
+                    piggyWrap.style.opacity = '1';
                     
                     await wait(500);
                     pBubble.innerText = "OHHH SHITT MENDHAK IS CRYING !";
                     pBubble.style.opacity = '1';
                     
                     await wait(1500);
+                    pBubble.style.opacity = '0';
                     
                     // MENDHAK RETURNS CRYING
-                    mendhak.style.transition = 'all 2s ease-out';
-                    mendhak.style.transform = 'translate(0, 0) scale(1)';
-                    mendhak.style.opacity = '1';
+                    mendhak.style.transform = 'rotate(0deg) scale(1)';
+                    mendhakWrap.style.transition = 'all 2s ease-out';
+                    mendhakWrap.style.transform = 'translate(0, 0)';
+                    mendhakWrap.style.opacity = '1';
                     
                     await wait(1000);
                     document.getElementById('goodbye-mendhak').classList.add('is-crying');
                     
                     await wait(1000);
                     
-                    // WATER FLOOD & DROWNING
+                    // WATER FLOOD starts rising
                     document.getElementById('water-flood').classList.add('flood');
-                    document.querySelectorAll('.planet, .space-object, #goodbye-piggy, #goodbye-mendhak').forEach(el => el.classList.add('drowning'));
                     
-                    await wait(6000);
+                    await wait(2000);
+                    
+                    // DROWNING / FLOATING APART
+                    piggyWrap.style.transition = 'transform 6s ease-in-out';
+                    mendhakWrap.style.transition = 'transform 6s ease-in-out';
+                    piggy.style.transition = 'transform 6s ease-in-out';
+                    mendhak.style.transition = 'transform 6s ease-in-out';
+                    
+                    piggyWrap.style.transform = 'translate(-20vw, -15vh)';
+                    piggy.style.transform = 'rotate(-150deg) scale(1.2)';
+                    
+                    mendhakWrap.style.transform = 'translate(20vw, -15vh)';
+                    mendhak.style.transform = 'rotate(180deg) scale(1)';
+                    
+                    // Planets and space junk tumble around
+                    ['ufo-wrap','sat-wrap','alien-wrap','jupiter-wrap','neptune-wrap','saturn-wrap','mars-wrap','moon-wrap'].forEach(id => {
+                        let el = document.getElementById(id);
+                        el.style.transition = 'transform 6s ease-in-out';
+                        el.style.transform = `translate(${(Math.random()-0.5)*80}vw, ${(Math.random()-0.5)*80}vh) rotate(${(Math.random()-0.5)*360}deg)`;
+                    });
+                    
+                    await wait(4500);
+                    
+                    // Piggy stabilizes to speak
+                    piggy.style.transition = 'transform 1.5s ease-out';
+                    piggy.style.transform = 'rotate(0deg) scale(1.2)';
+                    
+                    await wait(1500);
                     pBubble.innerText = "Come here betuu , let me give you a kiss";
+                    pBubble.style.opacity = '1';
                     
                     await wait(3000);
                     pBubble.style.opacity = '0';
                     
-                    // THE KISS
-                    piggy.style.transition = 'transform 1s ease-in-out';
-                    mendhak.style.transition = 'transform 1s ease-in-out';
-                    piggy.style.transform = 'translateX(30px) scale(1.2)';
-                    mendhak.style.transform = 'translateX(-30px) scale(1)';
+                    // THE KISS CHOREOGRAPHY
+                    piggyWrap.style.transition = 'transform 2s ease-in-out';
+                    mendhakWrap.style.transition = 'transform 2s ease-in-out';
+                    piggy.style.transition = 'transform 2s ease-in-out';
+                    mendhak.style.transition = 'transform 2s ease-in-out';
                     
-                    await wait(1000);
+                    piggyWrap.style.transform = 'translate(5vw, -15vh)';
+                    mendhakWrap.style.transform = 'translate(-5vw, -15vh)';
+                    piggy.style.transform = 'rotate(10deg) scale(1.2)';
+                    mendhak.style.transform = 'rotate(-10deg) scale(1)';
+                    
+                    await wait(1800);
                     const kissHeart = document.getElementById('kiss-heart');
                     kissHeart.style.opacity = '1';
-                    kissHeart.style.transform = 'translate(-50%, -50%) scale(1)';
+                    kissHeart.style.transform = 'translate(-50%, -50%) scale(1.5)';
                     
-                    await wait(1000);
-                    
-                    // Tears stop, water drains
+                    await wait(500);
+                    // Tears stop instantly
                     document.getElementById('goodbye-mendhak').classList.remove('is-crying');
+                    
+                    // Water drains
+                    document.getElementById('water-flood').style.transition = 'height 3s ease-in-out';
                     document.getElementById('water-flood').classList.remove('flood');
                     
-                    // Stop drowning
-                    document.querySelectorAll('.planet, .space-object, #goodbye-piggy, #goodbye-mendhak').forEach(el => el.classList.remove('drowning'));
+                    // Planets return
+                    ['jupiter-wrap','neptune-wrap','saturn-wrap','mars-wrap','moon-wrap'].forEach(id => {
+                        let el = document.getElementById(id);
+                        el.style.transition = 'transform 4s ease-in-out';
+                        el.style.transform = '';
+                    });
+                    // Space junk flies off into deep space
+                    document.getElementById('ufo-wrap').style.transform = 'translate(100vw, -100vh) rotate(180deg)';
+                    document.getElementById('sat-wrap').style.transform = 'translate(-100vw, -100vh) rotate(-180deg)';
+                    document.getElementById('alien-wrap').style.transform = 'translate(-100vw, 100vh) rotate(-90deg)';
                     
-                    // Spaceships fly away in different directions
-                    document.getElementById('ufo').style.transform = 'translate(100vw, -100vh) rotate(45deg)';
-                    document.getElementById('sat').style.transform = 'translate(-100vw, -100vh) rotate(-45deg)';
-                    document.getElementById('alien').style.transform = 'translate(-100vw, 100vh) rotate(-90deg)';
-                    
-                    await wait(2000);
+                    await wait(3000);
                     kissHeart.style.opacity = '0';
                     
                     // BOTH LEAVE HAPPILY
@@ -2073,12 +2104,12 @@
                     
                     await wait(1500);
                     
-                    piggy.style.transition = 'transform 2s ease-in, opacity 2s ease';
-                    mendhak.style.transition = 'transform 2s ease-in, opacity 2s ease';
-                    piggy.style.transform = 'translateX(50vw) scale(1.2)';
-                    mendhak.style.transform = 'translateX(50vw) scale(1)';
-                    piggy.style.opacity = '0';
-                    mendhak.style.opacity = '0';
+                    piggyWrap.style.transition = 'transform 2s ease-in, opacity 2s ease';
+                    mendhakWrap.style.transition = 'transform 2s ease-in, opacity 2s ease';
+                    piggyWrap.style.transform = 'translate(60vw, -15vh)';
+                    mendhakWrap.style.transform = 'translate(60vw, -15vh)';
+                    piggyWrap.style.opacity = '0';
+                    mendhakWrap.style.opacity = '0';
                     pBubble.style.opacity = '0';
                     mBubble.style.opacity = '0';
                     
