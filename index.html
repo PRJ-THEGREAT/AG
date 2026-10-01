@@ -254,13 +254,69 @@
         .envelope-wrapper.open .envelope { transform: translateY(50px); background: var(--paper-texture), #bd956d; }
 
         /* =========================================================
-           5. THE POEM
+           5. THE POEM (REPLACED WITH INTERACTIVE SCROLL)
            ========================================================= */
-        #s5-poem { background: #030303; align-items: center; justify-content: center; padding: 20px; text-align: center; }
-        .poem-pre { font-style: italic; color: #777; font-size: 1.1rem; opacity: 0; transition: opacity 1s; position: absolute; left: 50%; transform: translate(-50%, -50%); text-align: center; width: 90%; max-width: 500px; }
-        #poem-container { max-width: 600px; width: 100%; text-align: center;}
-        .poem-line { font-family: var(--font-serif); font-size: clamp(1.2rem, 4vw, 1.8rem); line-height: 2.2; color: #eaeaea; opacity: 0; transform: translateY(15px); transition: opacity 1s ease, transform 1s ease; margin-bottom: 20px; text-shadow: 0 2px 10px rgba(255,255,255,0.1); }
-        .poem-line.visible { opacity: 1; transform: translateY(0); }
+        #s5-poem { background: #030303; align-items: center; justify-content: center; padding: 20vh 5vw 5vw 5vw; text-align: center; }
+        
+        .scroll-wrapper {
+            position: relative;
+            width: 90%; max-width: 500px;
+            display: flex; flex-direction: column; align-items: center;
+            cursor: pointer;
+        }
+        
+        .scroll-roller {
+            width: 106%; height: 35px;
+            background: linear-gradient(to bottom, #4a2f1d, #2b180d, #4a2f1d);
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.8), inset 0 0 10px rgba(0,0,0,0.5);
+            position: relative;
+            z-index: 5;
+            border-left: 5px solid #c4a47c;
+            border-right: 5px solid #c4a47c;
+        }
+        .scroll-roller::after {
+            content: ''; position: absolute;
+            top: 15%; left: 3%; width: 94%; height: 70%;
+            background: linear-gradient(to bottom, #dcb897, #cda984, #dcb897);
+            border-radius: 2px;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.4);
+        }
+        
+        .scroll-paper {
+            width: 100%;
+            height: 0; /* Starts rolled up */
+            background: var(--paper-texture), #dcb897;
+            box-shadow: inset 0 0 20px rgba(90, 50, 10, 0.4), 0 10px 20px rgba(0,0,0,0.5);
+            transition: height 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-y: hidden;
+            position: relative;
+            z-index: 1;
+            display: flex; flex-direction: column; align-items: center;
+        }
+        
+        .scroll-content {
+            padding: 30px 20px;
+            width: 100%;
+            opacity: 0;
+            transition: opacity 1s 1s ease; /* Fade in after unrolling */
+        }
+        
+        .scroll-wrapper.open .scroll-paper {
+            height: 60vh;
+            overflow-y: auto;
+        }
+        .scroll-wrapper.open .scroll-content {
+            opacity: 1;
+        }
+        
+        .scroll-hint {
+            position: absolute; top: -40px;
+            font-family: var(--font-typewriter); color: #ffdf73; font-size: 1rem;
+            animation: hint-pulse 1s infinite alternate; pointer-events: none;
+            transition: 0.3s;
+        }
+        .scroll-wrapper.open .scroll-hint { opacity: 0; }
 
         /* =========================================================
            6. THE ARCHIVES
@@ -282,7 +338,7 @@
         .redacted:hover { color: #fff; background: transparent; }
 
         /* =========================================================
-           7. MUSEUM (THE MEMORY ROOM) RESTORED DARK THEME
+           7. MUSEUM (THE MEMORY ROOM) 
            ========================================================= */
         #s7-museum { background: #211c18; align-items: center; justify-content: flex-start; padding: 0; position: relative; overflow-y: auto;}
         .room-lighting { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center 40%, transparent 20%, rgba(0,0,0,0.8) 100%); pointer-events: none; z-index: 1;}
@@ -738,9 +794,6 @@
 
     <svg width="0" height="0" style="display:none;">
         <defs>
-            <!-- Realistic Water Waves -->
-            <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
-            
             <g id="svg-piggy">
                 <path d="M 22 25 Q 16 35 22 45 Q 26 50 20 55" fill="none" stroke="#333" stroke-width="2.5" stroke-linecap="round" id="p-sweat" />
                 <path d="M 30 35 Q 25 55 30 75 Q 50 90 70 75 Q 75 55 70 35 Q 50 20 30 35 Z" fill="#ffc8d2" />
@@ -763,11 +816,6 @@
                 <line x1="41" y1="56" x2="49" y2="56" stroke="#68b94f" stroke-width="3" stroke-linecap="round" class="mendhak-eye" id="m-pupil-l" />
                 <line x1="64" y1="56" x2="72" y2="56" stroke="#68b94f" stroke-width="3" stroke-linecap="round" class="mendhak-eye" id="m-pupil-r" />
                 <path d="M 48 76 L 73 72" fill="none" stroke="#68b94f" stroke-width="3" stroke-linecap="round" id="m-jaw" class="mendhak-jaw" />
-                <!-- Hidden Waterfall Tears falling directly from eyes -->
-                <g class="mendhak-crying-tears" style="opacity: 0;">
-                    <line x1="45" y1="58" x2="45" y2="150" stroke="#00e5ff" stroke-width="4" stroke-dasharray="10 15" stroke-linecap="round" class="tear-line" />
-                    <line x1="68" y1="58" x2="68" y2="150" stroke="#00e5ff" stroke-width="4" stroke-dasharray="10 15" stroke-linecap="round" class="tear-line" style="animation-delay: 0.2s;" />
-                </g>
             </g>
             
             <g id="svg-mendhak-flower">
@@ -1227,7 +1275,7 @@
         <div class="book-3d-wrapper" id="the-3d-book">
             <div class="book-3d-back"></div>
             <div class="book-3d-pages">
-                <i>"For me ,🌟 Aaradhya🌟 is a kind-hearted person who makes everyone laugh by her laughter attacks🤣🤣 and silly - lame jokes . I always meant her to my sister 😤 who is Always there for me , always makes me laugh at any point where I feel to be quiet 🙊 and most importantly the trust that she shows on me is what matters for me at any point 🫀. She is always the one jiski baat ka merko in 4 saalo kabhi bura nahi laga. <i>Bas last me yahi ki apko is saal thodi si buddhi 🧠 ki prapti ho🙏🏻🙏🏻 .</i>" 😘💋</i>
+                JUST BE YOURSELF MERI JAAN , YOU'LL ALWAYS BE PRJ'S PYARII SI GOOD GIRL 💋
             </div>
             <div class="book-3d-cover">
                 <div class="book-3d-cover-front">
@@ -1266,13 +1314,13 @@
 
             letters: [
                 { label: "FROM: MOM & DAD", text: "To me, Aaradhya is the brightest light in our family. Seeing you grow into such a beautiful soul makes us prouder every day. Happy Birthday! [ADD FULL TEXT]" },
-                { label: "FROM: Riddhima", text: "For me, Aaradhya✨ is someone I would run to as soon as I get any tea.😋 I can share everything with her; she's more than just a best friend. I love everything about her,💋💋 especially her laugh. Around her, I can be the real me, knowing she will never judge me." },
-                { label: "FROM: Yashasvi", text: "For me ,🌟 Aaradhya🌟 is a kind-hearted person who makes everyone laugh by her laughter attacks🤣🤣 and silly - lame jokes . I always meant her to my sister 😤 who is Always there for me , always makes me laugh at any point where I feel to be quiet 🙊 and most importantly the trust that she shows on me is what matters for me at any point 🫀. She is always the one jiski baat ka merko in 4 saalo kabhi bura nahi laga. \" <i>Bas last me yahi ki apko is saal thodi si buddhi 🧠 ki prapti ho🙏🏻🙏🏻 .</i>\" 😘💋" },
                 { label: "FROM: Shristi", text: "For me Aaradhya is, my happy place🪷✨. The person I call whenever something funny, stupid, exciting, or heartbreaking happens😸. She isn't just my best friend; she's the sister i always wanted . and bakwass jitni bhi karti ho I love her so much!!❤️" },
+                { label: "FROM: Riddhima", text: "For me, Aaradhya✨ is someone I would run to as soon as I get any tea.😋 I can share everything with her; she's more than just a best friend. I love everything about her,💋💋 especially her laugh. Around her, I can be the real me, knowing she will never judge me." },
                 { label: "FROM: Ruhika", text: "For me Aaradhya is a funny,notorious and a very true friend of mine!! She helps me no matter what happens! We became really good friends in a very short time and I'm glad to have such a beautiful friend in my life like her!!" },
                 { label: "FROM: Paridhi", text: "For me Aaradhya is the friend i had never expected would turn out this good, her cheerful and funny side made me enjoy time with her more, every moment spent with her made me laugh until my stomach hurt and every joke of hers made me happy with a bright smile." },
                 { label: "FROM: Leora", text: "AARADHYA FOR ME.......<br>☆You are the the meethi chutney😋 to my golgappa🍽...<br>☆You are the double circulation🩺 to my heart🫀<br>☆ Annddd i missssss youuu sooooo mucchhh😭😭😭😭💖💖💖💖💖" },
                 { label: "FROM: Navya", text: "For me Aaradhya is <br>Likee the sweetesttt nd veryyyy cutessttt personn i hve ever mettt shess justt ekdummm merii chotuu si beheennn ekdumm jr vali to koi vibes he nhi aati hai .. ndd honestly i love herr smm like boht he sweet si haii 😚😚😚 .. i never knew ki ek jr se me itna attach houngi aur itni pyarii hai bhyii vo 🫠😍 and obv alwayss she'll be my funny sii happyy place ilysmm cutuuu😚😚😚😚 you'll always hold a very special place in my heart nd life .. lovee youu bothhh (puklit nd cutu)🫶🫶🫶🫶🫶🫶🫶" },
+                { label: "FROM: Yashasvi", text: "To me, Aaradhya is... [ADD FULL TEXT]" },
                 { label: "FROM: Aarushi", text: "To me, Aaradhya is... [ADD FULL TEXT]" },
                 { label: "FROM: PRJ", text: "To me, Aaradhya is everything. You are my sunshine, my missing star, and the absolute best part of my day. Happy Birthday, Jaanu. [ADD FULL TEXT]" }
             ],
@@ -1641,16 +1689,13 @@
         
         function openBookMessage() {
             document.getElementById('book-modal').classList.add('active');
-            // Give time for modal to fade in before triggering page open
             setTimeout(() => {
                 document.getElementById('the-3d-book').classList.add('open');
             }, 300);
         }
 
         function closeBook() {
-            // Trigger close animation first
             document.getElementById('the-3d-book').classList.remove('open');
-            // Then hide modal
             setTimeout(() => {
                 document.getElementById('book-modal').classList.remove('active');
             }, 500); 
