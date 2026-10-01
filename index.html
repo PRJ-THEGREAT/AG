@@ -282,7 +282,7 @@
         .redacted:hover { color: #fff; background: transparent; }
 
         /* =========================================================
-           7. MUSEUM (THE MEMORY ROOM) RESTORED DARK THEME
+           7. MUSEUM (THE MEMORY ROOM) 
            ========================================================= */
         #s7-museum { background: #211c18; align-items: center; justify-content: flex-start; padding: 0; position: relative; overflow-y: auto;}
         .room-lighting { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center 40%, transparent 20%, rgba(0,0,0,0.8) 100%); pointer-events: none; z-index: 1;}
@@ -644,19 +644,25 @@
         }
         .calamity { animation: calamity-shake 0.5s infinite; }
 
-        /* Water Flood overlay */
+        /* REALISTIC SVG WATER FLOOD OVERLAY */
         #water-flood {
             position: absolute; bottom: 0; left: 0; width: 100%; height: 0%;
-            background: 
-                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 100"><path d="M0,50 Q100,0 200,50 T400,50 T600,50 T800,50 L800,100 L0,100 Z" fill="rgba(0, 150, 255, 0.4)"/></svg>') repeat-x 0 0,
-                linear-gradient(to top, rgba(0,68,204,0.9), rgba(0,229,255,0.7));
-            background-size: 800px 100px, 100% 100%;
-            z-index: 4; transition: height 2.5s ease-in-out; pointer-events: none;
+            z-index: 4; transition: height 8s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex; flex-direction: column; justify-content: flex-start;
+            overflow: hidden; pointer-events: none;
         }
-        #water-flood.flood { height: 100%; animation: wave-flow 4s linear infinite; }
-        @keyframes wave-flow {
-            0% { background-position: 0 -20px, 0 0; }
-            100% { background-position: -800px -20px, 0 0; }
+        #water-flood.flood { height: 100%; }
+        .waves { width: 100%; height: 15vh; min-height: 100px; max-height: 150px; margin-bottom: -7px; }
+        .water-body { flex: 1; background: linear-gradient(to bottom, rgba(0, 150, 255, 0.7), rgba(0, 50, 200, 0.9)); }
+        
+        .parallax > use { animation: wave-move 25s cubic-bezier(.55,.5,.45,.5) infinite; }
+        .parallax > use:nth-child(1) { animation-delay: -2s; animation-duration: 7s; }
+        .parallax > use:nth-child(2) { animation-delay: -3s; animation-duration: 10s; }
+        .parallax > use:nth-child(3) { animation-delay: -4s; animation-duration: 13s; }
+        .parallax > use:nth-child(4) { animation-delay: -5s; animation-duration: 20s; }
+        @keyframes wave-move { 
+            0% { transform: translate3d(-90px,0,0); } 
+            100% { transform: translate3d(85px,0,0); } 
         }
 
         #solar-system { position: absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; opacity: 0; transition: opacity 3s; z-index: 0; background: radial-gradient(circle at 50% 120%, #1a1a3a 0%, #010103 80%); overflow: hidden;}
@@ -680,7 +686,7 @@
 
         /* Planets & Space Objects */
         .space-object-wrapper { position: absolute; z-index: 3; transition: transform 2s ease-in-out; }
-        .space-object { position: relative; width: 100%; height: 100%; }
+        .space-object { position: relative; width: 100%; height: 100%; transition: transform 2s ease; }
         .planet { border-radius: 50%; }
         
         .moon-wrap { top: 15%; right: 20%; width: 90px; height: 90px; animation: orbit 60s linear infinite; }
@@ -712,7 +718,7 @@
             75% { transform: translateY(-20px) rotate(5deg); }
             100% { transform: translateY(0) rotate(0deg); }
         }
-        .drowning .space-object {
+        .drowning .space-object, #goodbye-piggy.drowning, #goodbye-mendhak.drowning {
             animation: drown-tumble 3s infinite ease-in-out !important;
         }
         
@@ -773,17 +779,12 @@
         }
         
         /* Mendhak Waterfall Tears */
-        .waterfall-tear {
-            position: absolute; width: 14px; height: 0;
-            background: linear-gradient(to bottom, rgba(0, 229, 255, 0.9), rgba(0, 100, 255, 0.4));
-            top: 48px; border-radius: 10px; transition: height 0.8s ease-in; z-index: 6;
-        }
-        .waterfall-left { left: 38px; }
-        .waterfall-right { right: 52px; }
-        .waterfall-active .waterfall-tear { height: 180px; animation: waterfall-flow 0.4s linear infinite; }
-        @keyframes waterfall-flow {
-            0% { filter: hue-rotate(0deg) drop-shadow(0 0 2px #fff); }
-            100% { filter: hue-rotate(10deg) drop-shadow(0 0 6px #fff); }
+        .mendhak-crying-tears { transition: opacity 0.5s; }
+        svg.is-crying .mendhak-crying-tears { opacity: 1 !important; }
+        .tear-line { animation: tear-fall 0.4s linear infinite; }
+        @keyframes tear-fall {
+            from { stroke-dashoffset: 25; }
+            to { stroke-dashoffset: 0; }
         }
 
         /* NEW ARCADE CSS */
@@ -811,6 +812,9 @@
 
     <svg width="0" height="0" style="display:none;">
         <defs>
+            <!-- Realistic Water Waves -->
+            <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+            
             <g id="svg-piggy">
                 <path d="M 22 25 Q 16 35 22 45 Q 26 50 20 55" fill="none" stroke="#333" stroke-width="2.5" stroke-linecap="round" id="p-sweat" />
                 <path d="M 30 35 Q 25 55 30 75 Q 50 90 70 75 Q 75 55 70 35 Q 50 20 30 35 Z" fill="#ffc8d2" />
@@ -833,6 +837,11 @@
                 <line x1="41" y1="56" x2="49" y2="56" stroke="#68b94f" stroke-width="3" stroke-linecap="round" class="mendhak-eye" id="m-pupil-l" />
                 <line x1="64" y1="56" x2="72" y2="56" stroke="#68b94f" stroke-width="3" stroke-linecap="round" class="mendhak-eye" id="m-pupil-r" />
                 <path d="M 48 76 L 73 72" fill="none" stroke="#68b94f" stroke-width="3" stroke-linecap="round" id="m-jaw" class="mendhak-jaw" />
+                <!-- Hidden Waterfall Tears falling directly from eyes -->
+                <g class="mendhak-crying-tears" style="opacity: 0;">
+                    <line x1="45" y1="58" x2="45" y2="150" stroke="#00e5ff" stroke-width="4" stroke-dasharray="10 15" stroke-linecap="round" class="tear-line" />
+                    <line x1="68" y1="58" x2="68" y2="150" stroke="#00e5ff" stroke-width="4" stroke-dasharray="10 15" stroke-linecap="round" class="tear-line" style="animation-delay: 0.2s;" />
+                </g>
             </g>
             
             <g id="svg-mendhak-flower">
@@ -1193,7 +1202,17 @@
         <section id="s8-goodbye" class="story-section">
             
             <!-- WATER FLOOD OVERLAY -->
-            <div id="water-flood"></div>
+            <div id="water-flood">
+                <svg class="waves" xmlns="http://www.w3.org/2000/svg" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+                    <g class="parallax">
+                        <use href="#gentle-wave" x="48" y="0" fill="rgba(0, 150, 255, 0.7)" />
+                        <use href="#gentle-wave" x="48" y="3" fill="rgba(0, 200, 255, 0.5)" />
+                        <use href="#gentle-wave" x="48" y="5" fill="rgba(0, 100, 255, 0.3)" />
+                        <use href="#gentle-wave" x="48" y="7" fill="rgba(0, 50, 200, 0.8)" />
+                    </g>
+                </svg>
+                <div class="water-body"></div>
+            </div>
             
             <!-- ARCADE OVERLAYS -->
             <div id="arcade-scanlines"></div>
@@ -1257,13 +1276,7 @@
                     <div id="tap-hint" style="position:absolute; top:-80px; right:30px; font-family:var(--font-typewriter); color:#ffdf73; font-weight:bold; opacity:0; transition:0.3s; white-space:nowrap; animation: hint-pulse 1s infinite alternate; pointer-events:none; z-index: 12;">(Tap Mendhak!)</div>
                     <div id="goodbye-mendhak-bubble" style="position:absolute; top:-40px; right:-20px; font-family:var(--font-typewriter); color:#68b94f; font-weight:bold; opacity:0; transition:0.3s; white-space:nowrap; background:rgba(0,0,0,0.8); padding:5px 10px; border-radius:10px; border:1px solid #68b94f; z-index: 12;">NO , I DO!</div>
                     
-                    <svg id="goodbye-mendhak" viewBox="0 0 150 100" style="width:170px; opacity:0; transform:translateY(20px); position:relative; z-index:11;"><use href="#svg-mendhak-flower"/></svg>
-                    
-                    <!-- MENDHAK WATERFALL TEARS -->
-                    <div id="mendhak-tears-container" style="position:absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events:none;">
-                        <div class="waterfall-tear waterfall-left"></div>
-                        <div class="waterfall-tear waterfall-right"></div>
-                    </div>
+                    <svg id="goodbye-mendhak" viewBox="0 0 150 100" style="width:170px; opacity:0; transform:translateY(20px); position:relative; z-index:5;"><use href="#svg-mendhak-flower"/></svg>
                 </div>
             </div>
 
@@ -1363,7 +1376,7 @@
             archives: [
                 { tab: "MENDHAK-01", title: "my generator", content: "<video src='VID_20260407_082942_930.mp4' controls style='width:100%; max-height:250px; background:#000; border:3px solid #eee; border-radius:2px; margin-bottom:10px; box-shadow: 0 2px 5px rgba(0,0,0,0.5);'></video><br>Subject is found guilty for having the most wholehearted and best laugh in the world , memorable day btw" },
                 { tab: "PIGGY-01", title: "Gogadudu", content: "<img src='IMG_0075.jpeg' style='max-width:100%; max-height:250px; object-fit:cover; border:3px solid #eee; border-radius:2px; margin-bottom:10px; box-shadow: 0 2px 5px rgba(0,0,0,0.5);'><br>that one time she drank milk dripping from her nose, yum x-)" },
-                { tab: "OBS-42", title: "Nose Scrunch", content: "Subject's nose scrunches when laughing at terrible jokes. Highly dangerous." }
+                { tab: "PIGGU06", title: "Nose Scrunch", content: "<video src='ScreenRecording_10-01-2026 15-50-57_1.mov' autoplay loop muted playsinline style='width:100%; max-height:250px; background:#000; border:3px solid #eee; border-radius:2px; margin-bottom:10px; box-shadow: 0 2px 5px rgba(0,0,0,0.5);'></video><br>Subject's nose scrunches when smiling very happily . Highly dangerous and cute" }
             ],
             
             museum: [
@@ -1972,6 +1985,10 @@
                         setTimeout(() => { twinkle.style.opacity = '0'; }, 800);
                     }, 1800);
                     
+                    piggy.style.transition = 'transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                    piggy.style.transform = 'scale(1.2)';
+                    
+                    await wait(1500);
                     text3.style.opacity = '1';
                     
                     await wait(3500);
@@ -2006,7 +2023,7 @@
                     mendhak.style.opacity = '1';
                     
                     await wait(1000);
-                    document.getElementById('mendhak-tears-container').classList.add('waterfall-active');
+                    document.getElementById('goodbye-mendhak').classList.add('is-crying');
                     
                     await wait(1000);
                     
@@ -2014,10 +2031,10 @@
                     document.getElementById('water-flood').classList.add('flood');
                     document.querySelectorAll('.planet, .space-object, #goodbye-piggy, #goodbye-mendhak').forEach(el => el.classList.add('drowning'));
                     
-                    await wait(3000);
+                    await wait(6000);
                     pBubble.innerText = "Come here betuu , let me give you a kiss";
                     
-                    await wait(2500);
+                    await wait(3000);
                     pBubble.style.opacity = '0';
                     
                     // THE KISS
@@ -2032,15 +2049,18 @@
                     kissHeart.style.transform = 'translate(-50%, -50%) scale(1)';
                     
                     await wait(1000);
+                    
                     // Tears stop, water drains
-                    document.getElementById('mendhak-tears-container').classList.remove('waterfall-active');
+                    document.getElementById('goodbye-mendhak').classList.remove('is-crying');
                     document.getElementById('water-flood').classList.remove('flood');
                     
                     // Stop drowning
                     document.querySelectorAll('.planet, .space-object, #goodbye-piggy, #goodbye-mendhak').forEach(el => el.classList.remove('drowning'));
                     
-                    // Spaceships fly away
-                    document.querySelectorAll('.space-object').forEach(el => el.style.transform = 'translate(1000px, -1000px)');
+                    // Spaceships fly away in different directions
+                    document.getElementById('ufo').style.transform = 'translate(100vw, -100vh) rotate(45deg)';
+                    document.getElementById('sat').style.transform = 'translate(-100vw, -100vh) rotate(-45deg)';
+                    document.getElementById('alien').style.transform = 'translate(-100vw, 100vh) rotate(-90deg)';
                     
                     await wait(2000);
                     kissHeart.style.opacity = '0';
