@@ -254,13 +254,69 @@
         .envelope-wrapper.open .envelope { transform: translateY(50px); background: var(--paper-texture), #bd956d; }
 
         /* =========================================================
-           5. THE POEM
+           5. THE POEM (REPLACED WITH INTERACTIVE SCROLL)
            ========================================================= */
-        #s5-poem { background: #030303; align-items: center; justify-content: center; padding: 20px; text-align: center; }
-        .poem-pre { font-style: italic; color: #777; font-size: 1.1rem; opacity: 0; transition: opacity 1s; position: absolute; left: 50%; transform: translate(-50%, -50%); text-align: center; width: 90%; max-width: 500px; }
-        #poem-container { max-width: 600px; width: 100%; text-align: center;}
-        .poem-line { font-family: var(--font-serif); font-size: clamp(1.2rem, 4vw, 1.8rem); line-height: 2.2; color: #eaeaea; opacity: 0; transform: translateY(15px); transition: opacity 1s ease, transform 1s ease; margin-bottom: 20px; text-shadow: 0 2px 10px rgba(255,255,255,0.1); }
-        .poem-line.visible { opacity: 1; transform: translateY(0); }
+        #s5-poem { background: #030303; align-items: center; justify-content: center; padding: 20vh 5vw 5vw 5vw; text-align: center; }
+        
+        .scroll-wrapper {
+            position: relative;
+            width: 90%; max-width: 500px;
+            display: flex; flex-direction: column; align-items: center;
+            cursor: pointer;
+        }
+        
+        .scroll-roller {
+            width: 106%; height: 35px;
+            background: linear-gradient(to bottom, #4a2f1d, #2b180d, #4a2f1d);
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.8), inset 0 0 10px rgba(0,0,0,0.5);
+            position: relative;
+            z-index: 5;
+            border-left: 5px solid #c4a47c;
+            border-right: 5px solid #c4a47c;
+        }
+        .scroll-roller::after {
+            content: ''; position: absolute;
+            top: 15%; left: 3%; width: 94%; height: 70%;
+            background: linear-gradient(to bottom, #dcb897, #cda984, #dcb897);
+            border-radius: 2px;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.4);
+        }
+        
+        .scroll-paper {
+            width: 100%;
+            height: 0; /* Starts rolled up */
+            background: var(--paper-texture), #dcb897;
+            box-shadow: inset 0 0 20px rgba(90, 50, 10, 0.4), 0 10px 20px rgba(0,0,0,0.5);
+            transition: height 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-y: hidden;
+            position: relative;
+            z-index: 1;
+            display: flex; flex-direction: column; align-items: center;
+        }
+        
+        .scroll-content {
+            padding: 30px 20px;
+            width: 100%;
+            opacity: 0;
+            transition: opacity 1s 1s ease; /* Fade in after unrolling */
+        }
+        
+        .scroll-wrapper.open .scroll-paper {
+            height: 60vh;
+            overflow-y: auto;
+        }
+        .scroll-wrapper.open .scroll-content {
+            opacity: 1;
+        }
+        
+        .scroll-hint {
+            position: absolute; top: -40px;
+            font-family: var(--font-typewriter); color: #ffdf73; font-size: 1rem;
+            animation: hint-pulse 1s infinite alternate; pointer-events: none;
+            transition: 0.3s;
+        }
+        .scroll-wrapper.open .scroll-hint { opacity: 0; }
 
         /* =========================================================
            6. THE ARCHIVES
@@ -920,12 +976,23 @@
             <button class="btn-cinematic" style="margin-top: 80px;" onclick="triggerPoem()">One Last Thing...</button>
         </section>
 
-        <!-- 5. POEM -->
+        <!-- 5. POEM (REPLACED WITH HANDWRITTEN SCROLL) -->
         <section id="s5-poem" class="story-section">
-            <div id="poem-intro-1" class="poem-pre" style="top: 40%;">ONE LAST THING.</div>
-            <div id="poem-intro-2" class="poem-pre" style="top: 50%;">I wanted to give you something that couldn't be put in a photograph.</div>
-            <div id="poem-container"></div>
-            <button id="btn-post-poem" class="btn-cinematic" style="opacity: 0; pointer-events: none;" onclick="goToSection('s6-archives')">Open Archives</button>
+            
+            <div class="scroll-wrapper" id="the-scroll" onclick="unrollScroll()">
+                <div class="scroll-hint">(Tap to unroll)</div>
+                <div class="scroll-roller"></div>
+                <div class="scroll-paper" id="scroll-paper">
+                    <div class="scroll-content">
+                        <!-- User's Handwritten Poem PNGs -->
+                        <img src="POEM_PAGE_1.png" alt="Poem Page 1" style="width: 100%; border-radius: 2px; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
+                        <img src="POEM_PAGE_2.png" alt="Poem Page 2" style="width: 100%; border-radius: 2px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
+                    </div>
+                </div>
+                <div class="scroll-roller"></div>
+            </div>
+
+            <button id="btn-post-poem" class="btn-cinematic" style="opacity: 0; pointer-events: none; margin-top: 40px;" onclick="goToSection('s6-archives')">Open Archives</button>
         </section>
 
         <!-- 6. ARCHIVES -->
@@ -1174,7 +1241,7 @@
                 </div>
             </div>
 
-            <!-- THE TWINKLE STAR -->
+            <!-- THE TWINKLE STAR (Absolutely positioned near where Mendhak vanishes) -->
             <div id="vanish-twinkle" style="position:absolute; top: 15%; right: 15%; opacity:0; pointer-events:none; z-index: 20;">
                 <div class="twinkle-star"></div>
             </div>
@@ -1256,15 +1323,6 @@
                 { label: "FROM: Yashasvi", text: "To me, Aaradhya is... [ADD FULL TEXT]" },
                 { label: "FROM: Aarushi", text: "To me, Aaradhya is... [ADD FULL TEXT]" },
                 { label: "FROM: PRJ", text: "To me, Aaradhya is everything. You are my sunshine, my missing star, and the absolute best part of my day. Happy Birthday, Jaanu. [ADD FULL TEXT]" }
-            ],
-            
-            poem: [
-                "I never thought a quiet Tuesday",
-                "Could turn into a lifetime.",
-                "But then you looked at me,",
-                "And suddenly, I understood it all.",
-                "It wasn't magic, it was just you.",
-                "Happy Birthday, my missing star."
             ],
             
             archives: [
@@ -1570,35 +1628,28 @@
 
         async function triggerPoem() {
             goToSection('s5-poem');
-            const i1 = document.getElementById('poem-intro-1');
-            const i2 = document.getElementById('poem-intro-2');
-            const container = document.getElementById('poem-container');
+            
+            const scroll = document.getElementById('the-scroll');
             const btn = document.getElementById('btn-post-poem');
             
-            container.innerHTML = '';
-            
-            await wait(1000); i1.style.opacity = '1';
-            await wait(1500); i1.style.opacity = '0';
-            await wait(800);  i2.style.opacity = '1';
-            await wait(2000); i2.style.opacity = '0';
-            await wait(800);
-            
-            SITE_DATA.poem.forEach((text) => {
-                const p = document.createElement('p');
-                p.className = 'poem-line';
-                p.innerText = text;
-                container.appendChild(p);
-            });
-            
-            const lines = document.querySelectorAll('.poem-line');
-            for(let i=0; i<lines.length; i++) {
-                lines[i].classList.add('visible');
-                await wait(1200); 
+            // Reset the scroll state every time we visit
+            scroll.classList.remove('open');
+            btn.style.opacity = '0';
+            btn.style.pointerEvents = 'none';
+        }
+
+        function unrollScroll() {
+            const scroll = document.getElementById('the-scroll');
+            if (!scroll.classList.contains('open')) {
+                scroll.classList.add('open');
+                
+                // Show the next button after the scroll has unrolled
+                setTimeout(() => {
+                    const btn = document.getElementById('btn-post-poem');
+                    btn.style.opacity = '1';
+                    btn.style.pointerEvents = 'all';
+                }, 2000);
             }
-            
-            await wait(1000);
-            btn.style.opacity = '1';
-            btn.style.pointerEvents = 'all';
         }
 
         async function openMuseumDoor() {
