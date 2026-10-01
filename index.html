@@ -624,47 +624,9 @@
         .btn-close-modal:hover { background: #fff; color: #000; }
 
         /* =========================================================
-           8. GOODBYE (ARCADE MINI GAME, CALAMITY & FINAL SCENE)
+           8. GOODBYE (ARCADE MINI GAME & SOLAR SYSTEM)
            ========================================================= */
         #s8-goodbye { background: #030208; align-items: center; justify-content: center; text-align: center; overflow: hidden; }
-        
-        /* Calamity Shake Animation */
-        @keyframes calamity-shake {
-            0% { transform: translate(10px, 10px) rotate(0deg); }
-            10% { transform: translate(-10px, -20px) rotate(-1deg); }
-            20% { transform: translate(-30px, 0px) rotate(1deg); }
-            30% { transform: translate(30px, 20px) rotate(0deg); }
-            40% { transform: translate(10px, -10px) rotate(1deg); }
-            50% { transform: translate(-10px, 20px) rotate(-1deg); }
-            60% { transform: translate(-30px, 10px) rotate(0deg); }
-            70% { transform: translate(30px, 10px) rotate(-1deg); }
-            80% { transform: translate(-10px, -10px) rotate(1deg); }
-            90% { transform: translate(10px, 20px) rotate(0deg); }
-            100% { transform: translate(10px, -20px) rotate(-1deg); }
-        }
-        .calamity { animation: calamity-shake 0.3s infinite; }
-
-        /* REALISTIC SVG WATER FLOOD OVERLAY */
-        #water-flood {
-            position: absolute; bottom: 0; left: 0; width: 100%; height: 0%;
-            z-index: 25; transition: height 8s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex; flex-direction: column; justify-content: flex-start;
-            overflow: hidden; pointer-events: none; opacity: 0.85;
-        }
-        #water-flood.flood { height: 100%; }
-        .waves { width: 100%; height: 15vh; min-height: 100px; max-height: 150px; margin-bottom: -7px; }
-        .water-body { flex: 1; background: linear-gradient(to bottom, rgba(0, 150, 255, 0.7), rgba(0, 50, 200, 0.9)); }
-        
-        .parallax > use { animation: wave-move 25s cubic-bezier(.55,.5,.45,.5) infinite; }
-        .parallax > use:nth-child(1) { animation-delay: -2s; animation-duration: 7s; }
-        .parallax > use:nth-child(2) { animation-delay: -3s; animation-duration: 10s; }
-        .parallax > use:nth-child(3) { animation-delay: -4s; animation-duration: 13s; }
-        .parallax > use:nth-child(4) { animation-delay: -5s; animation-duration: 20s; }
-        @keyframes wave-move { 
-            0% { transform: translate3d(-90px,0,0); } 
-            100% { transform: translate3d(85px,0,0); } 
-        }
-
         #solar-system { position: absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; opacity: 0; transition: opacity 3s; z-index: 0; background: radial-gradient(circle at 50% 120%, #1a1a3a 0%, #010103 80%); overflow: hidden;}
         
         /* Deep Space Nebulas */
@@ -684,43 +646,14 @@
         .shooting-star { position: absolute; width: 100px; height: 2px; background: linear-gradient(90deg, rgba(255,255,255,1), transparent); opacity: 0; z-index: 2;}
         @keyframes shoot { 0% { transform: translateX(0) translateY(0) rotate(-35deg); opacity: 1; } 10% { transform: translateX(-300px) translateY(200px) rotate(-35deg); opacity: 0; } 100% { opacity: 0; } }
 
-        /* Planets & Space Objects */
-        .space-object-wrapper { position: absolute; z-index: 3; }
-        .space-object { position: relative; width: 100%; height: 100%; transition: transform 2s ease; }
-        .planet { border-radius: 50%; }
-        
-        .moon-wrap { top: 15%; right: 20%; width: 90px; height: 90px; animation: orbit 60s linear infinite; }
-        .moon { background: radial-gradient(circle at 30% 30%, #e0e0e0 0%, #9e9e9e 100%); box-shadow: 0 0 30px rgba(255,255,255,0.2); }
-        
-        .saturn-wrap { top: 70%; left: 15%; width: 50px; height: 50px; animation: float-slow 10s ease-in-out infinite; }
-        .saturn { background: #d4a373; transform: rotate(-20deg); box-shadow: inset -10px -10px 15px rgba(0,0,0,0.5); }
+        /* Planets */
+        .planet { position: absolute; border-radius: 50%; z-index: 3;}
+        .moon { width: 90px; height: 90px; background: radial-gradient(circle at 30% 30%, #e0e0e0 0%, #9e9e9e 100%); top: 15%; right: 20%; box-shadow: 0 0 30px rgba(255,255,255,0.2); animation: orbit 60s linear infinite; }
+        .saturn { width: 50px; height: 50px; background: #d4a373; top: 70%; left: 15%; transform: rotate(-20deg); animation: float-slow 10s ease-in-out infinite; box-shadow: inset -10px -10px 15px rgba(0,0,0,0.5);}
         .saturn::before { content:''; position:absolute; top:50%; left:50%; width: 100px; height: 15px; border: 4px solid rgba(220,200,180,0.8); border-radius: 50%; transform: translate(-50%, -50%); }
-        
-        .mars-wrap { top: 30%; left: 25%; width: 30px; height: 30px; animation: orbit-rev 40s linear infinite; }
-        .mars { background: radial-gradient(circle at 30% 30%, #e07a5f, #813422); box-shadow: inset -5px -5px 10px rgba(0,0,0,0.6); }
-        
-        .jupiter-wrap { top: 20%; left: 10%; width: 75px; height: 75px; animation: orbit-large 80s linear infinite; }
-        .jupiter { background: linear-gradient(180deg, #c88b3a, #e0b476, #a66a2c, #e0b476, #c88b3a); box-shadow: inset -10px -10px 20px rgba(0,0,0,0.7); }
-        
-        .neptune-wrap { bottom: 25%; right: 15%; width: 45px; height: 45px; animation: orbit-float 50s linear infinite; }
-        .neptune { background: radial-gradient(circle at 30% 30%, #3a7bd5, #001f54); box-shadow: inset -8px -8px 15px rgba(0,0,0,0.6); }
-
-        /* Floating Space Junk */
-        .ufo-wrap { top: 60%; right: 30%; font-size: 2rem; animation: orbit 45s linear infinite reverse; }
-        .sat-wrap { top: 10%; left: 40%; font-size: 1.5rem; animation: float-slow 15s ease-in-out infinite reverse; }
-        .alien-wrap { bottom: 15%; left: 35%; font-size: 1.5rem; animation: orbit-rev 35s linear infinite; }
-
-        /* Drowning Animation for characters inside wraps */
-        @keyframes drown-tumble {
-            0% { transform: translateY(0) rotate(0deg); }
-            25% { transform: translateY(-30px) rotate(15deg); }
-            50% { transform: translateY(10px) rotate(-20deg); }
-            75% { transform: translateY(-20px) rotate(5deg); }
-            100% { transform: translateY(0) rotate(0deg); }
-        }
-        .drowning .space-object, svg.drowning {
-            animation: drown-tumble 3s infinite ease-in-out !important;
-        }
+        .mars { width: 30px; height: 30px; background: radial-gradient(circle at 30% 30%, #e07a5f, #813422); top: 30%; left: 25%; animation: orbit-rev 40s linear infinite; box-shadow: inset -5px -5px 10px rgba(0,0,0,0.6);}
+        .jupiter { width: 75px; height: 75px; background: linear-gradient(180deg, #c88b3a, #e0b476, #a66a2c, #e0b476, #c88b3a); top: 20%; left: 10%; box-shadow: inset -10px -10px 20px rgba(0,0,0,0.7); animation: orbit-large 80s linear infinite; }
+        .neptune { width: 45px; height: 45px; background: radial-gradient(circle at 30% 30%, #3a7bd5, #001f54); bottom: 25%; right: 15%; box-shadow: inset -8px -8px 15px rgba(0,0,0,0.6); animation: orbit-float 50s linear infinite; }
         
         @keyframes float-slow { 0%, 100% { transform: translateY(0) rotate(-20deg); } 50% { transform: translateY(-20px) rotate(-15deg); } }
         @keyframes orbit { 0% { transform: translateX(0) translateY(0); } 50% { transform: translateX(-30px) translateY(15px); } 100% { transform: translateX(0) translateY(0); } }
@@ -786,10 +719,12 @@
         .health-bar-container { position: absolute; top: 60px; width: 35%; height: 30px; border: 4px solid #fff; background: #222; box-shadow: 4px 4px 0 #000; }
         #hb-piggy { left: 5%; }
         #hb-mendhak { right: 5%; }
+        /* Floats added to ensure health drains towards the center of the screen */
         .health-fill { height: 100%; width: 100%; background: #39ff14; transition: width 0.1s ease-out, background-color 0.2s;}
         #piggy-hp-fill { float: left; border-right: 2px solid #000;}
         #mendhak-hp-fill { float: right; border-left: 2px solid #000;}
 
+        /* Responsive Text for Arcade Overlay */
         .player-name { font-family: var(--font-arcade); color: #fff; font-size: clamp(0.6rem, 3vw, 1rem); position: absolute; top: 30px; text-shadow: 3px 3px 0px #000; }
         #pn-piggy { left: 5%; }
         #pn-mendhak { right: 5%; }
@@ -803,9 +738,6 @@
 
     <svg width="0" height="0" style="display:none;">
         <defs>
-            <!-- Realistic Water Waves -->
-            <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
-            
             <g id="svg-piggy">
                 <path d="M 22 25 Q 16 35 22 45 Q 26 50 20 55" fill="none" stroke="#333" stroke-width="2.5" stroke-linecap="round" id="p-sweat" />
                 <path d="M 30 35 Q 25 55 30 75 Q 50 90 70 75 Q 75 55 70 35 Q 50 20 30 35 Z" fill="#ffc8d2" />
@@ -828,11 +760,6 @@
                 <line x1="41" y1="56" x2="49" y2="56" stroke="#68b94f" stroke-width="3" stroke-linecap="round" class="mendhak-eye" id="m-pupil-l" />
                 <line x1="64" y1="56" x2="72" y2="56" stroke="#68b94f" stroke-width="3" stroke-linecap="round" class="mendhak-eye" id="m-pupil-r" />
                 <path d="M 48 76 L 73 72" fill="none" stroke="#68b94f" stroke-width="3" stroke-linecap="round" id="m-jaw" class="mendhak-jaw" />
-                <!-- Hidden Waterfall Tears falling directly from eyes -->
-                <g class="mendhak-crying-tears" style="opacity: 0;">
-                    <line x1="45" y1="58" x2="45" y2="150" stroke="#00e5ff" stroke-width="4" stroke-dasharray="10 15" stroke-linecap="round" class="tear-line" />
-                    <line x1="68" y1="58" x2="68" y2="150" stroke="#00e5ff" stroke-width="4" stroke-dasharray="10 15" stroke-linecap="round" class="tear-line" style="animation-delay: 0.2s;" />
-                </g>
             </g>
             
             <g id="svg-mendhak-flower">
@@ -1189,21 +1116,8 @@
             </div>
         </section>
 
-        <!-- 8. GOODBYE (ARCADE MINI GAME, CALAMITY & FINAL SCENE) -->
+        <!-- 8. GOODBYE (ARCADE MINI GAME & FINAL SCENE) -->
         <section id="s8-goodbye" class="story-section">
-            
-            <!-- WATER FLOOD OVERLAY -->
-            <div id="water-flood">
-                <svg class="waves" xmlns="http://www.w3.org/2000/svg" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
-                    <g class="parallax">
-                        <use href="#gentle-wave" x="48" y="0" fill="rgba(0, 150, 255, 0.7)" />
-                        <use href="#gentle-wave" x="48" y="3" fill="rgba(0, 200, 255, 0.5)" />
-                        <use href="#gentle-wave" x="48" y="5" fill="rgba(0, 100, 255, 0.3)" />
-                        <use href="#gentle-wave" x="48" y="7" fill="rgba(0, 50, 200, 0.8)" />
-                    </g>
-                </svg>
-                <div class="water-body"></div>
-            </div>
             
             <!-- ARCADE OVERLAYS -->
             <div id="arcade-scanlines"></div>
@@ -1215,6 +1129,7 @@
                 
                 <div class="player-name" id="pn-mendhak">MENDHAK</div>
                 <div class="health-bar-container" id="hb-mendhak">
+                    <!-- Fixed: Float right forces the bar to shrink from left to right as health decreases -->
                     <div class="health-fill" id="mendhak-hp-fill" style="width: 100%; float: right;"></div>
                 </div>
             </div>
@@ -1232,42 +1147,30 @@
                 <div class="stars-2"></div>
                 <div class="stars-3"></div>
                 
-                <!-- Space Objects Wrapper (Used for drowning tumble effect) -->
-                <div class="space-object-wrapper ufo-wrap" id="ufo-wrap">
-                    <div class="space-object" id="ufo">🛸</div>
-                </div>
-                <div class="space-object-wrapper sat-wrap" id="sat-wrap">
-                    <div class="space-object" id="sat">🛰️️</div>
-                </div>
-                <div class="space-object-wrapper alien-wrap" id="alien-wrap">
-                    <div class="space-object" id="alien">👽</div>
-                </div>
+                <div class="shooting-star" style="top: 10%; right: 20%; animation: shoot 6s infinite linear 1s;"></div>
+                <div class="shooting-star" style="top: 40%; right: 5%; animation: shoot 8s infinite linear 4s;"></div>
                 
-                <div class="space-object-wrapper jupiter-wrap" id="jupiter-wrap"><div class="planet jupiter space-object"></div></div>
-                <div class="space-object-wrapper neptune-wrap" id="neptune-wrap"><div class="planet neptune space-object"></div></div>
-                <div class="space-object-wrapper saturn-wrap" id="saturn-wrap"><div class="planet saturn space-object"></div></div>
-                <div class="space-object-wrapper mars-wrap" id="mars-wrap"><div class="planet mars space-object"></div></div>
-                <div class="space-object-wrapper moon-wrap" id="moon-wrap"><div class="planet moon space-object"></div></div>
+                <div class="planet jupiter"></div>
+                <div class="planet neptune"></div>
+                <div class="planet saturn"></div>
+                <div class="planet mars"></div>
+                <div class="planet moon"></div>
             </div>
             
             <div id="goodbye-text-1" class="climax-text" style="top:30%;">I LOVE YOU TO THE MOON AND BACK</div>
             
             <!-- MINI GAME STAGE -->
-            <div id="goodbye-stage" style="position:relative; display:flex; align-items:flex-end; justify-content:center; margin-top:10vh; z-index:5; width: 100%;">
-                
-                <!-- KISS HEART -->
-                <div id="kiss-heart" style="position:absolute; top: -15vh; left: 50%; font-size: 3rem; opacity:0; transform: translate(-50%, -50%) scale(0.5); transition: 0.5s ease; filter: drop-shadow(0 0 10px #ff2a2a); pointer-events: none; z-index: 30;">❤️</div>
-                
-                <div id="piggy-wrap" style="position:absolute; bottom: 0; left:30vw; z-index:11;">
-                    <div id="goodbye-piggy-bubble" style="position:absolute; top:-40px; left:-20px; font-family:var(--font-typewriter); color:#fff; font-weight:bold; opacity:0; transition:0.3s; white-space:nowrap; background:rgba(0,0,0,0.8); padding:5px 10px; border-radius:10px; border:1px solid #ffc8d2; z-index: 12;">I Lovee Youuu More</div>
-                    <svg id="goodbye-piggy" viewBox="0 0 100 100" style="width:120px; opacity:0; transform:translateX(-50vw); overflow:visible;"><use href="#svg-piggy"/></svg>
+            <div id="goodbye-stage" style="position:relative; display:flex; align-items:flex-end; justify-content:center; gap:40px; margin-top:10vh; z-index:5; width: 100%;">
+                <div style="position:relative;">
+                    <div id="goodbye-piggy-bubble" style="position:absolute; top:-40px; left:-20px; font-family:var(--font-typewriter); color:#fff; font-weight:bold; opacity:0; transition:0.3s; white-space:nowrap; background:rgba(0,0,0,0.8); padding:5px 10px; border-radius:10px; border:1px solid #ffc8d2;">I Lovee Youuu More</div>
+                    <svg id="goodbye-piggy" viewBox="0 0 100 100" style="width:120px; opacity:0; transform:translateX(-50vw); transition: opacity 1s, transform 1s, scale 0.3s;"><use href="#svg-piggy"/></svg>
                 </div>
                 
-                <div id="mendhak-wrap" style="position:absolute; bottom: 0; right:25vw; z-index:11;">
-                    <div id="tap-hint" style="position:absolute; top:-80px; right:30px; font-family:var(--font-typewriter); color:#ffdf73; font-weight:bold; opacity:0; transition:0.3s; white-space:nowrap; animation: hint-pulse 1s infinite alternate; pointer-events:none; z-index: 12;">(Tap Mendhak!)</div>
-                    <div id="goodbye-mendhak-bubble" style="position:absolute; top:-40px; right:-20px; font-family:var(--font-typewriter); color:#68b94f; font-weight:bold; opacity:0; transition:0.3s; white-space:nowrap; background:rgba(0,0,0,0.8); padding:5px 10px; border-radius:10px; border:1px solid #68b94f; z-index: 12;">NO , I DO!</div>
+                <div style="position:relative;">
+                    <div id="tap-hint" style="position:absolute; top:-80px; right:30px; font-family:var(--font-typewriter); color:#ffdf73; font-weight:bold; opacity:0; transition:0.3s; white-space:nowrap; animation: hint-pulse 1s infinite alternate; pointer-events:none;">(Tap Mendhak!)</div>
+                    <div id="goodbye-mendhak-bubble" style="position:absolute; top:-40px; right:-20px; font-family:var(--font-typewriter); color:#68b94f; font-weight:bold; opacity:0; transition:0.3s; white-space:nowrap; background:rgba(0,0,0,0.8); padding:5px 10px; border-radius:10px; border:1px solid #68b94f;">NO , I DO!</div>
                     
-                    <svg id="goodbye-mendhak" viewBox="0 0 150 100" style="width:170px; opacity:0; transform:translateY(20px); overflow:visible;"><use href="#svg-mendhak-flower"/></svg>
+                    <svg id="goodbye-mendhak" viewBox="0 0 150 100" style="width:170px; opacity:0; transform:translateY(20px); position:relative; z-index:5;"><use href="#svg-mendhak-flower"/></svg>
                 </div>
             </div>
 
@@ -1278,10 +1181,10 @@
             
             <div id="goodbye-text-3" class="climax-text" style="top:40%; color:#ffc8d2; font-size:clamp(1.5rem, 4vw, 2.5rem);">PIGGY LOVES MENDHAK MORE !</div>
             
-            <!-- FINAL IMAGE -->
-            <img id="final-image" src="IMG_0125.png" style="position:absolute; width:clamp(150px, 40vw, 250px); bottom: 35%; left: 50%; transform: translate(-50%, 0) scale(0.8); opacity:0; transition: opacity 2s ease, transform 2s ease; z-index: 30; pointer-events: none; object-fit: contain; max-height: 40vh;">
+            <!-- FINAL IMAGE (Strictly Centered Float) -->
+            <img id="final-image" src="IMG_0125.png" style="position:absolute; width:clamp(150px, 40vw, 250px); bottom: 35%; left: 50%; transform: translate(-50%, 0) scale(0.8); opacity:0; transition: opacity 2s ease, transform 2s ease; z-index: 6; pointer-events: none; object-fit: contain; max-height: 40vh;">
 
-            <div style="position:absolute; bottom:20%; display:flex; flex-direction:column; align-items:center; z-index:30;">
+            <div style="position:absolute; bottom:20%; display:flex; flex-direction:column; align-items:center; z-index:5;">
                 <div id="goodbye-text-2" class="climax-text floral-text" style="position:relative; top:0; font-size: clamp(2.5rem, 8vw, 5rem); line-height: 1.1;">HAPPY BIRTHDAY<br>LOVE</div>
                 <div id="goodbye-text-sub" style="font-family:var(--font-typewriter); color:#aaa; font-size:0.9rem; opacity:0; transition:opacity 2s ease; margin-top:20px;">(I STILL LOVE YOU MORE ;)</div>
             </div>
@@ -1826,10 +1729,6 @@
             
             const mendhak = document.getElementById('goodbye-mendhak');
             const piggy = document.getElementById('goodbye-piggy');
-            
-            const piggyWrap = document.getElementById('piggy-wrap');
-            const mendhakWrap = document.getElementById('mendhak-wrap');
-            
             const text1 = document.getElementById('goodbye-text-1');
             const text2 = document.getElementById('goodbye-text-2');
             const text3 = document.getElementById('goodbye-text-3');
@@ -1980,144 +1879,27 @@
                         setTimeout(() => { twinkle.style.opacity = '0'; }, 800);
                     }, 1800);
                     
+                    piggy.style.transition = 'transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                    piggy.style.transform = 'scale(1.2)';
+                    
+                    await wait(1500);
                     text3.style.opacity = '1';
                     
                     await wait(3500);
                     text3.style.opacity = '0';
                     
                     // Piggy walks off stage
-                    piggyWrap.style.transition = 'transform 2s ease, opacity 2s ease';
-                    piggyWrap.style.transform = 'translateX(-50vw)';
-                    piggyWrap.style.opacity = '0';
+                    piggy.style.transition = 'transform 2s ease, opacity 2s ease';
+                    piggy.style.transform = 'translateX(-50vw)';
+                    piggy.style.opacity = '0';
                     
                     await wait(2000);
                     
-                    // CALAMITY SHAKE
-                    document.getElementById('s8-goodbye').classList.add('calamity');
-                    await wait(1000);
-                    document.getElementById('s8-goodbye').classList.remove('calamity');
-                    
-                    // PIGGY RUSHES BACK
-                    piggyWrap.style.transition = 'transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.5s';
-                    piggyWrap.style.transform = 'translateX(0vw)';
-                    piggy.style.transform = 'scale(1.2)';
-                    piggyWrap.style.opacity = '1';
-                    
-                    await wait(500);
-                    pBubble.innerText = "OHHH SHITT MENDHAK IS CRYING !";
-                    pBubble.style.opacity = '1';
-                    
-                    await wait(1500);
-                    pBubble.style.opacity = '0';
-                    
-                    // MENDHAK RETURNS CRYING
-                    mendhak.style.transform = 'rotate(0deg) scale(1)';
-                    mendhakWrap.style.transition = 'all 2s ease-out';
-                    mendhakWrap.style.transform = 'translate(0, 0)';
-                    mendhakWrap.style.opacity = '1';
-                    
-                    await wait(1000);
-                    document.getElementById('goodbye-mendhak').classList.add('is-crying');
-                    
-                    await wait(1000);
-                    
-                    // WATER FLOOD starts rising
-                    document.getElementById('water-flood').classList.add('flood');
-                    
-                    await wait(2000);
-                    
-                    // DROWNING / FLOATING APART
-                    piggyWrap.style.transition = 'transform 6s ease-in-out';
-                    mendhakWrap.style.transition = 'transform 6s ease-in-out';
-                    piggy.style.transition = 'transform 6s ease-in-out';
-                    mendhak.style.transition = 'transform 6s ease-in-out';
-                    
-                    piggyWrap.style.transform = 'translate(-20vw, -15vh)';
-                    piggy.style.transform = 'rotate(-150deg) scale(1.2)';
-                    
-                    mendhakWrap.style.transform = 'translate(20vw, -15vh)';
-                    mendhak.style.transform = 'rotate(180deg) scale(1)';
-                    
-                    // Planets and space junk tumble around
-                    ['ufo-wrap','sat-wrap','alien-wrap','jupiter-wrap','neptune-wrap','saturn-wrap','mars-wrap','moon-wrap'].forEach(id => {
-                        let el = document.getElementById(id);
-                        el.style.transition = 'transform 6s ease-in-out';
-                        el.style.transform = `translate(${(Math.random()-0.5)*80}vw, ${(Math.random()-0.5)*80}vh) rotate(${(Math.random()-0.5)*360}deg)`;
-                    });
-                    
-                    await wait(4500);
-                    
-                    // Piggy stabilizes to speak
-                    piggy.style.transition = 'transform 1.5s ease-out';
-                    piggy.style.transform = 'rotate(0deg) scale(1.2)';
-                    
-                    await wait(1500);
-                    pBubble.innerText = "Come here betuu , let me give you a kiss";
-                    pBubble.style.opacity = '1';
-                    
-                    await wait(3000);
-                    pBubble.style.opacity = '0';
-                    
-                    // THE KISS CHOREOGRAPHY
-                    piggyWrap.style.transition = 'transform 2s ease-in-out';
-                    mendhakWrap.style.transition = 'transform 2s ease-in-out';
-                    piggy.style.transition = 'transform 2s ease-in-out';
-                    mendhak.style.transition = 'transform 2s ease-in-out';
-                    
-                    piggyWrap.style.transform = 'translate(5vw, -15vh)';
-                    mendhakWrap.style.transform = 'translate(-5vw, -15vh)';
-                    piggy.style.transform = 'rotate(10deg) scale(1.2)';
-                    mendhak.style.transform = 'rotate(-10deg) scale(1)';
-                    
-                    await wait(1800);
-                    const kissHeart = document.getElementById('kiss-heart');
-                    kissHeart.style.opacity = '1';
-                    kissHeart.style.transform = 'translate(-50%, -50%) scale(1.5)';
-                    
-                    await wait(500);
-                    // Tears stop instantly
-                    document.getElementById('goodbye-mendhak').classList.remove('is-crying');
-                    
-                    // Water drains
-                    document.getElementById('water-flood').style.transition = 'height 3s ease-in-out';
-                    document.getElementById('water-flood').classList.remove('flood');
-                    
-                    // Planets return
-                    ['jupiter-wrap','neptune-wrap','saturn-wrap','mars-wrap','moon-wrap'].forEach(id => {
-                        let el = document.getElementById(id);
-                        el.style.transition = 'transform 4s ease-in-out';
-                        el.style.transform = '';
-                    });
-                    // Space junk flies off into deep space
-                    document.getElementById('ufo-wrap').style.transform = 'translate(100vw, -100vh) rotate(180deg)';
-                    document.getElementById('sat-wrap').style.transform = 'translate(-100vw, -100vh) rotate(-180deg)';
-                    document.getElementById('alien-wrap').style.transform = 'translate(-100vw, 100vh) rotate(-90deg)';
-                    
-                    await wait(3000);
-                    kissHeart.style.opacity = '0';
-                    
-                    // BOTH LEAVE HAPPILY
-                    pBubble.innerText = "Byeeeee";
-                    mBubble.innerText = "Byeeeee";
-                    pBubble.style.opacity = '1';
-                    mBubble.style.opacity = '1';
-                    
-                    await wait(1500);
-                    
-                    piggyWrap.style.transition = 'transform 2s ease-in, opacity 2s ease';
-                    mendhakWrap.style.transition = 'transform 2s ease-in, opacity 2s ease';
-                    piggyWrap.style.transform = 'translate(60vw, -15vh)';
-                    mendhakWrap.style.transform = 'translate(60vw, -15vh)';
-                    piggyWrap.style.opacity = '0';
-                    mendhakWrap.style.opacity = '0';
-                    pBubble.style.opacity = '0';
-                    mBubble.style.opacity = '0';
-                    
-                    await wait(2000);
-                    
-                    // FINAL IMAGE
+                    // Final image fades in
                     const finalImg = document.getElementById('final-image');
                     finalImg.style.opacity = '1';
+                    
+                    // First set it cleanly to 0, then let the animation take over
                     finalImg.style.transform = 'translate(-50%, 0) scale(1)';
                     setTimeout(() => {
                         finalImg.style.animation = 'final-float 6s infinite ease-in-out';
