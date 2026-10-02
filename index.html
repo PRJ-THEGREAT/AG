@@ -254,9 +254,13 @@
         .envelope-wrapper.open .envelope { transform: translateY(50px); background: var(--paper-texture), #bd956d; }
 
         /* =========================================================
-           5. THE POEM (REPLACED WITH INTERACTIVE SCROLL)
+           5. THE POEM (BURNT SCROLL & INK EFFECT)
            ========================================================= */
-        #s5-poem { background: #030303; align-items: center; justify-content: center; padding: 20vh 5vw 5vw 5vw; text-align: center; }
+        #s5-poem { background: #030303; align-items: center; justify-content: center; padding: 15vh 5vw 5vw 5vw; text-align: center; }
+        
+        .scroll-intro {
+            font-family: var(--font-serif); font-style: italic; color: #aaa; margin-bottom: 40px; text-align: center; max-width: 600px;
+        }
         
         .scroll-wrapper {
             position: relative;
@@ -265,29 +269,53 @@
             cursor: pointer;
         }
         
+        /* Red Ribbon binding the closed scroll */
+        .scroll-ribbon {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 30px; height: 110%; background: #800000;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.5), inset 0 0 5px rgba(0,0,0,0.5);
+            z-index: 6; transition: 0.6s ease;
+        }
+        .scroll-ribbon::after {
+            content: '🎀'; font-size: 2.5rem; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.5)) grayscale(0.2) hue-rotate(-10deg);
+        }
+        .scroll-wrapper.open .scroll-ribbon { opacity: 0; transform: translate(-50%, -50%) scale(2); pointer-events: none; }
+        
+        /* 3D Wooden/Brass Rollers */
         .scroll-roller {
-            width: 106%; height: 35px;
-            background: linear-gradient(to bottom, #4a2f1d, #2b180d, #4a2f1d);
-            border-radius: 5px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.8), inset 0 0 10px rgba(0,0,0,0.5);
+            width: 104%; height: 40px;
+            background: linear-gradient(to bottom, #5c3a21, #2d1a11 40%, #1a0f0a 60%, #3d2314);
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.8), inset 0 0 10px rgba(0,0,0,0.8);
             position: relative;
             z-index: 5;
-            border-left: 5px solid #c4a47c;
-            border-right: 5px solid #c4a47c;
         }
-        .scroll-roller::after {
-            content: ''; position: absolute;
-            top: 15%; left: 3%; width: 94%; height: 70%;
-            background: linear-gradient(to bottom, #dcb897, #cda984, #dcb897);
-            border-radius: 2px;
-            box-shadow: inset 0 2px 5px rgba(0,0,0,0.4);
+        /* Thick End Caps */
+        .scroll-roller::before, .scroll-roller::after {
+            content: ''; position: absolute; top: 50%; transform: translateY(-50%);
+            width: 12px; height: 55px; background: linear-gradient(to right, #8b5a2b, #c5a059, #8b5a2b);
+            border-radius: 6px; box-shadow: 2px 2px 5px #000, inset 0 0 3px rgba(0,0,0,0.8);
         }
+        .scroll-roller::before { left: -10px; }
+        .scroll-roller::after { right: -10px; }
         
+        .scroll-roller-paper {
+            position: absolute; top: 10%; left: 5%; width: 90%; height: 80%;
+            background: linear-gradient(to bottom, #a6845c, #d2b48c, #a6845c);
+            border-radius: 2px;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.6);
+        }
+
+        /* Burnt Edge Parchment Paper */
         .scroll-paper {
             width: 100%;
             height: 0; /* Starts rolled up */
-            background: var(--paper-texture), #dcb897;
-            box-shadow: inset 0 0 20px rgba(90, 50, 10, 0.4), 0 10px 20px rgba(0,0,0,0.5);
+            background-color: #d2b48c;
+            background-image: 
+                radial-gradient(circle at center, transparent 30%, rgba(60, 20, 0, 0.8) 100%),
+                var(--paper-texture);
+            box-shadow: inset 0 0 40px rgba(40, 15, 0, 0.9), 0 10px 20px rgba(0,0,0,0.5);
             transition: height 1.5s cubic-bezier(0.4, 0, 0.2, 1);
             overflow-y: hidden;
             position: relative;
@@ -300,6 +328,15 @@
             width: 100%;
             opacity: 0;
             transition: opacity 1s 1s ease; /* Fade in after unrolling */
+            display: flex; flex-direction: column; align-items: center;
+        }
+        
+        /* The CSS Magic for Handwritten Note Blending */
+        .poem-ink-img {
+            width: 100%;
+            mix-blend-mode: multiply; /* Removes white background, blending ink into parchment */
+            filter: contrast(1.2) opacity(0.85); /* Fades ink slightly for realistic look */
+            margin-bottom: 20px;
         }
         
         .scroll-wrapper.open .scroll-paper {
@@ -311,8 +348,8 @@
         }
         
         .scroll-hint {
-            position: absolute; top: -40px;
-            font-family: var(--font-typewriter); color: #ffdf73; font-size: 1rem;
+            position: absolute; top: -30px;
+            font-family: var(--font-typewriter); color: #ffdf73; font-size: 0.9rem;
             animation: hint-pulse 1s infinite alternate; pointer-events: none;
             transition: 0.3s;
         }
@@ -979,14 +1016,20 @@
         <!-- 5. POEM (REPLACED WITH HANDWRITTEN SCROLL) -->
         <section id="s5-poem" class="story-section">
             
+            <div class="scroll-intro">
+                <span style="font-size: 1.3rem; color: #fff;">ONE LAST THING.</span><br><br>
+                I wanted to give you something that couldn't be put in a photograph.
+            </div>
+            
             <div class="scroll-wrapper" id="the-scroll" onclick="unrollScroll()">
                 <div class="scroll-hint">(Tap to unroll)</div>
                 <div class="scroll-roller"></div>
+                <div class="scroll-ribbon"></div>
                 <div class="scroll-paper" id="scroll-paper">
                     <div class="scroll-content">
-                        <!-- User's Handwritten Poem PNGs -->
-                        <img src="POEM_PAGE_1.png" alt="Poem Page 1" style="width: 100%; border-radius: 2px; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
-                        <img src="POEM_PAGE_2.png" alt="Poem Page 2" style="width: 100%; border-radius: 2px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
+                        <!-- User's Handwritten Poem PNGs with Ink Blending Effect -->
+                        <img src="POEM_PAGE_1.png" alt="Poem Page 1" class="poem-ink-img">
+                        <img src="POEM_PAGE_2.png" alt="Poem Page 2" class="poem-ink-img">
                     </div>
                 </div>
                 <div class="scroll-roller"></div>
@@ -1275,7 +1318,7 @@
         <div class="book-3d-wrapper" id="the-3d-book">
             <div class="book-3d-back"></div>
             <div class="book-3d-pages">
-                JUST BE YOURSELF MERI JAAN , YOU'LL ALWAYS BE PRJ'S PYARII SI GOOD GIRL 💋
+                <i>"For me ,🌟 Aaradhya🌟 is a kind-hearted person who makes everyone laugh by her laughter attacks🤣🤣 and silly - lame jokes . I always meant her to my sister 😤 who is Always there for me , always makes me laugh at any point where I feel to be quiet 🙊 and most importantly the trust that she shows on me is what matters for me at any point 🫀. She is always the one jiski baat ka merko in 4 saalo kabhi bura nahi laga. <i>Bas last me yahi ki apko is saal thodi si buddhi 🧠 ki prapti ho🙏🏻🙏🏻 .</i>" 😘💋</i>
             </div>
             <div class="book-3d-cover">
                 <div class="book-3d-cover-front">
@@ -1321,13 +1364,13 @@
                 { label: "FROM: Paridhi", text: "For me Aaradhya is the friend i had never expected would turn out this good, her cheerful and funny side made me enjoy time with her more, every moment spent with her made me laugh until my stomach hurt and every joke of hers made me happy with a bright smile." },
                 { label: "FROM: Leora", text: "AARADHYA FOR ME.......<br>☆You are the the meethi chutney😋 to my golgappa🍽...<br>☆You are the double circulation🩺 to my heart🫀<br>☆ Annddd i missssss youuu sooooo mucchhh😭😭😭😭💖💖💖💖💖" },
                 { label: "FROM: Navya", text: "For me Aaradhya is <br>Likee the sweetesttt nd veryyyy cutessttt personn i hve ever mettt shess justt ekdummm merii chotuu si beheennn ekdumm jr vali to koi vibes he nhi aati hai .. ndd honestly i love herr smm like boht he sweet si haii 😚😚😚 .. i never knew ki ek jr se me itna attach houngi aur itni pyarii hai bhyii vo 🫠😍 and obv alwayss she'll be my funny sii happyy place ilysmm cutuuu😚😚😚😚 you'll always hold a very special place in my heart nd life .. lovee youu bothhh (puklit nd cutu)🫶🫶🫶🫶🫶🫶🫶" },
-                { label: "FROM: Mannat", text: "For me Aaradhyaa is a person who brings smile and happiness.Humesha se meri partner in crime rahi haiii and next level mastikhor insaan hai ye😏.It's always fun being with her.Bohot cute haii badmashh haii aur real hai.She is one of the best person in my life.I am so greatful that I got a great friend like her.And now the main thing! iski generator jaisi hasssi11 bhaisahabbb😂 crazyyy!!! Teen camp ke time par jo isne 3 baje raat me jab me so rhi thii iski akdum se hasi se me jo dariii hu naaaaaaaa wo to bohot hi gandaaa thaa😭.But ye jaisi bhi haiii bohottt hi funn haii.And i wish ki ye humeshaa aisi pyaari raheee.I loveee aaradhyaaaa so muchhhh!!💕💕" },
+                { label: "FROM: Aarushi", text: "To me, Aaradhya is... [ADD FULL TEXT]" },
                 { label: "FROM: PRJ", text: "To me, Aaradhya is everything. You are my sunshine, my missing star, and the absolute best part of my day. Happy Birthday, Jaanu. [ADD FULL TEXT]" }
             ],
             
             archives: [
-                { tab: "MENDHAK-01", title: "My Generator", content: "<video src='VID_20260407_082942_930.mp4' controls style='width:100%; max-height:250px; background:#000; border:3px solid #eee; border-radius:2px; margin-bottom:10px; box-shadow: 0 2px 5px rgba(0,0,0,0.5);'></video><br>Subject is found guilty for having the most wholehearted and best laugh in the world , memorable day btw" },
-                { tab: "SUAR-13", title: "Gogadudu", content: "<img src='IMG_0075.jpeg' style='max-width:100%; max-height:250px; object-fit:cover; border:3px solid #eee; border-radius:2px; margin-bottom:10px; box-shadow: 0 2px 5px rgba(0,0,0,0.5);'><br>that one time she drank milk dripping from her nose, yum x-)" },
+                { tab: "MENDHAK-01", title: "my generator", content: "<video src='VID_20260407_082942_930.mp4' controls style='width:100%; max-height:250px; background:#000; border:3px solid #eee; border-radius:2px; margin-bottom:10px; box-shadow: 0 2px 5px rgba(0,0,0,0.5);'></video><br>Subject is found guilty for having the most wholehearted and best laugh in the world , memorable day btw" },
+                { tab: "SUAR-14", title: "Gogadudu", content: "<img src='IMG_0075.jpeg' style='max-width:100%; max-height:250px; object-fit:cover; border:3px solid #eee; border-radius:2px; margin-bottom:10px; box-shadow: 0 2px 5px rgba(0,0,0,0.5);'><br>that one time she drank milk dripping from her nose, yum x-)" },
                 { tab: "PIGGU-06", title: "Nose Scrunch", content: "<video src='ScreenRecording_10-01-2026 15-50-57_1.mov' autoplay loop muted playsinline style='width:100%; max-height:250px; background:#000; border:3px solid #eee; border-radius:2px; margin-bottom:10px; box-shadow: 0 2px 5px rgba(0,0,0,0.5);'></video><br>Subject's nose scrunches when smiling very happily . Highly dangerous and cute" }
             ],
             
