@@ -42,7 +42,7 @@
         .btn-cinematic:hover { background: currentColor; color: var(--bg-dark); }
 
         /* =========================================================
-           1. UNHINGED OPENING & FLORAL BLOOM
+           1. UNHINGED OPENING, LANTERN & CAKE SCENE
            ========================================================= */
         #s1-opening { background: #000; justify-content: center; overflow: hidden; }
         .stage-opening { position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
@@ -64,8 +64,14 @@
         
         #lightbulb-scene { position: absolute; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 2s; z-index: 5; height: 100vh; width: 100%;}
         #tease-text { font-family: var(--font-typewriter); color: #888; font-size: 0.9rem; margin-bottom: 20px; text-align: center; }
-        #the-bulb { width: 50px; cursor: pointer; filter: brightness(0.2); transition: filter 0.1s; animation: swing 4s infinite ease-in-out; transform-origin: top center; }
-        #the-bulb.on { filter: drop-shadow(0 0 40px #fff7a0) brightness(1.5); animation: none; }
+        
+        /* Vintage Lantern Styles */
+        #vintage-lantern { width: 120px; height: 250px; cursor: pointer; transform-origin: bottom center; transition: 0.3s; }
+        #lantern-glass { fill: rgba(255,255,255,0.05); transition: fill 0.3s ease; }
+        #lantern-bulb { fill: #222; transition: fill 0.3s ease, filter 0.3s ease; }
+        
+        #vintage-lantern.on #lantern-glass { fill: rgba(255, 235, 150, 0.3); }
+        #vintage-lantern.on #lantern-bulb { fill: #fff7a0; filter: drop-shadow(0 0 30px #ffdf73) drop-shadow(0 0 60px #ffb300); }
         
         /* CAKE COUNTDOWN SCENE & DECORATIONS */
         #cake-scene { position: absolute; top:0; left:0; width:100%; height:100%; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 1s ease; z-index: 5;}
@@ -95,11 +101,11 @@
         .balloon-4 { background: radial-gradient(circle at 30% 30%, #333, #000); right: 10%; top: 45%; animation-delay: 1.5s; }
         @keyframes float-balloon { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
 
-        #countdown-text { font-family: var(--font-typewriter); color: #fff; font-size: 1.5rem; margin-bottom: 20px; margin-top: 60px; text-align: center; text-shadow: 0 2px 10px #000; font-weight: bold; z-index: 10;}
+        #countdown-text { font-family: var(--font-typewriter); color: #fff; font-size: 1.5rem; margin-bottom: 20px; margin-top: 60px; text-align: center; text-shadow: 0 2px 10px #000; font-weight: bold; z-index: 10; opacity: 0; transition: opacity 1s ease;}
         
         /* CSS for the blow-out mechanism */
         @keyframes flicker { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
-        .flame { animation: flicker 0.2s infinite; transition: opacity 0.3s ease; }
+        .flame { animation: flicker 0.2s infinite; transition: opacity 0.3s ease; transform-origin: bottom center; }
         .flame.blown-out { opacity: 0 !important; animation: none !important; }
 
         /* OPTIMIZED DENSE FLORAL FRAME */
@@ -410,7 +416,7 @@
         .redacted:hover { color: #fff; background: transparent; }
 
         /* =========================================================
-           7. MUSEUM (THE MEMORY ROOM) 
+           7. MUSEUM (THE MEMORY ROOM) RESTORED DARK THEME
            ========================================================= */
         #s7-museum { background: #211c18; align-items: center; justify-content: flex-start; padding: 0; position: relative; overflow-y: auto;}
         .room-lighting { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center 40%, transparent 20%, rgba(0,0,0,0.8) 100%); pointer-events: none; z-index: 1;}
@@ -890,34 +896,6 @@
                 <path d="M 48 76 L 73 72" fill="none" stroke="#68b94f" stroke-width="3" stroke-linecap="round" id="m-jaw" class="mendhak-jaw" />
             </g>
             
-            <g id="svg-mendhak-flower">
-                <use href="#svg-mendhak" />
-                <g class="sunflower-arm">
-                    <path d="M 75 80 Q 110 50 120 20" fill="none" stroke="#5d8a3f" stroke-width="6" stroke-linecap="round"/>
-                    <path d="M 115 20 Q 100 10 95 25 Q 110 30 115 20" fill="#2ed573"/>
-                    <path d="M 120 25 Q 130 40 140 30 Q 135 15 120 25" fill="#2ed573"/>
-                    <path d="M 115 20 L 95 5 L 105 0 L 115 20" fill="#fff" stroke="#ddd"/>
-                    <path d="M 120 20 L 140 -5 L 145 5 L 120 20" fill="#fff" stroke="#ddd"/>
-                    <path d="M 110 20 Q 100 -5 105 -15 Q 110 -5 110 20" fill="#ff4757" stroke="#ff6b81"/>
-                    <path d="M 120 20 Q 135 -5 130 -15 Q 125 -5 120 20" fill="#ff6b81" stroke="#ff4757"/>
-                    <circle cx="115" cy="5" r="10" fill="#e84118"/>
-                    <path d="M 110 5 Q 115 0 120 5 Q 115 10 110 5 Z" fill="none" stroke="#c23616" stroke-width="2"/>
-                    <circle cx="100" cy="15" r="12" fill="#ffdf73" />
-                    <circle cx="100" cy="15" r="6" fill="#5c4033" />
-                    <circle cx="130" cy="15" r="10" fill="#ffdf73" />
-                    <circle cx="130" cy="15" r="5" fill="#5c4033" />
-                    <circle cx="95" cy="30" r="5" fill="#fff" />
-                    <circle cx="95" cy="30" r="2" fill="#f1c40f" />
-                    <circle cx="135" cy="25" r="5" fill="#fff" />
-                    <circle cx="135" cy="25" r="2" fill="#f1c40f" />
-                    <circle cx="110" cy="-5" r="3" fill="#fff" />
-                    <circle cx="115" cy="-8" r="3" fill="#fff" />
-                    <circle cx="120" cy="-3" r="3" fill="#fff" />
-                    <circle cx="125" cy="30" r="3" fill="#fff" />
-                    <circle cx="120" cy="33" r="3" fill="#fff" />
-                </g>
-            </g>
-
             <g id="cake-candle">
                 <!-- Candle stick -->
                 <rect x="-2" y="0" width="4" height="15" fill="#fff" rx="1"/>
@@ -929,11 +907,6 @@
                 <path d="M 0 -2 C 1 -5 1 -8 0 -10 C -1 -8 -1 -5 0 -2 Z" fill="#ff9800" class="flame" />
             </g>
 
-            <g id="svg-bulb">
-                <path d="M 45 0 L 55 0 L 55 20 L 45 20 Z" fill="#555"/>
-                <path d="M 30 20 C 30 20 70 20 70 50 C 70 80 50 100 50 100 C 50 100 30 80 30 50 C 30 20 30 20 30 20 Z" fill="#fff" opacity="0.8"/>
-            </g>
-            
             <!-- Origami Lily (Pink) -->
             <g id="svg-origami-lily-pink">
                 <path d="M 25 50 L 25 90" stroke="#7ab55c" stroke-width="3"/>
@@ -989,10 +962,29 @@
             
             <div id="opening-flash"></div>
             
-            <!-- LIGHTBULB SCENE -->
+            <!-- VINTAGE LANTERN SCENE -->
             <div id="lightbulb-scene">
                 <div id="tease-text">awlele mera bunty,<br>at least switch the lights on.</div>
-                <svg id="the-bulb" viewBox="0 0 100 100" onclick="turnOnLight()"><use href="#svg-bulb"/></svg>
+                
+                <svg id="vintage-lantern" viewBox="0 0 100 150" onclick="turnOnLight()">
+                    <!-- Pole -->
+                    <rect x="42" y="90" width="16" height="60" fill="linear-gradient(to right, #111, #333, #111)" />
+                    <!-- Post Details -->
+                    <rect x="38" y="90" width="24" height="10" fill="#222" rx="2" />
+                    <!-- Glass Panes -->
+                    <polygon id="lantern-glass" points="30,40 70,40 60,90 40,90" stroke="#111" stroke-width="4" stroke-linejoin="round"/>
+                    <!-- Inside Bulb -->
+                    <circle id="lantern-bulb" cx="50" cy="65" r="12" />
+                    <!-- Front Frame Lines overlaying glass -->
+                    <path d="M 50 40 L 50 90 M 40 90 L 60 90" stroke="#111" stroke-width="4"/>
+                    <!-- Roof Base -->
+                    <polygon points="25,40 75,40 65,35 35,35" fill="#222" />
+                    <!-- Roof Top -->
+                    <polygon points="30,35 70,35 60,15 40,15" fill="#111" />
+                    <!-- Finial Top -->
+                    <circle cx="50" cy="10" r="4" fill="#222" />
+                    <rect x="48" y="12" width="4" height="3" fill="#222" />
+                </svg>
             </div>
             
             <!-- CAKE COUNTDOWN -->
@@ -1020,18 +1012,52 @@
                     <span>A</span><span>A</span><span>R</span><span>A</span><span>D</span><span>H</span><span>Y</span><span>A</span>
                 </div>
                 
-                <div id="countdown-text">Blow the candle in… 3</div>
+                <div id="countdown-text">Blow the candle in… 5</div>
                 
                 <svg id="the-cake" viewBox="0 0 200 200" style="width: 400px; max-width: 95vw; transition: opacity 1s, transform 1s; z-index: 10;">
-                    <!-- Tiers -->
-                    <rect x="30" y="140" width="140" height="50" rx="10" fill="#ffb6c1"/>
-                    <path d="M 30 145 Q 40 160 50 145 T 70 145 T 90 145 T 110 145 T 130 145 T 150 145 T 170 145" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"/>
                     
-                    <rect x="50" y="95" width="100" height="45" rx="8" fill="#ff8da1"/>
-                    <path d="M 50 100 Q 60 115 70 100 T 90 100 T 110 100 T 130 100 T 150 100" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"/>
+                    <!-- Golden Base Plate -->
+                    <ellipse cx="100" cy="180" rx="80" ry="15" fill="#d4af37" />
+                    <ellipse cx="100" cy="178" rx="80" ry="15" fill="#FFF59D" />
 
-                    <rect x="70" y="55" width="60" height="40" rx="5" fill="#ff4d6d"/>
-                    <path d="M 70 60 Q 80 75 90 60 T 110 60 T 130 60" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"/>
+                    <!-- Bottom Tier -->
+                    <path d="M 30 180 L 30 130 C 30 120 170 120 170 130 L 170 180 C 170 190 30 190 30 180 Z" fill="#f8b8c4"/>
+                    <ellipse cx="100" cy="130" rx="70" ry="12" fill="#f194a2"/>
+                    <!-- Drips Bottom -->
+                    <path d="M 30 130 Q 35 150 40 130 Q 50 160 55 130 Q 70 145 80 130 Q 95 155 105 130 Q 120 150 130 130 Q 145 160 155 130 Q 165 145 170 130 Z" fill="#e27588"/>
+                    
+                    <!-- Middle Tier -->
+                    <path d="M 50 130 L 50 90 C 50 80 150 80 150 90 L 150 130 C 150 140 50 140 50 130 Z" fill="#f8b8c4"/>
+                    <ellipse cx="100" cy="90" rx="50" ry="10" fill="#f194a2"/>
+                    <!-- Drips Middle -->
+                    <path d="M 50 90 Q 55 110 65 90 Q 75 120 85 90 Q 100 110 115 90 Q 130 125 140 90 Q 145 105 150 90 Z" fill="#e27588"/>
+
+                    <!-- Top Tier -->
+                    <path d="M 65 90 L 65 55 C 65 45 135 45 135 55 L 135 90 C 135 100 65 100 65 90 Z" fill="#f8b8c4"/>
+                    <ellipse cx="100" cy="55" rx="35" ry="8" fill="#f194a2"/>
+                    <!-- Drips Top -->
+                    <path d="M 65 55 Q 70 70 80 55 Q 95 80 105 55 Q 120 75 125 55 Q 130 65 135 55 Z" fill="#e27588"/>
+
+                    <!-- Gold Leaf Dots -->
+                    <circle cx="45" cy="150" r="1.5" fill="#d4af37"/>
+                    <circle cx="85" cy="165" r="2" fill="#d4af37"/>
+                    <circle cx="150" cy="140" r="1" fill="#d4af37"/>
+                    <circle cx="65" cy="115" r="1.5" fill="#d4af37"/>
+                    <circle cx="130" cy="105" r="2" fill="#d4af37"/>
+                    <circle cx="80" cy="75" r="1" fill="#d4af37"/>
+
+                    <!-- Floral Accents (Bottom Right) -->
+                    <circle cx="155" cy="165" r="12" fill="#d94876"/>
+                    <circle cx="145" cy="175" r="10" fill="#ff7da6"/>
+                    <circle cx="165" cy="175" r="10" fill="#e65a88"/>
+                    
+                    <!-- Floral Accents (Middle Left) -->
+                    <circle cx="45" cy="115" r="10" fill="#d94876"/>
+                    <circle cx="55" cy="125" r="8" fill="#ff7da6"/>
+
+                    <!-- Floral Accents (Top Right) -->
+                    <circle cx="135" cy="75" r="8" fill="#d94876"/>
+                    <circle cx="125" cy="82" r="7" fill="#e65a88"/>
 
                     <!-- Exactly 15 Candles (5 top, 4 mid, 6 bottom) -->
                     <!-- Top Tier (5) -->
@@ -1443,7 +1469,8 @@
     </div>
 
     <!-- AUDIO ELEMENTS -->
-    <audio id="our-song" src="Song.mp3" preload="auto"></audio>
+    <audio id="hbd-audio" src="happy_birthday.mp3" preload="auto"></audio>
+    <audio id="our-song" src="our_song.mp3" preload="auto"></audio>
     <audio id="magic-sound" src="assets/audio/magic.mp3" preload="auto"></audio>
 
     <script>
@@ -1603,12 +1630,12 @@
         }
 
         async function turnOnLight() {
-            const bulb = document.getElementById('the-bulb');
-            bulb.classList.add('on'); await wait(100);
-            bulb.classList.remove('on'); await wait(150);
-            bulb.classList.add('on'); await wait(50);
-            bulb.classList.remove('on'); await wait(200);
-            bulb.classList.add('on'); 
+            const lantern = document.getElementById('vintage-lantern');
+            lantern.classList.add('on'); await wait(100);
+            lantern.classList.remove('on'); await wait(150);
+            lantern.classList.add('on'); await wait(50);
+            lantern.classList.remove('on'); await wait(200);
+            lantern.classList.add('on'); 
             
             document.getElementById('tease-text').style.opacity = '0';
             document.getElementById('s1-opening').style.background = 'radial-gradient(circle at center, #2a2a2a 0%, #000 70%)';
@@ -1623,7 +1650,18 @@
             
             cakeScene.style.opacity = '1';
             cakeScene.style.pointerEvents = 'all';
+            countdownText.style.opacity = '0'; // Hide initially for resting phase
             
+            // REST PHASE - Let her admire the cake and decorations
+            await wait(3000);
+            
+            // 5 SECOND COUNTDOWN
+            countdownText.style.opacity = '1';
+            countdownText.innerText = "Blow the candle in… 5";
+            await wait(1000);
+            countdownText.innerText = "Blow the candle in… 4";
+            await wait(1000);
+            countdownText.innerText = "Blow the candle in… 3";
             await wait(1000);
             countdownText.innerText = "Blow the candle in… 2";
             await wait(1000);
@@ -1634,7 +1672,23 @@
             countdownText.innerText = "Yayyy! 🎂";
             document.querySelectorAll('.flame').forEach(f => f.classList.add('blown-out'));
             
-            await wait(1500);
+            await wait(1000);
+            countdownText.innerText = "Listen closely..."; // Small hint that audio is playing
+            
+            // PLAY HAPPY BIRTHDAY AUDIO
+            const hbdAudio = document.getElementById('hbd-audio');
+            try {
+                await hbdAudio.play();
+                // Wait for the specific audio track to finish before moving on
+                await new Promise((resolve) => {
+                    hbdAudio.onended = resolve;
+                    // Fallback just in case audio gets blocked or is missing
+                    setTimeout(resolve, 20000); 
+                });
+            } catch(err) {
+                console.log("Audio playback failed or file missing, skipping ahead.", err);
+                await wait(3000); // Wait a few seconds if audio fails so it's not jarring
+            }
             
             // Transition to Title
             cakeScene.style.opacity = '0';
@@ -1960,6 +2014,10 @@
             
             const mendhak = document.getElementById('goodbye-mendhak');
             const piggy = document.getElementById('goodbye-piggy');
+            
+            const piggyWrap = document.getElementById('piggy-wrap');
+            const mendhakWrap = document.getElementById('mendhak-wrap');
+            
             const text1 = document.getElementById('goodbye-text-1');
             const text2 = document.getElementById('goodbye-text-2');
             const text3 = document.getElementById('goodbye-text-3');
@@ -2110,27 +2168,144 @@
                         setTimeout(() => { twinkle.style.opacity = '0'; }, 800);
                     }, 1800);
                     
-                    piggy.style.transition = 'transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
-                    piggy.style.transform = 'scale(1.2)';
-                    
-                    await wait(1500);
                     text3.style.opacity = '1';
                     
                     await wait(3500);
                     text3.style.opacity = '0';
                     
                     // Piggy walks off stage
-                    piggy.style.transition = 'transform 2s ease, opacity 2s ease';
-                    piggy.style.transform = 'translateX(-50vw)';
-                    piggy.style.opacity = '0';
+                    piggyWrap.style.transition = 'transform 2s ease, opacity 2s ease';
+                    piggyWrap.style.transform = 'translateX(-50vw)';
+                    piggyWrap.style.opacity = '0';
                     
                     await wait(2000);
                     
-                    // Final image fades in
+                    // CALAMITY SHAKE
+                    document.getElementById('s8-goodbye').classList.add('calamity');
+                    await wait(1000);
+                    document.getElementById('s8-goodbye').classList.remove('calamity');
+                    
+                    // PIGGY RUSHES BACK
+                    piggyWrap.style.transition = 'transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.5s';
+                    piggyWrap.style.transform = 'translateX(0vw)';
+                    piggy.style.transform = 'scale(1.2)';
+                    piggyWrap.style.opacity = '1';
+                    
+                    await wait(500);
+                    pBubble.innerText = "OHHH SHITT MENDHAK IS CRYING !";
+                    pBubble.style.opacity = '1';
+                    
+                    await wait(1500);
+                    pBubble.style.opacity = '0';
+                    
+                    // MENDHAK RETURNS CRYING
+                    mendhak.style.transform = 'rotate(0deg) scale(1)';
+                    mendhakWrap.style.transition = 'all 2s ease-out';
+                    mendhakWrap.style.transform = 'translate(0, 0)';
+                    mendhakWrap.style.opacity = '1';
+                    
+                    await wait(1000);
+                    document.getElementById('goodbye-mendhak').classList.add('is-crying');
+                    
+                    await wait(1000);
+                    
+                    // WATER FLOOD starts rising
+                    document.getElementById('water-flood').classList.add('flood');
+                    
+                    await wait(2000);
+                    
+                    // DROWNING / FLOATING APART
+                    piggyWrap.style.transition = 'transform 6s ease-in-out';
+                    mendhakWrap.style.transition = 'transform 6s ease-in-out';
+                    piggy.style.transition = 'transform 6s ease-in-out';
+                    mendhak.style.transition = 'transform 6s ease-in-out';
+                    
+                    piggyWrap.style.transform = 'translate(-20vw, -15vh)';
+                    piggy.style.transform = 'rotate(-150deg) scale(1.2)';
+                    
+                    mendhakWrap.style.transform = 'translate(20vw, -15vh)';
+                    mendhak.style.transform = 'rotate(180deg) scale(1)';
+                    
+                    // Planets and space junk tumble around
+                    ['ufo-wrap','sat-wrap','alien-wrap','jupiter-wrap','neptune-wrap','saturn-wrap','mars-wrap','moon-wrap'].forEach(id => {
+                        let el = document.getElementById(id);
+                        el.style.transition = 'transform 6s ease-in-out';
+                        el.style.transform = `translate(${(Math.random()-0.5)*80}vw, ${(Math.random()-0.5)*80}vh) rotate(${(Math.random()-0.5)*360}deg)`;
+                    });
+                    
+                    await wait(4500);
+                    
+                    // Piggy stabilizes to speak
+                    piggy.style.transition = 'transform 1.5s ease-out';
+                    piggy.style.transform = 'rotate(0deg) scale(1.2)';
+                    
+                    await wait(1500);
+                    pBubble.innerText = "Come here betuu , let me give you a kiss";
+                    pBubble.style.opacity = '1';
+                    
+                    await wait(3000);
+                    pBubble.style.opacity = '0';
+                    
+                    // THE KISS CHOREOGRAPHY
+                    piggyWrap.style.transition = 'transform 2s ease-in-out';
+                    mendhakWrap.style.transition = 'transform 2s ease-in-out';
+                    piggy.style.transition = 'transform 2s ease-in-out';
+                    mendhak.style.transition = 'transform 2s ease-in-out';
+                    
+                    piggyWrap.style.transform = 'translate(5vw, -15vh)';
+                    mendhakWrap.style.transform = 'translate(-5vw, -15vh)';
+                    piggy.style.transform = 'rotate(10deg) scale(1.2)';
+                    mendhak.style.transform = 'rotate(-10deg) scale(1)';
+                    
+                    await wait(1800);
+                    const kissHeart = document.getElementById('kiss-heart');
+                    kissHeart.style.opacity = '1';
+                    kissHeart.style.transform = 'translate(-50%, -50%) scale(1.5)';
+                    
+                    await wait(500);
+                    // Tears stop instantly
+                    document.getElementById('goodbye-mendhak').classList.remove('is-crying');
+                    
+                    // Water drains
+                    document.getElementById('water-flood').style.transition = 'height 3s ease-in-out';
+                    document.getElementById('water-flood').classList.remove('flood');
+                    
+                    // Planets return
+                    ['jupiter-wrap','neptune-wrap','saturn-wrap','mars-wrap','moon-wrap'].forEach(id => {
+                        let el = document.getElementById(id);
+                        el.style.transition = 'transform 4s ease-in-out';
+                        el.style.transform = '';
+                    });
+                    // Space junk flies off into deep space
+                    document.getElementById('ufo-wrap').style.transform = 'translate(100vw, -100vh) rotate(180deg)';
+                    document.getElementById('sat-wrap').style.transform = 'translate(-100vw, -100vh) rotate(-180deg)';
+                    document.getElementById('alien-wrap').style.transform = 'translate(-100vw, 100vh) rotate(-90deg)';
+                    
+                    await wait(3000);
+                    kissHeart.style.opacity = '0';
+                    
+                    // BOTH LEAVE HAPPILY
+                    pBubble.innerText = "Byeeeee";
+                    mBubble.innerText = "Byeeeee";
+                    pBubble.style.opacity = '1';
+                    mBubble.style.opacity = '1';
+                    
+                    await wait(1500);
+                    
+                    piggyWrap.style.transition = 'transform 2s ease-in, opacity 2s ease';
+                    mendhakWrap.style.transition = 'transform 2s ease-in, opacity 2s ease';
+                    piggyWrap.style.transform = 'translate(60vw, -15vh)';
+                    mendhakWrap.style.transform = 'translate(60vw, -15vh)';
+                    piggyWrap.style.opacity = '0';
+                    mendhakWrap.style.opacity = '0';
+                    pBubble.style.opacity = '0';
+                    mBubble.style.opacity = '0';
+                    
+                    await wait(2000);
+                    
+                    // FINAL IMAGE
                     const finalImg = document.getElementById('final-image');
                     finalImg.style.opacity = '1';
-                    
-                    // First set it cleanly to 0, then let the animation take over
                     finalImg.style.transform = 'translate(-50%, 0) scale(1)';
                     setTimeout(() => {
                         finalImg.style.animation = 'final-float 6s infinite ease-in-out';
