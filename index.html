@@ -42,7 +42,7 @@
         .btn-cinematic:hover { background: currentColor; color: var(--bg-dark); }
 
         /* =========================================================
-           1. UNHINGED OPENING & FLORAL BLOOM
+           1. UNHINGED OPENING, LIGHTBULB & CAKE SCENE
            ========================================================= */
         #s1-opening { background: #000; justify-content: center; overflow: hidden; }
         .stage-opening { position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
@@ -62,16 +62,49 @@
         
         #opening-flash { position: absolute; top:0; left:0; width:100%; height:100%; background:#fff; opacity:0; pointer-events:none; z-index: 99; transition: opacity 0.2s;}
         
+        #lightbulb-scene { position: absolute; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 2s; z-index: 5; height: 100vh; width: 100%;}
+        #tease-text { font-family: var(--font-typewriter); color: #888; font-size: 0.9rem; margin-bottom: 20px; text-align: center; }
+        #the-bulb { width: 50px; cursor: pointer; filter: brightness(0.2); transition: filter 0.1s; animation: swing 4s infinite ease-in-out; transform-origin: top center; }
+        #the-bulb.on { filter: drop-shadow(0 0 40px #fff7a0) brightness(1.5); animation: none; }
+        
+        /* CAKE COUNTDOWN SCENE & DECORATIONS */
+        #cake-scene { position: absolute; top:0; left:0; width:100%; height:100%; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 1s ease; z-index: 5;}
+        
+        /* Wall Hangings & Balloons */
+        .bunting { position: absolute; top: 0; left: 0; width: 100%; height: 15vh; z-index: 1; pointer-events: none;}
+        .hbd-banner { 
+            position: absolute; top: 12vh; left: 50%; transform: translateX(-50%); 
+            display: flex; gap: 5px; flex-wrap: wrap; justify-content: center;
+            width: 90%; max-width: 600px; z-index: 2;
+        }
+        .hbd-banner span {
+            background: #ff4d6d; color: #fff; padding: 6px 12px; font-family: var(--font-arcade); font-size: clamp(0.6rem, 2vw, 1rem);
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%);
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+            animation: swing-banner 2s infinite ease-in-out;
+            transform-origin: top center;
+        }
+        .hbd-banner span:nth-child(even) { background: #00e5ff; animation-delay: 0.2s; }
+        .hbd-banner span:nth-child(3n) { background: #ffeb3b; color: #222; animation-delay: 0.4s; }
+        @keyframes swing-banner { 0%, 100% { transform: rotate(-5deg); } 50% { transform: rotate(5deg); } }
+
+        .balloon { position: absolute; width: clamp(40px, 8vw, 60px); height: clamp(50px, 10vw, 75px); border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%; opacity: 0.85; animation: float-balloon 4s ease-in-out infinite; z-index: 1;}
+        .balloon::after { content: ''; position: absolute; bottom: -15px; left: 50%; transform: translateX(-50%); width: 2px; height: 30px; background: rgba(255,255,255,0.4); }
+        .balloon-1 { background: #ff7da6; left: 10%; top: 25%; animation-delay: 0s; }
+        .balloon-2 { background: #00e5ff; left: 25%; top: 40%; animation-delay: 1s; }
+        .balloon-3 { background: #ffeb3b; right: 25%; top: 30%; animation-delay: 0.5s; }
+        .balloon-4 { background: #b388ff; right: 10%; top: 45%; animation-delay: 1.5s; }
+        @keyframes float-balloon { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+
+        #countdown-text { font-family: var(--font-typewriter); color: #fff; font-size: 1.5rem; margin-bottom: 20px; margin-top: 60px; text-align: center; text-shadow: 0 2px 10px #000; font-weight: bold; z-index: 10;}
+        @keyframes flicker { 0% { transform: scale(1) rotate(-2deg); opacity: 0.9; } 50% { transform: scale(1.1) rotate(2deg); opacity: 1; } 100% { transform: scale(0.9) rotate(-1deg); opacity: 0.8; } }
+        .flame { transform-origin: bottom center; animation: flicker 0.15s infinite alternate; transition: opacity 0.5s ease; }
+
         /* OPTIMIZED DENSE FLORAL FRAME */
         #floral-frame { position: absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index: 3; overflow: hidden; }
         .flower { position: absolute; font-size: clamp(2rem, 8vw, 4.5rem); transform: scale(0.2) rotate(0deg); opacity: 0; transition: transform 2.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 1.5s ease; margin-left:-1em; margin-top:-1em; text-align:center; width:2em; height:2em; line-height:2em; will-change: transform, opacity;}
         #floral-frame.dark-visible .flower { opacity: 0.15; }
         #floral-frame.bloomed .flower { transform: scale(var(--target-scale, 1)) rotate(var(--rot, 0deg)); opacity: 1; text-shadow: 0 5px 10px rgba(0,0,0,0.6);}
-
-        #lightbulb-scene { position: absolute; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 2s; z-index: 5; height: 100vh;}
-        #tease-text { font-family: var(--font-typewriter); color: #888; font-size: 0.9rem; margin-bottom: 20px; text-align: center; }
-        #the-bulb { width: 50px; cursor: pointer; filter: brightness(0.2); transition: filter 0.1s; animation: swing 4s infinite ease-in-out; transform-origin: top center; }
-        #the-bulb.on { filter: drop-shadow(0 0 40px #fff7a0) brightness(1.5); animation: none; }
         
         /* SEQUENCE TEXT */
         #main-title { position: absolute; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 3s ease; z-index: 4; text-align: center; height: 100vh; width: 100%;}
@@ -254,7 +287,7 @@
         .envelope-wrapper.open .envelope { transform: translateY(50px); background: var(--paper-texture), #bd956d; }
 
         /* =========================================================
-           5. THE POEM (BURNT SCROLL & INK EFFECT)
+           5. THE POEM (HANDWRITTEN SCROLL)
            ========================================================= */
         #s5-poem { background: #030303; align-items: center; justify-content: center; padding: 15vh 5vw 5vw 5vw; text-align: center; }
         
@@ -375,7 +408,7 @@
         .redacted:hover { color: #fff; background: transparent; }
 
         /* =========================================================
-           7. MUSEUM (THE MEMORY ROOM) 
+           7. MUSEUM (THE MEMORY ROOM) RESTORED DARK THEME
            ========================================================= */
         #s7-museum { background: #211c18; align-items: center; justify-content: flex-start; padding: 0; position: relative; overflow-y: auto;}
         .room-lighting { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center 40%, transparent 20%, rgba(0,0,0,0.8) 100%); pointer-events: none; z-index: 1;}
@@ -932,6 +965,7 @@
                 <!-- Dynamically injected via JS -->
             </div>
 
+            <!-- YUM YUM INTRO -->
             <div class="stage-opening" id="stage-opening">
                 <svg id="anim-piggy" viewBox="0 0 100 100"><use href="#svg-piggy"/></svg>
                 <div id="piggy-text">heyy Aaradh-</div>
@@ -939,11 +973,76 @@
                 <svg id="anim-mendhak" viewBox="0 0 100 100"><use href="#svg-mendhak"/></svg>
                 <div id="mendhak-text">yum yumm</div>
             </div>
+            
             <div id="opening-flash"></div>
             
+            <!-- LIGHTBULB SCENE -->
             <div id="lightbulb-scene">
                 <div id="tease-text">awlele mera bunty,<br>at least switch the lights on.</div>
                 <svg id="the-bulb" viewBox="0 0 100 100" onclick="turnOnLight()"><use href="#svg-bulb"/></svg>
+            </div>
+            
+            <!-- CAKE COUNTDOWN -->
+            <div id="cake-scene">
+                
+                <!-- NEW BACKGROUND DECORATIONS -->
+                <svg class="bunting" viewBox="0 0 100 20" preserveAspectRatio="none">
+                    <path d="M 0 0 Q 50 20 100 0" fill="none" stroke="#fff" stroke-width="0.5"/>
+                    <polygon points="10,4 15,12 20,5" fill="#ff2a2a"/>
+                    <polygon points="25,8 30,16 35,9" fill="#00e5ff"/>
+                    <polygon points="40,11 45,19 50,11" fill="#ffeb3b"/>
+                    <polygon points="55,10 60,18 65,9" fill="#7ab55c"/>
+                    <polygon points="70,7 75,15 80,6" fill="#ff7da6"/>
+                    <polygon points="85,3 90,11 95,2" fill="#b388ff"/>
+                </svg>
+                
+                <div class="balloon balloon-1"></div>
+                <div class="balloon balloon-2"></div>
+                <div class="balloon balloon-3"></div>
+                <div class="balloon balloon-4"></div>
+                
+                <div class="hbd-banner">
+                    <span>H</span><span>A</span><span>P</span><span>P</span><span>Y</span> &nbsp;
+                    <span>B</span><span>I</span><span>R</span><span>T</span><span>H</span><span>D</span><span>A</span><span>Y</span> &nbsp;
+                    <span>A</span><span>A</span><span>R</span><span>A</span><span>D</span><span>H</span><span>Y</span><span>A</span>
+                </div>
+                
+                <div id="countdown-text">Blow the candle in… 3</div>
+                
+                <svg id="the-cake" viewBox="0 0 200 200" style="width: 300px; max-width: 80vw; transition: opacity 1s, transform 1s; z-index: 10;">
+                    <!-- Tiers -->
+                    <rect x="30" y="140" width="140" height="50" rx="10" fill="#ffb6c1"/>
+                    <path d="M 30 145 Q 40 160 50 145 T 70 145 T 90 145 T 110 145 T 130 145 T 150 145 T 170 145" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"/>
+                    
+                    <rect x="50" y="95" width="100" height="45" rx="8" fill="#ff8da1"/>
+                    <path d="M 50 100 Q 60 115 70 100 T 90 100 T 110 100 T 130 100 T 150 100" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"/>
+
+                    <rect x="70" y="55" width="60" height="40" rx="5" fill="#ff4d6d"/>
+                    <path d="M 70 60 Q 80 75 90 60 T 110 60 T 130 60" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"/>
+                    
+                    <!-- Characters on top tier -->
+                    <g transform="translate(75, 10) scale(0.35)"><use href="#svg-piggy"/></g>
+                    <g transform="translate(100, 10) scale(0.35)"><use href="#svg-mendhak-flower"/></g>
+
+                    <!-- 15 Candles -->
+                    <use href="#cake-candle" x="75" y="40"/>
+                    <use href="#cake-candle" x="100" y="40"/>
+                    <use href="#cake-candle" x="125" y="40"/>
+                    
+                    <use href="#cake-candle" x="55" y="80"/>
+                    <use href="#cake-candle" x="75" y="80"/>
+                    <use href="#cake-candle" x="100" y="80"/>
+                    <use href="#cake-candle" x="125" y="80"/>
+                    <use href="#cake-candle" x="145" y="80"/>
+                    
+                    <use href="#cake-candle" x="35" y="125"/>
+                    <use href="#cake-candle" x="55" y="125"/>
+                    <use href="#cake-candle" x="75" y="125"/>
+                    <use href="#cake-candle" x="100" y="125"/>
+                    <use href="#cake-candle" x="125" y="125"/>
+                    <use href="#cake-candle" x="145" y="125"/>
+                    <use href="#cake-candle" x="165" y="125"/>
+                </svg>
             </div>
             
             <div id="main-title">
@@ -1332,7 +1431,7 @@
     </div>
 
     <!-- AUDIO ELEMENTS -->
-    <audio id="our-song" src="our_song.mp3" preload="auto"></audio>
+    <audio id="our-song" src="Song.mp3" preload="auto"></audio>
     <audio id="magic-sound" src="assets/audio/magic.mp3" preload="auto"></audio>
 
     <script>
@@ -1370,8 +1469,8 @@
             
             archives: [
                 { tab: "MENDHAK-01", title: "my generator", content: "<video src='VID_20260407_082942_930.mp4' controls style='width:100%; max-height:250px; background:#000; border:3px solid #eee; border-radius:2px; margin-bottom:10px; box-shadow: 0 2px 5px rgba(0,0,0,0.5);'></video><br>Subject is found guilty for having the most wholehearted and best laugh in the world , memorable day btw" },
-                { tab: "SUAR-14", title: "Gogadudu", content: "<img src='IMG_0075.jpeg' style='max-width:100%; max-height:250px; object-fit:cover; border:3px solid #eee; border-radius:2px; margin-bottom:10px; box-shadow: 0 2px 5px rgba(0,0,0,0.5);'><br>that one time she drank milk dripping from her nose, yum x-)" },
-                { tab: "PIGGU-06", title: "Nose Scrunch", content: "<video src='ScreenRecording_10-01-2026 15-50-57_1.mov' autoplay loop muted playsinline style='width:100%; max-height:250px; background:#000; border:3px solid #eee; border-radius:2px; margin-bottom:10px; box-shadow: 0 2px 5px rgba(0,0,0,0.5);'></video><br>Subject's nose scrunches when smiling very happily . Highly dangerous and cute" }
+                { tab: "PIGGY-01", title: "Gogadudu", content: "<img src='IMG_0075.jpeg' style='max-width:100%; max-height:250px; object-fit:cover; border:3px solid #eee; border-radius:2px; margin-bottom:10px; box-shadow: 0 2px 5px rgba(0,0,0,0.5);'><br>that one time she drank milk dripping from her nose, yum x-)" },
+                { tab: "PIGGU06", title: "Nose Scrunch", content: "<video src='ScreenRecording_10-01-2026 15-50-57_1.mov' autoplay loop muted playsinline style='width:100%; max-height:250px; background:#000; border:3px solid #eee; border-radius:2px; margin-bottom:10px; box-shadow: 0 2px 5px rgba(0,0,0,0.5);'></video><br>Subject's nose scrunches when smiling very happily . Highly dangerous and cute" }
             ],
             
             museum: [
@@ -1505,6 +1604,29 @@
             await wait(1000);
             document.getElementById('lightbulb-scene').style.opacity = '0';
             document.getElementById('lightbulb-scene').style.pointerEvents = 'none';
+            
+            // SHOW CAKE SCENE
+            const cakeScene = document.getElementById('cake-scene');
+            const countdownText = document.getElementById('countdown-text');
+            
+            cakeScene.style.opacity = '1';
+            cakeScene.style.pointerEvents = 'all';
+            
+            await wait(1000);
+            countdownText.innerText = "Blow the candle in… 2";
+            await wait(1000);
+            countdownText.innerText = "Blow the candle in… 1";
+            await wait(1000);
+            
+            // Blow out candles
+            countdownText.innerText = "Yayyy! 🎂";
+            document.querySelectorAll('.flame').forEach(f => f.style.opacity = '0');
+            
+            await wait(1500);
+            
+            // Transition to Title
+            cakeScene.style.opacity = '0';
+            cakeScene.style.pointerEvents = 'none';
             
             document.getElementById('main-title').style.opacity = '1';
             document.getElementById('main-title').style.pointerEvents = 'all';
