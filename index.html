@@ -42,7 +42,7 @@
         .btn-cinematic:hover { background: currentColor; color: var(--bg-dark); }
 
         /* =========================================================
-           1. UNHINGED OPENING, LIGHTBULB & CAKE SCENE
+           1. UNHINGED OPENING & FLORAL BLOOM
            ========================================================= */
         #s1-opening { background: #000; justify-content: center; overflow: hidden; }
         .stage-opening { position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
@@ -70,7 +70,7 @@
         /* CAKE COUNTDOWN SCENE & DECORATIONS */
         #cake-scene { position: absolute; top:0; left:0; width:100%; height:100%; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 1s ease; z-index: 5;}
         
-        /* Wall Hangings & Balloons */
+        /* Wall Hangings & Balloons (Black & Gold Theme) */
         .bunting { position: absolute; top: 0; left: 0; width: 100%; height: 15vh; z-index: 1; pointer-events: none;}
         .hbd-banner { 
             position: absolute; top: 12vh; left: 50%; transform: translateX(-50%); 
@@ -78,27 +78,29 @@
             width: 90%; max-width: 600px; z-index: 2;
         }
         .hbd-banner span {
-            background: #ff4d6d; color: #fff; padding: 6px 12px; font-family: var(--font-arcade); font-size: clamp(0.6rem, 2vw, 1rem);
+            background: #D4AF37; color: #111; padding: 6px 12px; font-family: var(--font-arcade); font-size: clamp(0.6rem, 2vw, 1rem);
             clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%);
             box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
             animation: swing-banner 2s infinite ease-in-out;
             transform-origin: top center;
         }
-        .hbd-banner span:nth-child(even) { background: #00e5ff; animation-delay: 0.2s; }
-        .hbd-banner span:nth-child(3n) { background: #ffeb3b; color: #222; animation-delay: 0.4s; }
+        .hbd-banner span:nth-child(even) { background: #222; color: #D4AF37; animation-delay: 0.2s; }
         @keyframes swing-banner { 0%, 100% { transform: rotate(-5deg); } 50% { transform: rotate(5deg); } }
 
         .balloon { position: absolute; width: clamp(40px, 8vw, 60px); height: clamp(50px, 10vw, 75px); border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%; opacity: 0.85; animation: float-balloon 4s ease-in-out infinite; z-index: 1;}
         .balloon::after { content: ''; position: absolute; bottom: -15px; left: 50%; transform: translateX(-50%); width: 2px; height: 30px; background: rgba(255,255,255,0.4); }
-        .balloon-1 { background: #ff7da6; left: 10%; top: 25%; animation-delay: 0s; }
-        .balloon-2 { background: #00e5ff; left: 25%; top: 40%; animation-delay: 1s; }
-        .balloon-3 { background: #ffeb3b; right: 25%; top: 30%; animation-delay: 0.5s; }
-        .balloon-4 { background: #b388ff; right: 10%; top: 45%; animation-delay: 1.5s; }
+        .balloon-1 { background: radial-gradient(circle at 30% 30%, #FFDF73, #B8860B); left: 10%; top: 25%; animation-delay: 0s; }
+        .balloon-2 { background: radial-gradient(circle at 30% 30%, #444, #111); left: 25%; top: 40%; animation-delay: 1s; }
+        .balloon-3 { background: radial-gradient(circle at 30% 30%, #FFF59D, #D4AF37); right: 25%; top: 30%; animation-delay: 0.5s; }
+        .balloon-4 { background: radial-gradient(circle at 30% 30%, #333, #000); right: 10%; top: 45%; animation-delay: 1.5s; }
         @keyframes float-balloon { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
 
         #countdown-text { font-family: var(--font-typewriter); color: #fff; font-size: 1.5rem; margin-bottom: 20px; margin-top: 60px; text-align: center; text-shadow: 0 2px 10px #000; font-weight: bold; z-index: 10;}
-        @keyframes flicker { 0% { transform: scale(1) rotate(-2deg); opacity: 0.9; } 50% { transform: scale(1.1) rotate(2deg); opacity: 1; } 100% { transform: scale(0.9) rotate(-1deg); opacity: 0.8; } }
-        .flame { transform-origin: bottom center; animation: flicker 0.15s infinite alternate; transition: opacity 0.5s ease; }
+        
+        /* CSS for the blow-out mechanism */
+        @keyframes flicker { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
+        .flame { animation: flicker 0.2s infinite; transition: opacity 0.3s ease; }
+        .flame.blown-out { opacity: 0 !important; animation: none !important; }
 
         /* OPTIMIZED DENSE FLORAL FRAME */
         #floral-frame { position: absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index: 3; overflow: hidden; }
@@ -408,7 +410,7 @@
         .redacted:hover { color: #fff; background: transparent; }
 
         /* =========================================================
-           7. MUSEUM (THE MEMORY ROOM) RESTORED DARK THEME
+           7. MUSEUM (THE MEMORY ROOM) 
            ========================================================= */
         #s7-museum { background: #211c18; align-items: center; justify-content: flex-start; padding: 0; position: relative; overflow-y: auto;}
         .room-lighting { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center 40%, transparent 20%, rgba(0,0,0,0.8) 100%); pointer-events: none; z-index: 1;}
@@ -916,6 +918,17 @@
                 </g>
             </g>
 
+            <g id="cake-candle">
+                <!-- Candle stick -->
+                <rect x="-2" y="0" width="4" height="15" fill="#fff" rx="1"/>
+                <!-- Gold Stripes -->
+                <rect x="-2" y="3" width="4" height="3" fill="#B8860B"/>
+                <rect x="-2" y="9" width="4" height="3" fill="#B8860B"/>
+                <!-- Flame -->
+                <path d="M 0 -2 C 3 -6 3 -10 0 -14 C -3 -10 -3 -6 0 -2 Z" fill="#ffeb3b" class="flame" />
+                <path d="M 0 -2 C 1 -5 1 -8 0 -10 C -1 -8 -1 -5 0 -2 Z" fill="#ff9800" class="flame" />
+            </g>
+
             <g id="svg-bulb">
                 <path d="M 45 0 L 55 0 L 55 20 L 45 20 Z" fill="#555"/>
                 <path d="M 30 20 C 30 20 70 20 70 50 C 70 80 50 100 50 100 C 50 100 30 80 30 50 C 30 20 30 20 30 20 Z" fill="#fff" opacity="0.8"/>
@@ -1009,7 +1022,7 @@
                 
                 <div id="countdown-text">Blow the candle in… 3</div>
                 
-                <svg id="the-cake" viewBox="0 0 200 200" style="width: 300px; max-width: 80vw; transition: opacity 1s, transform 1s; z-index: 10;">
+                <svg id="the-cake" viewBox="0 0 200 200" style="width: 400px; max-width: 95vw; transition: opacity 1s, transform 1s; z-index: 10;">
                     <!-- Tiers -->
                     <rect x="30" y="140" width="140" height="50" rx="10" fill="#ffb6c1"/>
                     <path d="M 30 145 Q 40 160 50 145 T 70 145 T 90 145 T 110 145 T 130 145 T 150 145 T 170 145" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"/>
@@ -1019,29 +1032,28 @@
 
                     <rect x="70" y="55" width="60" height="40" rx="5" fill="#ff4d6d"/>
                     <path d="M 70 60 Q 80 75 90 60 T 110 60 T 130 60" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"/>
-                    
-                    <!-- Characters on top tier -->
-                    <g transform="translate(75, 10) scale(0.35)"><use href="#svg-piggy"/></g>
-                    <g transform="translate(100, 10) scale(0.35)"><use href="#svg-mendhak-flower"/></g>
 
-                    <!-- 15 Candles -->
-                    <use href="#cake-candle" x="75" y="40"/>
-                    <use href="#cake-candle" x="100" y="40"/>
-                    <use href="#cake-candle" x="125" y="40"/>
+                    <!-- Exactly 15 Candles (5 top, 4 mid, 6 bottom) -->
+                    <!-- Top Tier (5) -->
+                    <use href="#cake-candle" transform="translate(75, 40)"/>
+                    <use href="#cake-candle" transform="translate(87.5, 40)"/>
+                    <use href="#cake-candle" transform="translate(100, 40)"/>
+                    <use href="#cake-candle" transform="translate(112.5, 40)"/>
+                    <use href="#cake-candle" transform="translate(125, 40)"/>
                     
-                    <use href="#cake-candle" x="55" y="80"/>
-                    <use href="#cake-candle" x="75" y="80"/>
-                    <use href="#cake-candle" x="100" y="80"/>
-                    <use href="#cake-candle" x="125" y="80"/>
-                    <use href="#cake-candle" x="145" y="80"/>
+                    <!-- Middle Tier (4) -->
+                    <use href="#cake-candle" transform="translate(55, 80)"/>
+                    <use href="#cake-candle" transform="translate(65, 80)"/>
+                    <use href="#cake-candle" transform="translate(135, 80)"/>
+                    <use href="#cake-candle" transform="translate(145, 80)"/>
                     
-                    <use href="#cake-candle" x="35" y="125"/>
-                    <use href="#cake-candle" x="55" y="125"/>
-                    <use href="#cake-candle" x="75" y="125"/>
-                    <use href="#cake-candle" x="100" y="125"/>
-                    <use href="#cake-candle" x="125" y="125"/>
-                    <use href="#cake-candle" x="145" y="125"/>
-                    <use href="#cake-candle" x="165" y="125"/>
+                    <!-- Bottom Tier (6) -->
+                    <use href="#cake-candle" transform="translate(35, 125)"/>
+                    <use href="#cake-candle" transform="translate(45, 125)"/>
+                    <use href="#cake-candle" transform="translate(55, 125)"/>
+                    <use href="#cake-candle" transform="translate(145, 125)"/>
+                    <use href="#cake-candle" transform="translate(155, 125)"/>
+                    <use href="#cake-candle" transform="translate(165, 125)"/>
                 </svg>
             </div>
             
@@ -1109,7 +1121,7 @@
         <section id="s4-letters" class="story-section">
             <h2 class="serif" style="font-size: 3rem; text-align: center; margin-top: 10vh;">From Your Favorite People</h2>
             <div class="letters-grid" id="letters-grid"></div>
-            <button class="btn-cinematic" style="margin-top: 80px;" onclick="triggerPoem()">One Last Thing...</button>
+            <button class="btn-cinematic" style="margin-top: 80px;" onclick="goToSection('s5-poem')">One Last Thing...</button>
         </section>
 
         <!-- 5. POEM (REPLACED WITH HANDWRITTEN SCROLL) -->
@@ -1417,7 +1429,7 @@
         <div class="book-3d-wrapper" id="the-3d-book">
             <div class="book-3d-back"></div>
             <div class="book-3d-pages">
-                <i>"For me ,🌟 Aaradhya🌟 is a kind-hearted person who makes everyone laugh by her laughter attacks🤣🤣 and silly - lame jokes . I always meant her to my sister 😤 who is Always there for me , always makes me laugh at any point where I feel to be quiet 🙊 and most importantly the trust that she shows on me is what matters for me at any point 🫀. She is always the one jiski baat ka merko in 4 saalo kabhi bura nahi laga. <i>Bas last me yahi ki apko is saal thodi si buddhi 🧠 ki prapti ho🙏🏻🙏🏻 .</i>" 😘💋</i>
+                <i>"JUST BE YOURSELF MERI JAAN , YOU'LL ALWAYS BE PRJ'S PYARII SI GOOD GIRL 💋"</i>
             </div>
             <div class="book-3d-cover">
                 <div class="book-3d-cover-front">
@@ -1463,21 +1475,21 @@
                 { label: "FROM: Paridhi", text: "For me Aaradhya is the friend i had never expected would turn out this good, her cheerful and funny side made me enjoy time with her more, every moment spent with her made me laugh until my stomach hurt and every joke of hers made me happy with a bright smile." },
                 { label: "FROM: Leora", text: "AARADHYA FOR ME.......<br>☆You are the the meethi chutney😋 to my golgappa🍽...<br>☆You are the double circulation🩺 to my heart🫀<br>☆ Annddd i missssss youuu sooooo mucchhh😭😭😭😭💖💖💖💖💖" },
                 { label: "FROM: Navya", text: "For me Aaradhya is <br>Likee the sweetesttt nd veryyyy cutessttt personn i hve ever mettt shess justt ekdummm merii chotuu si beheennn ekdumm jr vali to koi vibes he nhi aati hai .. ndd honestly i love herr smm like boht he sweet si haii 😚😚😚 .. i never knew ki ek jr se me itna attach houngi aur itni pyarii hai bhyii vo 🫠😍 and obv alwayss she'll be my funny sii happyy place ilysmm cutuuu😚😚😚😚 you'll always hold a very special place in my heart nd life .. lovee youu bothhh (puklit nd cutu)🫶🫶🫶🫶🫶🫶🫶" },
-                { label: "FROM: Aarushi", text: "To me, Aaradhya is... [ADD FULL TEXT]" },
+                { label: "FROM: Mannat", text: "For me Aaradhyaa is a person who brings smile and happiness.Humesha se meri partner in crime rahi haiii and next level mastikhor insaan hai ye😏.It's always fun being with her.Bohot cute haii badmashh haii aur real hai.She is one of the best person in my life.I am so greatful that I got a great friend like her.And now the main thing! iski generator jaisi hasssi11 bhaisahabbb😂 crazyyy!!! Teen camp ke time par jo isne 3 baje raat me jab me so rhi thii iski akdum se hasi se me jo dariii hu naaaaaaaa wo to bohot hi gandaaa thaa😭.But ye jaisi bhi haiii bohottt hi funn haii.And i wish ki ye humeshaa aisi pyaari raheee.I loveee aaradhyaaaa so muchhhh!!💕💕" },
                 { label: "FROM: PRJ", text: "To me, Aaradhya is everything. You are my sunshine, my missing star, and the absolute best part of my day. Happy Birthday, Jaanu. [ADD FULL TEXT]" }
             ],
             
             archives: [
-                { tab: "MENDHAK-01", title: "my generator", content: "<video src='VID_20260407_082942_930.mp4' controls style='width:100%; max-height:250px; background:#000; border:3px solid #eee; border-radius:2px; margin-bottom:10px; box-shadow: 0 2px 5px rgba(0,0,0,0.5);'></video><br>Subject is found guilty for having the most wholehearted and best laugh in the world , memorable day btw" },
-                { tab: "PIGGY-01", title: "Gogadudu", content: "<img src='IMG_0075.jpeg' style='max-width:100%; max-height:250px; object-fit:cover; border:3px solid #eee; border-radius:2px; margin-bottom:10px; box-shadow: 0 2px 5px rgba(0,0,0,0.5);'><br>that one time she drank milk dripping from her nose, yum x-)" },
-                { tab: "PIGGU06", title: "Nose Scrunch", content: "<video src='ScreenRecording_10-01-2026 15-50-57_1.mov' autoplay loop muted playsinline style='width:100%; max-height:250px; background:#000; border:3px solid #eee; border-radius:2px; margin-bottom:10px; box-shadow: 0 2px 5px rgba(0,0,0,0.5);'></video><br>Subject's nose scrunches when smiling very happily . Highly dangerous and cute" }
+                { tab: "MENDHAK-01", title: "My Generator", content: "<video src='VID_20260407_082942_930.mp4' controls style='width:100%; max-height:250px; background:#000; border:3px solid #eee; border-radius:2px; margin-bottom:10px; box-shadow: 0 2px 5px rgba(0,0,0,0.5);'></video><br>Subject is found guilty for having the most wholehearted and best laugh in the world , memorable day btw" },
+                { tab: "SUAR-13", title: "Gogadudu", content: "<img src='IMG_0075.jpeg' style='max-width:100%; max-height:250px; object-fit:cover; border:3px solid #eee; border-radius:2px; margin-bottom:10px; box-shadow: 0 2px 5px rgba(0,0,0,0.5);'><br>that one time she drank milk dripping from her nose, yum x-)" },
+                { tab: "PIGGU-06", title: "Nose Scrunch", content: "<video src='ScreenRecording_10-01-2026 15-50-57_1.mov' autoplay loop muted playsinline style='width:100%; max-height:250px; background:#000; border:3px solid #eee; border-radius:2px; margin-bottom:10px; box-shadow: 0 2px 5px rgba(0,0,0,0.5);'></video><br>Subject's nose scrunches when smiling very happily . Highly dangerous and cute" }
             ],
             
             museum: [
-                { img: "<img src='IMG_0092.jpeg' style='width: 100%; height: 100%; object-fit: cover;'>", caption: "Our first date" },
-                { img: "<img src='IMG_0091.jpeg' style='width: 100%; height: 100%; object-fit: cover;'>", caption: "piggu and mendhak <3" },
-                { img: "<img src='IMG_0090.jpeg' style='width: 100%; height: 100%; object-fit: cover;'>", caption: "shadishuda , haha" },
-                { img: "<img src='IMG_0093.jpeg' style='width: 100%; height: 100%; object-fit: cover;'>", caption: "first trip together" },
+                { img: "<img src='IMG_0092.jpeg' style='width: 100%; height: 100%; object-fit: cover;'>", caption: "Our First Date" },
+                { img: "<img src='IMG_0091.jpeg' style='width: 100%; height: 100%; object-fit: cover;'>", caption: "Piggu and Mendhak <3" },
+                { img: "<img src='IMG_0090.jpeg' style='width: 100%; height: 100%; object-fit: cover;'>", caption: "Shadishuda , haha" },
+                { img: "<img src='IMG_0093.jpeg' style='width: 100%; height: 100%; object-fit: cover;'>", caption: "First Trip Together" },
                 { img: "<img src='IMG_0010.jpeg' style='width: 100%; height: 100%; object-fit: cover;'>", caption: "Us." },
                 { img: "<img src='IMG_0131.jpeg' style='width: 100%; height: 100%; object-fit: cover;'>", caption: "Chhod do Aanchal X-)" },
                 { img: "<img src='IMG_0129.jpeg' style='width: 100%; height: 100%; object-fit: cover;'>", caption: "I Only have Eyes for You" },
@@ -1620,7 +1632,7 @@
             
             // Blow out candles
             countdownText.innerText = "Yayyy! 🎂";
-            document.querySelectorAll('.flame').forEach(f => f.style.opacity = '0');
+            document.querySelectorAll('.flame').forEach(f => f.classList.add('blown-out'));
             
             await wait(1500);
             
@@ -1854,13 +1866,16 @@
         
         function openBookMessage() {
             document.getElementById('book-modal').classList.add('active');
+            // Give time for modal to fade in before triggering page open
             setTimeout(() => {
                 document.getElementById('the-3d-book').classList.add('open');
             }, 300);
         }
 
         function closeBook() {
+            // Trigger close animation first
             document.getElementById('the-3d-book').classList.remove('open');
+            // Then hide modal
             setTimeout(() => {
                 document.getElementById('book-modal').classList.remove('active');
             }, 500); 
