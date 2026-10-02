@@ -602,10 +602,8 @@
         /* Real Sunflower */
         .real-sunflower { left: 30%; bottom: 25px; font-size: clamp(2rem, 5vw, 3.5rem); transform: rotate(70deg); pointer-events: none;}
 
-        /* Desk Origami Additions */
-        .origami-bird { pointer-events: none; }
-        .origami-butterfly { pointer-events: none; }
-        .origami-tulip { pointer-events: none; }
+        /* Origami Additions on Desk */
+        .origami-item { position: absolute; z-index: 16; pointer-events: none; filter: drop-shadow(-8px 12px 6px rgba(0,0,0,0.5)); }
 
         /* Scattered Candies */
         .candy { position: absolute; z-index: 11; font-family: var(--font-sans); font-weight: bold; font-size: 0.5rem; display: flex; align-items: center; justify-content: center; pointer-events: none; filter: drop-shadow(-4px 6px 4px rgba(0,0,0,0.6));}
@@ -911,15 +909,6 @@
             50% { transform: scale(1.5) rotate(45deg); opacity: 1; filter: brightness(3); }
             100% { transform: scale(0) rotate(90deg); opacity: 0; filter: brightness(1); }
         }
-        
-        /* Mendhak Waterfall Tears */
-        .mendhak-crying-tears { transition: opacity 0.5s; }
-        svg.is-crying .mendhak-crying-tears { opacity: 1 !important; }
-        .tear-line { animation: tear-fall 0.4s linear infinite; }
-        @keyframes tear-fall {
-            from { stroke-dashoffset: 25; }
-            to { stroke-dashoffset: 0; }
-        }
 
         /* NEW ARCADE CSS */
         .arcade-mode-active { filter: contrast(150%) saturate(150%); } 
@@ -929,10 +918,12 @@
         .health-bar-container { position: absolute; top: 60px; width: 35%; height: 30px; border: 4px solid #fff; background: #222; box-shadow: 4px 4px 0 #000; }
         #hb-piggy { left: 5%; }
         #hb-mendhak { right: 5%; }
+        /* Floats added to ensure health drains towards the center of the screen */
         .health-fill { height: 100%; width: 100%; background: #39ff14; transition: width 0.1s ease-out, background-color 0.2s;}
         #piggy-hp-fill { float: left; border-right: 2px solid #000;}
         #mendhak-hp-fill { float: right; border-left: 2px solid #000;}
 
+        /* Responsive Text for Arcade Overlay */
         .player-name { font-family: var(--font-arcade); color: #fff; font-size: clamp(0.6rem, 3vw, 1rem); position: absolute; top: 30px; text-shadow: 3px 3px 0px #000; }
         #pn-piggy { left: 5%; }
         #pn-mendhak { right: 5%; }
@@ -964,6 +955,7 @@
                 <path d="M 40 85 L 40 95" fill="none" stroke="#ffc8d2" stroke-width="4" stroke-linecap="round" class="piggy-legs" style="animation-delay: 0s;"/>
                 <path d="M 60 85 L 60 95" fill="none" stroke="#ffc8d2" stroke-width="4" stroke-linecap="round" class="piggy-legs" style="animation-delay: 0.1s;"/>
             </g>
+            
             <g id="svg-mendhak">
                 <path d="M 25 45 Q 15 65 25 80 Q 50 95 75 80 Q 85 65 75 45 Q 95 30 80 20 Q 70 15 65 30 Q 50 25 35 30 Q 30 15 20 20 Q 5 30 25 45 Z" fill="#fff" stroke="#68b94f" stroke-width="3.5" stroke-linejoin="round" />
                 <ellipse cx="45" cy="55" rx="8" ry="16" fill="none" stroke="#68b94f" stroke-width="3" transform="rotate(-15 45 55)" />
@@ -971,10 +963,10 @@
                 <line x1="41" y1="56" x2="49" y2="56" stroke="#68b94f" stroke-width="3" stroke-linecap="round" class="mendhak-eye" id="m-pupil-l" />
                 <line x1="64" y1="56" x2="72" y2="56" stroke="#68b94f" stroke-width="3" stroke-linecap="round" class="mendhak-eye" id="m-pupil-r" />
                 <path d="M 48 76 L 73 72" fill="none" stroke="#68b94f" stroke-width="3" stroke-linecap="round" id="m-jaw" class="mendhak-jaw" />
-                <!-- Hidden Waterfall Tears falling directly from eyes -->
+                <!-- Hidden Waterfall Tears falling directly from eyes down to bottom of screen -->
                 <g class="mendhak-crying-tears" style="opacity: 0;">
-                    <line x1="45" y1="58" x2="45" y2="150" stroke="#00e5ff" stroke-width="4" stroke-dasharray="10 15" stroke-linecap="round" class="tear-line" />
-                    <line x1="68" y1="58" x2="68" y2="150" stroke="#00e5ff" stroke-width="4" stroke-dasharray="10 15" stroke-linecap="round" class="tear-line" style="animation-delay: 0.2s;" />
+                    <line x1="45" y1="58" x2="45" y2="800" stroke="#00e5ff" stroke-width="4" stroke-dasharray="10 15" stroke-linecap="round" class="tear-line" />
+                    <line x1="68" y1="58" x2="68" y2="800" stroke="#00e5ff" stroke-width="4" stroke-dasharray="10 15" stroke-linecap="round" class="tear-line" style="animation-delay: 0.2s;" />
                 </g>
             </g>
             
@@ -1287,7 +1279,7 @@
         <section id="s4-letters" class="story-section">
             <h2 class="serif" style="font-size: 3rem; text-align: center; margin-top: 10vh;">From Your Favorite People</h2>
             <div class="letters-grid" id="letters-grid"></div>
-            <button class="btn-cinematic" style="margin-top: 80px;" onclick="triggerPoem()">One Last Thing...</button>
+            <button class="btn-cinematic" style="margin-top: 80px;" onclick="goToSection('s5-poem')">One Last Thing...</button>
         </section>
 
         <!-- 5. POEM (REPLACED WITH HANDWRITTEN SCROLL) -->
@@ -1418,25 +1410,25 @@
                     <div class="real-sunflower desk-item">🌻</div>
 
                     <!-- NEW ORIGAMI PAPER ITEMS -->
-                    <svg viewBox="0 0 100 100" class="desk-item" style="width:35px; left: 12%; bottom: 45px; transform: rotate(-15deg); pointer-events: none;">
+                    <svg viewBox="0 0 100 100" class="desk-item" style="width:35px; left: 16%; bottom: 35px; transform: rotate(-15deg); z-index: 16; pointer-events: none;">
                         <use href="#svg-origami-bird"/>
                         <!-- Hand-drawn Lined Pattern Overlay -->
                         <path d="M 15 35 L 35 35 M 10 50 L 45 50 M 15 65 L 40 65" stroke="#90caf9" stroke-width="0.5" fill="none" opacity="0.8"/>
                     </svg>
                     
-                    <svg viewBox="0 0 100 100" class="desk-item" style="width:30px; left: 24%; bottom: 20px; transform: rotate(20deg) scaleX(-1); pointer-events: none;">
+                    <svg viewBox="0 0 100 100" class="desk-item" style="width:30px; left: 32%; bottom: 25px; transform: rotate(20deg) scaleX(-1); z-index: 16; pointer-events: none;">
                         <use href="#svg-origami-bird-red"/>
                     </svg>
                     
-                    <svg viewBox="0 0 100 100" class="desk-item" style="width:25px; right: 28%; bottom: 65px; transform: rotate(15deg); pointer-events: none;">
+                    <svg viewBox="0 0 100 100" class="desk-item" style="width:25px; right: 35%; bottom: 35px; transform: rotate(15deg); z-index: 16; pointer-events: none;">
                         <use href="#svg-origami-butterfly"/>
                     </svg>
                     
-                    <svg viewBox="0 0 100 100" class="desk-item" style="width:20px; right: 22%; bottom: 85px; transform: rotate(-25deg); pointer-events: none;">
+                    <svg viewBox="0 0 100 100" class="desk-item" style="width:20px; right: 18%; bottom: 40px; transform: rotate(-25deg); z-index: 16; pointer-events: none;">
                         <use href="#svg-origami-butterfly"/>
                     </svg>
                     
-                    <svg viewBox="0 0 100 100" class="desk-item" style="width:30px; left: 35%; bottom: 15px; transform: rotate(45deg); pointer-events: none;">
+                    <svg viewBox="0 0 100 100" class="desk-item" style="width:30px; left: 45%; bottom: 15px; transform: rotate(45deg); z-index: 16; pointer-events: none;">
                         <use href="#svg-origami-tulip"/>
                     </svg>
 
@@ -1546,6 +1538,7 @@
                 
                 <div class="player-name" id="pn-mendhak">MENDHAK</div>
                 <div class="health-bar-container" id="hb-mendhak">
+                    <!-- Fixed: Float right forces the bar to shrink from left to right as health decreases -->
                     <div class="health-fill" id="mendhak-hp-fill" style="width: 100%; float: right;"></div>
                 </div>
             </div>
@@ -1590,13 +1583,13 @@
                 <div id="kiss-heart" style="position:absolute; top: -15vh; left: 50%; font-size: 3rem; opacity:0; transform: translate(-50%, -50%) scale(0.5); transition: 0.5s ease; filter: drop-shadow(0 0 10px #ff2a2a); pointer-events: none; z-index: 30;">❤️</div>
                 
                 <!-- Safe Wrapper to protect SVG from being clipped by Transforms -->
-                <div id="piggy-wrap" style="position:absolute; bottom: 5vh; left:25vw; z-index:20; opacity:0; transform:translateX(-20vw);">
+                <div id="piggy-wrap" style="position:absolute; bottom: 5vh; left:50%; margin-left:-60px; z-index:20; opacity:0; transform:translateX(-50vw);">
                     <div id="goodbye-piggy-bubble" style="position:absolute; top:-40px; left:-20px; font-family:var(--font-typewriter); color:#fff; font-weight:bold; opacity:0; transition:0.3s; white-space:nowrap; background:rgba(0,0,0,0.8); padding:5px 10px; border-radius:10px; border:1px solid #ffc8d2; z-index: 12;">I Lovee Youuu More</div>
                     <svg id="goodbye-piggy" viewBox="0 0 100 100" style="width:120px; overflow:visible; transition: transform 0.1s ease-out;"><use href="#svg-piggy"/></svg>
                 </div>
                 
                 <!-- Safe Wrapper to protect SVG from being clipped by Transforms -->
-                <div id="mendhak-wrap" style="position:absolute; bottom: 5vh; right:25vw; z-index:20; opacity:0; transform:translateY(5vh);">
+                <div id="mendhak-wrap" style="position:absolute; bottom: 5vh; left:50%; margin-left:-85px; z-index:20; opacity:0; transform:translateY(5vh);">
                     <div id="tap-hint" style="position:absolute; top:-80px; right:30px; font-family:var(--font-typewriter); color:#ffdf73; font-weight:bold; opacity:0; transition:0.3s; white-space:nowrap; animation: hint-pulse 1s infinite alternate; pointer-events:none; z-index: 12;">(Tap Mendhak!)</div>
                     <div id="goodbye-mendhak-bubble" style="position:absolute; top:-40px; right:-20px; font-family:var(--font-typewriter); color:#68b94f; font-weight:bold; opacity:0; transition:0.3s; white-space:nowrap; background:rgba(0,0,0,0.8); padding:5px 10px; border-radius:10px; border:1px solid #68b94f; z-index: 12;">NO , I DO!</div>
                     
@@ -1931,6 +1924,7 @@
 
             const musGrid = document.getElementById('museum-gallery');
             SITE_DATA.museum.forEach((item, index) => {
+                // Ensure rows hang straight by using standard spacing instead of random margins
                 musGrid.innerHTML += `
                     <div class="polaroid" id="pol-${index}" onclick="openPolaroid(${index})" style="margin-top: 60px;">
                         <div class="photo-string"></div>
@@ -2100,16 +2094,13 @@
         
         function openBookMessage() {
             document.getElementById('book-modal').classList.add('active');
-            // Give time for modal to fade in before triggering page open
             setTimeout(() => {
                 document.getElementById('the-3d-book').classList.add('open');
             }, 300);
         }
 
         function closeBook() {
-            // Trigger close animation first
             document.getElementById('the-3d-book').classList.remove('open');
-            // Then hide modal
             setTimeout(() => {
                 document.getElementById('book-modal').classList.remove('active');
             }, 500); 
@@ -2198,6 +2189,12 @@
             const piggyWrap = document.getElementById('piggy-wrap');
             const mendhakWrap = document.getElementById('mendhak-wrap');
             
+            // Set base positions using translate instead of margins for better responsiveness
+            piggyWrap.style.left = '50%';
+            mendhakWrap.style.left = '50%';
+            piggyWrap.style.transform = 'translate(-100vw, 0)';
+            mendhakWrap.style.transform = 'translate(100vw, 0)';
+            
             const text1 = document.getElementById('goodbye-text-1');
             const text2 = document.getElementById('goodbye-text-2');
             const text3 = document.getElementById('goodbye-text-3');
@@ -2218,10 +2215,10 @@
             bg.style.opacity = '1';
             
             await wait(1000);
-            // Wrapper floats Mendhak in
+            // Mendhak enters
             mendhakWrap.style.transition = 'all 3s ease';
             mendhakWrap.style.opacity = '1';
-            mendhakWrap.style.transform = 'translate(0, 0)';
+            mendhakWrap.style.transform = 'translate(100px, 0)';
             
             // Inner SVG applies the steady tumble animation
             mendhak.style.animation = 'spacewalk 6s infinite ease-in-out';
@@ -2236,7 +2233,7 @@
             await wait(1500);
             piggyWrap.style.transition = 'all 1s ease';
             piggyWrap.style.opacity = '1';
-            piggyWrap.style.transform = 'translate(0, 0)';
+            piggyWrap.style.transform = 'translate(-100px, 0)';
             
             await wait(1000);
             pBubble.style.opacity = '1';
@@ -2355,7 +2352,7 @@
                     
                     // Piggy walks off stage
                     piggyWrap.style.transition = 'transform 2s ease, opacity 2s ease';
-                    piggyWrap.style.transform = 'translateX(-50vw)';
+                    piggyWrap.style.transform = 'translate(-100vw, 0)';
                     piggyWrap.style.opacity = '0';
                     
                     await wait(2000);
@@ -2367,7 +2364,7 @@
                     
                     // PIGGY RUSHES BACK
                     piggyWrap.style.transition = 'transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.5s';
-                    piggyWrap.style.transform = 'translateX(0vw)';
+                    piggyWrap.style.transform = 'translate(-100px, 0)';
                     piggy.style.transform = 'scale(1.2)';
                     piggyWrap.style.opacity = '1';
                     
@@ -2381,7 +2378,7 @@
                     // MENDHAK RETURNS CRYING
                     mendhak.style.transform = 'rotate(0deg) scale(1)';
                     mendhakWrap.style.transition = 'all 2s ease-out';
-                    mendhakWrap.style.transform = 'translate(0, 0)';
+                    mendhakWrap.style.transform = 'translate(100px, 0)';
                     mendhakWrap.style.opacity = '1';
                     
                     await wait(1000);
@@ -2400,10 +2397,10 @@
                     piggy.style.transition = 'transform 6s ease-in-out';
                     mendhak.style.transition = 'transform 6s ease-in-out';
                     
-                    piggyWrap.style.transform = 'translate(-20vw, -15vh)';
+                    piggyWrap.style.transform = 'translate(-150px, -20vh)';
                     piggy.style.transform = 'rotate(-150deg) scale(1.2)';
                     
-                    mendhakWrap.style.transform = 'translate(20vw, -15vh)';
+                    mendhakWrap.style.transform = 'translate(150px, -20vh)';
                     mendhak.style.transform = 'rotate(180deg) scale(1)';
                     
                     // Planets and space junk tumble around
@@ -2420,20 +2417,21 @@
                     piggy.style.transform = 'rotate(0deg) scale(1.2)';
                     
                     await wait(1500);
-                    pBubble.innerText = "Come here betuu , let me give you a kiss";
+                    pBubble.innerText = "Come , let me hug you";
                     pBubble.style.opacity = '1';
                     
                     await wait(3000);
                     pBubble.style.opacity = '0';
                     
-                    // THE KISS CHOREOGRAPHY
+                    // THE HUG CHOREOGRAPHY
                     piggyWrap.style.transition = 'transform 2s ease-in-out';
                     mendhakWrap.style.transition = 'transform 2s ease-in-out';
                     piggy.style.transition = 'transform 2s ease-in-out';
                     mendhak.style.transition = 'transform 2s ease-in-out';
                     
-                    piggyWrap.style.transform = 'translate(5vw, -15vh)';
-                    mendhakWrap.style.transform = 'translate(-5vw, -15vh)';
+                    // With center alignments (margin offsets applied), translates bring them to touch
+                    piggyWrap.style.transform = 'translate(-40px, -20vh)';
+                    mendhakWrap.style.transform = 'translate(40px, -20vh)';
                     piggy.style.transform = 'rotate(10deg) scale(1.2)';
                     mendhak.style.transform = 'rotate(-10deg) scale(1)';
                     
@@ -2474,8 +2472,8 @@
                     
                     piggyWrap.style.transition = 'transform 2s ease-in, opacity 2s ease';
                     mendhakWrap.style.transition = 'transform 2s ease-in, opacity 2s ease';
-                    piggyWrap.style.transform = 'translate(60vw, -15vh)';
-                    mendhakWrap.style.transform = 'translate(60vw, -15vh)';
+                    piggyWrap.style.transform = 'translate(100vw, -20vh)';
+                    mendhakWrap.style.transform = 'translate(100vw, -20vh)';
                     piggyWrap.style.opacity = '0';
                     mendhakWrap.style.opacity = '0';
                     pBubble.style.opacity = '0';
