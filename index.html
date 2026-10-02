@@ -42,7 +42,7 @@
         .btn-cinematic:hover { background: currentColor; color: var(--bg-dark); }
 
         /* =========================================================
-           1. UNHINGED OPENING, LANTERN & CAKE SCENE
+           1. UNHINGED OPENING, LIGHTBULB & CAKE SCENE
            ========================================================= */
         #s1-opening { background: #000; justify-content: center; overflow: hidden; }
         .stage-opening { position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
@@ -62,18 +62,13 @@
         
         #opening-flash { position: absolute; top:0; left:0; width:100%; height:100%; background:#fff; opacity:0; pointer-events:none; z-index: 99; transition: opacity 0.2s;}
         
-        #lightbulb-scene { position: absolute; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; opacity: 0; pointer-events: none; transition: 2s; z-index: 5; height: 100vh; width: 100%;}
-        #tease-text { font-family: var(--font-typewriter); color: #888; font-size: 0.9rem; margin-top: 20vh; text-align: center; z-index: 15; }
+        #lightbulb-scene { position: absolute; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 2s; z-index: 5; height: 100vh; width: 100%;}
+        #tease-text { font-family: var(--font-typewriter); color: #888; font-size: 0.9rem; margin-bottom: 20px; text-align: center; }
         
-        /* Vintage Lantern Styles - Ground Connected & Bright Orange Glow */
-        #vintage-lantern { position: absolute; bottom: 0; height: 60vh; max-height: 500px; width: auto; cursor: pointer; transition: 0.3s; z-index: 10; }
-        #lantern-glass { fill: rgba(255,255,255,0.05); transition: fill 0.3s ease; }
-        #lantern-bulb { fill: #222; transition: fill 0.3s ease, filter 0.3s ease; }
-        
-        #vintage-lantern.on #lantern-glass { fill: rgba(255, 180, 50, 0.4); }
-        #vintage-lantern.on #lantern-bulb { fill: #fff7a0; filter: drop-shadow(0 0 20px #fff) drop-shadow(0 0 40px #ffa500); }
-        #vintage-lantern.on #lantern-glow { opacity: 1; animation: pulse-light 2s infinite alternate; }
-        @keyframes pulse-light { 0% { opacity: 0.8; transform: scale(0.95); } 100% { opacity: 1; transform: scale(1.1); transform-origin: 50px 70px; } }
+        /* Realistic Light Bulb Styles */
+        #the-bulb { width: 60px; cursor: pointer; filter: brightness(0.3); transition: filter 0.1s; animation: swing 4s infinite ease-in-out; transform-origin: top center; }
+        #the-bulb.on { filter: drop-shadow(0 0 50px #ffdf73) drop-shadow(0 0 100px #ff9800) brightness(1.2); animation: none; }
+        #the-bulb.on #filament { stroke: #fff7a0; filter: drop-shadow(0 0 5px #fff); }
         
         /* CAKE COUNTDOWN SCENE & DECORATIONS */
         #cake-scene { position: absolute; top:0; left:0; width:100%; height:100%; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 1s ease; z-index: 5;}
@@ -418,7 +413,7 @@
         .redacted:hover { color: #fff; background: transparent; }
 
         /* =========================================================
-           7. MUSEUM (THE MEMORY ROOM) 
+           7. MUSEUM (THE MEMORY ROOM) RESTORED DARK THEME
            ========================================================= */
         #s7-museum { background: #211c18; align-items: center; justify-content: flex-start; padding: 0; position: relative; overflow-y: auto;}
         .room-lighting { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center 40%, transparent 20%, rgba(0,0,0,0.8) 100%); pointer-events: none; z-index: 1;}
@@ -602,8 +597,12 @@
         /* Real Sunflower */
         .real-sunflower { left: 30%; bottom: 25px; font-size: clamp(2rem, 5vw, 3.5rem); transform: rotate(70deg); pointer-events: none;}
 
-        /* Origami Additions on Desk */
-        .origami-item { position: absolute; z-index: 16; pointer-events: none; filter: drop-shadow(-8px 12px 6px rgba(0,0,0,0.5)); }
+        /* Origami Lilies */
+        .origami-lily { width: clamp(20px, 3vw, 30px); pointer-events: none;}
+        .lily-1 { left: 15%; bottom: 25px; transform: rotate(-40deg); } 
+        .lily-2 { left: 40%; bottom: 35px; transform: rotate(20deg) scale(1.4); } 
+        .lily-3 { right: 35%; bottom: 30px; transform: rotate(-25deg); } 
+        .lily-4 { right: 28%; bottom: 15px; transform: rotate(50deg); } 
 
         /* Scattered Candies */
         .candy { position: absolute; z-index: 11; font-family: var(--font-sans); font-weight: bold; font-size: 0.5rem; display: flex; align-items: center; justify-content: center; pointer-events: none; filter: drop-shadow(-4px 6px 4px rgba(0,0,0,0.6));}
@@ -756,47 +755,9 @@
         .btn-close-modal:hover { background: #fff; color: #000; }
 
         /* =========================================================
-           8. GOODBYE (ARCADE MINI GAME, CALAMITY & FINAL SCENE)
+           8. GOODBYE (ARCADE MINI GAME & SOLAR SYSTEM)
            ========================================================= */
         #s8-goodbye { background: #030208; align-items: center; justify-content: center; text-align: center; overflow: hidden; }
-        
-        /* Calamity Shake Animation */
-        @keyframes calamity-shake {
-            0% { transform: translate(10px, 10px) rotate(0deg); }
-            10% { transform: translate(-10px, -20px) rotate(-1deg); }
-            20% { transform: translate(-30px, 0px) rotate(1deg); }
-            30% { transform: translate(30px, 20px) rotate(0deg); }
-            40% { transform: translate(10px, -10px) rotate(1deg); }
-            50% { transform: translate(-10px, 20px) rotate(-1deg); }
-            60% { transform: translate(-30px, 10px) rotate(0deg); }
-            70% { transform: translate(30px, 10px) rotate(-1deg); }
-            80% { transform: translate(-10px, -10px) rotate(1deg); }
-            90% { transform: translate(10px, 20px) rotate(0deg); }
-            100% { transform: translate(10px, -20px) rotate(-1deg); }
-        }
-        .calamity { animation: calamity-shake 0.3s infinite; }
-
-        /* REALISTIC SVG WATER FLOOD OVERLAY */
-        #water-flood {
-            position: absolute; bottom: 0; left: 0; width: 100%; height: 0%;
-            z-index: 25; transition: height 8s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex; flex-direction: column; justify-content: flex-start;
-            overflow: hidden; pointer-events: none; opacity: 0.85;
-        }
-        #water-flood.flood { height: 100%; }
-        .waves { width: 100%; height: 15vh; min-height: 100px; max-height: 150px; margin-bottom: -7px; }
-        .water-body { flex: 1; background: linear-gradient(to bottom, rgba(0, 150, 255, 0.7), rgba(0, 50, 200, 0.9)); }
-        
-        .parallax > use { animation: wave-move 25s cubic-bezier(.55,.5,.45,.5) infinite; }
-        .parallax > use:nth-child(1) { animation-delay: -2s; animation-duration: 7s; }
-        .parallax > use:nth-child(2) { animation-delay: -3s; animation-duration: 10s; }
-        .parallax > use:nth-child(3) { animation-delay: -4s; animation-duration: 13s; }
-        .parallax > use:nth-child(4) { animation-delay: -5s; animation-duration: 20s; }
-        @keyframes wave-move { 
-            0% { transform: translate3d(-90px,0,0); } 
-            100% { transform: translate3d(85px,0,0); } 
-        }
-
         #solar-system { position: absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; opacity: 0; transition: opacity 3s; z-index: 0; background: radial-gradient(circle at 50% 120%, #1a1a3a 0%, #010103 80%); overflow: hidden;}
         
         /* Deep Space Nebulas */
@@ -816,43 +777,14 @@
         .shooting-star { position: absolute; width: 100px; height: 2px; background: linear-gradient(90deg, rgba(255,255,255,1), transparent); opacity: 0; z-index: 2;}
         @keyframes shoot { 0% { transform: translateX(0) translateY(0) rotate(-35deg); opacity: 1; } 10% { transform: translateX(-300px) translateY(200px) rotate(-35deg); opacity: 0; } 100% { opacity: 0; } }
 
-        /* Planets & Space Objects */
-        .space-object-wrapper { position: absolute; z-index: 3; transition: transform 2s ease-in-out; }
-        .space-object { position: relative; width: 100%; height: 100%; transition: transform 2s ease; }
-        .planet { border-radius: 50%; }
-        
-        .moon-wrap { top: 15%; right: 20%; width: 90px; height: 90px; animation: orbit 60s linear infinite; }
-        .moon { background: radial-gradient(circle at 30% 30%, #e0e0e0 0%, #9e9e9e 100%); box-shadow: 0 0 30px rgba(255,255,255,0.2); }
-        
-        .saturn-wrap { top: 70%; left: 15%; width: 50px; height: 50px; animation: float-slow 10s ease-in-out infinite; }
-        .saturn { background: #d4a373; transform: rotate(-20deg); box-shadow: inset -10px -10px 15px rgba(0,0,0,0.5); }
+        /* Planets */
+        .planet { position: absolute; border-radius: 50%; z-index: 3;}
+        .moon { width: 90px; height: 90px; background: radial-gradient(circle at 30% 30%, #e0e0e0 0%, #9e9e9e 100%); top: 15%; right: 20%; box-shadow: 0 0 30px rgba(255,255,255,0.2); animation: orbit 60s linear infinite; }
+        .saturn { width: 50px; height: 50px; background: #d4a373; top: 70%; left: 15%; transform: rotate(-20deg); animation: float-slow 10s ease-in-out infinite; box-shadow: inset -10px -10px 15px rgba(0,0,0,0.5);}
         .saturn::before { content:''; position:absolute; top:50%; left:50%; width: 100px; height: 15px; border: 4px solid rgba(220,200,180,0.8); border-radius: 50%; transform: translate(-50%, -50%); }
-        
-        .mars-wrap { top: 30%; left: 25%; width: 30px; height: 30px; animation: orbit-rev 40s linear infinite; }
-        .mars { background: radial-gradient(circle at 30% 30%, #e07a5f, #813422); box-shadow: inset -5px -5px 10px rgba(0,0,0,0.6); }
-        
-        .jupiter-wrap { top: 20%; left: 10%; width: 75px; height: 75px; animation: orbit-large 80s linear infinite; }
-        .jupiter { background: linear-gradient(180deg, #c88b3a, #e0b476, #a66a2c, #e0b476, #c88b3a); box-shadow: inset -10px -10px 20px rgba(0,0,0,0.7); }
-        
-        .neptune-wrap { bottom: 25%; right: 15%; width: 45px; height: 45px; animation: orbit-float 50s linear infinite; }
-        .neptune { background: radial-gradient(circle at 30% 30%, #3a7bd5, #001f54); box-shadow: inset -8px -8px 15px rgba(0,0,0,0.6); }
-
-        /* Floating Space Junk */
-        .ufo-wrap { top: 60%; right: 30%; font-size: 2rem; animation: orbit 45s linear infinite reverse; }
-        .sat-wrap { top: 10%; left: 40%; font-size: 1.5rem; animation: float-slow 15s ease-in-out infinite reverse; }
-        .alien-wrap { bottom: 15%; left: 35%; font-size: 1.5rem; animation: orbit-rev 35s linear infinite; }
-
-        /* Drowning Animation for characters inside wraps */
-        @keyframes drown-tumble {
-            0% { transform: translateY(0) rotate(0deg); }
-            25% { transform: translateY(-30px) rotate(15deg); }
-            50% { transform: translateY(10px) rotate(-20deg); }
-            75% { transform: translateY(-20px) rotate(5deg); }
-            100% { transform: translateY(0) rotate(0deg); }
-        }
-        .drowning .space-object, svg.drowning {
-            animation: drown-tumble 3s infinite ease-in-out !important;
-        }
+        .mars { width: 30px; height: 30px; background: radial-gradient(circle at 30% 30%, #e07a5f, #813422); top: 30%; left: 25%; animation: orbit-rev 40s linear infinite; box-shadow: inset -5px -5px 10px rgba(0,0,0,0.6);}
+        .jupiter { width: 75px; height: 75px; background: linear-gradient(180deg, #c88b3a, #e0b476, #a66a2c, #e0b476, #c88b3a); top: 20%; left: 10%; box-shadow: inset -10px -10px 20px rgba(0,0,0,0.7); animation: orbit-large 80s linear infinite; }
+        .neptune { width: 45px; height: 45px; background: radial-gradient(circle at 30% 30%, #3a7bd5, #001f54); bottom: 25%; right: 15%; box-shadow: inset -8px -8px 15px rgba(0,0,0,0.6); animation: orbit-float 50s linear infinite; }
         
         @keyframes float-slow { 0%, 100% { transform: translateY(0) rotate(-20deg); } 50% { transform: translateY(-20px) rotate(-15deg); } }
         @keyframes orbit { 0% { transform: translateX(0) translateY(0); } 50% { transform: translateX(-30px) translateY(15px); } 100% { transform: translateX(0) translateY(0); } }
@@ -937,9 +869,6 @@
 
     <svg width="0" height="0" style="display:none;">
         <defs>
-            <!-- Realistic Water Waves -->
-            <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
-            
             <g id="svg-piggy">
                 <path d="M 22 25 Q 16 35 22 45 Q 26 50 20 55" fill="none" stroke="#333" stroke-width="2.5" stroke-linecap="round" id="p-sweat" />
                 <path d="M 30 35 Q 25 55 30 75 Q 50 90 70 75 Q 75 55 70 35 Q 50 20 30 35 Z" fill="#ffc8d2" />
@@ -955,7 +884,6 @@
                 <path d="M 40 85 L 40 95" fill="none" stroke="#ffc8d2" stroke-width="4" stroke-linecap="round" class="piggy-legs" style="animation-delay: 0s;"/>
                 <path d="M 60 85 L 60 95" fill="none" stroke="#ffc8d2" stroke-width="4" stroke-linecap="round" class="piggy-legs" style="animation-delay: 0.1s;"/>
             </g>
-            
             <g id="svg-mendhak">
                 <path d="M 25 45 Q 15 65 25 80 Q 50 95 75 80 Q 85 65 75 45 Q 95 30 80 20 Q 70 15 65 30 Q 50 25 35 30 Q 30 15 20 20 Q 5 30 25 45 Z" fill="#fff" stroke="#68b94f" stroke-width="3.5" stroke-linejoin="round" />
                 <ellipse cx="45" cy="55" rx="8" ry="16" fill="none" stroke="#68b94f" stroke-width="3" transform="rotate(-15 45 55)" />
@@ -963,11 +891,6 @@
                 <line x1="41" y1="56" x2="49" y2="56" stroke="#68b94f" stroke-width="3" stroke-linecap="round" class="mendhak-eye" id="m-pupil-l" />
                 <line x1="64" y1="56" x2="72" y2="56" stroke="#68b94f" stroke-width="3" stroke-linecap="round" class="mendhak-eye" id="m-pupil-r" />
                 <path d="M 48 76 L 73 72" fill="none" stroke="#68b94f" stroke-width="3" stroke-linecap="round" id="m-jaw" class="mendhak-jaw" />
-                <!-- Hidden Waterfall Tears falling directly from eyes down to bottom of screen -->
-                <g class="mendhak-crying-tears" style="opacity: 0;">
-                    <line x1="45" y1="58" x2="45" y2="800" stroke="#00e5ff" stroke-width="4" stroke-dasharray="10 15" stroke-linecap="round" class="tear-line" />
-                    <line x1="68" y1="58" x2="68" y2="800" stroke="#00e5ff" stroke-width="4" stroke-dasharray="10 15" stroke-linecap="round" class="tear-line" style="animation-delay: 0.2s;" />
-                </g>
             </g>
             
             <g id="svg-mendhak-flower">
@@ -1009,52 +932,49 @@
                 <path d="M 0 -2 C 1 -5 1 -8 0 -10 C -1 -8 -1 -5 0 -2 Z" fill="#ff9800" class="flame" />
             </g>
 
-            <!-- Lantern Glow Gradient -->
-            <radialGradient id="glow-grad" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stop-color="#ffb300" stop-opacity="1" />
-                <stop offset="50%" stop-color="#ff8c00" stop-opacity="0.6" />
-                <stop offset="100%" stop-color="#ff4500" stop-opacity="0" />
-            </radialGradient>
-            
-            <!-- Origami Bird (White/Lined) -->
-            <g id="svg-origami-bird">
-                <polygon points="50,50 20,20 10,40" fill="#e0e0e0" stroke="#ccc" stroke-width="0.5"/>
-                <polygon points="50,50 80,20 90,40" fill="#d0d0d0" stroke="#ccc" stroke-width="0.5"/>
-                <polygon points="50,50 90,40 50,70" fill="#fff" stroke="#ccc" stroke-width="0.5"/>
-                <polygon points="50,50 10,40 30,80" fill="#f0f0f0" stroke="#ccc" stroke-width="0.5"/>
-                <polygon points="90,40 100,10 85,25" fill="#fafafa" stroke="#ccc" stroke-width="0.5"/>
-            </g>
-
-            <!-- Origami Bird (Red/White) -->
-            <g id="svg-origami-bird-red">
-                <polygon points="50,50 20,20 10,40" fill="#ff4d4d" stroke="#cc0000" stroke-width="0.5"/>
-                <polygon points="50,50 80,20 90,40" fill="#ff3333" stroke="#cc0000" stroke-width="0.5"/>
-                <polygon points="50,50 90,40 50,70" fill="#fff" stroke="#ccc" stroke-width="0.5"/>
-                <polygon points="50,50 10,40 30,80" fill="#ff6666" stroke="#cc0000" stroke-width="0.5"/>
-                <polygon points="90,40 100,10 85,25" fill="#fff" stroke="#ccc" stroke-width="0.5"/>
+            <g id="svg-bulb">
+                <!-- Base Screw -->
+                <rect x="35" y="0" width="30" height="20" fill="#888"/>
+                <path d="M 33 4 Q 50 8 67 4" fill="none" stroke="#555" stroke-width="2"/>
+                <path d="M 33 10 Q 50 14 67 10" fill="none" stroke="#555" stroke-width="2"/>
+                <path d="M 33 16 Q 50 20 67 16" fill="none" stroke="#555" stroke-width="2"/>
+                <path d="M 40 20 L 60 20 L 55 25 L 45 25 Z" fill="#444"/>
+                
+                <!-- Bulb Glass -->
+                <path d="M 45 25 C 45 25 15 50 15 75 C 15 95 85 95 85 75 C 85 50 55 25 55 25 Z" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.5)" stroke-width="2"/>
+                
+                <!-- Inner Stem and Wires -->
+                <path d="M 48 25 L 48 55 M 52 25 L 52 55" stroke="#777" stroke-width="2"/>
+                
+                <!-- Filament -->
+                <path id="filament" d="M 48 55 L 40 70 L 50 80 L 60 70 L 52 55" fill="none" stroke="#444" stroke-width="2" stroke-linejoin="round"/>
+                
+                <!-- Reflection highlight -->
+                <path d="M 22 70 C 20 55 30 40 40 32" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="4" stroke-linecap="round"/>
             </g>
             
-            <!-- Origami Butterfly -->
-            <g id="svg-origami-butterfly">
-                <polygon points="50,50 10,10 40,20" fill="#fff" stroke="#ddd" stroke-width="0.5"/>
-                <polygon points="50,50 40,20 45,45" fill="#f9f9f9" stroke="#ddd" stroke-width="0.5"/>
-                <polygon points="50,50 15,80 40,70" fill="#f0f0f0" stroke="#ddd" stroke-width="0.5"/>
-                <polygon points="50,50 40,70 45,55" fill="#e6e6e6" stroke="#ddd" stroke-width="0.5"/>
-                <polygon points="50,50 90,10 60,20" fill="#f4f4f4" stroke="#ddd" stroke-width="0.5"/>
-                <polygon points="50,50 60,20 55,45" fill="#fff" stroke="#ddd" stroke-width="0.5"/>
-                <polygon points="50,50 85,80 60,70" fill="#eaeaea" stroke="#ddd" stroke-width="0.5"/>
-                <polygon points="50,50 60,70 55,55" fill="#dfdfdf" stroke="#ddd" stroke-width="0.5"/>
+            <!-- Origami Lily (Pink) -->
+            <g id="svg-origami-lily-pink">
+                <path d="M 25 50 L 25 90" stroke="#7ab55c" stroke-width="3"/>
+                <path d="M 25 75 Q 10 60 5 45 Q 15 65 25 75" fill="#7ab55c"/>
+                <path d="M 25 65 Q 40 50 45 35 Q 35 55 25 65" fill="#5a9040"/>
+                <path d="M 25 50 L 15 25 L 25 5 L 35 25 Z" fill="#ff7da6"/>
+                <path d="M 25 50 L 25 5 L 35 25 Z" fill="#e65a88"/>
+                <path d="M 25 40 Q 10 30 0 45 Q 15 50 25 50" fill="#ff99bb"/>
+                <path d="M 25 40 Q 40 30 50 45 Q 35 50 25 50" fill="#d94876"/>
             </g>
-
-            <!-- Origami Tulip -->
-            <g id="svg-origami-tulip">
-                <path d="M 50 60 L 50 95" stroke="#7ab55c" stroke-width="3"/>
-                <path d="M 50 80 Q 30 70 20 50 Q 35 75 50 85" fill="#7ab55c"/>
-                <polygon points="50,60 20,30 35,60" fill="#fff" stroke="#ccc" stroke-width="0.5"/>
-                <polygon points="50,60 80,30 65,60" fill="#f0f0f0" stroke="#ccc" stroke-width="0.5"/>
-                <polygon points="35,60 20,30 40,20 50,40" fill="#fff" stroke="#ccc" stroke-width="0.5"/>
-                <polygon points="65,60 80,30 60,20 50,40" fill="#e0e0e0" stroke="#ccc" stroke-width="0.5"/>
-                <polygon points="50,60 40,20 50,10 60,20" fill="#fafafa" stroke="#ccc" stroke-width="0.5"/>
+            
+            <!-- Origami Lily (Lined Notebook Paper) -->
+            <g id="svg-origami-lily-lined">
+                <path d="M 25 50 L 25 90" stroke="#7ab55c" stroke-width="3"/>
+                <path d="M 25 75 Q 10 60 5 45 Q 15 65 25 75" fill="#7ab55c"/>
+                <path d="M 25 65 Q 40 50 45 35 Q 35 55 25 65" fill="#5a9040"/>
+                <path d="M 25 50 L 15 25 L 25 5 L 35 25 Z" fill="#fff" stroke="#ccc" stroke-width="0.5"/>
+                <path d="M 25 50 L 25 5 L 35 25 Z" fill="#f0f0f0" stroke="#ccc" stroke-width="0.5"/>
+                <path d="M 25 40 Q 10 30 0 45 Q 15 50 25 50" fill="#fff" stroke="#ccc" stroke-width="0.5"/>
+                <path d="M 25 40 Q 40 30 50 45 Q 35 50 25 50" fill="#e0e0e0" stroke="#ccc" stroke-width="0.5"/>
+                <!-- Notebook Lines -->
+                <path d="M 12 15 L 38 15 M 8 25 L 42 25 M 5 35 L 45 35 M 10 45 L 40 45" stroke="#90caf9" stroke-width="0.5" fill="none"/>
             </g>
 
             <!-- Headphones -->
@@ -1088,41 +1008,16 @@
             
             <div id="opening-flash"></div>
             
-            <!-- VINTAGE LANTERN SCENE -->
+            <!-- LIGHTBULB SCENE -->
             <div id="lightbulb-scene">
                 <div id="tease-text">awlele mera bunty,<br>at least switch the lights on.</div>
-                
-                <svg id="vintage-lantern" viewBox="0 0 100 300" onclick="turnOnLight()">
-                    <!-- Base connected to ground -->
-                    <rect x="35" y="290" width="30" height="10" fill="#111" />
-                    <rect x="40" y="280" width="20" height="10" fill="#222" />
-                    <rect x="43" y="100" width="14" height="180" fill="linear-gradient(to right, #111, #333, #111)" />
-                    <rect x="38" y="100" width="24" height="10" fill="#222" rx="2" />
-                    
-                    <!-- Light Source -->
-                    <circle id="lantern-glow" cx="50" cy="70" r="40" fill="url(#glow-grad)" opacity="0" style="pointer-events:none; mix-blend-mode: screen;" />
-                    
-                    <!-- Glass Panes -->
-                    <polygon id="lantern-glass" points="30,45 70,45 60,100 40,100" fill="rgba(255,255,255,0.05)" stroke="#111" stroke-width="4" stroke-linejoin="round"/>
-                    
-                    <!-- Bulb -->
-                    <circle id="lantern-bulb" cx="50" cy="70" r="12" fill="#222" />
-                    
-                    <!-- Frame Lines overlaying glass -->
-                    <path d="M 50 45 L 50 100 M 40 100 L 60 100" stroke="#111" stroke-width="4"/>
-                    
-                    <!-- Roof -->
-                    <polygon points="20,45 80,45 70,38 30,38" fill="#222" />
-                    <polygon points="30,38 70,38 58,15 42,15" fill="#181818" stroke="#111" stroke-width="2"/>
-                    <polygon points="42,15 58,15 50,5" fill="#222" />
-                    <circle cx="50" cy="2" r="3" fill="#111" />
-                </svg>
+                <svg id="the-bulb" viewBox="0 0 100 100" onclick="turnOnLight()"><use href="#svg-bulb"/></svg>
             </div>
             
             <!-- CAKE COUNTDOWN -->
             <div id="cake-scene">
                 
-                <!-- NEW BACKGROUND DECORATIONS -->
+                <!-- BACKGROUND DECORATIONS -->
                 <svg class="bunting" viewBox="0 0 100 20" preserveAspectRatio="none">
                     <path d="M 0 0 Q 50 20 100 0" fill="none" stroke="#fff" stroke-width="0.5"/>
                     <polygon points="10,4 15,12 20,5" fill="#ff2a2a"/>
@@ -1409,28 +1304,11 @@
                     <!-- REAL SUNFLOWER -->
                     <div class="real-sunflower desk-item">🌻</div>
 
-                    <!-- NEW ORIGAMI PAPER ITEMS -->
-                    <svg viewBox="0 0 100 100" class="desk-item" style="width:35px; left: 16%; bottom: 35px; transform: rotate(-15deg); z-index: 16; pointer-events: none;">
-                        <use href="#svg-origami-bird"/>
-                        <!-- Hand-drawn Lined Pattern Overlay -->
-                        <path d="M 15 35 L 35 35 M 10 50 L 45 50 M 15 65 L 40 65" stroke="#90caf9" stroke-width="0.5" fill="none" opacity="0.8"/>
-                    </svg>
-                    
-                    <svg viewBox="0 0 100 100" class="desk-item" style="width:30px; left: 32%; bottom: 25px; transform: rotate(20deg) scaleX(-1); z-index: 16; pointer-events: none;">
-                        <use href="#svg-origami-bird-red"/>
-                    </svg>
-                    
-                    <svg viewBox="0 0 100 100" class="desk-item" style="width:25px; right: 35%; bottom: 35px; transform: rotate(15deg); z-index: 16; pointer-events: none;">
-                        <use href="#svg-origami-butterfly"/>
-                    </svg>
-                    
-                    <svg viewBox="0 0 100 100" class="desk-item" style="width:20px; right: 18%; bottom: 40px; transform: rotate(-25deg); z-index: 16; pointer-events: none;">
-                        <use href="#svg-origami-butterfly"/>
-                    </svg>
-                    
-                    <svg viewBox="0 0 100 100" class="desk-item" style="width:30px; left: 45%; bottom: 15px; transform: rotate(45deg); z-index: 16; pointer-events: none;">
-                        <use href="#svg-origami-tulip"/>
-                    </svg>
+                    <!-- ORIGAMI LILIES -->
+                    <svg viewBox="0 0 50 100" class="origami-lily lily-1 desk-item"><use href="#svg-origami-lily-pink"/></svg>
+                    <svg viewBox="0 0 50 100" class="origami-lily lily-2 desk-item"><use href="#svg-origami-lily-lined"/></svg>
+                    <svg viewBox="0 0 50 100" class="origami-lily lily-3 desk-item"><use href="#svg-origami-lily-lined"/></svg>
+                    <svg viewBox="0 0 50 100" class="origami-lily lily-4 desk-item"><use href="#svg-origami-lily-lined"/></svg>
 
                     <!-- TOFFEE WRAPPERS & TIC-TAC -->
                     <div class="candy kissme desk-item">KissMe</div>
@@ -1512,21 +1390,8 @@
             </div>
         </section>
 
-        <!-- 8. GOODBYE (ARCADE MINI GAME, CALAMITY & FINAL SCENE) -->
+        <!-- 8. GOODBYE (ARCADE MINI GAME & FINAL SCENE) -->
         <section id="s8-goodbye" class="story-section">
-            
-            <!-- WATER FLOOD OVERLAY -->
-            <div id="water-flood">
-                <svg class="waves" xmlns="http://www.w3.org/2000/svg" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
-                    <g class="parallax">
-                        <use href="#gentle-wave" x="48" y="0" fill="rgba(0, 150, 255, 0.7)" />
-                        <use href="#gentle-wave" x="48" y="3" fill="rgba(0, 200, 255, 0.5)" />
-                        <use href="#gentle-wave" x="48" y="5" fill="rgba(0, 100, 255, 0.3)" />
-                        <use href="#gentle-wave" x="48" y="7" fill="rgba(0, 50, 200, 0.8)" />
-                    </g>
-                </svg>
-                <div class="water-body"></div>
-            </div>
             
             <!-- ARCADE OVERLAYS -->
             <div id="arcade-scanlines"></div>
@@ -1556,58 +1421,44 @@
                 <div class="stars-2"></div>
                 <div class="stars-3"></div>
                 
-                <!-- Space Objects Wrapper (Used for drowning tumble effect) -->
-                <div class="space-object-wrapper ufo-wrap" id="ufo-wrap">
-                    <div class="space-object" id="ufo">🛸</div>
-                </div>
-                <div class="space-object-wrapper sat-wrap" id="sat-wrap">
-                    <div class="space-object" id="sat">🛰</div>
-                </div>
-                <div class="space-object-wrapper alien-wrap" id="alien-wrap">
-                    <div class="space-object" id="alien">👽</div>
-                </div>
+                <div class="shooting-star" style="top: 10%; right: 20%; animation: shoot 6s infinite linear 1s;"></div>
+                <div class="shooting-star" style="top: 40%; right: 5%; animation: shoot 8s infinite linear 4s;"></div>
                 
-                <div class="space-object-wrapper jupiter-wrap" id="jupiter-wrap"><div class="planet jupiter space-object"></div></div>
-                <div class="space-object-wrapper neptune-wrap" id="neptune-wrap"><div class="planet neptune space-object"></div></div>
-                <div class="space-object-wrapper saturn-wrap" id="saturn-wrap"><div class="planet saturn space-object"></div></div>
-                <div class="space-object-wrapper mars-wrap" id="mars-wrap"><div class="planet mars space-object"></div></div>
-                <div class="space-object-wrapper moon-wrap" id="moon-wrap"><div class="planet moon space-object"></div></div>
+                <div class="planet jupiter"></div>
+                <div class="planet neptune"></div>
+                <div class="planet saturn"></div>
+                <div class="planet mars"></div>
+                <div class="planet moon"></div>
             </div>
             
             <div id="goodbye-text-1" class="climax-text" style="top:30%;">I LOVE YOU TO THE MOON AND BACK</div>
             
             <!-- MINI GAME STAGE -->
-            <div id="goodbye-stage" style="position:relative; display:flex; align-items:flex-end; justify-content:center; margin-top:10vh; z-index:5; width: 100%;">
-                
-                <!-- KISS HEART -->
-                <div id="kiss-heart" style="position:absolute; top: -15vh; left: 50%; font-size: 3rem; opacity:0; transform: translate(-50%, -50%) scale(0.5); transition: 0.5s ease; filter: drop-shadow(0 0 10px #ff2a2a); pointer-events: none; z-index: 30;">❤️</div>
-                
-                <!-- Safe Wrapper to protect SVG from being clipped by Transforms -->
-                <div id="piggy-wrap" style="position:absolute; bottom: 5vh; left:50%; margin-left:-60px; z-index:20; opacity:0; transform:translateX(-50vw);">
-                    <div id="goodbye-piggy-bubble" style="position:absolute; top:-40px; left:-20px; font-family:var(--font-typewriter); color:#fff; font-weight:bold; opacity:0; transition:0.3s; white-space:nowrap; background:rgba(0,0,0,0.8); padding:5px 10px; border-radius:10px; border:1px solid #ffc8d2; z-index: 12;">I Lovee Youuu More</div>
-                    <svg id="goodbye-piggy" viewBox="0 0 100 100" style="width:120px; overflow:visible; transition: transform 0.1s ease-out;"><use href="#svg-piggy"/></svg>
+            <div id="goodbye-stage" style="position:relative; display:flex; align-items:flex-end; justify-content:center; gap:40px; margin-top:10vh; z-index:5; width: 100%;">
+                <div style="position:relative;">
+                    <div id="goodbye-piggy-bubble" style="position:absolute; top:-40px; left:-20px; font-family:var(--font-typewriter); color:#fff; font-weight:bold; opacity:0; transition:0.3s; white-space:nowrap; background:rgba(0,0,0,0.8); padding:5px 10px; border-radius:10px; border:1px solid #ffc8d2;">I Lovee Youuu More</div>
+                    <svg id="goodbye-piggy" viewBox="0 0 100 100" style="width:120px; opacity:0; transform:translateX(-50vw); transition: opacity 1s, transform 1s, scale 0.3s;"><use href="#svg-piggy"/></svg>
                 </div>
                 
-                <!-- Safe Wrapper to protect SVG from being clipped by Transforms -->
-                <div id="mendhak-wrap" style="position:absolute; bottom: 5vh; left:50%; margin-left:-85px; z-index:20; opacity:0; transform:translateY(5vh);">
-                    <div id="tap-hint" style="position:absolute; top:-80px; right:30px; font-family:var(--font-typewriter); color:#ffdf73; font-weight:bold; opacity:0; transition:0.3s; white-space:nowrap; animation: hint-pulse 1s infinite alternate; pointer-events:none; z-index: 12;">(Tap Mendhak!)</div>
-                    <div id="goodbye-mendhak-bubble" style="position:absolute; top:-40px; right:-20px; font-family:var(--font-typewriter); color:#68b94f; font-weight:bold; opacity:0; transition:0.3s; white-space:nowrap; background:rgba(0,0,0,0.8); padding:5px 10px; border-radius:10px; border:1px solid #68b94f; z-index: 12;">NO , I DO!</div>
+                <div style="position:relative;">
+                    <div id="tap-hint" style="position:absolute; top:-80px; right:30px; font-family:var(--font-typewriter); color:#ffdf73; font-weight:bold; opacity:0; transition:0.3s; white-space:nowrap; animation: hint-pulse 1s infinite alternate; pointer-events:none;">(Tap Mendhak!)</div>
+                    <div id="goodbye-mendhak-bubble" style="position:absolute; top:-40px; right:-20px; font-family:var(--font-typewriter); color:#68b94f; font-weight:bold; opacity:0; transition:0.3s; white-space:nowrap; background:rgba(0,0,0,0.8); padding:5px 10px; border-radius:10px; border:1px solid #68b94f;">NO , I DO!</div>
                     
-                    <svg id="goodbye-mendhak" viewBox="0 0 150 150" style="width:170px; overflow:visible; transition: transform 0.1s ease-out;"><use href="#svg-mendhak-flower"/></svg>
+                    <svg id="goodbye-mendhak" viewBox="0 0 150 100" style="width:170px; opacity:0; transform:translateY(20px); position:relative; z-index:5;"><use href="#svg-mendhak-flower"/></svg>
                 </div>
             </div>
 
-            <!-- THE TWINKLE STAR -->
+            <!-- THE TWINKLE STAR (Absolutely positioned near where Mendhak vanishes) -->
             <div id="vanish-twinkle" style="position:absolute; top: 15%; right: 15%; opacity:0; pointer-events:none; z-index: 20;">
                 <div class="twinkle-star"></div>
             </div>
             
             <div id="goodbye-text-3" class="climax-text" style="top:40%; color:#ffc8d2; font-size:clamp(1.5rem, 4vw, 2.5rem);">PIGGY LOVES MENDHAK MORE !</div>
             
-            <!-- FINAL IMAGE -->
-            <img id="final-image" src="IMG_0125.png" style="position:absolute; width:clamp(150px, 40vw, 250px); bottom: 35%; left: 50%; transform: translate(-50%, 0) scale(0.8); opacity:0; transition: opacity 2s ease, transform 2s ease; z-index: 30; pointer-events: none; object-fit: contain; max-height: 40vh;">
+            <!-- FINAL IMAGE (Strictly Centered Float) -->
+            <img id="final-image" src="IMG_0125.png" style="position:absolute; width:clamp(150px, 40vw, 250px); bottom: 35%; left: 50%; transform: translate(-50%, 0) scale(0.8); opacity:0; transition: opacity 2s ease, transform 2s ease; z-index: 6; pointer-events: none; object-fit: contain; max-height: 40vh;">
 
-            <div style="position:absolute; bottom:20%; display:flex; flex-direction:column; align-items:center; z-index:30;">
+            <div style="position:absolute; bottom:20%; display:flex; flex-direction:column; align-items:center; z-index:5;">
                 <div id="goodbye-text-2" class="climax-text floral-text" style="position:relative; top:0; font-size: clamp(2.5rem, 8vw, 5rem); line-height: 1.1;">HAPPY BIRTHDAY<br>LOVE</div>
                 <div id="goodbye-text-sub" style="font-family:var(--font-typewriter); color:#aaa; font-size:0.9rem; opacity:0; transition:opacity 2s ease; margin-top:20px;">(I STILL LOVE YOU MORE ;)</div>
             </div>
@@ -1806,12 +1657,12 @@
         }
 
         async function turnOnLight() {
-            const lantern = document.getElementById('vintage-lantern');
-            lantern.classList.add('on'); await wait(100);
-            lantern.classList.remove('on'); await wait(150);
-            lantern.classList.add('on'); await wait(50);
-            lantern.classList.remove('on'); await wait(200);
-            lantern.classList.add('on'); 
+            const bulb = document.getElementById('the-bulb');
+            bulb.classList.add('on'); await wait(100);
+            bulb.classList.remove('on'); await wait(150);
+            bulb.classList.add('on'); await wait(50);
+            bulb.classList.remove('on'); await wait(200);
+            bulb.classList.add('on'); 
             
             document.getElementById('tease-text').style.opacity = '0';
             document.getElementById('s1-opening').style.background = 'radial-gradient(circle at center, #2a2a2a 0%, #000 70%)';
@@ -1826,9 +1677,9 @@
             
             cakeScene.style.opacity = '1';
             cakeScene.style.pointerEvents = 'all';
-            countdownText.style.opacity = '0'; 
+            countdownText.style.opacity = '0'; // Hide initially for resting phase
             
-            // REST PHASE
+            // REST PHASE - Let her admire the cake and decorations
             await wait(3000);
             
             // 5 SECOND COUNTDOWN
@@ -1849,19 +1700,21 @@
             document.querySelectorAll('.flame').forEach(f => f.classList.add('blown-out'));
             
             await wait(1000);
-            countdownText.innerText = "Listen closely...";
+            countdownText.innerText = "Listen closely..."; // Small hint that audio is playing
             
             // PLAY HAPPY BIRTHDAY AUDIO
             const hbdAudio = document.getElementById('hbd-audio');
             try {
                 await hbdAudio.play();
+                // Wait for the specific audio track to finish before moving on
                 await new Promise((resolve) => {
                     hbdAudio.onended = resolve;
+                    // Fallback just in case audio gets blocked or is missing
                     setTimeout(resolve, 20000); 
                 });
             } catch(err) {
                 console.log("Audio playback failed or file missing, skipping ahead.", err);
-                await wait(3000); 
+                await wait(3000); // Wait a few seconds if audio fails so it's not jarring
             }
             
             // Transition to Title
@@ -2094,13 +1947,16 @@
         
         function openBookMessage() {
             document.getElementById('book-modal').classList.add('active');
+            // Give time for modal to fade in before triggering page open
             setTimeout(() => {
                 document.getElementById('the-3d-book').classList.add('open');
             }, 300);
         }
 
         function closeBook() {
+            // Trigger close animation first
             document.getElementById('the-3d-book').classList.remove('open');
+            // Then hide modal
             setTimeout(() => {
                 document.getElementById('book-modal').classList.remove('active');
             }, 500); 
@@ -2185,16 +2041,6 @@
             
             const mendhak = document.getElementById('goodbye-mendhak');
             const piggy = document.getElementById('goodbye-piggy');
-            
-            const piggyWrap = document.getElementById('piggy-wrap');
-            const mendhakWrap = document.getElementById('mendhak-wrap');
-            
-            // Set base positions using translate instead of margins for better responsiveness
-            piggyWrap.style.left = '50%';
-            mendhakWrap.style.left = '50%';
-            piggyWrap.style.transform = 'translate(-100vw, 0)';
-            mendhakWrap.style.transform = 'translate(100vw, 0)';
-            
             const text1 = document.getElementById('goodbye-text-1');
             const text2 = document.getElementById('goodbye-text-2');
             const text3 = document.getElementById('goodbye-text-3');
@@ -2215,12 +2061,9 @@
             bg.style.opacity = '1';
             
             await wait(1000);
-            // Mendhak enters
-            mendhakWrap.style.transition = 'all 3s ease';
-            mendhakWrap.style.opacity = '1';
-            mendhakWrap.style.transform = 'translate(100px, 0)';
-            
-            // Inner SVG applies the steady tumble animation
+            mendhak.style.transition = 'opacity 3s ease, transform 3s ease';
+            mendhak.style.opacity = '1';
+            mendhak.style.transform = 'translateY(0)';
             mendhak.style.animation = 'spacewalk 6s infinite ease-in-out';
             
             await wait(2000);
@@ -2231,9 +2074,8 @@
             
             // MINI-GAME CUTSCENE BEGINS
             await wait(1500);
-            piggyWrap.style.transition = 'all 1s ease';
-            piggyWrap.style.opacity = '1';
-            piggyWrap.style.transform = 'translate(-100px, 0)';
+            piggy.style.opacity = '1';
+            piggy.style.transform = 'translateX(0)';
             
             await wait(1000);
             pBubble.style.opacity = '1';
@@ -2254,6 +2096,8 @@
             
             document.getElementById('arcade-scanlines').style.opacity = '1';
             arcadeUI.style.opacity = '1';
+            piggy.classList.add('arcade-mode-active');
+            mendhak.classList.add('arcade-mode-active');
             
             flash.style.opacity = '0';
             
@@ -2277,9 +2121,9 @@
             
             piggy.style.transition = 'transform 0.1s ease-out';
             mendhak.style.transition = 'transform 0.1s ease-out';
-            mendhakWrap.style.cursor = 'pointer';
+            mendhak.style.cursor = 'pointer';
             
-            mendhakWrap.onclick = async () => {
+            mendhak.onclick = async () => {
                 if (taps >= maxTaps) return;
                 
                 if (taps === 0) mendhak.style.animation = 'none'; 
@@ -2296,7 +2140,7 @@
                 if(hpPercent <= 30) hpFill.style.background = '#ff2a2a';
                 else if(hpPercent <= 60) hpFill.style.background = '#ffeb3b';
                 
-                // Hit Animation applied to the SVG itself, keeping wrapper safely positioned
+                // Hit Animation
                 piggy.style.transform = 'translateX(60px) rotate(20deg)';
                 mendhak.style.transform = `translateX(30px) rotate(${currentRotation}deg) scale(0.9)`;
                 
@@ -2309,8 +2153,8 @@
                 
                 // Mendhak Defeated
                 if (taps >= maxTaps) {
-                    mendhakWrap.onclick = null;
-                    mendhakWrap.style.cursor = 'default';
+                    mendhak.onclick = null;
+                    mendhak.style.cursor = 'default';
                     
                     await wait(200);
                     
@@ -2326,6 +2170,8 @@
                     koScreen.style.opacity = '0';
                     document.getElementById('arcade-scanlines').style.opacity = '0';
                     arcadeUI.style.opacity = '0';
+                    piggy.classList.remove('arcade-mode-active');
+                    mendhak.classList.remove('arcade-mode-active');
                     
                     flash.style.opacity = '0';
                     flash.style.zIndex = '10';
@@ -2333,9 +2179,9 @@
                     await wait(500);
                     
                     // Fly to the moon!
-                    mendhakWrap.style.transition = 'all 2s cubic-bezier(0.5, 0, 1, 1)';
-                    mendhakWrap.style.transform = `translate(30vw, -50vh) rotate(${currentRotation + 1440}deg) scale(0)`;
-                    mendhakWrap.style.opacity = '0';
+                    mendhak.style.transition = 'all 2s cubic-bezier(0.5, 0, 1, 1)';
+                    mendhak.style.transform = `translate(30vw, -50vh) rotate(${currentRotation + 1440}deg) scale(0)`;
+                    mendhak.style.opacity = '0';
                     
                     // Twinkle exactly as he vanishes
                     setTimeout(() => {
@@ -2345,145 +2191,27 @@
                         setTimeout(() => { twinkle.style.opacity = '0'; }, 800);
                     }, 1800);
                     
+                    piggy.style.transition = 'transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                    piggy.style.transform = 'scale(1.2)';
+                    
+                    await wait(1500);
                     text3.style.opacity = '1';
                     
                     await wait(3500);
                     text3.style.opacity = '0';
                     
                     // Piggy walks off stage
-                    piggyWrap.style.transition = 'transform 2s ease, opacity 2s ease';
-                    piggyWrap.style.transform = 'translate(-100vw, 0)';
-                    piggyWrap.style.opacity = '0';
+                    piggy.style.transition = 'transform 2s ease, opacity 2s ease';
+                    piggy.style.transform = 'translateX(-50vw)';
+                    piggy.style.opacity = '0';
                     
                     await wait(2000);
                     
-                    // CALAMITY SHAKE
-                    document.getElementById('s8-goodbye').classList.add('calamity');
-                    await wait(1000);
-                    document.getElementById('s8-goodbye').classList.remove('calamity');
-                    
-                    // PIGGY RUSHES BACK
-                    piggyWrap.style.transition = 'transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.5s';
-                    piggyWrap.style.transform = 'translate(-100px, 0)';
-                    piggy.style.transform = 'scale(1.2)';
-                    piggyWrap.style.opacity = '1';
-                    
-                    await wait(500);
-                    pBubble.innerText = "OHHH SHITT MENDHAK IS CRYING !";
-                    pBubble.style.opacity = '1';
-                    
-                    await wait(1500);
-                    pBubble.style.opacity = '0';
-                    
-                    // MENDHAK RETURNS CRYING
-                    mendhak.style.transform = 'rotate(0deg) scale(1)';
-                    mendhakWrap.style.transition = 'all 2s ease-out';
-                    mendhakWrap.style.transform = 'translate(100px, 0)';
-                    mendhakWrap.style.opacity = '1';
-                    
-                    await wait(1000);
-                    document.getElementById('goodbye-mendhak').classList.add('is-crying');
-                    
-                    await wait(1000);
-                    
-                    // WATER FLOOD starts rising
-                    document.getElementById('water-flood').classList.add('flood');
-                    
-                    await wait(2000);
-                    
-                    // DROWNING / FLOATING APART
-                    piggyWrap.style.transition = 'transform 6s ease-in-out';
-                    mendhakWrap.style.transition = 'transform 6s ease-in-out';
-                    piggy.style.transition = 'transform 6s ease-in-out';
-                    mendhak.style.transition = 'transform 6s ease-in-out';
-                    
-                    piggyWrap.style.transform = 'translate(-150px, -20vh)';
-                    piggy.style.transform = 'rotate(-150deg) scale(1.2)';
-                    
-                    mendhakWrap.style.transform = 'translate(150px, -20vh)';
-                    mendhak.style.transform = 'rotate(180deg) scale(1)';
-                    
-                    // Planets and space junk tumble around
-                    ['ufo-wrap','sat-wrap','alien-wrap','jupiter-wrap','neptune-wrap','saturn-wrap','mars-wrap','moon-wrap'].forEach(id => {
-                        let el = document.getElementById(id);
-                        el.style.transition = 'transform 6s ease-in-out';
-                        el.style.transform = `translate(${(Math.random()-0.5)*80}vw, ${(Math.random()-0.5)*80}vh) rotate(${(Math.random()-0.5)*360}deg)`;
-                    });
-                    
-                    await wait(4500);
-                    
-                    // Piggy stabilizes to speak
-                    piggy.style.transition = 'transform 1.5s ease-out';
-                    piggy.style.transform = 'rotate(0deg) scale(1.2)';
-                    
-                    await wait(1500);
-                    pBubble.innerText = "Come , let me hug you";
-                    pBubble.style.opacity = '1';
-                    
-                    await wait(3000);
-                    pBubble.style.opacity = '0';
-                    
-                    // THE HUG CHOREOGRAPHY
-                    piggyWrap.style.transition = 'transform 2s ease-in-out';
-                    mendhakWrap.style.transition = 'transform 2s ease-in-out';
-                    piggy.style.transition = 'transform 2s ease-in-out';
-                    mendhak.style.transition = 'transform 2s ease-in-out';
-                    
-                    // With center alignments (margin offsets applied), translates bring them to touch
-                    piggyWrap.style.transform = 'translate(-40px, -20vh)';
-                    mendhakWrap.style.transform = 'translate(40px, -20vh)';
-                    piggy.style.transform = 'rotate(10deg) scale(1.2)';
-                    mendhak.style.transform = 'rotate(-10deg) scale(1)';
-                    
-                    await wait(1800);
-                    const kissHeart = document.getElementById('kiss-heart');
-                    kissHeart.style.opacity = '1';
-                    kissHeart.style.transform = 'translate(-50%, -50%) scale(1.5)';
-                    
-                    await wait(500);
-                    // Tears stop instantly
-                    document.getElementById('goodbye-mendhak').classList.remove('is-crying');
-                    
-                    // Water drains
-                    document.getElementById('water-flood').style.transition = 'height 3s ease-in-out';
-                    document.getElementById('water-flood').classList.remove('flood');
-                    
-                    // Planets return
-                    ['jupiter-wrap','neptune-wrap','saturn-wrap','mars-wrap','moon-wrap'].forEach(id => {
-                        let el = document.getElementById(id);
-                        el.style.transition = 'transform 4s ease-in-out';
-                        el.style.transform = '';
-                    });
-                    // Space junk flies off into deep space
-                    document.getElementById('ufo-wrap').style.transform = 'translate(100vw, -100vh) rotate(180deg)';
-                    document.getElementById('sat-wrap').style.transform = 'translate(-100vw, -100vh) rotate(-180deg)';
-                    document.getElementById('alien-wrap').style.transform = 'translate(-100vw, 100vh) rotate(-90deg)';
-                    
-                    await wait(3000);
-                    kissHeart.style.opacity = '0';
-                    
-                    // BOTH LEAVE HAPPILY
-                    pBubble.innerText = "Byeeeee";
-                    mBubble.innerText = "Byeeeee";
-                    pBubble.style.opacity = '1';
-                    mBubble.style.opacity = '1';
-                    
-                    await wait(1500);
-                    
-                    piggyWrap.style.transition = 'transform 2s ease-in, opacity 2s ease';
-                    mendhakWrap.style.transition = 'transform 2s ease-in, opacity 2s ease';
-                    piggyWrap.style.transform = 'translate(100vw, -20vh)';
-                    mendhakWrap.style.transform = 'translate(100vw, -20vh)';
-                    piggyWrap.style.opacity = '0';
-                    mendhakWrap.style.opacity = '0';
-                    pBubble.style.opacity = '0';
-                    mBubble.style.opacity = '0';
-                    
-                    await wait(2000);
-                    
-                    // FINAL IMAGE
+                    // Final image fades in
                     const finalImg = document.getElementById('final-image');
                     finalImg.style.opacity = '1';
+                    
+                    // First set it cleanly to 0, then let the animation take over
                     finalImg.style.transform = 'translate(-50%, 0) scale(1)';
                     setTimeout(() => {
                         finalImg.style.animation = 'final-float 6s infinite ease-in-out';
