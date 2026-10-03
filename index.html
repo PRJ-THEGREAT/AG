@@ -623,6 +623,7 @@
             transform: rotate(15deg); 
             display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: center; padding: 2px; gap: 1px;
             box-shadow: inset 0 0 5px rgba(255,255,255,0.3);
+            cursor: pointer;
         }
         .mint { width: 6px; height: 4px; background: #fff; border-radius: 4px; opacity: 0.9;}
 
@@ -755,7 +756,6 @@
            8. GOODBYE (ARCADE MINI GAME & SOLAR SYSTEM)
            ========================================================= */
         #s8-goodbye { background: #030208; align-items: center; justify-content: center; text-align: center; overflow: hidden; }
-        
         #solar-system { position: absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; opacity: 0; transition: opacity 3s; z-index: 0; background: radial-gradient(circle at 50% 120%, #1a1a3a 0%, #010103 80%); overflow: hidden;}
         
         /* Deep Space Nebulas */
@@ -865,6 +865,24 @@
 </head>
 <body>
 
+    <!-- NEW SFX AUDIO ELEMENTS -->
+    <audio id="hbd-audio" src="happy_birthday.mp3" preload="auto"></audio>
+    <audio id="our-song" src="our_song.mp3" preload="auto"></audio>
+    <audio id="magic-sound" src="magic.mp3" preload="auto"></audio>
+    <audio id="sfx-oink" src="oink.mp3" preload="auto"></audio>
+    <audio id="sfx-ribbit" src="ribbit.mp3" preload="auto"></audio>
+    <audio id="sfx-gulp" src="gulp.mp3" preload="auto"></audio>
+    <audio id="sfx-switch" src="switch.mp3" preload="auto"></audio>
+    <audio id="sfx-blow" src="blow.mp3" preload="auto"></audio>
+    <audio id="sfx-seal" src="seal.mp3" preload="auto"></audio>
+    <audio id="sfx-scroll" src="scroll.mp3" preload="auto"></audio>
+    <audio id="sfx-door" src="door.mp3" preload="auto"></audio>
+    <audio id="sfx-tictac" src="tictac.mp3" preload="auto"></audio>
+    <audio id="sfx-page" src="page.mp3" preload="auto"></audio>
+    <audio id="sfx-arcade-start" src="arcade_start.mp3" preload="auto"></audio>
+    <audio id="sfx-punch" src="punch.mp3" preload="auto"></audio>
+    <audio id="sfx-blastoff" src="blastoff.mp3" preload="auto"></audio>
+
     <svg width="0" height="0" style="display:none;">
         <defs>
             <g id="svg-piggy">
@@ -891,29 +909,37 @@
                 <path d="M 48 76 L 73 72" fill="none" stroke="#68b94f" stroke-width="3" stroke-linecap="round" id="m-jaw" class="mendhak-jaw" />
             </g>
             
-            <g id="svg-flower-arm">
-                <path d="M 75 80 Q 110 50 120 20" fill="none" stroke="#5d8a3f" stroke-width="6" stroke-linecap="round"/>
-                <path d="M 115 20 Q 100 10 95 25 Q 110 30 115 20" fill="#2ed573"/>
-                <path d="M 120 25 Q 130 40 140 30 Q 135 15 120 25" fill="#2ed573"/>
-                <path d="M 115 20 L 95 5 L 105 0 L 115 20" fill="#fff" stroke="#ddd"/>
-                <path d="M 120 20 L 140 -5 L 145 5 L 120 20" fill="#fff" stroke="#ddd"/>
-                <path d="M 110 20 Q 100 -5 105 -15 Q 110 -5 110 20" fill="#ff4757" stroke="#ff6b81"/>
-                <path d="M 120 20 Q 135 -5 130 -15 Q 125 -5 120 20" fill="#ff6b81" stroke="#ff4757"/>
-                <circle cx="115" cy="5" r="10" fill="#e84118"/>
-                <path d="M 110 5 Q 115 0 120 5 Q 115 10 110 5 Z" fill="none" stroke="#c23616" stroke-width="2"/>
-                <circle cx="100" cy="15" r="12" fill="#ffdf73" />
-                <circle cx="100" cy="15" r="6" fill="#5c4033" />
-                <circle cx="130" cy="15" r="10" fill="#ffdf73" />
-                <circle cx="130" cy="15" r="5" fill="#5c4033" />
-                <circle cx="95" cy="30" r="5" fill="#fff" />
-                <circle cx="95" cy="30" r="2" fill="#f1c40f" />
-                <circle cx="135" cy="25" r="5" fill="#fff" />
-                <circle cx="135" cy="25" r="2" fill="#f1c40f" />
-                <circle cx="110" cy="-5" r="3" fill="#fff" />
-                <circle cx="115" cy="-8" r="3" fill="#fff" />
-                <circle cx="120" cy="-3" r="3" fill="#fff" />
-                <circle cx="125" cy="30" r="3" fill="#fff" />
-                <circle cx="120" cy="33" r="3" fill="#fff" />
+            <g id="svg-mendhak-flower">
+                <path d="M 25 45 Q 15 65 25 80 Q 50 95 75 80 Q 85 65 75 45 Q 95 30 80 20 Q 70 15 65 30 Q 50 25 35 30 Q 30 15 20 20 Q 5 30 25 45 Z" fill="#fff" stroke="#68b94f" stroke-width="3.5" stroke-linejoin="round" />
+                <ellipse cx="45" cy="55" rx="8" ry="16" fill="none" stroke="#68b94f" stroke-width="3" transform="rotate(-15 45 55)" />
+                <ellipse cx="68" cy="55" rx="8" ry="16" fill="none" stroke="#68b94f" stroke-width="3" transform="rotate(15 68 55)" />
+                <line x1="41" y1="56" x2="49" y2="56" stroke="#68b94f" stroke-width="3" stroke-linecap="round" />
+                <line x1="64" y1="56" x2="72" y2="56" stroke="#68b94f" stroke-width="3" stroke-linecap="round" />
+                <path d="M 48 76 L 73 72" fill="none" stroke="#68b94f" stroke-width="3" stroke-linecap="round" />
+                <g class="sunflower-arm">
+                    <path d="M 75 80 Q 110 50 120 20" fill="none" stroke="#5d8a3f" stroke-width="6" stroke-linecap="round"/>
+                    <path d="M 115 20 Q 100 10 95 25 Q 110 30 115 20" fill="#2ed573"/>
+                    <path d="M 120 25 Q 130 40 140 30 Q 135 15 120 25" fill="#2ed573"/>
+                    <path d="M 115 20 L 95 5 L 105 0 L 115 20" fill="#fff" stroke="#ddd"/>
+                    <path d="M 120 20 L 140 -5 L 145 5 L 120 20" fill="#fff" stroke="#ddd"/>
+                    <path d="M 110 20 Q 100 -5 105 -15 Q 110 -5 110 20" fill="#ff4757" stroke="#ff6b81"/>
+                    <path d="M 120 20 Q 135 -5 130 -15 Q 125 -5 120 20" fill="#ff6b81" stroke="#ff4757"/>
+                    <circle cx="115" cy="5" r="10" fill="#e84118"/>
+                    <path d="M 110 5 Q 115 0 120 5 Q 115 10 110 5 Z" fill="none" stroke="#c23616" stroke-width="2"/>
+                    <circle cx="100" cy="15" r="12" fill="#ffdf73" />
+                    <circle cx="100" cy="15" r="6" fill="#5c4033" />
+                    <circle cx="130" cy="15" r="10" fill="#ffdf73" />
+                    <circle cx="130" cy="15" r="5" fill="#5c4033" />
+                    <circle cx="95" cy="30" r="5" fill="#fff" />
+                    <circle cx="95" cy="30" r="2" fill="#f1c40f" />
+                    <circle cx="135" cy="25" r="5" fill="#fff" />
+                    <circle cx="135" cy="25" r="2" fill="#f1c40f" />
+                    <circle cx="110" cy="-5" r="3" fill="#fff" />
+                    <circle cx="115" cy="-8" r="3" fill="#fff" />
+                    <circle cx="120" cy="-3" r="3" fill="#fff" />
+                    <circle cx="125" cy="30" r="3" fill="#fff" />
+                    <circle cx="120" cy="33" r="3" fill="#fff" />
+                </g>
             </g>
 
             <g id="cake-candle">
@@ -1296,7 +1322,7 @@
                     <div class="candy choki choki-1 desk-item">Choki Choki</div>
                     <div class="candy choki choki-2 desk-item">Choki Choki</div>
                     
-                    <div class="tictac-box desk-item">
+                    <div class="tictac-box desk-item" onclick="playSound('sfx-tictac')">
                         <div class="mint"></div><div class="mint"></div><div class="mint"></div>
                         <div class="mint"></div><div class="mint"></div><div class="mint"></div>
                     </div>
@@ -1382,6 +1408,7 @@
                 
                 <div class="player-name" id="pn-mendhak">MENDHAK</div>
                 <div class="health-bar-container" id="hb-mendhak">
+                    <!-- Fixed: Float right forces the bar to shrink from left to right as health decreases -->
                     <div class="health-fill" id="mendhak-hp-fill" style="width: 100%; float: right;"></div>
                 </div>
             </div>
@@ -1476,11 +1503,6 @@
         <button class="btn-close-modal" onclick="closeBook()">Put Back</button>
     </div>
 
-    <!-- AUDIO ELEMENTS -->
-    <audio id="hbd-audio" src="happy_birthday.mp3" preload="auto"></audio>
-    <audio id="our-song" src="our_song.mp3" preload="auto"></audio>
-    <audio id="magic-sound" src="assets/audio/magic.mp3" preload="auto"></audio>
-
     <script>
         /* =========================================================
            DATA CONFIGURATION 
@@ -1533,6 +1555,17 @@
         };
 
         const wait = (ms) => new Promise(res => setTimeout(res, ms));
+
+        // AUDIO ENGINE
+        function playSound(id, volume = 1.0) {
+            const el = document.getElementById(id);
+            if(el) {
+                // Cloned node allows rapid overlapping sounds (like arcade punches)
+                const clone = el.cloneNode();
+                clone.volume = volume;
+                clone.play().catch(e => console.log("Audio play blocked by browser", e));
+            }
+        }
 
         function goToSection(id) {
             document.querySelectorAll('.story-section').forEach(sec => sec.classList.remove('active'));
@@ -1587,6 +1620,7 @@
             const mText = document.getElementById('mendhak-text');
             
             await wait(1000); 
+            playSound('sfx-oink');
             piggy.style.opacity = '1';
             piggy.style.transform = 'scale(1.5) translateY(0)';
             
@@ -1594,6 +1628,7 @@
             pText.style.opacity = '1';
             
             await wait(1200);
+            playSound('sfx-ribbit');
             mendhak.style.opacity = '1';
             mendhak.style.transform = 'scale(2.2) translateY(0)';
             
@@ -1606,6 +1641,7 @@
             
             // EATEN
             await wait(150);
+            playSound('sfx-gulp');
             piggy.style.display = 'none'; 
             pText.style.display = 'none';
             
@@ -1638,6 +1674,8 @@
         }
 
         async function turnOnLight() {
+            playSound('sfx-switch');
+            
             const bulb = document.getElementById('the-bulb');
             bulb.classList.add('on'); await wait(100);
             bulb.classList.remove('on'); await wait(150);
@@ -1677,6 +1715,7 @@
             await wait(1000);
             
             // Blow out candles
+            playSound('sfx-blow');
             countdownText.innerText = "Yayyy! 🎂";
             document.querySelectorAll('.flame').forEach(f => f.classList.add('blown-out'));
             
@@ -1726,6 +1765,13 @@
             initMascotSystem();
         }
 
+        function toggleEnvelope(el) {
+            if(!el.classList.contains('open')) {
+                playSound('sfx-seal');
+            }
+            el.classList.toggle('open');
+        }
+
         function buildDynamicContent() {
             
             const newsGrid = document.getElementById('newspaper-grid');
@@ -1741,7 +1787,7 @@
             const letGrid = document.getElementById('letters-grid');
             SITE_DATA.letters.forEach(item => {
                 letGrid.innerHTML += `
-                    <div class="envelope-wrapper" onclick="this.classList.toggle('open')">
+                    <div class="envelope-wrapper" onclick="toggleEnvelope(this)">
                         <div class="envelope">
                             <div class="envelope-front">${item.label}</div>
                             <div class="envelope-flap"></div>
@@ -1797,7 +1843,6 @@
             const A = document.getElementById('char-a'); 
             const P = document.getElementById('char-p'); 
             const heart = document.getElementById('meeting-heart');
-            const magicSound = document.getElementById('magic-sound');
             const glow = document.getElementById('meeting-glow');
             const btn = document.getElementById('btn-post-meeting');
             const stage = document.getElementById('meeting-stage');
@@ -1855,7 +1900,7 @@
             
             heart.style.left = midX + 'px';
             heart.classList.add('beat');
-            magicSound.play().catch(e => console.log("Audio prevented"));
+            playSound('magic-sound');
             
             await wait(1500);
             glow.style.opacity = '1';
@@ -1880,6 +1925,7 @@
         function unrollScroll() {
             const scroll = document.getElementById('the-scroll');
             if (!scroll.classList.contains('open')) {
+                playSound('sfx-scroll');
                 scroll.classList.add('open');
                 
                 // Show the next button after the scroll has unrolled
@@ -1899,6 +1945,7 @@
             
             dText.style.opacity = '0';
             overlay.classList.add('open');
+            playSound('sfx-door');
             
             await wait(1800);
             overlay.style.pointerEvents = 'none';
@@ -1928,7 +1975,7 @@
         
         function openBookMessage() {
             document.getElementById('book-modal').classList.add('active');
-            // Give time for modal to fade in before triggering page open
+            playSound('sfx-page');
             setTimeout(() => {
                 document.getElementById('the-3d-book').classList.add('open');
             }, 300);
@@ -1937,6 +1984,7 @@
         function closeBook() {
             // Trigger close animation first
             document.getElementById('the-3d-book').classList.remove('open');
+            playSound('sfx-page');
             // Then hide modal
             setTimeout(() => {
                 document.getElementById('book-modal').classList.remove('active');
@@ -2071,6 +2119,7 @@
             await wait(500);
             
             // --- ARCADE TRANSITION ---
+            playSound('sfx-arcade-start');
             flash.style.opacity = '1';
             flash.style.zIndex = '50';
             await wait(200);
@@ -2110,6 +2159,9 @@
                 if (taps === 0) mendhak.style.animation = 'none'; 
                 
                 taps++;
+                playSound('sfx-punch');
+                playSound('sfx-ribbit', 0.5); // Annoyed frog croak
+                
                 tapHint.style.opacity = '0';
                 currentRotation += 90; 
                 
@@ -2160,6 +2212,7 @@
                     await wait(500);
                     
                     // Fly to the moon!
+                    playSound('sfx-blastoff');
                     mendhak.style.transition = 'all 2s cubic-bezier(0.5, 0, 1, 1)';
                     mendhak.style.transform = `translate(30vw, -50vh) rotate(${currentRotation + 1440}deg) scale(0)`;
                     mendhak.style.opacity = '0';
@@ -2176,6 +2229,7 @@
                     piggy.style.transform = 'scale(1.2)';
                     
                     await wait(1500);
+                    playSound('sfx-oink');
                     text3.style.opacity = '1';
                     
                     await wait(3500);
@@ -2273,26 +2327,42 @@
                     egg.style.bottom = (Math.random() * 30) + "px"; 
                     egg.style.left = "-100px";
                     container.appendChild(egg);
-                    setTimeout(() => egg.style.transform = `translateX(${window.innerWidth + 200}px)`, 50);
+                    setTimeout(() => {
+                        egg.style.transform = `translateX(${window.innerWidth + 200}px)`;
+                        if(mascot.name === 'piggy') playSound('sfx-oink', 0.1);
+                        if(mascot.name === 'mendhak') playSound('sfx-ribbit', 0.1);
+                    }, 50);
                 } else if(type < 0.6) {
                     egg.style.bottom = (Math.random() * 30) + "px"; 
                     egg.style.right = "-100px";
                     innerEl.style.transform = "scaleX(-1)"; 
                     container.appendChild(egg);
-                    setTimeout(() => egg.style.transform = `translateX(-${window.innerWidth + 200}px)`, 50);
+                    setTimeout(() => {
+                        egg.style.transform = `translateX(-${window.innerWidth + 200}px)`;
+                        if(mascot.name === 'piggy') playSound('sfx-oink', 0.1);
+                        if(mascot.name === 'mendhak') playSound('sfx-ribbit', 0.1);
+                    }, 50);
                 } else if(type < 0.8) {
                     egg.style.top = (Math.random() * 40 + 10) + "%"; 
                     egg.style.right = "-100px"; 
                     egg.style.transform = "rotate(-15deg)";
                     innerEl.style.transform = "scaleX(-1)"; 
                     container.appendChild(egg);
-                    setTimeout(() => egg.style.transform = `rotate(-15deg) translate(-${window.innerWidth + 200}px, 150px)`, 50);
+                    setTimeout(() => {
+                        egg.style.transform = `rotate(-15deg) translate(-${window.innerWidth + 200}px, 150px)`;
+                        if(mascot.name === 'piggy') playSound('sfx-oink', 0.1);
+                        if(mascot.name === 'mendhak') playSound('sfx-ribbit', 0.1);
+                    }, 50);
                 } else {
                     egg.style.top = (Math.random() * 40 + 10) + "%"; 
                     egg.style.left = "-100px"; 
                     egg.style.transform = "rotate(15deg)";
                     container.appendChild(egg);
-                    setTimeout(() => egg.style.transform = `rotate(15deg) translate(${window.innerWidth + 200}px, 150px)`, 50);
+                    setTimeout(() => {
+                        egg.style.transform = `rotate(15deg) translate(${window.innerWidth + 200}px, 150px)`;
+                        if(mascot.name === 'piggy') playSound('sfx-oink', 0.1);
+                        if(mascot.name === 'mendhak') playSound('sfx-ribbit', 0.1);
+                    }, 50);
                 }
                 
                 setTimeout(() => { if(egg.parentNode) egg.remove(); }, duration + 100);
