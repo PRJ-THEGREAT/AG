@@ -42,6 +42,17 @@
         .btn-cinematic:hover { background: currentColor; color: var(--bg-dark); }
 
         /* =========================================================
+           0. AUDIO UNLOCKER (TAP TO BEGIN)
+           ========================================================= */
+        #start-screen {
+            position: absolute; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: #000; z-index: 1000; display: flex; align-items: center; justify-content: center;
+            color: #fff; font-family: var(--font-typewriter); font-size: 1.2rem; cursor: pointer;
+            letter-spacing: 2px;
+        }
+        .pulse-text { animation: hint-pulse 1.5s infinite alternate; }
+
+        /* =========================================================
            1. UNHINGED OPENING, LIGHTBULB & CAKE SCENE
            ========================================================= */
         #s1-opening { background: #000; justify-content: center; overflow: hidden; }
@@ -865,6 +876,11 @@
 </head>
 <body>
 
+    <!-- START SCREEN (UNLOCKS AUDIO POLICIES) -->
+    <div id="start-screen" onclick="startExperience()">
+        <span class="pulse-text">Tap to Begin</span>
+    </div>
+
     <!-- NEW SFX AUDIO ELEMENTS -->
     <audio id="hbd-audio" src="happy_birthday.mp3" preload="auto"></audio>
     <audio id="our-song" src="our_song.mp3" preload="auto"></audio>
@@ -879,8 +895,9 @@
     <audio id="sfx-door" src="door.mp3" preload="auto"></audio>
     <audio id="sfx-tictac" src="tictac.mp3" preload="auto"></audio>
     <audio id="sfx-page" src="page.mp3" preload="auto"></audio>
-    <audio id="sfx-arcade-start" src="arcade_start.mp3" preload="auto"></audio>
+    <audio id="sfx-fight" src="fight.mp3" preload="auto"></audio>
     <audio id="sfx-punch" src="punch.mp3" preload="auto"></audio>
+    <audio id="sfx-ko" src="ko.mp3" preload="auto"></audio>
     <audio id="sfx-blastoff" src="blastoff.mp3" preload="auto"></audio>
 
     <svg width="0" height="0" style="display:none;">
@@ -1408,7 +1425,6 @@
                 
                 <div class="player-name" id="pn-mendhak">MENDHAK</div>
                 <div class="health-bar-container" id="hb-mendhak">
-                    <!-- Fixed: Float right forces the bar to shrink from left to right as health decreases -->
                     <div class="health-fill" id="mendhak-hp-fill" style="width: 100%; float: right;"></div>
                 </div>
             </div>
@@ -1449,21 +1465,18 @@
                     <div id="tap-hint" style="position:absolute; top:-80px; right:30px; font-family:var(--font-typewriter); color:#ffdf73; font-weight:bold; opacity:0; transition:0.3s; white-space:nowrap; animation: hint-pulse 1s infinite alternate; pointer-events:none;">(Tap Mendhak!)</div>
                     <div id="goodbye-mendhak-bubble" style="position:absolute; top:-40px; right:-20px; font-family:var(--font-typewriter); color:#68b94f; font-weight:bold; opacity:0; transition:0.3s; white-space:nowrap; background:rgba(0,0,0,0.8); padding:5px 10px; border-radius:10px; border:1px solid #68b94f;">NO , I DO!</div>
                     
-                    <svg id="goodbye-mendhak" viewBox="0 0 150 100" style="width:170px; opacity:0; transform:translateY(20px); position:relative; z-index:5;">
-                        <use href="#svg-mendhak"/>
-                        <use href="#svg-flower-arm"/>
-                    </svg>
+                    <svg id="goodbye-mendhak" viewBox="0 0 150 100" style="width:170px; opacity:0; transform:translateY(20px); position:relative; z-index:5;"><use href="#svg-mendhak-flower"/></svg>
                 </div>
             </div>
 
-            <!-- THE TWINKLE STAR (Absolutely positioned near where Mendhak vanishes) -->
+            <!-- THE TWINKLE STAR -->
             <div id="vanish-twinkle" style="position:absolute; top: 15%; right: 15%; opacity:0; pointer-events:none; z-index: 20;">
                 <div class="twinkle-star"></div>
             </div>
             
             <div id="goodbye-text-3" class="climax-text" style="top:40%; color:#ffc8d2; font-size:clamp(1.5rem, 4vw, 2.5rem);">PIGGY LOVES MENDHAK MORE !</div>
             
-            <!-- FINAL IMAGE (Strictly Centered Float) -->
+            <!-- FINAL IMAGE -->
             <img id="final-image" src="IMG_0125.png" style="position:absolute; width:clamp(150px, 40vw, 250px); bottom: 35%; left: 50%; transform: translate(-50%, 0) scale(0.8); opacity:0; transition: opacity 2s ease, transform 2s ease; z-index: 6; pointer-events: none; object-fit: contain; max-height: 40vh;">
 
             <div style="position:absolute; bottom:20%; display:flex; flex-direction:column; align-items:center; z-index:5;">
@@ -1531,7 +1544,7 @@
                 { label: "FROM: Ruhika", text: "For me Aaradhya is a funny,notorious and a very true friend of mine!! She helps me no matter what happens! We became really good friends in a very short time and I'm glad to have such a beautiful friend in my life like her!!" },
                 { label: "FROM: Paridhi", text: "For me Aaradhya is the friend i had never expected would turn out this good, her cheerful and funny side made me enjoy time with her more, every moment spent with her made me laugh until my stomach hurt and every joke of hers made me happy with a bright smile." },
                 { label: "FROM: Leora", text: "AARADHYA FOR ME.......<br>☆You are the the meethi chutney😋 to my golgappa🍽...<br>☆You are the double circulation🩺 to my heart🫀<br>☆ Annddd i missssss youuu sooooo mucchhh😭😭😭😭💖💖💖💖💖" },
-                { label: "FROM: Navya", text: "For me Aaradhya is <br>Likee the sweetesttt nd veryyyy cutessttt personn i hve ever mettt shess justt ekdummm merii chotuu si beheennn ekdumm jr vali to koi vibes he nhi aati hai .. ndd honestly i love herr smm like boht he sweet si haii 😚😚😚 .. i never knew ki ek jr se me itna attach houngi aur itni pyarii hai bhyii vo 🫠😍 and obv alwayss she'll be my funny sii happyy place ilysmm cutuuu😚😚😚😚 you'll always hold a very special place in my heart nd life .. lovee youu bothhh (puklit nd cutu)🫶🫶🫶🫶🫶🫶🫶" },
+                { label: "FROM: Navya", text: "For me Aaradhya is <br>Likee the sweetesttt nd veryyyy cutessttt personn i hve ever mettt shess justt ekdummm merii chotuu si beheennn ekdumm jr vali to koi vibes he nhi aati hai .. ndd honestly i love herr smm like boht he sweet si haii 😚😚😚 .. i never knew ki ek jr se me itna attach houngi aur itni pyarii hai bhyii vo 🫠😍 and obv alwayss she'll be my funny sii happyy place ilysmm cutuuu😚😚😚😚 you'll always hold a special place in my heart nd life .. lovee youu bothhh (puklit nd cutu)🫶🫶🫶🫶🫶🫶🫶" },
                 { label: "FROM: Mannat", text: "For me Aaradhyaa is a person who brings smile and happiness.Humesha se meri partner in crime rahi haiii and next level mastikhor insaan hai ye😏.It's always fun being with her.Bohot cute haii badmashh haii aur real hai.She is one of the best person in my life.I am so greatful that I got a great friend like her.And now the main thing! iski generator jaisi hasssi11 bhaisahabbb😂 crazyyy!!! Teen camp ke time par jo isne 3 baje raat me jab me so rhi thii iski akdum se hasi se me jo dariii hu naaaaaaaa wo to bohot hi gandaaa thaa😭.But ye jaisi bhi haiii bohottt hi funn haii.And i wish ki ye humeshaa aisi pyaari raheee.I loveee aaradhyaaaa so muchhhh!!💕💕" },
                 { label: "FROM: PRJ", text: "To me, Aaradhya is everything. You are my sunshine, my missing star, and the absolute best part of my day. Happy Birthday, Jaanu. [ADD FULL TEXT]" }
             ],
@@ -1573,11 +1586,20 @@
             if(target) target.classList.add('active');
         }
 
-        window.onload = () => {
+        // TAP TO BEGIN: Unlocks browser audio context safely
+        function startExperience() {
+            // Silently play and pause all audio elements to unlock them on iOS/Chrome
+            document.querySelectorAll('audio').forEach(a => {
+                a.play().catch(e=>{});
+                a.pause();
+                a.currentTime = 0;
+            });
+            
+            document.getElementById('start-screen').style.display = 'none';
             buildFloralFrame();
             buildDynamicContent();
             playOpeningSequence();
-        };
+        }
 
         function buildFloralFrame() {
             const frame = document.getElementById('floral-frame');
@@ -2119,7 +2141,7 @@
             await wait(500);
             
             // --- ARCADE TRANSITION ---
-            playSound('sfx-arcade-start');
+            playSound('sfx-fight');
             flash.style.opacity = '1';
             flash.style.zIndex = '50';
             await wait(200);
@@ -2159,9 +2181,6 @@
                 if (taps === 0) mendhak.style.animation = 'none'; 
                 
                 taps++;
-                playSound('sfx-punch');
-                playSound('sfx-ribbit', 0.5); // Annoyed frog croak
-                
                 tapHint.style.opacity = '0';
                 currentRotation += 90; 
                 
@@ -2174,6 +2193,8 @@
                 else if(hpPercent <= 60) hpFill.style.background = '#ffeb3b';
                 
                 // Hit Animation
+                playSound('sfx-punch');
+                playSound('sfx-ribbit', 0.5); // Annoyed frog croak
                 piggy.style.transform = 'translateX(60px) rotate(20deg)';
                 mendhak.style.transform = `translateX(30px) rotate(${currentRotation}deg) scale(0.9)`;
                 
@@ -2192,6 +2213,7 @@
                     await wait(200);
                     
                     // K.O. SCREEN
+                    playSound('sfx-ko');
                     koScreen.style.opacity = '1';
                     koScreen.style.transform = 'translate(-50%, -50%) scale(1)';
                     await wait(1500);
