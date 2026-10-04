@@ -50,8 +50,8 @@
         #start-screen {
             position: absolute; top: 0; left: 0; width: 100vw; height: 100vh;
             background: #000; z-index: 1000; display: flex; align-items: center; justify-content: center;
-            color: #fff; font-family: var(--font-typewriter); font-size: 1.2rem; cursor: pointer;
-            letter-spacing: 2px; transition: opacity 0.5s ease;
+            color: #fff; font-family: var(--font-arcade); font-size: 1rem; cursor: pointer;
+            letter-spacing: 1px; transition: opacity 0.5s ease;
         }
         .pulse-text { animation: hint-pulse 1.5s infinite alternate; }
 
@@ -69,7 +69,7 @@
         .mendhak-eye { transition: transform 0.3s, stroke-width 0.3s; transform-origin: center; }
         
         #piggy-text { position: absolute; margin-top: -100px; margin-left: -50px; color: #fff; font-family: var(--font-typewriter); font-size: 1.2rem; opacity: 0; z-index: 10; font-weight: bold; background: rgba(0,0,0,0.8); padding: 5px 12px; border-radius: 20px; white-space: nowrap; border: 1px solid #fff; }
-        #mendhak-text { position: absolute; margin-top: -140px; margin-left: 60px; color: #68b94f; font-family: var(--font-serif); font-size: 2.2rem; font-weight: bold; font-style: italic; opacity: 0; z-index: 10; transition: opacity 0.5s; white-space: nowrap; text-shadow: 0 2px 10px #000; }
+        #mendhak-text { position: absolute; margin-top: -140px; margin-left: 60px; color: #68b94f; font-family: var(--font-handwriting); font-size: 2.8rem; font-weight: bold; opacity: 0; z-index: 10; transition: opacity 0.5s; white-space: nowrap; text-shadow: 0 2px 10px #000; }
 
         @keyframes scurry { 0% { transform: rotate(-15deg); } 50% { transform: rotate(15deg); } 100% { transform: rotate(-15deg); } }
         @keyframes panic-shake { 0% { transform: translateX(-1px); } 50% { transform: translateX(1px); } 100% { transform: translateX(-1px); } }
@@ -88,11 +88,12 @@
         .bunting { position: absolute; top: 0; left: 0; width: 100%; height: 15vh; z-index: 1; pointer-events: none;}
         .hbd-banner { 
             position: absolute; top: 12vh; left: 50%; transform: translateX(-50%); 
-            display: flex; gap: 5px; flex-wrap: wrap; justify-content: center;
-            width: 90%; max-width: 600px; z-index: 2;
+            display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;
+            width: 95%; max-width: 600px; z-index: 2;
         }
+        .banner-word { display: flex; gap: 4px; justify-content: center; }
         .hbd-banner span {
-            background: #D4AF37; color: #111; padding: 6px 12px; font-family: var(--font-arcade); font-size: clamp(0.6rem, 2vw, 1rem);
+            background: #D4AF37; color: #111; padding: 5px 10px; font-family: var(--font-arcade); font-size: clamp(0.55rem, 2.5vw, 1rem);
             clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%);
             box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
             animation: swing-banner 2s infinite ease-in-out;
@@ -116,18 +117,19 @@
         .flame { animation: flicker 0.2s infinite; transition: opacity 0.3s ease; transform-origin: bottom center; }
         .flame.blown-out { opacity: 0 !important; animation: none !important; }
 
-        /* OPTIMIZED DENSE FLORAL FRAME */
+        /* OPTIMIZED DENSE FLORAL FRAME (Strictly on edges now) */
         #floral-frame { position: absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index: 3; overflow: hidden; }
-        .flower { position: absolute; font-size: clamp(2rem, 8vw, 4.5rem); transform: scale(0.2) rotate(0deg); opacity: 0; transition: transform 2.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 1.5s ease; margin-left:-1em; margin-top:-1em; text-align:center; width:2em; height:2em; line-height:2em; will-change: transform, opacity;}
+        .flower { position: absolute; font-size: clamp(1.5rem, 5vw, 3.5rem); transform: scale(0.2) rotate(0deg); opacity: 0; transition: transform 2.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 1.5s ease; margin-left:-1em; margin-top:-1em; text-align:center; width:2em; height:2em; line-height:2em; will-change: transform, opacity;}
         #floral-frame.dark-visible .flower { opacity: 0.15; }
         #floral-frame.bloomed .flower { transform: scale(var(--target-scale, 1)) rotate(var(--rot, 0deg)); opacity: 1; text-shadow: 0 5px 10px rgba(0,0,0,0.6);}
         
         /* SEQUENCE TEXT */
         #main-title { position: absolute; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 3s ease; z-index: 50; text-align: center; height: 100vh; width: 100%;}
         
-        #title-date { font-size: clamp(2rem, 6vw, 4rem); letter-spacing: 8px; opacity: 0; transform: translateY(20px); transition: opacity 1.5s ease, transform 1.5s ease; margin-bottom: 5px; text-align: center; z-index: 10;}
+        #title-date { font-size: clamp(2rem, 6vw, 4rem); letter-spacing: 4px; opacity: 0; transform: translateY(20px); transition: opacity 1.5s ease, transform 1.5s ease; margin-bottom: 5px; text-align: center; z-index: 10; color: #fff;}
         
-        #title-day { font-family: var(--font-handwriting); font-size: clamp(2.5rem, 6vw, 4rem); color: #ffc8d2; font-weight: bold; letter-spacing: 2px; text-shadow: 0 4px 15px rgba(0,0,0,0.9); opacity: 0; transform: translateY(20px); transition: opacity 1.5s ease, transform 1.5s ease; margin-bottom: 25px; text-align: center; z-index: 10;}
+        /* UPDATED AARADHYA DAY FONT */
+        #title-day { font-family: var(--font-handwriting); font-size: clamp(3.5rem, 10vw, 5.5rem); color: #ffb6c1; font-weight: 600; text-shadow: 0 4px 15px rgba(0,0,0,0.8); opacity: 0; transform: translateY(20px) rotate(-5deg); transition: opacity 1.5s ease, transform 1.5s ease; margin-bottom: 25px; text-align: center; z-index: 10;}
         
         #title-bday { font-size: clamp(1.8rem, 5vw, 3rem); font-style: italic; color: #ffdf73; opacity: 0; transform: translateY(20px); transition: opacity 1.5s ease, transform 1.5s ease; text-align: center; z-index: 10;}
         
@@ -428,7 +430,7 @@
         .redacted:hover { color: #fff; background: transparent; }
 
         /* =========================================================
-           7. MUSEUM (THE MEMORY ROOM) RESTORED DARK THEME
+           7. MUSEUM (THE MEMORY ROOM) 
            ========================================================= */
         #s7-museum { background: #211c18; align-items: center; justify-content: flex-start; padding: 0; position: relative; overflow-y: auto;}
         .room-lighting { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center 40%, transparent 20%, rgba(0,0,0,0.8) 100%); pointer-events: none; z-index: 1;}
@@ -579,9 +581,9 @@
         /* Photo Frame */
         .desk-frame-wrapper { 
             bottom: 60px; 
-            left: 25%; 
-            width: clamp(60px, 10vw, 80px); 
-            height: clamp(80px, 14vw, 110px); 
+            left: 18%; 
+            width: clamp(50px, 12vw, 80px); 
+            height: clamp(70px, 16vw, 110px); 
             background: #eee; 
             border: 6px solid #c4a47c; 
             box-shadow: inset 0 0 10px rgba(0,0,0,0.5); 
@@ -591,7 +593,7 @@
         .desk-frame-wrapper img { width: 100%; height: 100%; object-fit: cover; }
 
         /* Pen Stand */
-        .desk-pen-stand { left: 40%; bottom: 70px; width: 35px; height: 50px; z-index: 6;}
+        .desk-pen-stand { left: 36%; bottom: 60px; width: 35px; height: 50px; z-index: 6;}
         .cup { width: 100%; height: 100%; background: linear-gradient(to right, #7a604a, #d4be9f, #7a604a); border-radius: 4px; position: absolute; bottom: 0; z-index: 5; border-top: 2px solid #3d2a1a; box-shadow: inset 0 5px 10px rgba(0,0,0,0.6);}
         .pen { position: absolute; width: 4px; height: 40px; border-radius: 2px; bottom: 10px; z-index: 1;}
         .pen-1 { background: #cc0000; left: 5px; transform: rotate(-20deg); }
@@ -601,8 +603,8 @@
         /* Unfolded Paint Stained T-Shirt with Warli Art */
         .t-shirt-svg {
             position: absolute;
-            left: 48%; bottom: 45px;
-            width: clamp(90px, 14vw, 130px); 
+            left: 48%; bottom: 40px;
+            width: clamp(70px, 15vw, 130px); 
             height: auto;
             transform: rotate(-5deg) scaleY(0.9);
             z-index: 4;
@@ -610,7 +612,7 @@
         }
 
         /* Real Sunflower */
-        .real-sunflower { left: 30%; bottom: 25px; font-size: clamp(2rem, 5vw, 3.5rem); transform: rotate(70deg); pointer-events: none;}
+        .real-sunflower { left: 28%; bottom: 20px; font-size: clamp(2rem, 5vw, 3.5rem); transform: rotate(70deg); pointer-events: none;}
 
         /* Origami Lilies */
         .origami-lily { width: clamp(20px, 3vw, 30px); pointer-events: none;}
@@ -647,7 +649,7 @@
 
         /* Steaming Coffee Cup */
         .desk-cup { 
-            left: 55%; bottom: 40px; width: 40px; height: 35px; background: #e0e0e0; border-radius: 2px 2px 10px 10px; 
+            left: 68%; bottom: 30px; width: 40px; height: 35px; background: #e0e0e0; border-radius: 2px 2px 10px 10px; 
             z-index: 15; cursor: pointer; box-shadow: inset -5px -5px 10px rgba(0,0,0,0.3); border: 1px solid #999; border-top: 2px solid #5a3a1b;
         }
         .desk-cup::before { content:''; position: absolute; right: -12px; top: 5px; width: 14px; height: 18px; border: 3px solid #e0e0e0; border-radius: 50%; z-index: -1; }
@@ -663,7 +665,7 @@
         @keyframes heart-float { 0% { transform: translateY(0) scale(0.5); opacity: 1; } 100% { transform: translateY(-60px) scale(1.5); opacity: 0; } }
 
         /* GRAMOPHONE COMPONENT on Desk */
-        #gramophone-wrapper { right: 4%; bottom: 35px; width: clamp(160px, 25vw, 240px); height: clamp(140px, 20vw, 210px); cursor: pointer; user-select: none; transition: transform 0.3s;}
+        #gramophone-wrapper { right: 2%; bottom: 30px; width: clamp(100px, 25vw, 240px); height: clamp(85px, 20vw, 210px); cursor: pointer; user-select: none; transition: transform 0.3s;}
         #gramophone-wrapper:hover { transform: scale(1.03); }
 
         .gramo-horn { position: absolute; top: -10px; left: 10px; width: 60%; height: 60%; z-index: 4; filter: drop-shadow(0 10px 10px rgba(0,0,0,0.6)); pointer-events: none;}
@@ -885,7 +887,7 @@
 
     <!-- START SCREEN (UNLOCKS AUDIO POLICIES) -->
     <div id="start-screen" onclick="startExperience()">
-        <span class="pulse-text">Tap to Begin</span>
+        <span class="pulse-text">TAP TO BEGIN</span>
     </div>
 
     <!-- NEW SFX AUDIO ELEMENTS -->
@@ -933,6 +935,39 @@
                 <path d="M 48 76 L 73 72" fill="none" stroke="#68b94f" stroke-width="3" stroke-linecap="round" id="m-jaw" class="mendhak-jaw" />
             </g>
             
+            <g id="svg-mendhak-flower">
+                <path d="M 25 45 Q 15 65 25 80 Q 50 95 75 80 Q 85 65 75 45 Q 95 30 80 20 Q 70 15 65 30 Q 50 25 35 30 Q 30 15 20 20 Q 5 30 25 45 Z" fill="#fff" stroke="#68b94f" stroke-width="3.5" stroke-linejoin="round" />
+                <ellipse cx="45" cy="55" rx="8" ry="16" fill="none" stroke="#68b94f" stroke-width="3" transform="rotate(-15 45 55)" />
+                <ellipse cx="68" cy="55" rx="8" ry="16" fill="none" stroke="#68b94f" stroke-width="3" transform="rotate(15 68 55)" />
+                <line x1="41" y1="56" x2="49" y2="56" stroke="#68b94f" stroke-width="3" stroke-linecap="round" />
+                <line x1="64" y1="56" x2="72" y2="56" stroke="#68b94f" stroke-width="3" stroke-linecap="round" />
+                <path d="M 48 76 L 73 72" fill="none" stroke="#68b94f" stroke-width="3" stroke-linecap="round" />
+                <g class="sunflower-arm">
+                    <path d="M 75 80 Q 110 50 120 20" fill="none" stroke="#5d8a3f" stroke-width="6" stroke-linecap="round"/>
+                    <path d="M 115 20 Q 100 10 95 25 Q 110 30 115 20" fill="#2ed573"/>
+                    <path d="M 120 25 Q 130 40 140 30 Q 135 15 120 25" fill="#2ed573"/>
+                    <path d="M 115 20 L 95 5 L 105 0 L 115 20" fill="#fff" stroke="#ddd"/>
+                    <path d="M 120 20 L 140 -5 L 145 5 L 120 20" fill="#fff" stroke="#ddd"/>
+                    <path d="M 110 20 Q 100 -5 105 -15 Q 110 -5 110 20" fill="#ff4757" stroke="#ff6b81"/>
+                    <path d="M 120 20 Q 135 -5 130 -15 Q 125 -5 120 20" fill="#ff6b81" stroke="#ff4757"/>
+                    <circle cx="115" cy="5" r="10" fill="#e84118"/>
+                    <path d="M 110 5 Q 115 0 120 5 Q 115 10 110 5 Z" fill="none" stroke="#c23616" stroke-width="2"/>
+                    <circle cx="100" cy="15" r="12" fill="#ffdf73" />
+                    <circle cx="100" cy="15" r="6" fill="#5c4033" />
+                    <circle cx="130" cy="15" r="10" fill="#ffdf73" />
+                    <circle cx="130" cy="15" r="5" fill="#5c4033" />
+                    <circle cx="95" cy="30" r="5" fill="#fff" />
+                    <circle cx="95" cy="30" r="2" fill="#f1c40f" />
+                    <circle cx="135" cy="25" r="5" fill="#fff" />
+                    <circle cx="135" cy="25" r="2" fill="#f1c40f" />
+                    <circle cx="110" cy="-5" r="3" fill="#fff" />
+                    <circle cx="115" cy="-8" r="3" fill="#fff" />
+                    <circle cx="120" cy="-3" r="3" fill="#fff" />
+                    <circle cx="125" cy="30" r="3" fill="#fff" />
+                    <circle cx="120" cy="33" r="3" fill="#fff" />
+                </g>
+            </g>
+
             <g id="cake-candle">
                 <!-- Candle stick -->
                 <rect x="-2" y="0" width="4" height="15" fill="#fff" rx="1"/>
@@ -1030,9 +1065,15 @@
                 <div class="balloon balloon-4"></div>
                 
                 <div class="hbd-banner">
-                    <span>H</span><span>A</span><span>P</span><span>P</span><span>Y</span> &nbsp;
-                    <span>B</span><span>I</span><span>R</span><span>T</span><span>H</span><span>D</span><span>A</span><span>Y</span> &nbsp;
-                    <span>A</span><span>A</span><span>R</span><span>A</span><span>D</span><span>H</span><span>Y</span><span>A</span>
+                    <div class="banner-word">
+                        <span>H</span><span>A</span><span>P</span><span>P</span><span>Y</span>
+                    </div>
+                    <div class="banner-word">
+                        <span>B</span><span>I</span><span>R</span><span>T</span><span>H</span><span>D</span><span>A</span><span>Y</span>
+                    </div>
+                    <div class="banner-word">
+                        <span>A</span><span>A</span><span>R</span><span>A</span><span>D</span><span>H</span><span>Y</span><span>A</span>
+                    </div>
                 </div>
                 
                 <div id="countdown-text">Blow the candle in… 5</div>
@@ -1399,6 +1440,7 @@
                 
                 <div class="player-name" id="pn-mendhak">MENDHAK</div>
                 <div class="health-bar-container" id="hb-mendhak">
+                    <!-- Fixed: Float right forces the bar to shrink from left to right as health decreases -->
                     <div class="health-fill" id="mendhak-hp-fill" style="width: 100%; float: right;"></div>
                 </div>
             </div>
@@ -1439,38 +1481,7 @@
                     <div id="tap-hint" style="position:absolute; top:-80px; right:30px; font-family:var(--font-typewriter); color:#ffdf73; font-weight:bold; opacity:0; transition:0.3s; white-space:nowrap; animation: hint-pulse 1s infinite alternate; pointer-events:none;">(Tap Mendhak!)</div>
                     <div id="goodbye-mendhak-bubble" style="position:absolute; top:-40px; right:-20px; font-family: var(--font-handwriting); font-size: 1.8rem; color:#68b94f; font-weight:bold; opacity:0; transition:0.3s; white-space:nowrap; background:rgba(0,0,0,0.8); padding:5px 15px; border-radius:10px; border:1px solid #68b94f;">NO , I DO!</div>
                     
-                    <svg id="goodbye-mendhak" viewBox="0 0 150 100" style="width:170px; opacity:0; transform:translateY(20px); position:relative; z-index:5;">
-                        <path d="M 25 45 Q 15 65 25 80 Q 50 95 75 80 Q 85 65 75 45 Q 95 30 80 20 Q 70 15 65 30 Q 50 25 35 30 Q 30 15 20 20 Q 5 30 25 45 Z" fill="#fff" stroke="#68b94f" stroke-width="3.5" stroke-linejoin="round" />
-                        <ellipse cx="45" cy="55" rx="8" ry="16" fill="none" stroke="#68b94f" stroke-width="3" transform="rotate(-15 45 55)" />
-                        <ellipse cx="68" cy="55" rx="8" ry="16" fill="none" stroke="#68b94f" stroke-width="3" transform="rotate(15 68 55)" />
-                        <line x1="41" y1="56" x2="49" y2="56" stroke="#68b94f" stroke-width="3" stroke-linecap="round" />
-                        <line x1="64" y1="56" x2="72" y2="56" stroke="#68b94f" stroke-width="3" stroke-linecap="round" />
-                        <path d="M 48 76 L 73 72" fill="none" stroke="#68b94f" stroke-width="3" stroke-linecap="round" />
-                        <g class="sunflower-arm">
-                            <path d="M 75 80 Q 110 50 120 20" fill="none" stroke="#5d8a3f" stroke-width="6" stroke-linecap="round"/>
-                            <path d="M 115 20 Q 100 10 95 25 Q 110 30 115 20" fill="#2ed573"/>
-                            <path d="M 120 25 Q 130 40 140 30 Q 135 15 120 25" fill="#2ed573"/>
-                            <path d="M 115 20 L 95 5 L 105 0 L 115 20" fill="#fff" stroke="#ddd"/>
-                            <path d="M 120 20 L 140 -5 L 145 5 L 120 20" fill="#fff" stroke="#ddd"/>
-                            <path d="M 110 20 Q 100 -5 105 -15 Q 110 -5 110 20" fill="#ff4757" stroke="#ff6b81"/>
-                            <path d="M 120 20 Q 135 -5 130 -15 Q 125 -5 120 20" fill="#ff6b81" stroke="#ff4757"/>
-                            <circle cx="115" cy="5" r="10" fill="#e84118"/>
-                            <path d="M 110 5 Q 115 0 120 5 Q 115 10 110 5 Z" fill="none" stroke="#c23616" stroke-width="2"/>
-                            <circle cx="100" cy="15" r="12" fill="#ffdf73" />
-                            <circle cx="100" cy="15" r="6" fill="#5c4033" />
-                            <circle cx="130" cy="15" r="10" fill="#ffdf73" />
-                            <circle cx="130" cy="15" r="5" fill="#5c4033" />
-                            <circle cx="95" cy="30" r="5" fill="#fff" />
-                            <circle cx="95" cy="30" r="2" fill="#f1c40f" />
-                            <circle cx="135" cy="25" r="5" fill="#fff" />
-                            <circle cx="135" cy="25" r="2" fill="#f1c40f" />
-                            <circle cx="110" cy="-5" r="3" fill="#fff" />
-                            <circle cx="115" cy="-8" r="3" fill="#fff" />
-                            <circle cx="120" cy="-3" r="3" fill="#fff" />
-                            <circle cx="125" cy="30" r="3" fill="#fff" />
-                            <circle cx="120" cy="33" r="3" fill="#fff" />
-                        </g>
-                    </svg>
+                    <svg id="goodbye-mendhak" viewBox="0 0 150 100" style="width:170px; opacity:0; transform:translateY(20px); position:relative; z-index:5;"><use href="#svg-mendhak-flower"/></svg>
                 </div>
             </div>
 
@@ -1627,15 +1638,15 @@
                 f.innerText = emojis[Math.floor(Math.random() * emojis.length)];
                 
                 let edge = i % 4; 
-                let depth = Math.random() * 6 - 4; // Restricts to strict borders
-                let spread = Math.random() * 105 - 2.5; 
+                let depth = Math.random() * 5 - 2; 
+                let spread = Math.random() * 100; 
                 
                 if (edge === 0) { f.style.top = depth + '%'; f.style.left = spread + '%'; }
                 else if (edge === 1) { f.style.bottom = depth + '%'; f.style.left = spread + '%'; }
                 else if (edge === 2) { f.style.left = depth + '%'; f.style.top = spread + '%'; }
                 else { f.style.right = depth + '%'; f.style.top = spread + '%'; }
                 
-                let size = Math.random() * 0.6 + 0.5; 
+                let size = Math.random() * 0.5 + 0.4; 
                 let rot = Math.random() * 360 - 180;
                 
                 f.style.setProperty('--target-scale', size);
@@ -2065,7 +2076,7 @@
 
         function startGoodbyeFlowers() {
             const container = document.getElementById('s8-goodbye');
-            const emojis = ['🌹', '🌻', '🌷', '🌼', '🪷', '🏵️️', '🌺', '🌸'];
+            const emojis = ['🌹', '🌻', '🌷', '🌼', '🪷', '🏵️', '🌺', '🌸'];
             for(let i=0; i<45; i++) {
                 let f = document.createElement('div');
                 f.style.position = 'absolute';
