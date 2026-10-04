@@ -79,18 +79,14 @@
         #lightbulb-scene { position: absolute; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 2s; z-index: 5; height: 100vh; width: 100%;}
         #tease-text { font-family: var(--font-typewriter); color: #888; font-size: 0.9rem; margin-bottom: 20px; text-align: center; }
         
-        /* Vintage Lantern Styles */
-        #vintage-lantern { width: 120px; height: 250px; cursor: pointer; transform-origin: bottom center; transition: 0.3s; }
-        #lantern-glass { fill: rgba(255,255,255,0.05); transition: fill 0.3s ease; }
-        #lantern-bulb { fill: #222; transition: fill 0.3s ease, filter 0.3s ease; }
-        
-        #vintage-lantern.on #lantern-glass { fill: rgba(255, 235, 150, 0.3); }
-        #vintage-lantern.on #lantern-bulb { fill: #fff7a0; filter: drop-shadow(0 0 30px #ffdf73) drop-shadow(0 0 60px #ffb300); }
+        /* FIX: Resized lightbulb for mobile */
+        #the-bulb { width: clamp(30px, 8vw, 45px); cursor: pointer; filter: brightness(0.2); transition: filter 0.1s; animation: swing 4s infinite ease-in-out; transform-origin: top center; }
+        #the-bulb.on { filter: drop-shadow(0 0 40px #fff7a0) brightness(1.5); animation: none; }
         
         /* CAKE COUNTDOWN SCENE & DECORATIONS */
         #cake-scene { position: absolute; top:0; left:0; width:100%; height:100%; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 1s ease; z-index: 5;}
         
-        /* Wall Hangings & Balloons */
+        /* Wall Hangings & Balloons (Black & Gold Theme) */
         .bunting { position: absolute; top: 0; left: 0; width: 100%; height: 15vh; z-index: 1; pointer-events: none;}
         .hbd-banner { 
             position: absolute; top: 12vh; left: 50%; transform: translateX(-50%); 
@@ -118,22 +114,23 @@
 
         #countdown-text { font-family: var(--font-typewriter); color: #fff; font-size: 1.5rem; margin-bottom: 20px; margin-top: 60px; text-align: center; text-shadow: 0 2px 10px #000; font-weight: bold; z-index: 10; opacity: 0; transition: opacity 1s ease;}
         
+        /* CSS for the blow-out mechanism */
         @keyframes flicker { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
         .flame { animation: flicker 0.2s infinite; transition: opacity 0.3s ease; transform-origin: bottom center; }
         .flame.blown-out { opacity: 0 !important; animation: none !important; }
 
-        /* LUSH MOBILE-OPTIMIZED FLORAL FRAME */
+        /* FIX: RESTORED ORIGINAL FLORAL FRAME SIZES */
         #floral-frame { position: absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index: 3; overflow: hidden; }
-        .flower { position: absolute; font-size: clamp(1rem, 4vw, 2.5rem); transform: scale(0.2) rotate(0deg); opacity: 0; transition: transform 2.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 1.5s ease; margin-left:-1em; margin-top:-1em; text-align:center; width:2em; height:2em; line-height:2em; will-change: transform, opacity;}
+        .flower { position: absolute; font-size: clamp(2rem, 8vw, 4.5rem); transform: scale(0.2) rotate(0deg); opacity: 0; transition: transform 2.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 1.5s ease; margin-left:-1em; margin-top:-1em; text-align:center; width:2em; height:2em; line-height:2em; will-change: transform, opacity;}
         #floral-frame.dark-visible .flower { opacity: 0.15; }
         #floral-frame.bloomed .flower { transform: scale(var(--target-scale, 1)) rotate(var(--rot, 0deg)); opacity: 1; text-shadow: 0 5px 10px rgba(0,0,0,0.6);}
         
-        /* SEQUENCE TEXT (REDUCED SIZES FOR MOBILE) */
+        /* SEQUENCE TEXT */
         #main-title { position: absolute; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 3s ease; z-index: 50; text-align: center; height: 100vh; width: 100%;}
         
-        #title-date { font-size: clamp(1.3rem, 5vw, 2.5rem); letter-spacing: 4px; opacity: 0; transform: translateY(20px); transition: opacity 1.5s ease, transform 1.5s ease; margin-bottom: 5px; text-align: center; z-index: 10; color: #fff;}
+        #title-date { font-size: clamp(2rem, 6vw, 4rem); letter-spacing: 4px; opacity: 0; transform: translateY(20px); transition: opacity 1.5s ease, transform 1.5s ease; margin-bottom: 5px; text-align: center; z-index: 10; color: #fff;}
         
-        #title-day { font-family: var(--font-handwriting); font-size: clamp(2.5rem, 8vw, 4.5rem); color: #ffb6c1; font-weight: 600; text-shadow: 0 4px 15px rgba(0,0,0,0.8); opacity: 0; transform: translateY(20px) rotate(-5deg); transition: opacity 1.5s ease, transform 1.5s ease; margin-bottom: 25px; text-align: center; z-index: 10;}
+        #title-day { font-family: var(--font-handwriting); font-size: clamp(3.5rem, 10vw, 5.5rem); color: #ffb6c1; font-weight: 600; text-shadow: 0 4px 15px rgba(0,0,0,0.8); opacity: 0; transform: translateY(20px) rotate(-5deg); transition: opacity 1.5s ease, transform 1.5s ease; margin-bottom: 25px; text-align: center; z-index: 10;}
         
         #title-bday { font-size: clamp(1.2rem, 4vw, 2rem); font-style: italic; color: #ffdf73; opacity: 0; transform: translateY(20px); transition: opacity 1.5s ease, transform 1.5s ease; text-align: center; z-index: 10;}
         
@@ -540,7 +537,7 @@
             z-index: 12;
         }
         .book-v {
-            width: 30px;
+            width: clamp(20px, 4vw, 30px);
             border-radius: 3px 0 0 3px;
             box-shadow: inset 2px 0 5px rgba(255,255,255,0.1), -5px 5px 10px rgba(0,0,0,0.6);
             display: flex;
@@ -549,28 +546,39 @@
             writing-mode: vertical-rl;
             text-orientation: mixed;
             font-family: var(--font-serif);
-            font-size: 0.65rem;
+            font-size: clamp(0.45rem, 1.5vw, 0.65rem);
             font-weight: bold;
             color: #fff;
             padding: 10px 0;
             border-left: 2px solid rgba(0,0,0,0.5);
             border-top: 1px solid rgba(255,255,255,0.2);
         }
-        .b1 { height: 140px; background: #3d2314; }
-        .b2 { height: 120px; background: #6b4423; color: #f0e6d2; font-family: var(--font-sans);}
+        /* FIXED BOOK HEIGHTS FOR MOBILE */
+        .b1 { height: clamp(90px, 20vw, 140px); background: #3d2314; }
+        .b2 { height: clamp(75px, 17vw, 120px); background: #6b4423; color: #f0e6d2; font-family: var(--font-sans);}
         
         .b3 { 
-            height: 160px; 
+            height: clamp(100px, 24vw, 160px); 
             background: #802020; 
             transform: rotate(-5deg); 
             transform-origin: bottom left; 
             margin-left: 10px; 
-            font-size: 0.6rem;
+            font-size: clamp(0.4rem, 1.2vw, 0.6rem);
             cursor: pointer;
             transition: transform 0.3s ease;
             pointer-events: auto;
         }
         .b3:hover { transform: rotate(-8deg) scale(1.05); }
+
+        /* FIX: Resized headphones for mobile */
+        .desk-headphones {
+            bottom: 145px;
+            left: 4%; 
+            width: clamp(35px, 8vw, 55px);
+            transform: rotate(-15deg);
+            z-index: 11; 
+            pointer-events: none; 
+        }
 
         /* Photo Frame */
         .desk-frame-wrapper { 
@@ -644,7 +652,7 @@
 
         /* Steaming Coffee Cup */
         .desk-cup { 
-            right: 25%; bottom: 30px; width: 40px; height: 35px; background: #e0e0e0; border-radius: 2px 2px 10px 10px; 
+            left: 68%; bottom: 30px; width: 40px; height: 35px; background: #e0e0e0; border-radius: 2px 2px 10px 10px; 
             z-index: 15; cursor: pointer; box-shadow: inset -5px -5px 10px rgba(0,0,0,0.3); border: 1px solid #999; border-top: 2px solid #5a3a1b;
         }
         .desk-cup::before { content:''; position: absolute; right: -12px; top: 5px; width: 14px; height: 18px; border: 3px solid #e0e0e0; border-radius: 50%; z-index: -1; }
@@ -1112,7 +1120,7 @@
             <div id="main-title">
                 <h1 id="title-date" class="serif">14 OCTOBER 2026</h1>
                 <p id="title-day">Aaradhya Day</p>
-                <h2 id="title-bday" class="serif">HAPPY BIRTHDAY JAANU <span class="pulse-heart">❤️️</span></h2>
+                <h2 id="title-bday" class="serif">HAPPY BIRTHDAY JAANU <span class="pulse-heart">❤️</span></h2>
                 <button id="enter-btn" class="btn-cinematic" onclick="goToSection('s2-edition')">Enter</button>
             </div>
         </section>
@@ -1638,7 +1646,7 @@
                 else if (edge === 2) { f.style.left = depth + '%'; f.style.top = spread + '%'; }
                 else { f.style.right = depth + '%'; f.style.top = spread + '%'; }
                 
-                let size = Math.random() * 0.4 + 0.3; 
+                let size = Math.random() * 0.8 + 0.7; 
                 let rot = Math.random() * 360 - 180;
                 
                 f.style.setProperty('--target-scale', size);
