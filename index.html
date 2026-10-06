@@ -130,9 +130,9 @@
         /* SEQUENCE TEXT */
         #main-title { position: absolute; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 3s ease; z-index: 50; text-align: center; height: 100vh; width: 100%;}
         
-        #title-date { font-size: clamp(2rem, 6vw, 4rem); letter-spacing: 4px; opacity: 0; transform: translateY(20px); transition: opacity 1.5s ease, transform 1.5s ease; margin-bottom: 5px; text-align: center; z-index: 10; color: #fff;}
+        #title-date { font-size: clamp(1.3rem, 5vw, 2.5rem); letter-spacing: 4px; opacity: 0; transform: translateY(20px); transition: opacity 1.5s ease, transform 1.5s ease; margin-bottom: 5px; text-align: center; z-index: 10; color: #fff;}
         
-        #title-day { font-family: var(--font-handwriting); font-size: clamp(3.5rem, 10vw, 5.5rem); color: #ffb6c1; font-weight: 600; text-shadow: 0 4px 15px rgba(0,0,0,0.8); opacity: 0; transform: translateY(20px) rotate(-5deg); transition: opacity 1.5s ease, transform 1.5s ease; margin-bottom: 25px; text-align: center; z-index: 10;}
+        #title-day { font-family: var(--font-handwriting); font-size: clamp(2.5rem, 8vw, 4.5rem); color: #ffb6c1; font-weight: 600; text-shadow: 0 4px 15px rgba(0,0,0,0.8); opacity: 0; transform: translateY(20px) rotate(-5deg); transition: opacity 1.5s ease, transform 1.5s ease; margin-bottom: 25px; text-align: center; z-index: 10;}
         
         #title-bday { font-size: clamp(1.2rem, 4vw, 2rem); font-style: italic; color: #ffdf73; opacity: 0; transform: translateY(20px); transition: opacity 1.5s ease, transform 1.5s ease; text-align: center; z-index: 10;}
         
@@ -1412,6 +1412,7 @@
                 
                 <div class="player-name" id="pn-mendhak">MENDHAK</div>
                 <div class="health-bar-container" id="hb-mendhak">
+                    <!-- Fixed: Float right forces the bar to shrink from left to right as health decreases -->
                     <div class="health-fill" id="mendhak-hp-fill" style="width: 100%; float: right;"></div>
                 </div>
             </div>
@@ -1555,7 +1556,7 @@
             ],
 
             letters: [
-                { label: "FROM: MOM & DAD", text: "" },
+                { label: "FROM: MOM & DAD", text: "For me , Aaradhya is the brightest light of our family. Watching you turn 15 today fills my heart with so much pride and emotion. Having you in my life has taught me the true meaning of love and purpose. You bring so much smiles, positivity, and meaning to our family every single day. As you step into your teenage years, I want you to remember that I will always be here to support you, cheer for you, and love you unconditionally—in every single moment of your life. Keep shining bright, my darling. You mean the world to me! ❤️🌟" },
                 { label: "FROM: Riddhima", text: "For me, Aaradhya✨ is someone I would run to as soon as I get any tea.😋 I can share everything with her; she's more than just a best friend. I love everything about her,💋💋 especially her laugh. Around her, I can be the real me, knowing she will never judge me." },
                 { label: "FROM: Yashasvi", text: "For me ,🌟 Aaradhya🌟 is a kind-hearted person who makes everyone laugh by her laughter attacks🤣🤣 and silly - lame jokes . I always meant her to my sister 😤 who is Always there for me , always makes me laugh at any point where I feel to be quiet 🙊 and most importantly the trust that she shows on me is what matters for me at any point 🫀. She is always the one jiski baat ka merko in 4 saalo kabhi bura nahi laga. \" <i>Bas last me yahi ki apko is saal thodi si buddhi 🧠 ki prapti ho🙏🏻🙏🏻 .</i>\" 😘💋" },
                 { label: "FROM: Shristi", text: "For me Aaradhya is, my happy place🪷✨. The person I call whenever something funny, stupid, exciting, or heartbreaking happens😸. She isn't just my best friend; she's the sister i always wanted . and bakwass jitni bhi karti ho I love her so much!!❤️" },
