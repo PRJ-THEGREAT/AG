@@ -58,20 +58,6 @@
         .pulse-text { animation: hint-pulse 1.5s infinite alternate; pointer-events: none;}
 
         /* =========================================================
-           0.5 CLOCK TIME TRAVEL SEQUENCE
-           ========================================================= */
-        @keyframes skyCycle {
-            0% { background: #020111; }
-            25% { background: #ff7e5f; }
-            50% { background: #87CEEB; }
-            75% { background: #feb47b; }
-            100% { background: #020111; }
-        }
-        .sky-cycle {
-            animation: skyCycle 0.3s infinite linear;
-        }
-
-        /* =========================================================
            1. UNHINGED OPENING, LIGHTBULB & CAKE SCENE
            ========================================================= */
         #s1-opening { background: #000; justify-content: center; overflow: hidden; }
@@ -928,29 +914,84 @@
     <audio id="sfx-ko" src="ko.mp3" preload="auto"></audio>
     <audio id="sfx-blastoff" src="blastoff.mp3" preload="auto"></audio>
 
-    <div id="app-container">
+    <svg width="0" height="0" style="display:none;">
+        <defs>
+            <g id="svg-piggy">
+                <path d="M 22 25 Q 16 35 22 45 Q 26 50 20 55" fill="none" stroke="#333" stroke-width="2.5" stroke-linecap="round" id="p-sweat" />
+                <path d="M 30 35 Q 25 55 30 75 Q 50 90 70 75 Q 75 55 70 35 Q 50 20 30 35 Z" fill="#ffc8d2" />
+                <path d="M 30 35 Q 25 25 35 30 Z" fill="#ffc8d2" />
+                <path d="M 34 32 Q 36 24 30 20 Q 24 24 28 30 Z" fill="#d85068" transform="rotate(-20 30 30)"/>
+                <path d="M 70 35 Q 75 25 65 30 Z" fill="#ffc8d2" />
+                <path d="M 66 32 Q 64 24 70 20 Q 76 24 72 30 Z" fill="#d85068" transform="rotate(20 70 30)"/>
+                <ellipse cx="50" cy="65" rx="14" ry="9" fill="#f492a5" />
+                <path d="M 45 61 L 43 68 M 55 61 L 57 68" stroke="#333" stroke-width="2.5" stroke-linecap="round" />
+                <circle cx="38" cy="48" r="3" fill="#333" />
+                <circle cx="62" cy="48" r="3" fill="#333" />
+                <path d="M 38 72 Q 50 78 62 70" fill="none" stroke="#333" stroke-width="2.5" stroke-linecap="round" id="p-mouth" style="transition: d 0.2s;" />
+                <path d="M 40 85 L 40 95" fill="none" stroke="#ffc8d2" stroke-width="4" stroke-linecap="round" class="piggy-legs" style="animation-delay: 0s;"/>
+                <path d="M 60 85 L 60 95" fill="none" stroke="#ffc8d2" stroke-width="4" stroke-linecap="round" class="piggy-legs" style="animation-delay: 0.1s;"/>
+            </g>
+            <g id="svg-mendhak">
+                <path d="M 25 45 Q 15 65 25 80 Q 50 95 75 80 Q 85 65 75 45 Q 95 30 80 20 Q 70 15 65 30 Q 50 25 35 30 Q 30 15 20 20 Q 5 30 25 45 Z" fill="#fff" stroke="#68b94f" stroke-width="3.5" stroke-linejoin="round" />
+                <ellipse cx="45" cy="55" rx="8" ry="16" fill="none" stroke="#68b94f" stroke-width="3" transform="rotate(-15 45 55)" />
+                <ellipse cx="68" cy="55" rx="8" ry="16" fill="none" stroke="#68b94f" stroke-width="3" transform="rotate(15 68 55)" />
+                <line x1="41" y1="56" x2="49" y2="56" stroke="#68b94f" stroke-width="3" stroke-linecap="round" class="mendhak-eye" id="m-pupil-l" />
+                <line x1="64" y1="56" x2="72" y2="56" stroke="#68b94f" stroke-width="3" stroke-linecap="round" class="mendhak-eye" id="m-pupil-r" />
+                <path d="M 48 76 L 73 72" fill="none" stroke="#68b94f" stroke-width="3" stroke-linecap="round" id="m-jaw" class="mendhak-jaw" />
+            </g>
+            
+            <g id="cake-candle">
+                <!-- Candle stick -->
+                <rect x="-2" y="0" width="4" height="15" fill="#fff" rx="1"/>
+                <!-- Gold Stripes -->
+                <rect x="-2" y="3" width="4" height="3" fill="#B8860B"/>
+                <rect x="-2" y="9" width="4" height="3" fill="#B8860B"/>
+                <!-- Flame -->
+                <path d="M 0 -2 C 3 -6 3 -10 0 -14 C -3 -10 -3 -6 0 -2 Z" fill="#ffeb3b" class="flame" />
+                <path d="M 0 -2 C 1 -5 1 -8 0 -10 C -1 -8 -1 -5 0 -2 Z" fill="#ff9800" class="flame" />
+            </g>
 
-        <!-- 0.5 CLOCK TIME TRAVEL SCENE -->
-        <div id="clock-scene" style="position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 100; display: none; align-items: center; justify-content: center; flex-direction: column; background: #000; transition: opacity 1s ease;">
-            <div id="clock-bg" style="position: absolute; top:0; left:0; width: 100%; height: 100%; opacity: 1; z-index: 1; background: #000;"></div>
+            <g id="svg-bulb">
+                <path d="M 45 0 L 55 0 L 55 20 L 45 20 Z" fill="#555"/>
+                <path d="M 30 20 C 30 20 70 20 70 50 C 70 80 50 100 50 100 C 50 100 30 80 30 50 C 30 20 30 20 30 20 Z" fill="#fff" opacity="0.8"/>
+            </g>
             
-            <div id="the-clock" style="position: relative; width: clamp(120px, 30vw, 150px); height: clamp(120px, 30vw, 150px); border: 6px solid #fff; border-radius: 50%; background: rgba(0,0,0,0.5); box-shadow: 0 0 20px rgba(255,255,255,0.2), inset 0 0 15px rgba(255,255,255,0.2); z-index: 2;">
-                <!-- Tick marks -->
-                <div style="position: absolute; top: 4%; left: 50%; width: 4px; height: 10%; background: #fff; transform: translateX(-50%); border-radius: 2px;"></div>
-                <div style="position: absolute; bottom: 4%; left: 50%; width: 4px; height: 10%; background: #fff; transform: translateX(-50%); border-radius: 2px;"></div>
-                <div style="position: absolute; top: 50%; left: 4%; width: 10%; height: 4px; background: #fff; transform: translateY(-50%); border-radius: 2px;"></div>
-                <div style="position: absolute; top: 50%; right: 4%; width: 10%; height: 4px; background: #fff; transform: translateY(-50%); border-radius: 2px;"></div>
-                
-                <!-- Hands -->
-                <div id="hour-hand" style="position: absolute; bottom: 50%; left: 50%; width: 6px; height: 25%; background: #fff; transform-origin: bottom center; margin-left: -3px; border-radius: 3px; transform: rotate(0deg);"></div>
-                <div id="min-hand" style="position: absolute; bottom: 50%; left: 50%; width: 4px; height: 40%; background: #ffdf73; transform-origin: bottom center; margin-left: -2px; border-radius: 2px; transform: rotate(0deg);"></div>
-                
-                <!-- Center Dot -->
-                <div style="position: absolute; top: 50%; left: 50%; width: 12px; height: 12px; background: #ffdf73; border-radius: 50%; transform: translate(-50%, -50%); z-index: 5; border: 2px solid #fff;"></div>
-            </div>
+            <!-- Origami Lily (Pink) -->
+            <g id="svg-origami-lily-pink">
+                <path d="M 25 50 L 25 90" stroke="#7ab55c" stroke-width="3"/>
+                <path d="M 25 75 Q 10 60 5 45 Q 15 65 25 75" fill="#7ab55c"/>
+                <path d="M 25 65 Q 40 50 45 35 Q 35 55 25 65" fill="#5a9040"/>
+                <path d="M 25 50 L 15 25 L 25 5 L 35 25 Z" fill="#ff7da6"/>
+                <path d="M 25 50 L 25 5 L 35 25 Z" fill="#e65a88"/>
+                <path d="M 25 40 Q 10 30 0 45 Q 15 50 25 50" fill="#ff99bb"/>
+                <path d="M 25 40 Q 40 30 50 45 Q 35 50 25 50" fill="#d94876"/>
+            </g>
             
-            <div id="clock-text" style="position: relative; margin-top: 40px; font-family: var(--font-typewriter); color: #fff; font-size: 1.5rem; font-weight: bold; z-index: 2; opacity: 0; transition: opacity 1s; letter-spacing: 2px;">3:45 A.M.</div>
-        </div>
+            <!-- Origami Lily (Lined Notebook Paper) -->
+            <g id="svg-origami-lily-lined">
+                <path d="M 25 50 L 25 90" stroke="#7ab55c" stroke-width="3"/>
+                <path d="M 25 75 Q 10 60 5 45 Q 15 65 25 75" fill="#7ab55c"/>
+                <path d="M 25 65 Q 40 50 45 35 Q 35 55 25 65" fill="#5a9040"/>
+                <path d="M 25 50 L 15 25 L 25 5 L 35 25 Z" fill="#fff" stroke="#ccc" stroke-width="0.5"/>
+                <path d="M 25 50 L 25 5 L 35 25 Z" fill="#f0f0f0" stroke="#ccc" stroke-width="0.5"/>
+                <path d="M 25 40 Q 10 30 0 45 Q 15 50 25 50" fill="#fff" stroke="#ccc" stroke-width="0.5"/>
+                <path d="M 25 40 Q 40 30 50 45 Q 35 50 25 50" fill="#e0e0e0" stroke="#ccc" stroke-width="0.5"/>
+                <!-- Notebook Lines -->
+                <path d="M 12 15 L 38 15 M 8 25 L 42 25 M 5 35 L 45 35 M 10 45 L 40 45" stroke="#90caf9" stroke-width="0.5" fill="none"/>
+            </g>
+
+            <!-- Headphones -->
+            <g id="svg-headphones">
+                <path d="M 20 50 A 30 30 0 0 1 80 50" fill="none" stroke="#222" stroke-width="6"/>
+                <rect x="10" y="45" width="15" height="30" rx="5" fill="#333"/>
+                <rect x="75" y="45" width="15" height="30" rx="5" fill="#333"/>
+                <rect x="25" y="50" width="8" height="20" rx="4" fill="#ddd"/>
+                <rect x="67" y="50" width="8" height="20" rx="4" fill="#ddd"/>
+            </g>
+        </defs>
+    </svg>
+
+    <div id="app-container">
 
         <!-- 1. OPENING -->
         <section id="s1-opening" class="story-section active">
@@ -1593,49 +1634,6 @@
             
             buildFloralFrame();
             buildDynamicContent();
-            
-            // Kick off the new cinematic clock
-            playClockSequence();
-        }
-
-        async function playClockSequence() {
-            const clockScene = document.getElementById('clock-scene');
-            const clockBg = document.getElementById('clock-bg');
-            const hHand = document.getElementById('hour-hand');
-            const mHand = document.getElementById('min-hand');
-            const cText = document.getElementById('clock-text');
-            
-            clockScene.style.display = 'flex';
-            
-            // Force reflow
-            void clockScene.offsetWidth;
-            
-            clockBg.classList.add('sky-cycle');
-            
-            mHand.style.transition = 'transform 3.5s cubic-bezier(0.2, 0, 0.1, 1)';
-            hHand.style.transition = 'transform 3.5s cubic-bezier(0.2, 0, 0.1, 1)';
-            
-            await wait(100);
-            
-            // 3:45 AM -> Min: 270deg, Hour: 112.5deg
-            mHand.style.transform = 'rotate(' + (360 * 40 + 270) + 'deg)'; 
-            hHand.style.transform = 'rotate(' + (360 * 3 + 112.5) + 'deg)';
-            
-            await wait(3500);
-            
-            clockBg.classList.remove('sky-cycle');
-            clockBg.style.background = '#020111'; // Settle on deep night
-            
-            await wait(500);
-            cText.style.opacity = '1';
-            
-            await wait(2000);
-            
-            clockScene.style.opacity = '0';
-            
-            await wait(1000);
-            clockScene.style.display = 'none';
-            
             playOpeningSequence();
         }
 
